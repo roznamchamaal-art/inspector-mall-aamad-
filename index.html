@@ -8,6 +8,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="انسپیکٹر مال">
 <meta name="theme-color" content="#7a1f1f">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="48x48" href="icons/favicon-48.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <title>انسپیکٹر مال</title>
 <style>
 :root{
@@ -598,6 +601,27 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   .sigprev img{display:block;max-height:13mm;max-width:46mm;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
   body.print-blank .sigwrap{display:none !important;}
 }
+
+/* =====================================================================
+   INSTALL (PWA) BANNER + SETTINGS CARD
+   ===================================================================== */
+.install-banner{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));inset-inline:10px;margin-inline:auto;max-width:540px;z-index:3000;
+  background:#fff;border:2px solid var(--accent);border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,.28);padding:12px 14px;display:flex;gap:12px;align-items:center;
+  animation:ibIn .35s ease-out;}
+@keyframes ibIn{from{transform:translateY(-20px);opacity:0}to{transform:none;opacity:1}}
+.install-banner img{width:46px;height:46px;border-radius:10px;flex:0 0 auto;}
+.install-banner .ib-text{flex:1;min-width:0;font-size:13.5px;line-height:1.7;color:#222;}
+.install-banner .ib-text b{display:block;color:var(--accent);font-size:15px;}
+.install-banner .ib-btns{display:flex;flex-direction:column;gap:6px;flex:0 0 auto;}
+.install-banner button{border:none;border-radius:10px;padding:8px 14px;font-size:13px;cursor:pointer;min-height:38px;font-family:inherit;}
+.install-banner .ib-go{background:var(--accent2);color:#fff;font-weight:700;}
+.install-banner .ib-later{background:#eee;color:#444;}
+.install-steps{margin:8px 0 0;padding-inline-start:20px;font-size:13px;line-height:1.9;}
+.install-status{font-size:13px;font-weight:700;margin:6px 0 10px;}
+.install-status.ok{color:var(--accent2);}
+.install-status.off{color:var(--muted);font-weight:400;}
+@media (max-width:480px){.install-banner{flex-wrap:wrap}.install-banner .ib-btns{flex-direction:row;width:100%}.install-banner button{flex:1}}
+@media print{.install-banner{display:none !important}}
 </style>
 <style id="dynamicPrintStyle">
 @media print{ @page{ size: A4 portrait; margin: 9mm; } }
@@ -1170,6 +1194,14 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
         <h3><span class="ur">🔐 پن / سیکیورٹی</span><span class="en">PIN / Security</span></h3>
         <p><span class="ur">ایپ کھولنے کے لیے پن استعمال ہوتا ہے۔ پن تبدیل کریں یا سیکیورٹی سوال اپڈیٹ کریں۔</span><span class="en">A PIN is required to open the app. Change your PIN or security question here.</span></p>
         <button onclick="showChangePinDialog()"><span class="ur">پن تبدیل کریں </span><span class="en">Change PIN</span></button>
+      </div>
+      <div class="settingcard" id="installCard">
+        <h3><span class="ur">📲 ایپ انسٹال کریں</span><span class="en">Install App</span></h3>
+        <p><span class="ur">موبائل، لیپ ٹاپ یا کمپیوٹر پر ایپ کی طرح انسٹال کریں — الگ آئیکن سے کھلے گی اور انٹرنیٹ کے بغیر بھی چلے گی۔</span><span class="en">Install on your phone, laptop or computer — opens from its own icon and works without internet.</span></p>
+        <div class="install-status off" id="installStatus"></div>
+        <button id="installBtn" onclick="window.appInstall && window.appInstall()"><span class="ur">📲 انسٹال کریں</span><span class="en">Install</span></button>
+        <div id="installHelp" class="smallnote hidden"></div>
+        <div class="install-status off" id="offlineStatus" style="margin-top:10px"></div>
       </div>
       <div class="settingcard">
         <h3><span class="ur">📍 ڈیٹا کہاں محفوظ ہو رہا ہے</span><span class="en">Where is my data saved?</span></h3>
@@ -3910,6 +3942,114 @@ window.addEventListener('DOMContentLoaded', ()=>{
   renderLockScreen();
   loadFolderHandle();
 });
+</script>
+<script>
+/* ======================================================================
+   INSTALL AS APP (PWA): first-open prompt + Settings button + offline support
+   ====================================================================== */
+(function(){
+  const LS_DISMISS = 'fbd_installDismissedAt';
+  const DISMISS_DAYS = 7;
+  let deferred = null;
+  const $ = id => document.getElementById(id);
+  const standalone = ()=> window.matchMedia('(display-mode: standalone)').matches ||
+                          window.matchMedia('(display-mode: window-controls-overlay)').matches ||
+                          window.navigator.standalone === true;
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const secure = location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  const isFile = location.protocol === 'file:';
+
+  // offline support (needs https or localhost)
+  if('serviceWorker' in navigator && secure){
+    window.addEventListener('load', ()=>navigator.serviceWorker.register('sw.js').then(()=>updateCard()).catch(()=>updateCard()));
+  }
+
+  function dismissedRecently(){
+    const t = +localStorage.getItem(LS_DISMISS) || 0;
+    return t && (Date.now() - t) < DISMISS_DAYS * 86400000;
+  }
+  function manualHelpHtml(){
+    if(isIOS) return '<b>آئی فون / آئی پیڈ (Safari):</b><ol class="install-steps"><li>نیچے <b>شیئر</b> کے بٹن (⬆️) کو دبائیں۔</li><li><b>“Add to Home Screen”</b> / ہوم اسکرین پر شامل کریں منتخب کریں۔</li><li><b>Add</b> دبائیں۔</li></ol>';
+    if(isFile) return 'انسٹال کے لیے فائل کو ویب سائٹ (HTTPS) پر چڑھانا ضروری ہے۔ کمپیوٹر میں فائل پر ڈبل کلک کر کے کھولنے سے انسٹال کا آپشن نہیں آتا۔';
+    return '<b>براؤزر سے انسٹال:</b><ol class="install-steps"><li><b>Chrome / Edge (کمپیوٹر):</b> ایڈریس بار کے دائیں طرف انسٹال کا آئیکن (⊕ یا 🖥️) دبائیں، یا مینو (⋮) ← <b>“Install app”</b>۔</li><li><b>اینڈرائیڈ Chrome:</b> مینو (⋮) ← <b>“Install app”</b> یا <b>“Add to Home screen”</b>۔</li><li>Firefox کمپیوٹر پر انسٹال سپورٹ نہیں کرتا — Chrome یا Edge استعمال کریں۔</li></ol>';
+  }
+  async function updateCard(){
+    const st = $('installStatus'), btn = $('installBtn'), help = $('installHelp'), off = $('offlineStatus');
+    if(!st) return;
+    if(standalone()){
+      st.className = 'install-status ok'; st.textContent = '✅ ایپ انسٹال ہے اور ایپ موڈ میں کھلی ہے۔';
+      if(btn) btn.classList.add('hidden');
+    } else if(deferred){
+      st.className = 'install-status ok'; st.textContent = '✅ یہ ڈیوائس انسٹال کے لیے تیار ہے۔';
+      if(btn) btn.classList.remove('hidden');
+    } else {
+      st.className = 'install-status off';
+      st.textContent = isFile ? '⚠️ فائل براہ راست کھولی گئی ہے — انسٹال کے لیے ویب سائٹ (HTTPS) درکار ہے۔' : 'اگر انسٹال کا بٹن کام نہ کرے تو نیچے دیا طریقہ استعمال کریں۔';
+      if(btn) btn.classList.remove('hidden');
+    }
+    if(help){
+      if(standalone() || deferred){ help.classList.add('hidden'); }
+      else { help.innerHTML = manualHelpHtml(); help.classList.remove('hidden'); }
+    }
+    if(off){
+      let ready = false;
+      try{ ready = !!(navigator.serviceWorker && navigator.serviceWorker.controller) || (!!navigator.serviceWorker && (await navigator.serviceWorker.getRegistration()) && !!(await caches.keys()).length); }catch(e){}
+      off.className = 'install-status ' + (ready ? 'ok' : 'off');
+      off.textContent = ready ? '✅ آف لائن موڈ تیار ہے — انٹرنیٹ کے بغیر بھی کھلے گی۔' : (secure ? 'آف لائن موڈ پہلی بار کھلنے کے بعد تیار ہو جائے گا۔' : 'آف لائن موڈ صرف HTTPS ویب سائٹ پر چلتا ہے۔');
+    }
+  }
+
+  function hideBanner(){ const b = $('installBanner'); if(b) b.remove(); }
+  function showBanner(){
+    if($('installBanner') || standalone() || dismissedRecently()) return;
+    if(!deferred && !isIOS) return;           // nothing useful to offer on this browser
+    const b = document.createElement('div');
+    b.id = 'installBanner'; b.className = 'install-banner'; b.setAttribute('role', 'region'); b.setAttribute('aria-label', 'ایپ انسٹال کریں');
+    b.innerHTML = '<img src="icons/icon-192.png" alt="">' +
+      '<div class="ib-text"><b>📲 انسپیکٹر مال انسٹال کریں</b>' + (isIOS && !deferred ? 'ہوم اسکرین پر شامل کریں — ایپ کی طرح کھلے گی۔' : 'موبائل / لیپ ٹاپ / کمپیوٹر پر ایپ کی طرح کھلے گی، آف لائن بھی چلے گی۔') + '</div>' +
+      '<div class="ib-btns"><button type="button" class="ib-go">' + (isIOS && !deferred ? 'طریقہ دیکھیں' : 'انسٹال کریں') + '</button><button type="button" class="ib-later">بعد میں</button></div>';
+    b.querySelector('.ib-go').addEventListener('click', ()=>{ window.appInstall(); });
+    b.querySelector('.ib-later').addEventListener('click', ()=>{ localStorage.setItem(LS_DISMISS, String(Date.now())); hideBanner(); });
+    document.body.appendChild(b);
+  }
+
+  window.appInstall = async function(){
+    if(deferred){
+      hideBanner();
+      deferred.prompt();
+      let choice = null;
+      try{ choice = await deferred.userChoice; }catch(e){}
+      deferred = null;
+      if(!(choice && choice.outcome === 'accepted')) localStorage.setItem(LS_DISMISS, String(Date.now()));
+      updateCard();
+      return;
+    }
+    // no native prompt available: show the manual steps in a dialog
+    hideBanner();
+    if(typeof openModalCustom === 'function'){
+      openModalCustom('<h3 style="color:var(--accent);">📲 ایپ انسٹال کریں</h3><div class="smallnote" style="line-height:1.9">' + manualHelpHtml() + '</div>' +
+        '<div class="rowbtns"><button type="button" class="modal-confirm" onclick="closeModalCustom()">ٹھیک ہے</button></div>');
+    } else { alert('براؤزر مینو سے “Install app” / “Add to Home Screen” منتخب کریں۔'); }
+  };
+
+  window.addEventListener('beforeinstallprompt', e=>{
+    e.preventDefault(); deferred = e;
+    updateCard();
+    setTimeout(showBanner, 600);
+  });
+  window.addEventListener('appinstalled', ()=>{
+    deferred = null; hideBanner(); updateCard();
+    if(typeof showToast === 'function') showToast('ایپ انسٹال ہو گئی ✅', 3500);
+  });
+  window.matchMedia('(display-mode: standalone)').addEventListener && window.matchMedia('(display-mode: standalone)').addEventListener('change', updateCard);
+
+  document.addEventListener('DOMContentLoaded', updateCard);
+  updateCard();
+  // iPhone/iPad never fire the install event: offer the manual steps on first open
+  if(isIOS && !standalone()) setTimeout(showBanner, 1500);
+  // refresh the card when Settings opens
+  document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('[data-view="settings"]')) setTimeout(updateCard, 50); });
+})();
 </script>
 </body>
 </html>
