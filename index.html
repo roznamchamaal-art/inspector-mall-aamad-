@@ -388,6 +388,9 @@ body.lang-ur .en{display:none !important;}
   .dk-body:empty::before{content:"" !important;}
   .dk-body:focus{background:none;}
   .dk-bottom .dk-name,.dk-addr-row .dk-addr{display:none !important;}
+  /* the name line (text + dotted line) prints only when «نام پرنٹ میں شامل کریں» is ticked */
+  #formtype-darkhwast .a4page:not(.dk-name-on) .dk-bottom .print-text,#formtype-gendarkhwast .a4page:not(.dk-name-on) .dk-bottom .print-text{display:none !important;}
+  .dk-pn{display:none !important;}
   .dk-addr-row .print-text{display:block;flex:1;min-height:1.6em;text-align:right;border-bottom:1.5px dotted #444;}
   .dk-bottom .print-text{display:block;width:100%;min-height:1.6em;text-align:center;border-bottom:1.5px dotted #444;}
   /* Form Number / Date box (record-keeping only) should not appear on the printed paper form */
@@ -653,6 +656,101 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 .install-diag{list-style:none;margin:6px 0 8px;padding:0;font-size:12.5px;line-height:1.8;}
 .install-diag li{padding:3px 0;border-bottom:1px dashed #e3dfcf;}
 .install-diag li.ok{color:var(--accent2);} .install-diag li.bad{color:var(--danger);} .install-diag li.wait{color:#8a6d00;}
+
+.dk-pn{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:6px 12px;border:1.5px solid var(--accent);border-radius:18px;background:#fff;color:var(--accent);font-size:12.5px;cursor:pointer;}
+.dk-pn[aria-pressed="true"]{background:var(--accent);color:#fff;}
+.dk-pn .pnbox{font-size:15px;line-height:1;}
+
+/* ---------- slash helper button ---------- */
+.slashbtn{display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:5px 12px;border:1.5px solid var(--accent);border-radius:16px;background:#fff;color:var(--accent);font-size:12px;cursor:pointer;}
+.slashbtn b{font-size:16px;line-height:1;}
+.slashbtn:hover{background:var(--accent);color:#fff;}
+.ap-sheet{display:none;}
+
+/* =====================================================================
+   PRINT SHEET — Audit / Account form (matches the paper form)
+   ===================================================================== */
+@media print{
+  .slashbtn{display:none !important;}
+  body.ap-printing #formtype-auditaccount{display:none !important;}
+  body.ap-printing #view-form,body.ap-printing #appwrap{padding:0 !important;margin:0 !important;}
+  .ap-sheet{display:flex;flex-direction:column;gap:6mm;width:210mm;height:296mm;box-sizing:border-box;padding:11mm 13mm 11mm;
+    direction:rtl;color:#000;background:#fff;overflow:hidden;page-break-after:avoid;break-after:avoid;font-size:11pt;line-height:1.5;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .ap-sheet *{box-sizing:border-box;}
+  .ap-box{border:0.9mm solid #000;padding:0.9mm;}
+  .ap-box1{flex:0 0 79mm;}
+  .ap-box2{flex:1 1 auto;min-height:0;}
+  .ap-inner{height:100%;border:0.3mm solid #000;padding:2.4mm 3mm;display:flex;flex-direction:column;justify-content:space-between;}
+  .ap-row{display:flex;align-items:flex-end;direction:rtl;min-height:6.4mm;}
+  .ap-l{font-weight:700;font-size:11pt;white-space:nowrap;margin-inline-end:1.2mm;color:#000;}
+  .ap-f{flex:1 1 0;min-width:7mm;min-height:5.6mm;border-bottom:0.35mm dotted #000;margin-inline-end:2.6mm;padding:0 1mm;font-size:10.5pt;line-height:1.35;text-align:right;color:#000;}
+  .ap-f.g1{flex:1.2 1 0;} .ap-f.g2{flex:2 1 0;} .ap-f.g3{flex:3 1 0;} .ap-f.g4{flex:4 1 0;}
+  .ap-fill{flex:1;}
+  .ap-tag{background:#000;color:#fff;font-weight:700;font-size:12pt;padding:0.8mm 3.2mm;margin-inline-end:3mm;white-space:nowrap;align-self:center;line-height:1.5;}
+  .ap-split{align-items:flex-end;}
+  .ap-half{display:flex;align-items:flex-end;}
+  .ap-hr{flex:0 0 38%;} .ap-gap{flex:0 0 11%;} .ap-hl{flex:1;}
+  .ap-half .ap-f{margin-inline-end:0;}
+  .ap-books .ap-cell{flex:1 1 0;min-width:0;min-height:6.4mm;margin-inline-end:3.2mm;border-bottom:0.35mm dotted #000;text-align:center;font-size:10.5pt;display:flex;align-items:center;justify-content:center;}
+  .ap-books .ap-l{flex:0 0 auto;margin-inline-end:3mm;}
+  .ap-books .ap-cell:last-child{margin-inline-end:0;}
+  .ap-books .print-fraction{font-size:9pt;line-height:1.15;}
+  .ap-text{flex-wrap:wrap;align-items:flex-end;}
+  .ap-text .ap-val{flex:1 0 100%;border-bottom:0.35mm dotted #000;min-height:6mm;padding:0 1mm;font-size:10.5pt;margin-top:0.5mm;}
+  .ap-two{line-height:1.7;}
+  .ap-tbl{width:100%;border-collapse:collapse;table-layout:fixed;}
+  .ap-tbl th,.ap-tbl td{border:0.3mm solid #000;height:7.4mm;padding:0 2mm;font-size:10.5pt;text-align:center;vertical-align:middle;color:#000;background:#fff;}
+  .ap-tbl th{font-weight:700;font-size:10.5pt;text-align:right;}
+  .ap-tbl td.ap-lbl{text-align:right;font-weight:700;}
+  .ap-tbl .print-fraction{font-size:9pt;line-height:1.15;}
+  .ap-tagrow{justify-content:flex-start;align-items:center;}
+  .ap-note{font-weight:700;font-size:11pt;margin-inline-start:42%;}
+  .ap-lf{display:flex;direction:rtl;gap:5%;align-items:stretch;}
+  .ap-lcol{display:flex;flex-direction:column;justify-content:space-between;gap:1.4mm;}
+  .ap-lr{flex:0 0 51%;} .ap-ll{flex:1;}
+  .ap-sigs,.ap-phones{gap:3%;align-items:flex-end;}
+  .ap-sigs{min-height:11mm;}
+  .ap-sb{flex:1 1 0;display:flex;align-items:flex-end;position:relative;min-width:0;}
+  .ap-sb .ap-l{font-size:10.5pt;}
+  .ap-sb .ap-f{margin-inline-end:0;}
+  .ap-sig{position:absolute;left:12%;bottom:3.2mm;height:10.5mm;max-width:42%;object-fit:contain;}
+}
+
+@media print{
+  /* long printed sentences must wrap inside the box, never run off the page */
+  .ap-text .ap-l{white-space:normal;flex:1 1 100%;min-width:0;}
+  .ap-qrow{flex-wrap:nowrap;}
+  .ap-qrow .ap-l{font-size:9.4pt;margin-inline-end:0.8mm;}
+  .ap-qrow .ap-f{min-width:4mm;margin-inline-end:1.4mm;padding:0 0.5mm;}
+  .ap-ll .ap-two .ap-l,.ap-two .ap-l{font-size:10.5pt;line-height:1.75;}
+  .ap-ll{min-width:0;} .ap-lr{min-width:0;}
+  .ap-lr .ap-l{font-size:10.5pt;}
+  .ap-sigs{min-height:13mm;}
+  .ap-sig{bottom:2.4mm;height:9.5mm;}
+  .ap-inner{overflow:hidden;}
+}
+
+@media print{
+  .ap-sheet{gap:4mm;padding:9mm 13mm 9mm;}
+  .ap-box1{flex:0 0 80mm;}
+  .ap-qrow{flex-wrap:wrap;column-gap:1mm;}
+  .ap-qp{display:flex;align-items:flex-end;flex:1 1 auto;min-width:0;}
+  .ap-qp .ap-l{font-size:10pt;margin-inline-end:1mm;}
+  .ap-qp .ap-f{flex:1 1 0;min-width:10mm;margin-inline-end:2mm;}
+  .ap-tbl th,.ap-tbl td{height:6.7mm;padding:0 1.6mm;}
+  .ap-tbl .print-fraction,.ap-books .print-fraction{font-size:8pt;line-height:1;}
+  .ap-tbl .print-fraction .pf-bottom,.ap-books .print-fraction .pf-bottom{margin-top:0;}
+  .ap-two .ap-l,.ap-ll .ap-two .ap-l{font-size:10pt;line-height:1.6;}
+  .ap-lr .ap-l,.ap-ll .ap-l{font-size:10pt;}
+  .ap-lcol{gap:1mm;}
+  .ap-books .ap-cell{min-height:6mm;}
+  .ap-row{min-height:6mm;}
+}
+
+#slashFab{display:none;position:fixed;z-index:2500;width:36px;height:30px;align-items:center;justify-content:center;border:none;border-radius:8px;
+  background:var(--accent);color:#fff;font-size:20px;font-weight:700;line-height:1;box-shadow:0 2px 8px rgba(0,0,0,.35);cursor:pointer;direction:ltr;}
+@media print{#slashFab{display:none !important;}}
 </style>
 <style id="dynamicPrintStyle">
 @media print{ @page{ size: A4 portrait; margin: 9mm; } }
@@ -926,6 +1024,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
             <div class="footerline footerline-sub">
               <div class="fitem"><label><span class="ur">فون نمبر</span><span class="en">Phone</span></label><input type="tel" id="c_phone1"></div>
               <div class="fitem"><label><span class="ur">فون نمبر</span><span class="en">Phone</span></label><input type="tel" id="c_phone2"></div>
+              <div class="fitem"><label><span class="ur">فون نمبر</span><span class="en">Phone</span></label><input type="tel" id="c_phone3"></div>
             </div>
           </div>
         </div>
@@ -1180,6 +1279,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
             <div>والسلام</div>
             <div>خاکسار</div>
             <input type="text" id="dk_name" class="dk-name" placeholder="نام …">
+            <button type="button" class="dk-pn" id="dk_pn" aria-pressed="false" onclick="toggleLetterName('dk')"><span class="pnbox" aria-hidden="true">☐</span> نام پرنٹ میں شامل کریں</button>
           </div>
         </div>
       </div>
@@ -1198,6 +1298,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
             <div>والسلام</div>
             <div>خاکسار</div>
             <input type="text" id="gd_name" class="dk-name" placeholder="نام …">
+            <button type="button" class="dk-pn" id="gd_pn" aria-pressed="false" onclick="toggleLetterName('gd')"><span class="pnbox" aria-hidden="true">☐</span> نام پرنٹ میں شامل کریں</button>
           </div>
         </div>
       </div>
@@ -1257,6 +1358,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
         <div id="installDiag"></div>
         <div id="installHelp" class="smallnote hidden"></div>
         <div class="install-status off" id="offlineStatus" style="margin-top:10px"></div>
+        <div class="smallnote" style="margin-top:6px;">ایپ کا ورژن: <b id="appVer" dir="ltr"></b></div>
       </div>
       <div class="settingcard">
         <h3><span class="ur">📍 ڈیٹا کہاں محفوظ ہو رہا ہے</span><span class="en">Where is my data saved?</span></h3>
@@ -2592,7 +2694,8 @@ function collectFormDataCore(){
       gendarkhwast: {
         addressee: val('gd_addressee'),
         body: document.getElementById('gd_body').innerText.replace(/\n$/,''),
-        name: val('gd_name')
+        name: val('gd_name'),
+        printName: document.getElementById('gd_pn').getAttribute('aria-pressed') === 'true'
       }
     };
   }
@@ -2605,7 +2708,8 @@ function collectFormDataCore(){
       lastModified: new Date().toISOString(),
       darkhwast: {
         body: document.getElementById('dk_body').innerText.replace(/\n$/,''),
-        name: val('dk_name')
+        name: val('dk_name'),
+        printName: document.getElementById('dk_pn').getAttribute('aria-pressed') === 'true'
       }
     };
   }
@@ -2680,7 +2784,7 @@ function collectFormDataCore(){
         totalIncome: val('c_totalIncome'), totalExpense: val('c_totalExpense'), balance: val('c_balance'),
         howSafe: val('c_howSafe'), otherDonations: val('c_otherDonations'), personalUse: val('c_personalUse'),
         inspSignDate: val('c_inspSignDate'), sadarSignDate: val('c_sadarSignDate'), secSignDate: val('c_secSignDate'),
-        phone1: val('c_phone1'), phone2: val('c_phone2')
+        phone1: val('c_phone1'), phone2: val('c_phone2'), phone3: val('c_phone3')
       }
     };
   }
@@ -2758,6 +2862,7 @@ function fillFormDataCore(data){
     setVal('gd_addressee', g.addressee);
     document.getElementById('gd_body').innerText = g.body||'';
     setVal('gd_name', g.name);
+    toggleLetterName('gd', !!g.printName);
     updateStatusLine(data);
     document.getElementById('btnDeleteRec').classList.remove('hidden');
     document.getElementById('btnBackRec').classList.remove('hidden');
@@ -2768,6 +2873,7 @@ function fillFormDataCore(data){
     const k = data.darkhwast||{};
     document.getElementById('dk_body').innerText = k.body||'';
     setVal('dk_name', k.name);
+    toggleLetterName('dk', !!k.printName);
     updateStatusLine(data);
     document.getElementById('btnDeleteRec').classList.remove('hidden');
     document.getElementById('btnBackRec').classList.remove('hidden');
@@ -2828,7 +2934,7 @@ function fillFormDataCore(data){
     setVal('c_totalExpense',lf.totalExpense);
     setVal('c_howSafe',lf.howSafe); setVal('c_otherDonations',lf.otherDonations); setVal('c_personalUse',lf.personalUse);
     setVal('c_inspSignDate',lf.inspSignDate); setVal('c_sadarSignDate',lf.sadarSignDate); setVal('c_secSignDate',lf.secSignDate);
-    setVal('c_phone1',lf.phone1); setVal('c_phone2',lf.phone2);
+    setVal('c_phone1',lf.phone1); setVal('c_phone2',lf.phone2); setVal('c_phone3',lf.phone3);
     recalcLocalFund();
 
     updateStatusLine(data);
@@ -2930,7 +3036,7 @@ function newFormCore(){
      'a_finishedBooks','a_currentBooks','a_reportSent','a_listPrepared','a_stockChecked','a_propertyChecked','a_otherNotes',
      'b_inspName','b_jamaat','b_zila','b_lastJuneYear','b_currentYearFrom','b_currentYearTo',
      'c_balance30June','c_balance30JuneYear','c_collectionJuly','c_collectionJulyDate','c_totalIncome','c_totalExpense','c_balance','c_howSafe','c_otherDonations','c_personalUse',
-     'c_inspSignDate','c_sadarSignDate','c_secSignDate','c_phone1','c_phone2'
+     'c_inspSignDate','c_sadarSignDate','c_secSignDate','c_phone1','c_phone2','c_phone3'
     ].forEach(id=>setVal(id,''));
     buildMiniTables();
     recalcCurrentYear();
@@ -3303,7 +3409,7 @@ window.addEventListener('beforeunload', e=>{
 /* wrappers around the original form functions */
 function collectFormData(){ const d = collectFormDataCore(); d.signatures = collectSignatures(); return d; }
 function fillFormData(data){ fillFormDataCore(data); applySignatures(data && data.signatures); setDirty(false); }
-function newForm(){ newFormCore(); clearSignatures(); clearInvalidMarks(); setDirty(false); }
+function newForm(){ newFormCore(); toggleLetterName('dk', false); toggleLetterName('gd', false); clearSignatures(); clearInvalidMarks(); setDirty(false); }
 function loadRecord(id){ guardDirty(()=>loadRecordCore(id)); }
 function switchFormTypeTab(type){ guardDirty(()=>switchFormTypeTabCore(type)); }
 
@@ -4055,6 +4161,184 @@ function closeModalCustom(){
   if(el) el.remove();
 }
 
+
+/* ======================================================================
+   AUDIT / ACCOUNT FORM — print sheet that reproduces the paper form
+   (same boxes, rows, dotted lines, table columns and spacing; values are filled in)
+   ====================================================================== */
+function apVal(id){ if(window.PRINT_BLANK) return ''; const e = document.getElementById(id); return e ? String(e.value || '').trim() : ''; }
+function apL(t){ return '<span class="ap-l">' + t + '</span>'; }
+function apF(v, cls){ return '<span class="ap-f' + (cls ? ' ' + cls : '') + '">' + escapeHtml(v || '') + '</span>'; }
+function apDate(v){ const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ''); return m ? (m[3] + '-' + m[2] + '-' + m[1]) : (v || ''); }
+function apSig(key){ const d = (!window.PRINT_BLANK && SIGS[key]) ? SIGS[key] : ''; return d ? '<img class="ap-sig" src="' + d + '" alt="">' : ''; }
+function apCell(t){
+  if(!t) return '<span class="ap-cell"></span>';
+  return '<span class="ap-cell">' + (t.indexOf('/') > -1 ? formatReceiptFractionHTML(t) : escapeHtml(t)) + '</span>';
+}
+function apBooks(label, raw){
+  const tokens = window.PRINT_BLANK ? [] : String(raw || '').split(/[,\s،]+/).map(x=>x.trim()).filter(Boolean);
+  const first = []; for(let i = 0; i < 7; i++) first.push(apCell(tokens[i]));
+  let h = '<div class="ap-row ap-books">' + apL(label) + first.join('') + '</div>';
+  const rest = tokens.slice(7), rows = Math.max(1, Math.ceil(rest.length / 10));
+  for(let r = 0; r < rows; r++){
+    const cells = []; for(let i = 0; i < 10; i++) cells.push(apCell(rest[r * 10 + i]));
+    h += '<div class="ap-row ap-books">' + cells.join('') + '</div>';
+  }
+  return h;
+}
+function apTable(sel, pre, withHead, withTotal){
+  const heads = ['نام مد', 'کل وصولی', 'ترسیل', 'بقایا/قابل ترسیل', 'آخری رقم مع کوپن نمبر'];
+  const rows = [...document.querySelectorAll(sel + ' tbody tr')];
+  let any = false;
+  const body = rows.map(tr=>{
+    const g = c => window.PRINT_BLANK ? '' : String((tr.querySelector(c) || {}).value || '').trim();
+    const vals = [g('.' + pre + '-collect'), g('.' + pre + '-forward'), g('.' + pre + '-balance'), g('.' + pre + '-' + (pre === 'ly' ? 'lastamt' : 'lastcoupon'))];
+    if(vals[0] || vals[1]) any = true;
+    const lbl = ((tr.querySelector('.lbl') || {}).textContent || '').trim();
+    const last = vals[3] ? (vals[3].indexOf('/') > -1 ? formatReceiptFractionHTML(vals[3]) : escapeHtml(vals[3])) : '';
+    return '<tr><td class="ap-lbl">' + escapeHtml(lbl) + '</td><td>' + escapeHtml(vals[0]) + '</td><td>' + escapeHtml(vals[1]) + '</td><td>' + escapeHtml(vals[2]) + '</td><td>' + last + '</td></tr>';
+  }).join('');
+  let foot = '';
+  if(withTotal){
+    const t = id => (any && !window.PRINT_BLANK) ? ((document.getElementById(id) || {}).textContent || '') : '';
+    foot = '<tr><td class="ap-lbl">میزان</td><td>' + escapeHtml(t('cy_total_collect')) + '</td><td>' + escapeHtml(t('cy_total_forward')) + '</td><td>' + escapeHtml(t('cy_total_balance')) + '</td><td></td></tr>';
+  }
+  return '<table class="ap-tbl">' + (withHead ? '<thead><tr>' + heads.map(h=>'<th>' + h + '</th>').join('') + '</tr></thead>' : '') + '<tbody>' + body + foot + '</tbody></table>';
+}
+function buildAuditPrintSheet(){
+  if(currentFormType !== 'auditaccount') return;
+  removeAuditPrintSheet();
+  const v = apVal;
+  const bal30 = v('c_balance30June') + (v('c_balance30June') && v('c_balance30JuneYear') ? '  (سنہ ' + v('c_balance30JuneYear') + ')' : (v('c_balance30JuneYear') ? 'سنہ ' + v('c_balance30JuneYear') : ''));
+  const other = v('a_otherNotes');
+  const personal = v('c_personalUse');
+  const html =
+  '<div class="ap-box ap-box1"><div class="ap-inner">' +
+    '<div class="ap-row ap-r1"><span class="ap-tag">آڈٹ برانچ</span>' + apL('نام انسپکٹر مال آمد :') + apF(v('a_inspName'), 'g3') + apL('جماعت') + apF(v('a_jamaat'), 'g4') + apL('تعداد چندہ دہندگان') + apF(v('a_chandaCount'), 'g1') + apL('ضلع :') + apF(v('a_zila'), 'g3') + '</div>' +
+    '<div class="ap-row ap-split"><div class="ap-half ap-hr">' + apL('تاریخ و وقت آمد :') + apF(v('a_arrival')) + '</div><div class="ap-gap"></div><div class="ap-half ap-hl">' + apL('تاریخ و وقت روانگی :') + apF(v('a_departure')) + '</div></div>' +
+    '<div class="ap-row ap-split"><div class="ap-half ap-hr">' + apL('نام صدر جماعت :') + apF(v('a_sadarName')) + '</div><div class="ap-gap"></div><div class="ap-half ap-hl">' + apL('فون نمبر :') + apF(v('a_sadarPhone')) + '</div></div>' +
+    '<div class="ap-row ap-split"><div class="ap-half ap-hr">' + apL('نام سیکرٹری مال :') + apF(v('a_secName')) + '</div><div class="ap-gap"></div><div class="ap-half ap-hl">' + apL('فون نمبر :') + apF(v('a_secPhone')) + '</div></div>' +
+    apBooks('رسید بکس نمبرز جو ختم ہو چکی ہیں اور پڑتال ہو گئی ہیں :', v('a_finishedBooks')) +
+    apBooks('موجودہ نئی و جاری رسید بکس نمبرز :', v('a_currentBooks')) +
+    '<div class="ap-row ap-qrow">' +
+      '<span class="ap-qp">' + apL('کیا آڈٹ کی تفصیلی رپورٹ بھجوادی ہے ؟') + apF(v('a_reportSent')) + '</span>' +
+      '<span class="ap-qp">' + apL('فہرست بقایاداران تیار کی ؟') + apF(v('a_listPrepared')) + '</span>' +
+      '<span class="ap-qp">' + apL('سٹاک رجسٹر چیک کیا گیا ؟') + apF(v('a_stockChecked')) + '</span>' +
+      '<span class="ap-qp">' + apL('رجسٹر جائیداد چیک کیا گیا ؟') + apF(v('a_propertyChecked')) + '</span></div>' +
+    '<div class="ap-row ap-text">' + apL('اگر دیگر قابل ذکر امور ہوں تو وہ علیحدہ صفحہ پر تحریر کریں۔') + (other ? '<span class="ap-val">' + escapeHtml(other) + '</span>' : '') + '</div>' +
+  '</div></div>' +
+
+  '<div class="ap-box ap-box2"><div class="ap-inner">' +
+    '<div class="ap-row ap-r1"><span class="ap-tag">اکاؤنٹ برانچ</span>' + apL('نام انسپکٹر مال آمد :') + apF(v('b_inspName'), 'g3') + apL('نام جماعت :') + apF(v('b_jamaat'), 'g3') + apL('ضلع :') + apF(v('b_zila'), 'g2') + '</div>' +
+    '<div class="ap-row">' + apL('سال گزشتہ جون') + apF(v('b_lastJuneYear'), 'g1') + apL('تک کل وصولی کی مدوار پوزیشن') + '<span class="ap-fill"></span></div>' +
+    apTable('#tbl_lastYear', 'ly', true, false) +
+    '<div class="ap-row">' + apL('سال رواں کی جولائی') + apF(v('b_currentYearFrom'), 'g1') + apL('تا تاریخ معائنہ') + apF(v('b_currentYearTo'), 'g1') + apL('وصولی کی پوزیشن') + '<span class="ap-fill"></span></div>' +
+    apTable('#tbl_currentYear', 'cy', false, true) +
+    '<div class="ap-row ap-tagrow"><span class="ap-tag">مقامی فنڈ / لوکل فنڈ</span><span class="ap-note">(بقیہ تفصیل الگ کاغذ پر لکھیں)</span></div>' +
+    '<div class="ap-lf">' +
+      '<div class="ap-lcol ap-lr">' +
+        '<div class="ap-row">' + apL('کل بقایا 30 جون') + apF(bal30) + '</div>' +
+        '<div class="ap-row">' + apL('وصولی جولائی') + apF(v('c_collectionJuly')) + apL('تا تاریخ معائنہ') + apF(apDate(v('c_collectionJulyDate'))) + '</div>' +
+        '<div class="ap-row">' + apL('کل میزان آمد :') + apF(v('c_totalIncome')) + '</div>' +
+        '<div class="ap-row">' + apL('کل میزان خرچ :') + apF(v('c_totalExpense')) + '</div>' +
+        '<div class="ap-row">' + apL('بقایا :') + apF(v('c_balance')) + '</div>' +
+      '</div>' +
+      '<div class="ap-lcol ap-ll">' +
+        '<div class="ap-row ap-text">' + apL('بجٹ میں اضافہ کے لیے کوشش۔ الگ صفحہ پر تحریر کریں') + '</div>' +
+        '<div class="ap-row">' + apL('باقی رقم کس طرح محفوظ ہے ؟') + apF(v('c_howSafe')) + '</div>' +
+        '<div class="ap-row">' + apF('') + '</div>' +
+        '<div class="ap-row ap-text ap-two">' + apL('عام روٹین کے علاوہ کیا کوئی عطیات وصول ہوئے۔ اگر ہیں تو نظارت کی منظوری لی گئی ہے۔ کتنی رقم ادا کی اور کب ؟') + '</div>' +
+        '<div class="ap-row">' + apF(v('c_otherDonations')) + '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="ap-row ap-text ap-two">' + apL('کیا چندہ جات کی رقم یا لوکل فنڈ کی رقم میں سے کوئی رقم ذاتی مصرف میں تو نہیں ہے۔ اگر ہو تو تفصیل۔ نیز کوئی قرض دیا گیا ہو تو پشت پر اس کی تفصیل درج کی جائے۔') + (personal ? '<span class="ap-val">' + escapeHtml(personal) + '</span>' : '') + '</div>' +
+    '<div class="ap-row ap-sigs">' +
+      '<div class="ap-sb">' + apSig('c_inspSignDate') + apL('دستخط انسپکٹر مع تاریخ :') + apF(v('c_inspSignDate')) + '</div>' +
+      '<div class="ap-sb">' + apSig('c_sadarSignDate') + apL('دستخط صدر جماعت مع تاریخ :') + apF(v('c_sadarSignDate')) + '</div>' +
+      '<div class="ap-sb">' + apSig('c_secSignDate') + apL('دستخط سیکرٹری مال مع تاریخ :') + apF(v('c_secSignDate')) + '</div>' +
+    '</div>' +
+    '<div class="ap-row ap-phones">' +
+      '<div class="ap-sb">' + apL('فون نمبر :') + apF(v('c_phone1')) + '</div>' +
+      '<div class="ap-sb">' + apL('فون نمبر :') + apF(v('c_phone2')) + '</div>' +
+      '<div class="ap-sb">' + apL('فون نمبر :') + apF(v('c_phone3')) + '</div>' +
+    '</div>' +
+  '</div></div>';
+  const sheet = document.createElement('div');
+  sheet.id = 'auditPrintSheet'; sheet.className = 'ap-sheet'; sheet.innerHTML = html;
+  const host = document.getElementById('view-form') || document.body;
+  host.appendChild(sheet);
+  document.body.classList.add('ap-printing');
+}
+function removeAuditPrintSheet(){
+  const old = document.getElementById('auditPrintSheet'); if(old) old.remove();
+  document.body.classList.remove('ap-printing');
+}
+
+/* ---------- receipt-book / coupon fields: make the “/” (بٹا) always typeable ---------- */
+const FRAC_SEL = '#a_finishedBooks,#a_currentBooks,#am_receiptBox,.ly-lastamt,.cy-lastcoupon';
+function insertAtCaret(el, txt){
+  const a = (el.selectionStart == null) ? el.value.length : el.selectionStart;
+  const b = (el.selectionEnd == null) ? a : el.selectionEnd;
+  el.value = el.value.slice(0, a) + txt + el.value.slice(b);
+  const pos = a + txt.length;
+  try{ el.setSelectionRange(pos, pos); }catch(e){}
+  el.dispatchEvent(new Event('input', {bubbles:true}));
+}
+function insertSlash(id){ const el = document.getElementById(id); if(!el) return; el.focus(); insertAtCaret(el, '/'); }
+document.addEventListener('keydown', e=>{
+  const t = e.target;
+  if(!t || !t.matches || !t.matches(FRAC_SEL)) return;
+  // some Urdu keyboard layouts do not give "/" on the slash key — type it ourselves
+  if((e.code === 'Slash' || e.code === 'NumpadDivide') && !e.ctrlKey && !e.altKey && !e.metaKey && !e.shiftKey && e.key !== '/'){
+    e.preventDefault(); insertAtCaret(t, '/');
+  }
+}, true);
+document.addEventListener('input', e=>{
+  const t = e.target;
+  if(!t || !t.matches || !t.matches(FRAC_SEL)) return;
+  const v = t.value, nv = v.replace(/[\\÷⁄∕／\u060D]/g, '/');   // look-alike slash characters
+  if(nv !== v){ const p = t.selectionStart; t.value = nv; try{ t.setSelectionRange(p, p); }catch(_){} }
+}, true);
+['a_finishedBooks', 'a_currentBooks', 'am_receiptBox'].forEach(id=>{
+  const inp = document.getElementById(id);
+  if(!inp || inp.parentElement.querySelector('.slashbtn')) return;
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'slashbtn';
+  b.setAttribute('aria-label', 'بٹا کا نشان / لگائیں'); b.title = 'بٹا کا نشان / لگائیں';
+  b.innerHTML = '<b>/</b> <span>بٹا لگائیں (مثال: 1109/1-9)</span>';
+  b.addEventListener('click', ()=>insertSlash(id));
+  inp.insertAdjacentElement('afterend', b);
+});
+
+
+/* floating “/” button: appears next to whichever receipt-book / coupon field is being edited */
+(function(){
+  const fab = document.createElement('button');
+  fab.type = 'button'; fab.id = 'slashFab'; fab.textContent = '/';
+  fab.setAttribute('aria-label', 'بٹا کا نشان / لگائیں'); fab.title = 'بٹا کا نشان / لگائیں';
+  document.body.appendChild(fab);
+  let current = null;
+  const place = ()=>{
+    if(!current || !document.contains(current)){ fab.style.display = 'none'; return; }
+    const r = current.getBoundingClientRect();
+    if(r.bottom < 0 || r.top > window.innerHeight){ fab.style.display = 'none'; return; }
+    fab.style.display = 'flex';
+    fab.style.top = Math.max(4, r.top - 34) + 'px';
+    fab.style.left = Math.max(4, Math.min(window.innerWidth - 44, r.left)) + 'px';
+  };
+  ['pointerdown', 'mousedown'].forEach(ev=>fab.addEventListener(ev, e=>e.preventDefault()));   // keep the cursor in the field
+  fab.addEventListener('click', ()=>{ if(current){ current.focus(); insertAtCaret(current, '/'); place(); } });
+  document.addEventListener('focusin', e=>{
+    const t = e.target;
+    if(t && t.matches && t.matches(FRAC_SEL)){ current = t; place(); }
+    else if(t !== fab){ current = null; fab.style.display = 'none'; }
+  });
+  window.addEventListener('scroll', place, true);
+  window.addEventListener('resize', place);
+})();
+const APP_VERSION = 'v6';
+(function(){ const el = document.getElementById('appVer'); if(el) el.textContent = APP_VERSION; })();
+
 /* ======================================================================
    10b. PRINT MODE (converts inputs to plain selectable text for print)
    ====================================================================== */
@@ -4077,6 +4361,15 @@ function formatReceiptFractionHTML(raw){
   }).join('<span class="pf-sep">،</span>');
 }
 
+function toggleLetterName(prefix, force){
+  const btn = document.getElementById(prefix + '_pn');
+  if(!btn) return;
+  const on = (force === undefined) ? btn.getAttribute('aria-pressed') !== 'true' : !!force;
+  btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  const box = btn.querySelector('.pnbox'); if(box) box.textContent = on ? '☑' : '☐';
+  const page = btn.closest('.a4page'); if(page) page.classList.toggle('dk-name-on', on);
+  if(force === undefined && typeof setDirty === 'function') setDirty(true);
+}
 function wrapLetterForPrint(){
   if(currentFormType !== 'darkhwast' && currentFormType !== 'gendarkhwast') return;
   const root = document.getElementById('formtype-' + currentFormType);
@@ -4127,6 +4420,7 @@ function enterPrintMode(){
   }
   applyPrintColgroups();
   wrapLetterForPrint();
+  buildAuditPrintSheet();
   if(currentFormType === 'safar') applySafarCertMerge();
   document.body.classList.toggle('print-blank', !!window.PRINT_BLANK);
   document.body.classList.add('printing-mode');
@@ -4163,6 +4457,7 @@ function removePrintColgroups(){
 }
 function exitPrintMode(){
   unwrapLetterAfterPrint();
+  removeAuditPrintSheet();
   if(window._dkBodyBackup !== undefined && window._dkBodyBackup !== null){
     Object.keys(window._dkBodyBackup).forEach(id=>{
       const b = document.getElementById(id);
@@ -4204,7 +4499,7 @@ function applyPrintPageStyle(){
   if(marginSetting === 'normal' && currentFormType === 'auditaccount') margin = '7mm';
   if(marginSetting === 'normal' && currentFormType === 'amaratAudit') margin = '7mm';
   if(marginSetting === 'normal' && currentFormType === 'safar') margin = '5mm';
-  const isLetter = (currentFormType === 'darkhwast' || currentFormType === 'gendarkhwast');
+  const isLetter = (currentFormType === 'darkhwast' || currentFormType === 'gendarkhwast' || currentFormType === 'auditaccount');
   if(isLetter) margin = '0';          // margin 0 => Chrome prints no date / title / URL header-footer
   document.documentElement.style.setProperty('--dk-m', marginSetting === 'narrow' ? '8mm' : '14mm');
   const styleTag = document.getElementById('dynamicPrintStyle');
