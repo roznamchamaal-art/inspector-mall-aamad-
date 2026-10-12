@@ -374,7 +374,17 @@ body.lang-ur .en{display:none !important;}
   .delcol{display:none !important;}
   /* درخواست: borderless full-page letter, closing block pinned to page bottom */
   #formtype-darkhwast .a4page,#formtype-gendarkhwast .a4page{border:none !important;border-radius:0;padding:0;margin:0;max-width:none;
-    width:100%;min-height:266mm;aspect-ratio:auto;font-size:15pt;line-height:2.3;page-break-after:auto;break-after:auto;}
+    width:100%;min-height:calc(297mm - 2 * var(--dk-m,14mm) - 3mm);aspect-ratio:auto;font-size:15pt;line-height:2.3;page-break-after:auto;break-after:auto;}
+  /* letters: remove the screen padding around the form so the sheet is exactly one A4 page */
+  body.printing-mode #view-form:has(table.dk-pt){padding:0 !important;margin:0 !important;}
+  /* letter wrapper: spacer rows repeat on every page, so margins stay even though @page margin is 0 */
+  table.dk-pt{width:100%;border-collapse:collapse;}
+  table.dk-pt td,table.dk-pt tr{break-inside:auto !important;page-break-inside:auto !important;padding:0;border:0;}
+  table.dk-pt td.dk-cell{padding-inline:calc(var(--dk-m,14mm) + 4mm);}
+  .dk-sp{height:var(--dk-m,14mm);}
+  /* short letter: closing block follows the text (no big gap); empty/blank form keeps it at the bottom */
+  #formtype-darkhwast .a4page.dk-has-text .dk-body,#formtype-gendarkhwast .a4page.dk-has-text .dk-body{flex:none;min-height:0;}
+  #formtype-darkhwast .a4page.dk-has-text .dk-bottom,#formtype-gendarkhwast .a4page.dk-has-text .dk-bottom{margin-top:14mm;}
   .dk-body:empty::before{content:"" !important;}
   .dk-body:focus{background:none;}
   .dk-bottom .dk-name,.dk-addr-row .dk-addr{display:none !important;}
@@ -4067,6 +4077,26 @@ function formatReceiptFractionHTML(raw){
   }).join('<span class="pf-sep">،</span>');
 }
 
+function wrapLetterForPrint(){
+  if(currentFormType !== 'darkhwast' && currentFormType !== 'gendarkhwast') return;
+  const root = document.getElementById('formtype-' + currentFormType);
+  const page = root && root.querySelector('.a4page');
+  if(!page || (page.parentElement && page.parentElement.classList.contains('dk-cell'))) return;
+  const b = document.getElementById(currentFormType === 'darkhwast' ? 'dk_body' : 'gd_body');
+  page.classList.toggle('dk-has-text', !!(b && (b.innerText || '').trim()));   // text written => closing follows the text
+  const t = document.createElement('table');
+  t.className = 'dk-pt';
+  t.innerHTML = '<thead><tr><td><div class="dk-sp"></div></td></tr></thead><tbody><tr><td class="dk-cell"></td></tr></tbody><tfoot><tr><td><div class="dk-sp"></div></td></tr></tfoot>';
+  page.parentNode.insertBefore(t, page);
+  t.querySelector('.dk-cell').appendChild(page);
+}
+function unwrapLetterAfterPrint(){
+  document.querySelectorAll('table.dk-pt').forEach(t=>{
+    const page = t.querySelector('.a4page');
+    if(page){ page.classList.remove('dk-has-text'); t.parentNode.insertBefore(page, t); }
+    t.remove();
+  });
+}
 function enterPrintMode(){
   if(document.body.classList.contains('printing-mode')) return; // already applied — avoid duplicate spans
   applyPrintPageStyle();
@@ -4096,6 +4126,7 @@ function enterPrintMode(){
     });
   }
   applyPrintColgroups();
+  wrapLetterForPrint();
   if(currentFormType === 'safar') applySafarCertMerge();
   document.body.classList.toggle('print-blank', !!window.PRINT_BLANK);
   document.body.classList.add('printing-mode');
@@ -4131,6 +4162,7 @@ function removePrintColgroups(){
   });
 }
 function exitPrintMode(){
+  unwrapLetterAfterPrint();
   if(window._dkBodyBackup !== undefined && window._dkBodyBackup !== null){
     Object.keys(window._dkBodyBackup).forEach(id=>{
       const b = document.getElementById(id);
@@ -4172,9 +4204,12 @@ function applyPrintPageStyle(){
   if(marginSetting === 'normal' && currentFormType === 'auditaccount') margin = '7mm';
   if(marginSetting === 'normal' && currentFormType === 'amaratAudit') margin = '7mm';
   if(marginSetting === 'normal' && currentFormType === 'safar') margin = '5mm';
+  const isLetter = (currentFormType === 'darkhwast' || currentFormType === 'gendarkhwast');
+  if(isLetter) margin = '0';          // margin 0 => Chrome prints no date / title / URL header-footer
+  document.documentElement.style.setProperty('--dk-m', marginSetting === 'narrow' ? '8mm' : '14mm');
   const styleTag = document.getElementById('dynamicPrintStyle');
   if(styleTag){
-    styleTag.textContent = `@media print{ @page{ size: A4 ${orientation}; margin: ${margin}; } }`;
+    styleTag.textContent = `@media print{ @page{ size: A4 ${isLetter ? 'portrait' : orientation}; margin: ${margin}; } }`;
   }
   document.body.classList.toggle('print-landscape', orientation === 'landscape');
 }
