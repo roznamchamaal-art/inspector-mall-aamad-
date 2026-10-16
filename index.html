@@ -840,7 +840,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 /* ===== NEW: top bar / nav / dropdown / colourful action buttons ===== */
 #topbar{position:static !important;}
 .top-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;min-width:190px;}
-.top-actions #btnLock{grid-column:1 / -1;}
+
 .top-actions button{border:1px solid rgba(255,255,255,.28);border-radius:10px;font-weight:700;}
 .top-actions button.active{background:#fff;color:var(--accent);}
 #navwrap{position:sticky;top:0;z-index:55;background:#e9e6da;border-bottom:1px solid #d3cfbd;box-shadow:0 3px 8px rgba(0,0,0,.12);}
@@ -935,6 +935,49 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   .ap-box{border-color:#000 !important;border-width:0.6mm !important;}
   .ap-inner{border:0.3mm solid #000 !important;}
 }
+
+#ctOverlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:300;display:flex;align-items:flex-start;justify-content:center;padding:10px;overflow:auto;}
+#ctBox{background:#fff;border-radius:16px;width:100%;max-width:900px;margin:auto;padding:14px;box-shadow:0 18px 50px rgba(0,0,0,.4);direction:rtl;}
+#ctBox h3{margin:0;color:var(--accent);font-size:18px;flex:1;}
+.ct-top{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.ct-top button,.ct-add{border:none;border-radius:10px;padding:8px 12px;font-weight:700;cursor:pointer;background:#eee;font-family:inherit;}
+.ct-add{background:linear-gradient(135deg,#22a55b,#146c3a);color:#fff;margin-top:10px;}
+.ct-top .ct-x{background:#fde2e2;color:#b91c1c;}
+.ct-tbl{width:100%;border-collapse:collapse;}
+.ct-tbl th{background:#efe9d6;padding:6px;font-size:13px;border:1px solid #d6cfb7;}
+.ct-tbl td{padding:3px;border:1px solid #e3ddc8;vertical-align:middle;}
+.ct-tbl input{width:100%;box-sizing:border-box;border:none;background:transparent;padding:8px 6px;font-size:14px;font-family:inherit;}
+.ct-tbl input:focus{background:#fffbe8;outline:1px solid var(--accent);}
+.ct-act{white-space:nowrap;text-align:center;width:1%;}
+.ct-act button{border:none;border-radius:8px;padding:6px 9px;font-size:15px;cursor:pointer;margin:1px;}
+.ct-open{background:#dbeafe;}.ct-wa{background:#d1fae5;}.ct-dir{background:#fef3c7;}.ct-gps{background:#ede9fe;}.ct-del{background:#fee2e2;color:#b91c1c;}
+.ct-empty{text-align:center;color:#888;padding:18px;}
+@media(max-width:700px){.ct-tbl th:nth-child(1),.ct-tbl td:nth-child(1){display:none;}}
+@media print{#ctOverlay{display:none !important;}}
+
+#view-contacts #ctBox{max-width:960px;margin:0 auto;padding:0;overflow:visible;border:1px solid #e0d9c0;}
+.ct-hero{display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:16px 16px 0 0;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;}
+.ct-hero h3{color:#fff !important;margin:0;flex:1;font-size:18px;}
+.ct-hero button{border:none;border-radius:10px;padding:8px 12px;font-weight:700;cursor:pointer;background:rgba(255,255,255,.2);color:#fff;font-family:inherit;}
+.ct-body{padding:12px 14px 16px;}
+.ct-tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;position:relative;}
+.ct-tools input.ct-q{flex:1;min-width:140px;border:1.5px solid #d6cfb7;border-radius:12px;padding:9px 12px;font-family:inherit;font-size:14px;}
+.ct-ddbtn{border:1.5px solid var(--accent);background:#fff;color:var(--accent);border-radius:12px;padding:9px 14px;font-weight:700;cursor:pointer;font-family:inherit;min-width:190px;text-align:right;}
+.ct-ddpanel{position:absolute;top:100%;right:0;margin-top:6px;width:min(340px,100%);background:#fff;border:1px solid #d9d3bd;border-radius:14px;box-shadow:0 14px 34px rgba(0,0,0,.28);padding:8px;z-index:20;animation:ftdIn .16s ease-out;}
+.ct-ddpanel input{width:100%;box-sizing:border-box;border:1.5px solid #e3ddc8;border-radius:10px;padding:8px 10px;margin-bottom:6px;font-family:inherit;}
+.ct-ddlist{max-height:260px;overflow:auto;display:flex;flex-direction:column;gap:4px;}
+.ct-dditem{padding:9px 12px;border-radius:10px;background:#faf8f1;cursor:pointer;font-weight:700;display:flex;justify-content:space-between;gap:8px;}
+.ct-dditem:hover,.ct-dditem.on{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;}
+.ct-dditem small{font-weight:400;opacity:.8;}
+.ct-tbl{border-radius:12px;overflow:hidden;}
+.ct-tbl tbody tr:nth-child(even){background:#fbf9f2;}
+.ct-lm{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:400;display:flex;align-items:center;justify-content:center;padding:14px;}
+.ct-lbox{background:#fff;border-radius:18px;max-width:380px;width:100%;padding:18px;text-align:center;direction:rtl;box-shadow:0 18px 50px rgba(0,0,0,.45);}
+.ct-lbox h4{margin:0 0 10px;color:var(--accent);font-size:18px;}
+.ct-coord{direction:ltr;font-size:20px;font-weight:700;background:#f4f1e6;border-radius:12px;padding:10px;margin:8px 0;}
+.ct-lbox .acc{font-size:12.5px;color:#666;margin-bottom:12px;}
+.ct-lbox button,.ct-lbox a.b{display:block;width:100%;box-sizing:border-box;border:none;border-radius:12px;padding:11px;margin-top:8px;font-weight:700;font-size:14.5px;cursor:pointer;color:#fff;text-decoration:none;font-family:inherit;}
+.ct-lbox .map{background:linear-gradient(135deg,#3b82f6,#1d4ed8);}.ct-lbox .sv{background:linear-gradient(135deg,#22a55b,#146c3a);}.ct-lbox .no{background:#e5e7eb;color:#333;}
 </style>
 <style id="dynamicPrintStyle">
 @media print{ @page{ size: A4 portrait; margin: 9mm; } }
@@ -963,7 +1006,6 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
       <div class="sub" id="recStatusLine">نیا فارم</div>
     </div>
     <div class="top-actions">
-      <button id="btnLock"><span class="ur">🔒 لاک </span><span class="en">Lock</span></button>
       <button data-view="search"><span class="ur">🔍 تلاش </span><span class="en">Search</span></button>
       <button data-view="settings"><span class="ur">⚙️ ترتیبات </span><span class="en">Settings</span></button>
     </div>
@@ -973,6 +1015,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
     <div id="mainnav">
       <button data-view="form" class="active" id="fillBtn"><span class="ur">فارم پُر کریں ▾</span><span class="en">Fill Form ▾</span></button>
       <button data-view="records"><span class="ur">📁 محفوظ فارم </span><span class="en">Saved</span></button>
+      <button data-view="contacts"><span class="ur">📇 رابطہ نمبر </span><span class="en">Contacts</span></button>
     </div>
     <div id="ftdrop" class="hidden"><div class="ftd-h">فارم کی قسم منتخب کریں</div>
 <div class="formtypetabs">
@@ -1528,6 +1571,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   <div id="gsResults"></div>
 </div>
 
+<div id="view-contacts" class="container hidden"><div id="ctBox"></div></div>
 <div id="view-settings" class="container hidden">
       <div class="settingcard">
         <h3><span class="ur">🌐 زبان</span><span class="en">Language</span></h3>
@@ -2109,10 +2153,12 @@ async function unlockApp(){
   document.getElementById('appshell').classList.remove('hidden');
   await openDB();
   try{ await migratePlainRecords(); }catch(e){ console.error('migrate', e); }
+  if(window._keepFormOnUnlock){ window._keepFormOnUnlock = false; renderRecordsList(); lastActivity = Date.now(); return; }
   buildEmptyRowsQuiet();
   buildSafarRowsQuiet();
   newForm();
   renderRecordsList();
+  lastActivity = Date.now();
 }
 function lockApp(){
   isUnlocked = false;
@@ -2148,11 +2194,12 @@ document.querySelectorAll('#mainnav button[data-view], #topbar button[data-view]
 });
 function goToView(view){
   document.querySelectorAll('#mainnav button[data-view], #topbar button[data-view]').forEach(b=>b.classList.toggle('active', b.dataset.view===view));
-  ['form','records','search','settings'].forEach(v=>{
+  ['form','records','search','settings','contacts'].forEach(v=>{
     document.getElementById('view-'+v).classList.toggle('hidden', v!==view);
   });
   if(view==='records') renderRecordsList();
   if(view==='search') initSearchView();
+  if(view==='contacts' && typeof ctEnter==='function') ctEnter();
   if(view==='settings'){ renderLocations(); refreshEncCard(); }
   const actionbar = document.getElementById('actionbar');
   actionbar.style.display = (view==='form') ? 'flex' : 'none';
@@ -2163,7 +2210,7 @@ document.querySelectorAll('.pagetabs button').forEach(btn=>{
     document.querySelectorAll('.pageblock').forEach(p=> p.classList.toggle('hidden', p.dataset.page!==btn.dataset.page));
   });
 });
-document.getElementById('btnLock').addEventListener('click', lockApp);
+
 ['dk_body','gd_body'].forEach(id=>document.getElementById(id).addEventListener('paste', e=>{
   e.preventDefault();
   const t = (e.clipboardData || window.clipboardData).getData('text');
@@ -5199,6 +5246,109 @@ function buildDistrictPrintSheet(){
   document.body.classList.add('dt-printing');
 }
 function removeDistrictPrintSheet(){ const o=document.getElementById('dtPrintSheet'); if(o) o.remove(); document.body.classList.remove('dt-printing'); }
+
+/* ======================== آٹو لاک (5 منٹ) ======================== */
+let lastActivity = Date.now();
+const AUTOLOCK_MS = 5*60*1000;
+['mousemove','mousedown','keydown','touchstart','scroll','click','input'].forEach(ev=>document.addEventListener(ev, ()=>{ if(isUnlocked) lastActivity = Date.now(); }, {passive:true, capture:true}));
+function autoLockCheck(){
+  if(!isUnlocked) return;
+  if(Date.now() - lastActivity >= AUTOLOCK_MS){
+    const ov=document.getElementById('ctLM'); if(ov) ov.remove();
+    closeModalCustom();
+    window._keepFormOnUnlock = document.body.classList.contains('is-dirty');   // بغیر محفوظ کام ضائع نہ ہو
+    lockApp();
+  }
+}
+setInterval(autoLockCheck, 10000);
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) autoLockCheck(); });
+
+/* ======================== رابطہ نمبر (خفیہ شدہ) ======================== */
+const CT_KEY='fbd_contacts_enc';
+let CT = {jamaats:[]}, ctView = null;
+function ctUid(){ return 'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+async function ctLoad(){
+  CT = {jamaats:[]};
+  try{
+    const raw = localStorage.getItem(CT_KEY); if(!raw || !window.DEK_KEY) return;
+    const o = JSON.parse(raw);
+    const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv:new Uint8Array(b64ToBuf(o.iv)), additionalData:new TextEncoder().encode('contacts')}, DEK_KEY, b64ToBuf(o.data));
+    CT = JSON.parse(new TextDecoder().decode(pt));
+    if(!CT.jamaats) CT.jamaats = [];
+  }catch(e){ console.error('contacts load', e); }
+}
+let _ctT=null;
+function ctSave(){ clearTimeout(_ctT); _ctT=setTimeout(async()=>{
+  try{
+    if(!window.DEK_KEY) return;
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ct = await crypto.subtle.encrypt({name:'AES-GCM', iv, additionalData:new TextEncoder().encode('contacts')}, DEK_KEY, new TextEncoder().encode(JSON.stringify(CT)));
+    localStorage.setItem(CT_KEY, JSON.stringify({v:1, iv:bufToB64(iv.buffer), data:bufToB64(ct)}));
+  }catch(e){ console.error('contacts save', e); }
+}, 400); }
+async function ctEnter(){ await ctLoad(); ctView=null; ctRender(); }
+function closeContacts(){ goToView('form'); }
+function ctDDItems(q){
+  q=(q||'').trim().toLowerCase();
+  const l=CT.jamaats.filter(j=>!q||((j.name||'')+' '+(j.district||'')).toLowerCase().includes(q));
+  return l.length ? l.map(j=>`<div class="ct-dditem${j.id===ctView?' on':''}" onclick="ctOpen('${j.id}')"><span>${escapeHtml(j.name)||'(بغیر نام)'}</span><small>${escapeHtml(j.district)} · ${j.people.length}</small></div>`).join('') : '<div class="ct-empty">کوئی جماعت نہیں ملی</div>';
+}
+function ctDD(){ const p=document.getElementById('ctDDP'); if(!p) return; p.classList.toggle('hidden'); if(!p.classList.contains('hidden')){ const i=p.querySelector('input'); i.value=''; document.getElementById('ctDDL').innerHTML=ctDDItems(''); i.focus(); } }
+function ctDDFilter(v){ document.getElementById('ctDDL').innerHTML=ctDDItems(v); }
+function ctQuick(v){ v=(v||'').trim().toLowerCase(); document.querySelectorAll('#ctBox tbody tr[data-q]').forEach(tr=>{ tr.style.display = (!v || tr.dataset.q.includes(v)) ? '' : 'none'; }); }
+document.addEventListener('click',e=>{ const p=document.getElementById('ctDDP'); if(p && !p.classList.contains('hidden') && !e.target.closest('.ct-tools')) p.classList.add('hidden'); });
+function ctRender(){
+  const box=document.getElementById('ctBox'); if(!box) return;
+  const E=escapeHtml, cur=CT.jamaats.find(x=>x.id===ctView);
+  const dd=`<div class="ct-tools"><button class="ct-ddbtn" onclick="ctDD()">📂 ${cur?(E(cur.name)||'جماعت'):'جماعت منتخب کریں'} ▾</button>${cur?'':'<input class="ct-q" placeholder="🔍 فہرست میں تلاش…" oninput="ctQuick(this.value)">'}<div class="ct-ddpanel hidden" id="ctDDP"><input placeholder="🔍 جماعت یا ضلع تلاش کریں" oninput="ctDDFilter(this.value)"><div class="ct-ddlist" id="ctDDL"></div></div></div>`;
+  if(!cur){
+    ctView=null;
+    let rows=CT.jamaats.map((j,i)=>`<tr data-id="${j.id}" data-q="${E(((j.name||'')+' '+(j.district||'')).toLowerCase())}"><td style="width:34px;text-align:center">${i+1}</td><td><input value="${E(j.name)}" placeholder="نام جماعت" oninput="ctSet('${j.id}','name',this.value)"></td><td><input value="${E(j.district)}" placeholder="ضلع" oninput="ctSet('${j.id}','district',this.value)"></td><td class="ct-act"><button class="ct-open" title="افراد دیکھیں" onclick="ctOpen('${j.id}')">👥 ${j.people.length}</button><button class="ct-del" title="حذف" onclick="ctDelJ('${j.id}')">×</button></td></tr>`).join('');
+    if(!rows) rows='<tr><td colspan="4" class="ct-empty">ابھی کوئی جماعت شامل نہیں۔</td></tr>';
+    box.innerHTML=`<div class="ct-hero"><h3>📇 رابطہ نمبر — جماعتیں</h3><button onclick="closeContacts()">✕ بند</button></div><div class="ct-body">${dd}<table class="ct-tbl"><thead><tr><th>#</th><th>نام جماعت</th><th>ضلع</th><th></th></tr></thead><tbody>${rows}</tbody></table><button class="ct-add" onclick="ctAddJ()">➕ جماعت شامل کریں</button></div>`;
+  } else {
+    let rows=cur.people.map((p,i)=>`<tr><td style="width:34px;text-align:center">${i+1}</td><td><input value="${E(p.name)}" placeholder="نام" oninput="ctSetP('${p.id}','name',this.value)"></td><td><input value="${E(p.role)}" placeholder="عہدہ" oninput="ctSetP('${p.id}','role',this.value)"></td><td><input type="tel" dir="ltr" value="${E(p.phone)}" placeholder="03xx-xxxxxxx" oninput="ctSetP('${p.id}','phone',this.value)"></td><td><input id="loc_${p.id}" dir="ltr" value="${E(p.loc)}" placeholder="لوکیشن / لنک" oninput="ctSetP('${p.id}','loc',this.value)"></td><td class="ct-act"><button class="ct-wa" title="واٹس ایپ پر میسج" onclick="ctWA('${p.id}')">💬</button><button class="ct-gps" title="موجودہ لوکیشن" onclick="ctGPS('${p.id}')">📍</button><button class="ct-dir" title="راستہ دکھائیں" onclick="ctDir('${p.id}')">🧭</button><button class="ct-del" title="حذف" onclick="ctDelP('${p.id}')">×</button></td></tr>`).join('');
+    if(!rows) rows='<tr><td colspan="6" class="ct-empty">کوئی فرد شامل نہیں۔</td></tr>';
+    box.innerHTML=`<div class="ct-hero"><button onclick="ctView=null;ctRender()">⬅ جماعتیں</button><h3>${E(cur.name)||'نام جماعت'}${cur.district?' — '+E(cur.district):''}</h3><button onclick="closeContacts()">✕ بند</button></div><div class="ct-body">${dd}<table class="ct-tbl"><thead><tr><th>#</th><th>نام</th><th>عہدہ</th><th>فون نمبر</th><th>لوکیشن</th><th></th></tr></thead><tbody>${rows}</tbody></table><button class="ct-add" onclick="ctAddP()">➕ فرد شامل کریں</button></div>`;
+  }
+}
+function ctSet(id,k,v){ const j=CT.jamaats.find(x=>x.id===id); if(j){ j[k]=v; ctSave(); } }
+function ctFindP(id){ for(const j of CT.jamaats){ const p=j.people.find(x=>x.id===id); if(p) return p; } return null; }
+function ctSetP(id,k,v){ const p=ctFindP(id); if(p){ p[k]=v; ctSave(); } }
+function ctAddJ(){ CT.jamaats.push({id:ctUid(),name:'',district:'',people:[]}); ctSave(); ctRender(); }
+function ctDelJ(id){ const j=CT.jamaats.find(x=>x.id===id); if(j && confirm('یہ جماعت اور اس کے تمام افراد حذف کریں؟')){ CT.jamaats=CT.jamaats.filter(x=>x.id!==id); ctSave(); ctRender(); } }
+function ctOpen(id){ ctView=id; ctRender(); }
+function ctAddP(){ const j=CT.jamaats.find(x=>x.id===ctView); if(!j) return; j.people.push({id:ctUid(),name:'',role:'',phone:'',loc:''}); ctSave(); ctRender(); }
+function ctDelP(id){ const j=CT.jamaats.find(x=>x.id===ctView); if(j && confirm('یہ اندراج حذف کریں؟')){ j.people=j.people.filter(x=>x.id!==id); ctSave(); ctRender(); } }
+function ctWA(id){
+  const p=ctFindP(id); if(!p) return;
+  let n=String(p.phone||'').replace(/[^\d+]/g,'');
+  if(!n){ showToast('فون نمبر درج کریں۔'); return; }
+  if(n.startsWith('+')) n=n.slice(1); else if(n.startsWith('00')) n=n.slice(2); else if(n.startsWith('0')) n='92'+n.slice(1);
+  window.open('https://wa.me/'+n,'_blank','noopener');
+}
+function ctGPS(id){
+  if(!ctFindP(id)) return;
+  if(!navigator.geolocation){ showToast('اس ڈیوائس پر لوکیشن دستیاب نہیں۔'); return; }
+  showToast('لوکیشن حاصل کی جا رہی ہے…',3000);
+  navigator.geolocation.getCurrentPosition(pos=>ctLocPreview(id,pos.coords.latitude.toFixed(6),pos.coords.longitude.toFixed(6),Math.round(pos.coords.accuracy||0)),
+    ()=>showToast('لوکیشن حاصل نہ ہو سکی — اجازت دیں یا خود لکھیں۔',3500), {enableHighAccuracy:true, timeout:15000});
+}
+function ctLocPreview(id,lat,lng,acc){
+  const old=document.getElementById('ctLM'); if(old) old.remove();
+  const d=document.createElement('div'); d.id='ctLM'; d.className='ct-lm';
+  d.innerHTML=`<div class="ct-lbox"><h4>📍 موجودہ لوکیشن</h4><div>پہلے نقشے میں دیکھ لیں کہ جگہ درست ہے، پھر محفوظ کریں۔</div><div class="ct-coord">${lat}, ${lng}</div><div class="acc">درستگی: تقریباً ±${acc} میٹر</div><a class="b map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${lat},${lng}">🗺️ نقشے میں کھول کر چیک کریں</a><button class="sv" id="ctLMsv">💾 لوکیشن محفوظ کریں</button><button class="no" onclick="document.getElementById('ctLM').remove()">منسوخ</button></div>`;
+  document.body.appendChild(d);
+  document.getElementById('ctLMsv').onclick=()=>{ const p=ctFindP(id); if(p){ p.loc=lat+','+lng; ctSave(); const el=document.getElementById('loc_'+id); if(el) el.value=p.loc; } d.remove(); showToast('لوکیشن محفوظ ہو گئی۔'); };
+}
+function ctDir(id){
+  const p=ctFindP(id); const t=String((p&&p.loc)||'').trim();
+  if(!t){ showToast('پہلے لوکیشن محفوظ کریں۔'); return; }
+  let dest=null, m;
+  if((m=t.match(/(-?\d{1,3}\.\d+)\s*,\s*(-?\d{1,3}\.\d+)/))) dest=m[1]+','+m[2];
+  if(/^https?:\/\//i.test(t) && !dest){ window.open(t,'_blank','noopener'); return; }
+  window.open('https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(dest||t),'_blank','noopener');
+}
 </script>
 </body>
 </html>
