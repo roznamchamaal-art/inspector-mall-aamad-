@@ -374,7 +374,7 @@ body.lang-ur .en{display:none !important;}
   .delcol{display:none !important;}
   /* درخواست: borderless full-page letter, closing block pinned to page bottom */
   #formtype-darkhwast .a4page,#formtype-gendarkhwast .a4page{border:none !important;border-radius:0;padding:0;margin:0;max-width:none;
-    width:100%;min-height:calc(297mm - 2 * var(--dk-m,14mm) - 3mm);aspect-ratio:auto;font-size:15pt;line-height:2.3;page-break-after:auto;break-after:auto;}
+    width:100%;min-height:calc(297mm - 2 * var(--dk-m,14mm) - 12mm);aspect-ratio:auto;font-size:15pt;line-height:2.3;page-break-after:auto;break-after:auto;}
   /* letters: remove the screen padding around the form so the sheet is exactly one A4 page */
   body.printing-mode #view-form:has(table.dk-pt){padding:0 !important;margin:0 !important;}
   /* letter wrapper: spacer rows repeat on every page, so margins stay even though @page margin is 0 */
@@ -836,6 +836,105 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   #formtype-gendarkhwast .dk-bottom .print-text{white-space:pre-line;line-height:1.9;}
   textarea.dk-name{display:none !important;}
 }
+
+/* ===== NEW: top bar / nav / dropdown / colourful action buttons ===== */
+#topbar{position:static !important;}
+.top-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;min-width:190px;}
+.top-actions #btnLock{grid-column:1 / -1;}
+.top-actions button{border:1px solid rgba(255,255,255,.28);border-radius:10px;font-weight:700;}
+.top-actions button.active{background:#fff;color:var(--accent);}
+#navwrap{position:sticky;top:0;z-index:55;background:#e9e6da;border-bottom:1px solid #d3cfbd;box-shadow:0 3px 8px rgba(0,0,0,.12);}
+#mainnav{position:static !important;border-bottom:none !important;padding-bottom:4px;}
+#mainnav button{border-radius:12px;font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.08);}
+#ftdrop{position:absolute;top:54px;right:10px;width:290px;max-width:calc(100vw - 20px);background:#fff;border:1px solid #d9d3bd;border-radius:16px;box-shadow:0 14px 34px rgba(0,0,0,.28);padding:8px;z-index:70;animation:ftdIn .16s ease-out;}
+@keyframes ftdIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+#ftdrop .ftd-h{font-size:12px;color:#7a6f55;padding:2px 8px 6px;text-align:right;font-weight:700;}
+#ftdrop .formtypetabs{display:flex;flex-direction:column;gap:4px;padding:0;overflow:visible;}
+#ftdrop .formtypetabs button{display:flex;align-items:center;gap:10px;width:100%;text-align:right;border:none;border-radius:11px;background:#faf8f1;color:#3b2f2f;font-size:14px;padding:10px 12px;font-weight:700;}
+#ftdrop .formtypetabs button:hover{background:#f1ead6;}
+#ftdrop .formtypetabs button.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;}
+#ftdrop .formtypetabs button::before{font-size:17px;}
+.formtypetabs button[data-ftype=baqaya]::before{content:'📋'}.formtypetabs button[data-ftype=auditaccount]::before{content:'🧾'}
+.formtypetabs button[data-ftype=safar]::before{content:'🚗'}.formtypetabs button[data-ftype=district]::before{content:'📊'}
+.formtypetabs button[data-ftype=amaratAudit]::before{content:'🏛️'}.formtypetabs button[data-ftype=darkhwast]::before{content:'✉️'}
+.formtypetabs button[data-ftype=gendarkhwast]::before{content:'📝'}
+#actionbar{position:static !important;box-shadow:none !important;border-top:none !important;background:transparent !important;padding:4px 10px 9px !important;display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-start;}
+#actionbar button{flex:0 1 auto !important;min-width:0 !important;max-width:none !important;width:auto !important;color:#fff;border:none;border-radius:12px;font-size:13px;font-weight:700;padding:8px 14px !important;min-height:38px;box-shadow:0 2px 6px rgba(0,0,0,.2);}
+#actionbar button::before{margin-inline-end:5px;}
+#actionbar .btn-new{background:linear-gradient(135deg,#3b82f6,#1d4ed8);}#actionbar .btn-new::before{content:'🆕'}
+#actionbar .btn-save{background:linear-gradient(135deg,#22a55b,#146c3a);}#actionbar .btn-save::before{content:'💾'}
+#actionbar .btn-print{background:linear-gradient(135deg,#475569,#1e293b);}#actionbar .btn-print::before{content:'🖨️'}
+#actionbar .btn-settings{background:linear-gradient(135deg,#8b5cf6,#5b21b6);}
+#actionbar .btn-blank{background:linear-gradient(135deg,#14b8c4,#0e7490);}#actionbar .btn-blank::before{content:'📄'}
+#actionbar .btn-share{background:linear-gradient(135deg,#fb923c,#c2410c);}#actionbar .btn-share::before{content:'📤'}
+#actionbar .btn-clear{background:linear-gradient(135deg,#f5b82e,#b7791f);}#actionbar .btn-clear::before{content:'🧹'}
+#actionbar .btn-delete{background:linear-gradient(135deg,#ef4444,#b91c1c);}#actionbar .btn-delete::before{content:'🗑️'}
+#actionbar .btn-back{background:linear-gradient(135deg,#9ca3af,#4b5563);}#actionbar .btn-back::before{content:'↩️'}
+#appwrap{padding-bottom:24px !important;}
+.pagetabs{display:none !important;}
+#formtype-amaratAudit .grid2:has(#am_lf_prevSavings){grid-template-columns:1fr !important;}
+@media (max-width:700px){#navwrap{position:static;}#ftdrop{right:8px;left:8px;width:auto;max-width:none;}#actionbar button{flex:1 1 calc(33% - 7px) !important;padding:8px 4px !important;font-size:12px;}.top-actions{min-width:0;}}
+
+@media print{
+  #navwrap,#ftdrop{display:none !important;}
+  /* درخواست: بسم اللہ واضح */
+  .dk-bismillah{color:#000 !important;opacity:1 !important;font-weight:700 !important;line-height:2.3 !important;padding:1.5mm 0 !important;overflow:visible !important;-webkit-text-stroke:.35px #000;text-shadow:0 0 0 #000;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  /* امارت آڈٹ رپورٹ: بغیر اضافی باڈر، سرخیاں سیاہ اور قدرے واضح */
+  #formtype-amaratAudit .sectionbox{border:none !important;box-shadow:none !important;}
+  #formtype-amaratAudit .sectionbox .tag{position:static !important;display:block;text-align:center;color:#000 !important;font-weight:800 !important;font-size:13px !important;border:none !important;background:transparent !important;box-shadow:none !important;margin:0 0 3px;padding:0 !important;-webkit-text-stroke:.3px #000;}
+  #formtype-amaratAudit .longline label,#formtype-amaratAudit .miyzan-box > span:first-child{color:#000 !important;font-weight:800 !important;}
+  #formtype-amaratAudit .miyzan-box{border:none !important;background:transparent !important;}
+  /* سفر خرچ اور آڈٹ رپورٹ ضلع: کاغذی فارم جیسی شیٹیں */
+  body.sf-printing #formtype-safar,body.dt-printing #formtype-district{display:none !important;}
+  body.sf-printing #view-form,body.sf-printing #appwrap,body.dt-printing #view-form,body.dt-printing #appwrap{padding:0 !important;margin:0 !important;}
+  .dt-sheet{width:210mm;height:296.5mm;box-sizing:border-box;padding:9mm 14mm;direction:rtl;color:#000;background:#fff;overflow:hidden;display:flex;flex-direction:column;font-size:12pt;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .dt-sheet *{box-sizing:border-box;}
+  .dt-bism{text-align:center;font-size:11pt;font-weight:700;margin-bottom:3mm;}
+  .dt-title{text-align:center;font-size:18pt;font-weight:700;margin-bottom:2mm;}
+  .dt-2{display:flex;gap:8mm;}.dt-2 > .dt-row{flex:1;}
+  .dt-row{display:flex;align-items:flex-end;gap:2mm;margin:.8mm 0;min-height:6.5mm;}
+  .dt-l{white-space:nowrap;font-weight:600;}
+  .dt-f{flex:1;border-bottom:.35mm dashed #000;min-height:5.5mm;padding:0 2mm;font-weight:500;overflow:hidden;white-space:nowrap;}
+  .dt-sub{margin-inline-start:34mm;}
+  .dt-big .dt-l{font-size:14pt;font-weight:700;}
+  .dt-head{text-align:center;margin:2mm 0 1mm;}
+  .dt-head span{display:inline-block;border:.6mm solid #000;padding:.5mm 9mm;font-size:15pt;font-weight:700;}
+  .dt-sig{margin-top:auto;}
+}
+
+@media print{
+  .bp-cont .bp-tbl{border-top:none;}
+  .sg-sheet{width:297mm;height:209mm;box-sizing:border-box;padding:5mm 8mm 0;direction:rtl;color:#000;background:#fff;overflow:hidden;page-break-after:always;break-after:page;position:relative;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .sg-sheet:last-child{page-break-after:auto;break-after:auto;}
+  .sg-sheet *{box-sizing:border-box;}
+  .sg-title{text-align:center;height:15mm;padding-top:1mm;}
+  .sg-title span{display:inline-block;font-size:21pt;font-weight:700;border-bottom:1.1mm double #000;padding:0 3mm .5mm;line-height:1.3;}
+  .sg-hd{position:relative;height:8mm;font-size:11.5pt;font-weight:700;}
+  .sg-hd > div{position:absolute;bottom:.5mm;white-space:nowrap;display:flex;gap:2mm;align-items:baseline;}
+  .sg-hd .v,.sg-ft .v{font-weight:500;font-size:9.5pt;}
+  table.sg-t{width:100%;border-collapse:collapse;table-layout:fixed;}
+  .sg-t th,.sg-t td{border:.35mm solid #000;padding:0 .8mm;text-align:center;vertical-align:middle;overflow:hidden;font-size:9.5pt;line-height:1.25;word-break:break-word;}
+  .sg-t th{font-weight:700;font-size:10.5pt;}
+  .sg-t .h1 th{height:8mm;} .sg-t .h2 th{height:5.5mm;font-size:9.5pt;} .sg-t .h3 th{height:4.5mm;font-size:9pt;}
+  .sg-t .sg-no th{height:4.5mm;font-size:8.5pt;font-weight:400;padding:0;}
+  .sg-t tbody td{height:12.6mm;font-weight:500;}
+  .sg-t .tot td{height:9mm;}
+  .sg-t th.sg-big{font-size:19pt;letter-spacing:2mm;}
+  .sg-small{font-size:6.3pt !important;line-height:1.1;}
+  .sg-t td.sg-cert{font-size:7.5pt;line-height:1.75;text-align:justify;vertical-align:top;padding:1.5mm 1.5mm;}
+  .sg-t td.sg-words{text-align:right;padding-right:2mm;font-size:11pt;}
+  .sg-t td.sg-fig{font-size:11pt;}
+  .sg-t td b{font-weight:700;}
+  .sg-ft{position:absolute;left:0;right:0;top:177mm;font-size:11pt;font-weight:700;}
+  .sg-ft > div{position:absolute;top:0;white-space:nowrap;}
+  .sg-ft .v{display:block;}
+}
+
+@media print{
+  .ap-tag{background:transparent !important;color:#000 !important;font-weight:900 !important;font-size:14.5pt !important;border:none !important;padding:0.8mm 1mm !important;-webkit-text-stroke:.45px #000;text-shadow:0 0 0 #000;}
+  .ap-box{border-color:#000 !important;border-width:0.6mm !important;}
+  .ap-inner{border:0.3mm solid #000 !important;}
+}
 </style>
 <style id="dynamicPrintStyle">
 @media print{ @page{ size: A4 portrait; margin: 9mm; } }
@@ -865,22 +964,18 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
     </div>
     <div class="top-actions">
       <button id="btnLock"><span class="ur">🔒 لاک </span><span class="en">Lock</span></button>
+      <button data-view="search"><span class="ur">🔍 تلاش </span><span class="en">Search</span></button>
+      <button data-view="settings"><span class="ur">⚙️ ترتیبات </span><span class="en">Settings</span></button>
     </div>
   </div>
 
-  <div id="mainnav">
-    <button data-view="form" class="active"><span class="ur">فارم پُر کریں </span><span class="en">Fill Form</span></button>
-    <button data-view="records"><span class="ur">محفوظ فارم </span><span class="en">Saved</span></button>
-    <button data-view="search"><span class="ur">🔍 تلاش </span><span class="en">Search</span></button>
-<button data-view="settings"><span class="ur">ترتیبات </span><span class="en">Settings</span></button>
-  </div>
-
-  <div id="appwrap">
-
-    <!-- ============ VIEW: FORM ============ -->
-    <div id="view-form" class="container">
-
-      <div class="formtypetabs">
+  <div id="navwrap">
+    <div id="mainnav">
+      <button data-view="form" class="active" id="fillBtn"><span class="ur">فارم پُر کریں ▾</span><span class="en">Fill Form ▾</span></button>
+      <button data-view="records"><span class="ur">📁 محفوظ فارم </span><span class="en">Saved</span></button>
+    </div>
+    <div id="ftdrop" class="hidden"><div class="ftd-h">فارم کی قسم منتخب کریں</div>
+<div class="formtypetabs">
         <button data-ftype="baqaya" class="active" onclick="switchFormTypeTab('baqaya')"><span class="ur">فہرست بقایاداران </span><span class="en">List of Defaulters</span></button>
         <button data-ftype="auditaccount" onclick="switchFormTypeTab('auditaccount')"><span class="ur">آڈٹ/اکاؤنٹ برانچ </span><span class="en">Audit/Account Branch</span></button>
         <button data-ftype="safar" onclick="switchFormTypeTab('safar')"><span class="ur">سفر خرچ </span><span class="en">Travel Expense</span></button>
@@ -889,7 +984,27 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
         <button data-ftype="darkhwast" onclick="switchFormTypeTab('darkhwast')"><span class="ur">درخواست </span><span class="en">Application</span></button>
         <button data-ftype="gendarkhwast" onclick="switchFormTypeTab('gendarkhwast')"><span class="ur">جنرل درخواست </span><span class="en">General Application</span></button>
       </div>
+    </div>
+  <!-- ============ ACTION BAR (form view) ============ -->
+  <div id="actionbar">
+    <button class="btn-new" onclick="guardDirty(newForm)"><span class="ur">نیا فارم </span><span class="en">New</span></button>
+    <button class="btn-save" onclick="saveForm()"><span class="ur">محفوظ کریں </span><span class="en">Save</span></button>
+    <button class="btn-print" onclick="doPrint(false)"><span class="ur">پرنٹ/PDF </span><span class="en">Print</span></button>
+    <button class="btn-settings" onclick="showPrintSettings()">⚙️ <span class="ur">پرنٹ ترتیبات</span><span class="en">Print Settings</span></button>
+    <button class="btn-blank" onclick="doPrint(true)"><span class="ur">خالی فارم </span><span class="en">Blank</span></button>
+    <button class="btn-share" onclick="shareForm()"><span class="ur">شیئر </span><span class="en">Share</span></button>
+    <button class="btn-clear" onclick="confirmClearForm()"><span class="ur">صاف کریں </span><span class="en">Clear</span></button>
+    <button class="btn-delete hidden" id="btnDeleteRec" onclick="confirmDeleteForm()"><span class="ur">حذف کریں </span><span class="en">Delete</span></button>
+    <button class="btn-back hidden" id="btnBackRec" onclick="goToView('records')"><span class="ur">واپس </span><span class="en">Back</span></button>
+  </div>
+  </div>
 
+  <div id="appwrap">
+
+    <!-- ============ VIEW: FORM ============ -->
+    <div id="view-form" class="container">
+
+      
       <!-- =========================================================
            FORM TYPE 1: فہرست بقایاداران
            ========================================================= -->
@@ -1298,15 +1413,15 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
               <div class="fitem"><label><span class="ur">جولائی تاریخ</span><span class="en">July Date</span></label><input type="text" id="am_lf_julyDate"></div>
             </div>
             <div class="miyzan-box" style="background:#eef6ee;">
-              <span><span class="ur">میزان آمد (خودکار)</span><span class="en">Total Income (Auto)</span></span>
+              <span><span class="ur">میزان آمد</span><span class="en">Total Income</span></span>
               <span class="val" id="am_lf_totalIncome">0.00</span>
             </div>
             <div class="miyzan-box" style="background:#eef6ee;">
-              <span><span class="ur">اخراجات (خودکار)</span><span class="en">Expenses (Auto)</span></span>
+              <span><span class="ur">اخراجات</span><span class="en">Expenses</span></span>
               <span class="val" id="am_lf_expenses">0.00</span>
             </div>
             <div class="miyzan-box" style="background:#eef6ee;">
-              <span><span class="ur">بقایا (خودکار)</span><span class="en">Balance (Auto)</span></span>
+              <span><span class="ur">بقایا</span><span class="en">Balance</span></span>
               <span class="val" id="am_lf_balance">0.00</span>
             </div>
             <div class="longline"><label><span class="ur">تفصیل</span><span class="en">Detail</span></label><input type="text" id="am_lf_detail"></div>
@@ -1324,7 +1439,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
           </div>
 
           <div class="sectionbox">
-            <span class="tag"><span class="ur">مقامی حسابات (لوکل فنڈ) — مد وار آمد لوکل فنڈ</span><span class="en">Local Accounts — Head-wise Local Fund Income</span></span>
+            <span class="tag"><span class="ur">مد وار آمد لوکل فنڈ</span><span class="en">Head-wise Local Fund Income</span></span>
             <div class="tblwrap">
               <table class="mini" id="tbl_amLocalHeads">
                 <thead><tr><th><span class="ur">نمبر شمار</span><span class="en">No.</span></th><th><span class="ur">لوکل مدات</span><span class="en">Local Head</span></th><th><span class="ur">رقم</span><span class="en">Amount</span></th></tr></thead>
@@ -1336,7 +1451,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
           </div>
 
           <div class="sectionbox">
-            <span class="tag"><span class="ur">قابل تعمیل امور از روزنامچہ</span><span class="en">Actionable Matters from Roznamcha</span></span>
+            <span class="tag"><span class="ur">قابل تعمیل امور</span><span class="en">Actionable Matters from Roznamcha</span></span>
             <div id="am_actions_list"></div>
             <div class="addrow-bar"><button type="button" onclick="addAmaratActionRow()"><span class="ur">+ شامل کریں </span><span class="en">Add</span></button></div>
           </div>
@@ -1487,18 +1602,6 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 
   </div>
 
-  <!-- ============ ACTION BAR (form view) ============ -->
-  <div id="actionbar">
-    <button class="btn-new" onclick="guardDirty(newForm)"><span class="ur">نیا فارم </span><span class="en">New</span></button>
-    <button class="btn-save" onclick="saveForm()"><span class="ur">محفوظ کریں </span><span class="en">Save</span></button>
-    <button class="btn-print" onclick="doPrint(false)"><span class="ur">پرنٹ/PDF </span><span class="en">Print</span></button>
-    <button class="btn-settings" onclick="showPrintSettings()">⚙️ <span class="ur">پرنٹ ترتیبات</span><span class="en">Print Settings</span></button>
-    <button class="btn-blank" onclick="doPrint(true)"><span class="ur">خالی فارم </span><span class="en">Blank</span></button>
-    <button class="btn-share" onclick="shareForm()"><span class="ur">شیئر </span><span class="en">Share</span></button>
-    <button class="btn-clear" onclick="confirmClearForm()"><span class="ur">صاف کریں </span><span class="en">Clear</span></button>
-    <button class="btn-delete hidden" id="btnDeleteRec" onclick="confirmDeleteForm()"><span class="ur">حذف کریں </span><span class="en">Delete</span></button>
-    <button class="btn-back hidden" id="btnBackRec" onclick="goToView('records')"><span class="ur">واپس </span><span class="en">Back</span></button>
-  </div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -2040,11 +2143,11 @@ function showToast(msg, ms){
 /* ======================================================================
    4. NAVIGATION
    ====================================================================== */
-document.querySelectorAll('#mainnav button').forEach(btn=>{
+document.querySelectorAll('#mainnav button[data-view], #topbar button[data-view]').forEach(btn=>{
   btn.addEventListener('click', ()=> goToView(btn.dataset.view));
 });
 function goToView(view){
-  document.querySelectorAll('#mainnav button').forEach(b=>b.classList.toggle('active', b.dataset.view===view));
+  document.querySelectorAll('#mainnav button[data-view], #topbar button[data-view]').forEach(b=>b.classList.toggle('active', b.dataset.view===view));
   ['form','records','search','settings'].forEach(v=>{
     document.getElementById('view-'+v).classList.toggle('hidden', v!==view);
   });
@@ -2078,6 +2181,8 @@ function switchFormType(type){
   document.getElementById('formtype-amaratAudit').classList.toggle('hidden', type!=='amaratAudit');
   document.getElementById('formtype-darkhwast').classList.toggle('hidden', type!=='darkhwast');
   document.getElementById('formtype-gendarkhwast').classList.toggle('hidden', type!=='gendarkhwast');
+  const _b=document.querySelector('.formtypetabs button[data-ftype="'+type+'"] .ur'), _f=document.querySelector('#fillBtn .ur');
+  if(_b && _f) _f.textContent='فارم پُر کریں: '+_b.textContent.trim()+' ▾';
 }
 function switchFormTypeTabCore(type){
   // Called only from the visible tab buttons: switching tabs by hand always starts a
@@ -4456,7 +4561,8 @@ function unwrapPagesAfterPrint(){
 /* ======================================================================
    BAQAYA LIST — print sheets that reproduce the paper form (11 tall rows per sheet)
    ====================================================================== */
-const BP_ROWS = 11;
+const BP_ROWS = 11;      // قطاریں پہلے صفحے پر (سرخی کے ساتھ)
+const BP_ROWS2 = 13;     // اگلے صفحات پر (سرخی کے بغیر)
 function bpNum(v){ const n = parseFloat(String(v == null ? '' : v).replace(/[,\s]/g, '')); return isFinite(n) ? n : null; }
 function bpSum(arr){ let t = 0, any = false; arr.forEach(v=>{ const n = bpNum(v); if(n != null){ t += n; any = true; } }); return any ? String(Math.round(t * 100) / 100) : ''; }
 function bpCollectRows(){
@@ -4493,7 +4599,8 @@ function bpHead(){
       '<div>حتی المقدور مدد کی جائے۔ <b class="bp-no">۵</b> بجٹ کے خانے میں موجودہ جاری سال کا بجٹ لکھ کر فہرست بقایاداران تیار کی جائے اور سال بھی ساتھ لکھیں کہ کونسا سال ہے۔</div>' +
     '</div>';
 }
-function bpTable(rows, startNo){
+function bpTable(rows, startNo, cap){
+  cap = cap || BP_ROWS;
   const ya = window.PRINT_BLANK ? '' : String((document.querySelector('.th-year.by-aam') || {}).value || '').trim();
   const yj = window.PRINT_BLANK ? '' : String((document.querySelector('.th-year.by-jalsa') || {}).value || '').trim();
   const grp = (yr) => '<th>بجٹ سال' + (yr ? '<br><span class="bp-yr">' + escapeHtml(yr) + '</span>' : '') + '</th><th>سابقہ<br>بقایاجات</th><th>میزان</th><th>وصولی تا<br>تاریخ معائنہ</th><th>کل بقایا</th>';
@@ -4501,7 +4608,7 @@ function bpTable(rows, startNo){
   let h = '<table class="bp-tbl"><colgroup>' + widths.map(w=>'<col style="width:' + w + 'mm">').join('') + '</colgroup><thead>' +
     '<tr class="bp-h1"><th rowspan="2">نمبر<br>شمار</th><th rowspan="2">نام بقایاداران<br>ولدیت/زوجیت</th><th rowspan="2" class="bp-st">موصی<br>غیر موصی<br>عہدیدار</th><th colspan="5">چندہ عام وحصہ آمد</th><th colspan="5">چندہ جلسہ سالانہ</th></tr>' +
     '<tr class="bp-h2">' + grp(ya) + grp(yj) + '</tr></thead><tbody>';
-  for(let i = 0; i < BP_ROWS; i++){
+  for(let i = 0; i < cap; i++){
     const r = rows[i];
     const cell = x => '<td>' + escapeHtml(x || '') + '</td>';
     if(!r){ h += '<tr><td></td><td class="bp-nm"><div class="bp-n1"></div><div class="bp-n2"></div></td>' + '<td></td>'.repeat(11) + '</tr>'; continue; }
@@ -4526,11 +4633,12 @@ function buildBaqayaPrintSheets(){
   if(currentFormType !== 'baqaya') return;
   removeBaqayaPrintSheets();
   const rows = window.PRINT_BLANK ? [] : bpCollectRows();
-  const n = Math.max(1, Math.ceil(rows.length / BP_ROWS));
+  const n = rows.length <= BP_ROWS ? 1 : 1 + Math.ceil((rows.length - BP_ROWS) / BP_ROWS2);
   let html = '';
   for(let k = 0; k < n; k++){
-    html += '<section class="bp-sheet"><div class="bp-frame"><div class="bp-head">' + bpHead() + '</div>' +
-      bpTable(rows.slice(k * BP_ROWS, (k + 1) * BP_ROWS), k * BP_ROWS + 1) + bpFoot(k === 0 ? 'ft1' : 'ft2') + '</div></section>';
+    const from = k === 0 ? 0 : BP_ROWS + (k - 1) * BP_ROWS2, cnt = k === 0 ? BP_ROWS : BP_ROWS2;
+    html += '<section class="bp-sheet' + (k ? ' bp-cont' : '') + '"><div class="bp-frame">' + (k === 0 ? '<div class="bp-head">' + bpHead() + '</div>' : '') +
+      bpTable(rows.slice(from, from + cnt), from + 1, cnt) + bpFoot(k === 0 ? 'ft1' : 'ft2') + '</div></section>';
   }
   const wrap = document.createElement('div');
   wrap.id = 'baqPrintSheet'; wrap.innerHTML = html;
@@ -4626,6 +4734,8 @@ function enterPrintMode(){
   wrapPagesForPrint();
   buildAuditPrintSheet();
   buildBaqayaPrintSheets();
+  buildSafarPrintSheets();
+  buildDistrictPrintSheet();
   if(currentFormType === 'safar') applySafarCertMerge();
   document.body.classList.toggle('print-blank', !!window.PRINT_BLANK);
   document.body.classList.add('printing-mode');
@@ -4665,6 +4775,8 @@ function exitPrintMode(){
   unwrapPagesAfterPrint();
   removeAuditPrintSheet();
   removeBaqayaPrintSheets();
+  removeSafarPrintSheets();
+  removeDistrictPrintSheet();
   if(window._dkBodyBackup !== undefined && window._dkBodyBackup !== null){
     Object.keys(window._dkBodyBackup).forEach(id=>{
       const b = document.getElementById(id);
@@ -4712,7 +4824,8 @@ function applyPrintPageStyle(){
   document.documentElement.style.setProperty('--dk-m', marginSetting === 'narrow' ? '8mm' : '14mm');
   const styleTag = document.getElementById('dynamicPrintStyle');
   if(styleTag){
-    styleTag.textContent = `@media print{ @page{ size: A4 ${isLetter ? 'portrait' : orientation}; margin: ${margin}; } }`;
+    const _pO = (isLetter || currentFormType==='district') ? 'portrait' : (currentFormType==='safar' ? 'landscape' : orientation);
+    styleTag.textContent = `@media print{ @page{ size: A4 ${_pO}; margin: ${margin}; } }`;
   }
   document.body.classList.toggle('print-landscape', orientation === 'landscape');
 }
@@ -4981,6 +5094,111 @@ function autoSizeNameBox(t){ t.style.height='auto'; t.style.height=(t.scrollHeig
 document.addEventListener('input', e=>{ const t=e.target; if(t && t.classList && t.classList.contains('dk-name') && t.tagName==='TEXTAREA') autoSizeNameBox(t); }, true);
 function resizeAllNameBoxes(){ document.querySelectorAll('textarea.dk-name').forEach(autoSizeNameBox); }
 setInterval(resizeAllNameBoxes, 800);
+
+/* ---------- فارم پُر کریں ڈراپ ڈاؤن ---------- */
+(function(){
+  const fill=document.getElementById('fillBtn'), dd=document.getElementById('ftdrop');
+  if(!fill||!dd) return;
+  fill.addEventListener('click',()=>{ dd.classList.toggle('hidden'); });
+  document.addEventListener('click',e=>{ if(!e.target.closest('#ftdrop') && !e.target.closest('#fillBtn')) dd.classList.add('hidden'); });
+  dd.querySelectorAll('.formtypetabs button').forEach(b=>b.addEventListener('click',()=>dd.classList.add('hidden')));
+  const f=document.querySelector('#fillBtn .ur'), a=dd.querySelector('.formtypetabs button.active .ur');
+  if(f&&a) f.textContent='فارم پُر کریں: '+a.textContent.trim()+' ▾';
+})();
+
+/* ======================================================================
+   سفر خرچ — کاغذی فارم جیسی پرنٹ شیٹ (ہر شیٹ پر 9 قطاریں، زیادہ ہوں تو اگلا صفحہ)
+   ====================================================================== */
+const SF_ROWS = 9;
+function sfDate(v){ v=String(v||'').trim(); const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(v); return m ? m[3]+'-'+m[2]+'-'+m[1] : v; }
+function sfCollect(){
+  if(window.PRINT_BLANK) return [];
+  const keys=['name','payrate','traveldate','fromplace','toplace','route','purpose','mode','miles','rate1','amt1','rate2','amt2','rate3','amt3','rupees','remarks'];
+  const out=[];
+  document.querySelectorAll('#tbody-safar tr').forEach(tr=>{
+    const r={}; let any=false;
+    keys.forEach(k=>{ const e=tr.querySelector('.s-'+({name:'name',payrate:'payrate',traveldate:'traveldate',fromplace:'fromplace',toplace:'toplace',route:'route',purpose:'purpose',mode:'mode',miles:'miles',rate1:'rate1',amt1:'amt1',rate2:'rate2',amt2:'amt2',rate3:'rate3',amt3:'amt3',rupees:'rupees',remarks:'remarks'}[k])); r[k]=e?String(e.value||'').trim():''; if(r[k]) any=true; });
+    if(any) out.push(r);
+  });
+  return out;
+}
+function buildSafarPrintSheets(){
+  if(currentFormType!=='safar') return;
+  removeSafarPrintSheets();
+  const rows=sfCollect();
+  const n=Math.max(1,Math.ceil(rows.length/SF_ROWS));
+  const E=escapeHtml, v=id=>window.PRINT_BLANK?'':E(apVal(id));
+  const d=id=>window.PRINT_BLANK?'':E(sfDate(apVal(id)));
+  const W=[8.2,6.2,7.1,8.5,8.8,7.3,5.2,4.1,4.1,4.2,4.1,4.0,3.9,3.9,3.9,4.0,3.7,8.8];
+  const cg='<colgroup>'+W.map(w=>'<col style="width:'+w+'%">').join('')+'</colgroup>';
+  const thead='<thead><tr class="h1"><th rowspan="3">نام کارکن<br>معہ عہدہ</th><th rowspan="3">شرح<br>تنخواہ</th><th rowspan="3">تاریخ سفر<br>یا قیام</th><th rowspan="3">از مقام معہ<br>وقت روانگی</th><th rowspan="3">تا مقام معہ<br>وقت رسیدگی</th><th rowspan="3">کس راستے<br>سے سفر کیا؟</th><th rowspan="3">غرض سفر</th><th rowspan="3">ذریعہ سفر</th><th rowspan="3">تعداد<br>میل</th><th colspan="8" class="sg-big">سفر خرچ</th><th rowspan="3">کیفیت</th></tr>'+
+    '<tr class="h2"><th colspan="2" class="sg-small">کرایہ یکہ گاڑی وغیرہ<br>حساب فی میل باس لگی</th><th colspan="2">روزانہ خرچ متفرق</th><th colspan="2">کرایہ ریل کشتی یا جہاز</th><th colspan="2">میزان</th></tr>'+
+    '<tr class="h3"><th>شرح</th><th>رقم</th><th>شرح</th><th>رقم</th><th>شرح</th><th>رقم</th><th>پیسے</th><th>روپے</th></tr>'+
+    '<tr class="sg-no">'+Array.from({length:18},(_,i)=>'<th>'+(i+1)+'</th>').join('')+'</tr></thead>';
+  const keys=['name','payrate','traveldate','fromplace','toplace','route','purpose','mode','miles','rate1','amt1','rate2','amt2','rate3','amt3'];
+  const cert='میں تصدیق کرتا ہوں کہ رقم مندرج بل ہذا درست و قاعدہ کے مطابق ہے اور یہ کہ سفر انجمن کی غرض اور فائدہ کی خاطر کیا گیا تھا اور کہ اس بل کا روپیہ کو دیا جائے۔';
+  const all=rows.map(r=>r.rupees);
+  const grand=bpSum(all);
+  const split=x=>{ x=String(x||'').trim(); if(!x) return ['','']; const f=parseFloat(x.replace(/,/g,'')); if(isNaN(f)) return ['',x]; const ip=Math.trunc(f), ps=Math.round((f-ip)*100); return [ps?String(ps):'', String(ip)]; };
+  let html='';
+  for(let k=0;k<n;k++){
+    const part=rows.slice(k*SF_ROWS,(k+1)*SF_ROWS), last=(k===n-1);
+    let body='';
+    for(let i=0;i<SF_ROWS;i++){
+      const r=part[i]||{}; const pr=split(r.rupees);
+      body+='<tr>'+keys.map(c=>'<td>'+E(r[c]||'')+'</td>').join('')+'<td>'+E(pr[0])+'</td><td>'+E(pr[1])+'</td>'+
+        (i===5?'<td rowspan="5" class="sg-cert">'+cert+'</td>':(i>5?'':'<td>'+E(r.remarks||'')+'</td>'))+'</tr>';
+    }
+    body+='<tr class="tot"><td colspan="9" class="sg-words"><b>میزان (الفاظ میں)</b> &nbsp; '+(last?v('s_totalWords'):'')+'</td><td colspan="8" class="sg-fig"><b>رقم میں</b> &nbsp; '+(last?E(grand):'')+'</td></tr>';
+    const F=(r,t,val)=>'<div style="right:'+r+'%">'+t+'<span class="v">'+(last?val:'')+'&nbsp;</span></div>';
+    const H=(r,t,val)=>'<div style="right:'+r+'%"><span>'+t+'</span><span class="v">'+val+'</span></div>';
+    html+='<section class="sg-sheet"><div class="sg-title"><span>بل سفر خرچ</span></div>'+
+      '<div class="sg-hd">'+H(1.7,'منجانب',v('s_manjanib'))+H(23,'از تاریخ',d('s_fromDate'))+H(34.7,'تا تاریخ',d('s_toDate'))+H(55,'بابت دورہ سفر علاقہ/مقام',v('s_tourArea'))+H(79.4,'تاریخ روانگی بل ہذا',d('s_billDate'))+'</div>'+
+      '<table class="sg-t">'+cg+thead+'<tbody>'+body+'</tbody></table>'+
+      '<div class="sg-ft">'+F(1.7,'دستخط سفر کنندہ',v('s_travelerSign'))+F(22.5,'مبلغ',v('s_amtReceived'))+F(37.4,'وصول پائے۔ دستخط معہ تاریخ',v('s_receivedSign'))+F(59.8,'مبلغ',v('s_amtAdvance'))+F(70.4,'پیشگی میں وضع ہوئے۔ دستخط محرر',v('s_advanceSign'))+'</div></section>';
+  }
+  const wrap=document.createElement('div'); wrap.id='sfPrintSheet'; wrap.innerHTML=html;
+  (document.getElementById('view-form')||document.body).appendChild(wrap);
+  document.body.classList.add('sf-printing');
+}
+function removeSafarPrintSheets(){ const o=document.getElementById('sfPrintSheet'); if(o) o.remove(); document.body.classList.remove('sf-printing'); }
+
+/* ======================================================================
+   آڈٹ رپورٹ امارت ضلع — کاغذی فارم جیسی پرنٹ شیٹ
+   ====================================================================== */
+function dtV(id){
+  if(window.PRINT_BLANK) return '';
+  const e=document.getElementById(id); if(!e) return '';
+  let t=(e.value!==undefined&&e.value!=='')?e.value:(e.value===undefined?e.textContent:'');
+  t=String(t||'').trim();
+  if(t==='0.00'||t==='0') t='';
+  return escapeHtml(sfDate(t));
+}
+function dtRow(label,id,cls){ return '<div class="dt-row '+(cls||'')+'"><span class="dt-l">'+label+'</span><span class="dt-f">'+dtV(id)+'</span></div>'; }
+function buildDistrictPrintSheet(){
+  if(currentFormType!=='district') return;
+  removeDistrictPrintSheet();
+  const html='<section class="dt-sheet">'+
+    '<div class="dt-bism">بسم اللہ الرحمٰن الرحیم</div><div class="dt-title">آڈٹ رپورٹ امارت ضلع</div>'+
+    '<div class="dt-2">'+dtRow('نام ضلع','d_zilaName')+dtRow('نام امیر ضلع','d_ameerZilaName')+'</div>'+
+    '<div class="dt-2">'+dtRow('تاریخ معائنہ','d_inspectionDate')+dtRow('تاریخ سابقہ معائنہ','d_prevInspectionDate')+'</div>'+
+    '<div class="dt-head"><span>آمد</span></div>'+
+    dtRow('۱۔ گزشتہ معائنہ کی بچت','d_prevSavings')+
+    dtRow('۲۔ موجودہ معائنہ تک آمد:','d_currentIncome')+
+    dtRow('گرانٹ از مرکز','d_grantMarkaz','dt-sub')+dtRow('عطایا','d_donations','dt-sub')+dtRow('واپسی قرض','d_loanReturn','dt-sub')+dtRow('واپسی پیشگی','d_advanceReturn','dt-sub')+dtRow('متفرق','d_misc','dt-sub')+
+    dtRow('۳۔ میزان کل آمد','d_totalIncome','dt-big')+
+    '<div class="dt-head"><span>اخراجات</span></div>'+
+    dtRow('۱۔ اخراجات بذریعہ رسیدات','d_expReceipts')+dtRow('۲۔ پیشگی رقوم','d_expAdvance')+dtRow('۳۔ قرضہ جات','d_expLoans')+
+    dtRow('۴۔ میزان اخراجات','d_totalExpenses','dt-big')+dtRow('۵۔ بقایا رقم','d_balanceRemaining')+
+    dtRow('۶۔ باقی رقم کس طرح محفوظ کی گئی ہے','d_howSafe')+dtRow('۷۔ بینک کا نام بمعہ اکاؤنٹ نمبر','d_bankName')+
+    dtRow('۸۔ مشترکہ اکاؤنٹ کے عہدیداران کے نام','d_jointAccountNames')+dtRow('۹۔ پیشگی اور قرض کی اسم وار تفصیل','d_advanceLoanDetail1')+
+    dtRow('','d_advanceLoanDetail2')+dtRow('','d_advanceLoanDetail3')+
+    '<div class="dt-sig dt-2">'+dtRow('دستخط امیر ضلع معہ تاریخ','d_ameerSignDate')+dtRow('دستخط انسپکٹر مال آمد معہ تاریخ','d_inspSignDate')+'</div></section>';
+  const wrap=document.createElement('div'); wrap.id='dtPrintSheet'; wrap.innerHTML=html;
+  (document.getElementById('view-form')||document.body).appendChild(wrap);
+  document.body.classList.add('dt-printing');
+}
+function removeDistrictPrintSheet(){ const o=document.getElementById('dtPrintSheet'); if(o) o.remove(); document.body.classList.remove('dt-printing'); }
 </script>
 </body>
 </html>
