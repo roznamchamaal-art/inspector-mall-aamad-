@@ -149,7 +149,7 @@ input,select,textarea{
 }
 .dk-top{text-align:right;}
 .dk-addr-row{display:flex;align-items:center;gap:8px;}
-.dk-addr-row .dk-addr{flex:1;border:none;border-bottom:1.5px dotted #555;background:transparent;text-align:right;}
+.dk-addr-row .dk-addr{flex:1;border:none;border-bottom:none;background:transparent;text-align:right;}
 .dk-bismillah{text-align:center;font-size:1.15em;font-weight:700;margin-bottom:.6em;}
 .dk-body{flex:1;min-height:200px;outline:none;text-align:right;white-space:pre-wrap;word-break:break-word;margin:.6em 0;}
 .dk-body:empty::before{content:attr(data-ph);color:#b5b0a0;}
@@ -391,7 +391,7 @@ body.lang-ur .en{display:none !important;}
   /* the name line (text + dotted line) prints only when «نام پرنٹ میں شامل کریں» is ticked */
   #formtype-darkhwast .a4page:not(.dk-name-on) .dk-bottom .print-text,#formtype-gendarkhwast .a4page:not(.dk-name-on) .dk-bottom .print-text{display:none !important;}
   .dk-pn{display:none !important;}
-  .dk-addr-row .print-text{display:block;flex:1;min-height:1.6em;text-align:right;border-bottom:1.5px dotted #444;}
+  .dk-addr-row .print-text{display:block;flex:1;min-height:1.6em;text-align:right;border-bottom:none;}
   .dk-bottom .print-text{display:block;width:100%;min-height:1.6em;text-align:center;border-bottom:1.5px dotted #444;}
   /* Form Number / Date box (record-keeping only) should not appear on the printed paper form */
   .no-print-box{display:none !important;}
