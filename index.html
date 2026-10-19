@@ -978,6 +978,55 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 .ct-lbox .acc{font-size:12.5px;color:#666;margin-bottom:12px;}
 .ct-lbox button,.ct-lbox a.b{display:block;width:100%;box-sizing:border-box;border:none;border-radius:12px;padding:11px;margin-top:8px;font-weight:700;font-size:14.5px;cursor:pointer;color:#fff;text-decoration:none;font-family:inherit;}
 .ct-lbox .map{background:linear-gradient(135deg,#3b82f6,#1d4ed8);}.ct-lbox .sv{background:linear-gradient(135deg,#22a55b,#146c3a);}.ct-lbox .no{background:#e5e7eb;color:#333;}
+
+/* =====================================================================
+   LAPTOP / DESKTOP DISPLAY (screen only, width >= 821px)
+   Phones/tablets (<=820px) and print are NOT affected.
+   ===================================================================== */
+@media screen and (min-width:821px){
+  body{background:linear-gradient(180deg,#f5f3ea 0%,#e8e4d6 100%);}
+  #appwrap{max-width:1720px;padding:0 18px 28px !important;}
+  /* paper cards: use the available width, so the whole form is visible */
+  .a4page{
+    width:100%;max-width:1220px;margin:16px auto;padding:22px 26px;
+    border:1px solid #d9d3bd;border-radius:16px;
+    box-shadow:0 10px 30px rgba(70,45,20,.10),0 1px 3px rgba(0,0,0,.06);
+  }
+  #formtype-baqaya .a4page,#formtype-safar .a4page,.a4page.wide{max-width:1640px;}
+  #formtype-auditaccount .a4page,#formtype-amaratAudit .a4page,#formtype-district .a4page{max-width:1320px;}
+  /* درخواست / جنرل درخواست keep their A4 sheet size (id rules above win) */
+
+  .formtitle{border-bottom:3px solid var(--accent);padding-bottom:10px;margin-bottom:14px;}
+  .formtitle h2{font-size:25px;}
+  .headerline{gap:10px 14px;margin-bottom:10px;}
+  .headerline input,.footerline input{
+    border:1px solid #d9d3bd;border-radius:9px;background:#fbfaf5;padding:8px 12px;
+  }
+  .headerline input:focus,.footerline input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(122,31,31,.12);background:#fff;}
+  .instructions{border-radius:12px;padding:12px 18px;background:linear-gradient(180deg,#fbf7ea,#f6f0da);}
+  .footerline{border-top:3px solid var(--accent);padding-top:14px;gap:14px;}
+  .miyzan-box{border:1px solid #d9d3bd;border-radius:12px;background:linear-gradient(135deg,#f8f4e4,#efe8cf);padding:12px 18px;}
+  .addrow-bar button{border-radius:10px;padding:10px 20px;box-shadow:0 2px 6px rgba(0,0,0,.18);transition:transform .12s,box-shadow .12s;}
+  .addrow-bar button:hover{transform:translateY(-1px);box-shadow:0 5px 12px rgba(0,0,0,.22);}
+
+  /* tables: fit the card, no sideways scrolling on a normal laptop screen */
+  .tblwrap{border:1px solid #c9c2a6;border-radius:12px;overflow-x:auto;overflow-y:hidden;box-shadow:inset 0 0 0 1px #fff;}
+  table.datatable{min-width:0;width:100%;font-size:13.5px;}
+  #table-safar{min-width:960px;}
+  table.datatable th,table.datatable td{border-color:#cfc8ae;padding:5px 4px;}
+  table.datatable thead th{background:linear-gradient(180deg,#f3edd9,#e6dec2);font-size:13px;color:#3a2a1a;}
+  table.datatable thead tr.grp th{background:linear-gradient(180deg,#eadfc0,#dccfa6);}
+  table.datatable tbody tr:nth-child(even) td:not(.srno):not(.readonly-total){background:#fbfaf4;}
+  table.datatable tbody tr:hover td:not(.srno){background:#fff6d8;}
+  table.datatable td input{font-size:14px;min-height:40px;}
+  table.datatable td input:focus{outline:2px solid var(--accent);background:#fff;border-radius:6px;}
+  table.datatable td.name-cell{min-width:190px;}
+  table.datatable td:nth-child(n+4){min-width:70px;}
+  table.datatable td.delcol{width:74px;min-width:74px;}
+  td.srno{width:42px;background:#f3eedc;}
+  .rowdel,.rowcopy{width:30px;height:30px;min-height:30px;font-size:14px;box-shadow:0 1px 4px rgba(0,0,0,.25);}
+  .th-year{width:64px;max-width:80px;}
+}
 </style>
 <style id="dynamicPrintStyle">
 @media print{ @page{ size: A4 portrait; margin: 9mm; } }
