@@ -1078,6 +1078,14 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   #reclistWrap .recgrp .reccard .openbtn{width:100%;}
 }
 @media print{#view-records{display:none !important;}}
+
+/* Smart suggestions popup */
+#acBox{position:fixed;z-index:2147483000;display:none;flex-wrap:wrap;gap:6px;max-width:min(92vw,420px);padding:7px;
+  background:#fff;border:1.5px solid #d9d3bd;border-radius:14px;box-shadow:0 10px 28px rgba(40,25,10,.25);direction:rtl;}
+#acBox button{min-height:36px;padding:5px 15px;font-size:16px;font-weight:700;line-height:1.3;color:var(--accent,#7a1f1f);
+  background:#faf5e4;border:1px solid #e3d9b3;border-radius:20px;cursor:pointer;box-shadow:none;}
+#acBox button:hover,#acBox button:focus-visible{background:var(--accent,#7a1f1f);color:#fff;border-color:var(--accent,#7a1f1f);}
+@media print{#acBox{display:none !important;}}
 </style>
 <style id="dynamicPrintStyle">
 @media print{ @page{ size: A4 portrait; margin: 9mm; } }
@@ -1680,6 +1688,11 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
           <button id="langBtnUr2" onclick="setLanguage('ur');syncLangButtons2();">اردو</button>
           <button id="langBtnEn2" onclick="setLanguage('en');syncLangButtons2();">English</button>
         </div>
+      </div>
+      <div class="settingcard">
+        <h3><span class="ur">✍️ سمارٹ سجیشنز (آٹو کمپلیٹ)</span><span class="en">Smart suggestions</span></h3>
+        <p><span class="ur">لفظ کے شروع میں م، ص، و، ز، ب، د، ق، س، مھ وغیرہ لکھیں تو نیچے مکمل لفظ تجویز ہوتا ہے۔ لفظ صرف کلک کرنے پر لکھا جاتا ہے، ورنہ آپ لکھتے رہیں۔</span><span class="en">Type a short form (م → مکرم, ص → صاحب …) and tap the suggested word to insert it.</span></p>
+        <button id="acToggleBtn" type="button" onclick="acToggle()">چالو ✓ (بند کریں)</button>
       </div>
       <div class="settingcard">
         <h3><span class="ur">🔐 پن / سیکیورٹی</span><span class="en">PIN / Security</span></h3>
@@ -5504,6 +5517,226 @@ function ctDir(id){
   if(/^https?:\/\//i.test(t) && !dest){ window.open(t,'_blank','noopener'); return; }
   window.open('https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(dest||t),'_blank','noopener');
 }
+
+/* ======================================================================
+   SMART SUGGESTIONS (آٹو کمپلیٹ)
+   - Suggestion appears only when the word being typed (at its very start,
+     caret at the end of that word) matches a short form / word beginning.
+   - Nothing is ever inserted automatically: only a click/tap on a
+     suggestion writes the full word. Normal typing is never blocked.
+   ====================================================================== */
+(function(){
+  'use strict';
+  /* short form -> full words (first one is the main suggestion) */
+  var ABBR = {
+    'م':['مکرم','محترم','محلہ'], 'ص':['صاحب'], 'و':['ولد'], 'ز':['زوجہ'], 'ب':['بنت','بقایا'],
+    'د':['دختر'], 'ق':['قوم'], 'س':['ساکن'], 'مھ':['محلہ'],
+    'ج':['جماعت','جناب'], 'ا':['امیر','امارت'], 'ح':['حلقہ'], 'ض':['ضلع'], 'ت':['تحصیل'],
+    'ن':['ناظم'], 'ر':['رکن'], 'مح':['محمد','محترم','محلہ'], 'ع':['عبداللہ','عبدالرحمن'],
+    'ک':['کارکن','کل'], 'ہ':['ہمدرد'], 'ڈ':['ڈاکخانہ'], 'ش':['شہر']
+  };
+  /* general words, suggested when 2 or more letters are typed */
+  var WORDS = ('مکرم محترم جناب صاحب صاحبہ ولد زوجہ بنت دختر قوم ساکن محلہ گاؤں موضع تحصیل ضلع شہر ڈاکخانہ صوبہ ' +
+    'امیر امارت جماعت اسلامی حلقہ ناظم نائب قیم رکن کارکن امیدوار ہمدرد متفق ذمہ دار ذمہ داران ' +
+    'بقایا بقایاداران ماہانہ سالانہ اعانت زکوٰۃ عشر فطرانہ صدقات قربانی کھالیں عطیات چندہ وصولی رسید رسیدبک ' +
+    'آڈٹ اکاؤنٹ رپورٹ انسپکٹر انسپکشن معائنہ حساب کتاب رجسٹر روزنامچہ مال میزان کل رقم تاریخ نمبر ' +
+    'سفر خرچ کرایہ سواری قیام طعام دورہ روانگی واپسی منجانب بخدمت ' +
+    'السلام علیکم ورحمۃ اللہ وبرکاتہ گزارش درخواست خاکسار التماس مہربانی شکریہ عرض ' +
+    'محمد احمد عبداللہ عبدالرحمن عبدالرحیم عبدالمجید عبدالستار عبدالغفور عبدالرزاق غلام محمود حسین حسن علی عمر عثمان ' +
+    'ابراہیم اسماعیل یوسف یعقوب اسحاق سلیمان خالد طارق بلال ' +
+    'لاہور کراچی اسلام آباد راولپنڈی فیصل آباد ملتان گوجرانوالہ سیالکوٹ ' +
+    'مدرسہ مسجد دفتر مرکز شاخ برانچ یونین کونسل وارڈ').split(' ');
+  var MAX = 6;
+  var box = null, cur = null, curInfo = null, enabled = true;
+
+  function isOn(){ try{ return localStorage.getItem('ac_enabled') !== '0'; }catch(e){ return true; } }
+  enabled = isOn();
+  window.acSetEnabled = function(v){
+    enabled = !!v;
+    try{ localStorage.setItem('ac_enabled', v ? '1' : '0'); }catch(e){}
+    if(!enabled) hide();
+    acSyncBtn();
+  };
+  window.acToggle = function(){ window.acSetEnabled(!enabled); };
+  function acSyncBtn(){
+    var b = document.getElementById('acToggleBtn'); if(!b) return;
+    b.textContent = enabled ? 'چالو ✓ (بند کریں)' : 'بند ✕ (چالو کریں)';
+    b.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+  }
+  document.addEventListener('DOMContentLoaded', acSyncBtn);
+
+  function norm(s){
+    return (s||'').replace(/[\u064B-\u065F\u0670\u200B-\u200F\u202A-\u202E]/g,'')
+      .replace(/ي/g,'ی').replace(/ك/g,'ک').replace(/ہ|ھ/g,function(c){return c;});
+  }
+  var BOUND = /[\s\u200B-\u200D,.;:!?()\[\]{}"'\/\\|<>=+*&%$#@^~`،۔؛؟\-]/;
+
+  /* token = text from last boundary to caret; caret must sit at word end */
+  function findToken(text, caret){
+    if(caret < 0 || caret > text.length) return null;
+    var next = text.charAt(caret);
+    if(next && !BOUND.test(next)) return null;           /* caret in the middle of a word */
+    var i = caret;
+    while(i > 0 && !BOUND.test(text.charAt(i-1))) i--;
+    var tok = text.slice(i, caret);
+    if(!tok || tok.length > 12) return null;
+    if(/[0-9\u06F0-\u06F9\u0660-\u0669A-Za-z@]/.test(tok)) return null;   /* digits / latin: not for us */
+    return {start:i, end:caret, token:tok};
+  }
+  function suggest(tok){
+    var t = norm(tok), out = [], seen = {};
+    function add(w){ if(!seen[w] && norm(w) !== t){ seen[w]=1; out.push(w); } }
+    if(Object.prototype.hasOwnProperty.call(ABBR, t)) ABBR[t].forEach(add);
+    if(t.length >= 2){
+      WORDS.forEach(function(w){ if(norm(w).indexOf(t) === 0) add(w); });
+    }
+    return out.slice(0, MAX);
+  }
+  window._acTest = {findToken:findToken, suggest:suggest};
+
+  function eligible(el){
+    if(!el || el.nodeType !== 1) return false;
+    if(el.closest && el.closest('[data-noac]')) return false;
+    if(el.readOnly || el.disabled) return false;
+    var tn = el.tagName;
+    if(tn === 'TEXTAREA') return true;
+    if(tn === 'INPUT'){ var ty = (el.getAttribute('type')||'text').toLowerCase(); return ty === 'text'; }
+    return el.isContentEditable === true;
+  }
+  function editableRoot(el){
+    if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') return el;
+    var n = el; while(n && n.parentElement && n.parentElement.isContentEditable) n = n.parentElement; return n;
+  }
+
+  /* read current token info for an element */
+  function readInfo(el){
+    if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA'){
+      if(el.selectionStart == null || el.selectionStart !== el.selectionEnd) return null;
+      var r = findToken(el.value, el.selectionStart);
+      if(!r) return null;
+      r.kind = 'field'; r.el = el; return r;
+    }
+    var sel = window.getSelection();
+    if(!sel || !sel.rangeCount || !sel.isCollapsed) return null;
+    var node = sel.anchorNode;
+    if(!node || node.nodeType !== 3) return null;
+    var res = findToken(node.data, sel.anchorOffset);
+    if(!res) return null;
+    res.kind = 'ce'; res.el = el; res.node = node; return res;
+  }
+
+  /* caret position for the popup */
+  function caretRect(info){
+    var el = info.el;
+    if(info.kind === 'ce'){
+      try{
+        var rg = window.getSelection().getRangeAt(0).cloneRange();
+        var rs = rg.getClientRects();
+        if(rs && rs.length) return rs[rs.length-1];
+      }catch(e){}
+      return el.getBoundingClientRect();
+    }
+    if(el.tagName === 'TEXTAREA'){
+      var cs = getComputedStyle(el), d = document.createElement('div');
+      ['direction','boxSizing','width','paddingTop','paddingRight','paddingBottom','paddingLeft',
+       'borderTopWidth','borderRightWidth','borderBottomWidth','borderLeftWidth','borderStyle',
+       'fontStyle','fontVariant','fontWeight','fontSize','fontFamily','lineHeight','letterSpacing',
+       'textAlign','textTransform','textIndent','wordSpacing'].forEach(function(p){ d.style[p] = cs[p]; });
+      d.style.position='absolute'; d.style.visibility='hidden'; d.style.left='-9999px'; d.style.top='0';
+      d.style.whiteSpace='pre-wrap'; d.style.wordWrap='break-word'; d.style.overflow='hidden';
+      d.textContent = el.value.slice(0, info.end);
+      var sp = document.createElement('span'); sp.textContent = '\u200b'; d.appendChild(sp);
+      document.body.appendChild(d);
+      var r = el.getBoundingClientRect();
+      var lh = parseFloat(cs.lineHeight) || parseFloat(cs.fontSize)*1.5 || 20;
+      var x = r.left + sp.offsetLeft - el.scrollLeft, y = r.top + sp.offsetTop - el.scrollTop;
+      document.body.removeChild(d);
+      return {left:x, right:x, top:y, bottom:y+lh};
+    }
+    return el.getBoundingClientRect();
+  }
+
+  function ensureBox(){
+    if(box) return box;
+    box = document.createElement('div');
+    box.id = 'acBox'; box.setAttribute('role','listbox'); box.setAttribute('dir','rtl');
+    box.setAttribute('data-noac','1');
+    box.addEventListener('mousedown', function(e){ e.preventDefault(); });   /* keep focus in the field */
+    box.addEventListener('click', function(e){
+      var b = e.target.closest ? e.target.closest('button[data-w]') : null;
+      if(!b || !curInfo) return;
+      e.preventDefault();
+      apply(curInfo, b.getAttribute('data-w'));
+    });
+    document.body.appendChild(box);
+    return box;
+  }
+  function hide(){ if(box){ box.style.display='none'; box.innerHTML=''; } cur=null; curInfo=null; }
+
+  function show(info, words){
+    var b = ensureBox();
+    b.innerHTML = words.map(function(w){
+      return '<button type="button" role="option" data-w="'+w.replace(/"/g,'&quot;')+'">'+w+'</button>';
+    }).join('');
+    b.style.display = 'flex'; b.style.visibility = 'hidden';
+    var cr = caretRect(info), w = b.offsetWidth, h = b.offsetHeight;
+    var vw = window.innerWidth, vv = window.visualViewport;
+    var vh = vv ? (vv.height + vv.offsetTop) : window.innerHeight;
+    var cx = (cr.left + (cr.right != null ? cr.right : cr.left)) / 2;
+    var left = Math.max(8, Math.min(cx - w/2, vw - w - 8));
+    var top = cr.bottom + 6;
+    if(top + h > vh - 4) top = Math.max(4, cr.top - h - 6);      /* no room below: show above */
+    b.style.left = left + 'px'; b.style.top = top + 'px'; b.style.visibility = 'visible';
+    cur = info.el; curInfo = info;
+  }
+
+  function apply(info, word){
+    var el = info.el, ins = word + ' ';
+    if(info.kind === 'field'){
+      el.focus();
+      el.setSelectionRange(info.start, info.end);
+      if(el.setRangeText) el.setRangeText(ins, info.start, info.end, 'end');
+      else { el.value = el.value.slice(0,info.start) + ins + el.value.slice(info.end); var p = info.start+ins.length; el.setSelectionRange(p,p); }
+    } else {
+      var node = info.node;
+      node.replaceData(info.start, info.end - info.start, ins);
+      var sel = window.getSelection(), rg = document.createRange();
+      rg.setStart(node, info.start + ins.length); rg.collapse(true);
+      sel.removeAllRanges(); sel.addRange(rg);
+    }
+    hide();
+    var tgt = (info.kind === 'ce') ? editableRoot(el) : el;
+    tgt.dispatchEvent(new Event('input', {bubbles:true}));
+    hide();
+  }
+
+  function update(){
+    if(!enabled){ hide(); return; }
+    var el = document.activeElement;
+    if(!eligible(el)){ hide(); return; }
+    var info = readInfo(el);
+    if(!info){ hide(); return; }
+    var words = suggest(info.token);
+    if(!words.length){ hide(); return; }
+    show(info, words);
+  }
+  var tmr = null;
+  function later(){ clearTimeout(tmr); tmr = setTimeout(update, 30); }
+
+  document.addEventListener('input', later, true);
+  document.addEventListener('keyup', function(e){
+    if(e.key === 'Escape'){ hide(); return; }
+    if(/^(Arrow|Home|End|Backspace|Delete)/.test(e.key)) later();
+  }, true);
+  document.addEventListener('click', function(e){ if(box && box.contains(e.target)) return; later(); }, true);
+  document.addEventListener('focusin', later, true);
+  document.addEventListener('focusout', function(){ setTimeout(function(){
+    var a = document.activeElement; if(!eligible(a)) hide();
+  }, 120); }, true);
+  window.addEventListener('scroll', function(){ if(cur) hide(); }, true);
+  window.addEventListener('resize', hide);
+})();
+
 </script>
 </body>
 </html>
