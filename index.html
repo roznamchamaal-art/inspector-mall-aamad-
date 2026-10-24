@@ -1123,6 +1123,16 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   #formtype-district .footerline .fitem{flex:1 1 300px;}
 }
 
+/* LAPTOP: forms use the full window width (no empty side margins) */
+@media screen and (min-width:821px){
+  #appwrap{max-width:100% !important;padding:0 10px 28px !important;}
+  .a4page{margin:12px auto;padding:20px 22px;}
+  #formtype-baqaya .a4page,#formtype-safar .a4page,.a4page.wide,
+  #formtype-auditaccount .a4page,#formtype-amaratAudit .a4page,#formtype-district .a4page{max-width:100% !important;width:100%;}
+  #formtype-auditaccount .sectionbox,#formtype-district .sectionbox{padding:32px 16px 16px;}
+  #formtype-district .headerline{grid-template-columns:auto 1fr auto 1fr;}
+}
+
 /* =====================================================================
    SAVED FORMS (محفوظ فارم): one drop-down per form type
    ===================================================================== */
@@ -1328,7 +1338,6 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
             </div>
             <div class="sigcol">
               <div class="fitem"><label><span class="ur">دستخط انسپکٹر مال معہ تاریخ</span><span class="en">Inspector's Sign & Date</span></label><input type="text" id="ft1_inspSign"></div>
-              <div class="fitem phonebox"><label><span class="ur">📞 فون نمبر — انسپکٹر مال</span><span class="en">📞 Phone — Inspector</span></label><input type="tel" inputmode="tel" id="ft1_inspPhone" placeholder="03XX-XXXXXXX"></div>
             </div>
           </div>
         </div>
@@ -1377,7 +1386,6 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
             </div>
             <div class="sigcol">
               <div class="fitem"><label><span class="ur">دستخط انسپکٹر مال معہ تاریخ</span><span class="en">Inspector's Sign & Date</span></label><input type="text" id="ft2_inspSign"></div>
-              <div class="fitem phonebox"><label><span class="ur">📞 فون نمبر — انسپکٹر مال</span><span class="en">📞 Phone — Inspector</span></label><input type="tel" inputmode="tel" id="ft2_inspPhone" placeholder="03XX-XXXXXXX"></div>
             </div>
           </div>
         </div>
@@ -3292,8 +3300,8 @@ function collectFormDataCore(){
     },
     members1: collectMembers(1),
     members2: collectMembers(2),
-    footer1: { secSign: val('ft1_secSign'), ameerSign: val('ft1_ameerSign'), inspSign: val('ft1_inspSign'), secPhone: val('ft1_secPhone'), ameerPhone: val('ft1_ameerPhone'), inspPhone: val('ft1_inspPhone') },
-    footer2: { secSign: val('ft2_secSign'), ameerSign: val('ft2_ameerSign'), inspSign: val('ft2_inspSign'), secPhone: val('ft2_secPhone'), ameerPhone: val('ft2_ameerPhone'), inspPhone: val('ft2_inspPhone') }
+    footer1: { secSign: val('ft1_secSign'), ameerSign: val('ft1_ameerSign'), inspSign: val('ft1_inspSign'), secPhone: val('ft1_secPhone'), ameerPhone: val('ft1_ameerPhone') },
+    footer2: { secSign: val('ft2_secSign'), ameerSign: val('ft2_ameerSign'), inspSign: val('ft2_inspSign'), secPhone: val('ft2_secPhone'), ameerPhone: val('ft2_ameerPhone') }
   };
 }
 
@@ -3444,9 +3452,9 @@ function fillFormDataCore(data){
   fillMembers(2, data.members2);
 
   const f1 = data.footer1||{};
-  setVal('ft1_secSign',f1.secSign); setVal('ft1_ameerSign',f1.ameerSign); setVal('ft1_inspSign',f1.inspSign); setVal('ft1_secPhone',f1.secPhone); setVal('ft1_ameerPhone',f1.ameerPhone); setVal('ft1_inspPhone',f1.inspPhone);
+  setVal('ft1_secSign',f1.secSign); setVal('ft1_ameerSign',f1.ameerSign); setVal('ft1_inspSign',f1.inspSign); setVal('ft1_secPhone',f1.secPhone); setVal('ft1_ameerPhone',f1.ameerPhone);
   const f2 = data.footer2||{};
-  setVal('ft2_secSign',f2.secSign); setVal('ft2_ameerSign',f2.ameerSign); setVal('ft2_inspSign',f2.inspSign); setVal('ft2_secPhone',f2.secPhone); setVal('ft2_ameerPhone',f2.ameerPhone); setVal('ft2_inspPhone',f2.inspPhone);
+  setVal('ft2_secSign',f2.secSign); setVal('ft2_ameerSign',f2.ameerSign); setVal('ft2_inspSign',f2.inspSign); setVal('ft2_secPhone',f2.secPhone); setVal('ft2_ameerPhone',f2.ameerPhone);
 
   updateStatusLine(data);
   document.getElementById('btnDeleteRec').classList.remove('hidden');
@@ -3516,7 +3524,7 @@ function newFormCore(){
   } else {
     buildEmptyRowsQuiet();
     ['f_formNumber','f_date','h_jamaat','h_dakkhana','h_tehsil','h_zila','h_ameerName','h_secName','h_budgetCount',
-     'ft1_secSign','ft1_ameerSign','ft1_inspSign','ft1_secPhone','ft1_ameerPhone','ft1_inspPhone','ft2_secSign','ft2_ameerSign','ft2_inspSign','ft2_secPhone','ft2_ameerPhone','ft2_inspPhone'
+     'ft1_secSign','ft1_ameerSign','ft1_inspSign','ft1_secPhone','ft1_ameerPhone','ft2_secSign','ft2_ameerSign','ft2_inspSign','ft2_secPhone','ft2_ameerPhone'
     ].forEach(id=>setVal(id,''));
     document.querySelectorAll('.by-aam').forEach(el=>el.value='');
     document.querySelectorAll('.by-jalsa').forEach(el=>el.value='');
@@ -4776,9 +4784,9 @@ function buildAuditPrintSheet(){
       '<div class="ap-sb">' + apSig('c_secSignDate') + apL('دستخط سیکرٹری مال مع تاریخ :') + apF(v('c_secSignDate')) + '</div>' +
     '</div>' +
     '<div class="ap-row ap-phones">' +
-      '<div class="ap-sb">' + apL('فون نمبر انسپکٹر :') + apF(v('c_phone1')) + '</div>' +
-      '<div class="ap-sb">' + apL('فون نمبر صدر :') + apF(v('c_phone2')) + '</div>' +
-      '<div class="ap-sb">' + apL('فون نمبر سیکرٹری :') + apF(v('c_phone3')) + '</div>' +
+      '<div class="ap-sb">' + apL('فون نمبر :') + apF(v('c_phone1')) + '</div>' +
+      '<div class="ap-sb">' + apL('فون نمبر :') + apF(v('c_phone2')) + '</div>' +
+      '<div class="ap-sb">' + apL('فون نمبر :') + apF(v('c_phone3')) + '</div>' +
     '</div>' +
   '</div></div>';
   const sheet = document.createElement('div');
@@ -4954,7 +4962,7 @@ function bpFoot(set){
   const sb = (label, val, sigKey) => '<div class="ap-sb">' + apSig(sigKey) + '<span class="ap-l">' + label + '</span><span class="ap-f">' + escapeHtml(val) + '</span></div>';
   return '<div class="bp-foot">' +
     '<div class="ap-row bp-sig">' + sb('دستخط سیکرٹری مال معہ تاریخ', v(set + '_secSign'), set + '_secSign') + sb('دستخط امیر/صدر جماعت معہ تاریخ', v(set + '_ameerSign'), set + '_ameerSign') + sb('دستخط انسپکٹر مال معہ تاریخ', v(set + '_inspSign'), set + '_inspSign') + '</div>' +
-    '<div class="ap-row bp-ph">' + sb('فون نمبر سیکرٹری مال', v(set + '_secPhone'), '') + sb('فون نمبر امیر/صدر جماعت', v(set + '_ameerPhone'), '') + sb('فون نمبر انسپکٹر مال', v(set + '_inspPhone'), '') + '</div></div>';
+    '<div class="ap-row bp-ph">' + sb('فون نمبر', v(set + '_secPhone'), '') + sb('فون نمبر', v(set + '_ameerPhone'), '') + '<div class="ap-sb"></div>' + '</div></div>';
 }
 function buildBaqayaPrintSheets(){
   if(currentFormType !== 'baqaya') return;
