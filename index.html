@@ -1123,6 +1123,9 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   #formtype-district .footerline .fitem{flex:1 1 300px;}
 }
 
+#formtype-auditaccount .fitem label.subl{margin-top:12px;}
+#formtype-auditaccount .fitem.notecard{display:flex;align-items:center;justify-content:center;text-align:center;background:#fff8e6;border:1.5px dashed #d9b86a;}
+#formtype-auditaccount .fitem.notecard .localfund-note{font-size:16px;font-weight:700;color:var(--accent);margin:0;flex:none;text-align:center;}
 /* LAPTOP: forms use the full window width (no empty side margins) */
 @media screen and (min-width:821px){
   #appwrap{max-width:100% !important;padding:0 10px 28px !important;}
@@ -1462,22 +1465,20 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
             <div class="grid2">
               <div class="fitem"><label><span class="ur">کل بقایا 30 جون، سنہ</span><span class="en">Total Balance 30 June, Year</span></label>
                 <div style="display:flex;gap:6px;">
-                  <input type="number" step="0.01" id="c_balance30June" oninput="recalcLocalFund()" style="flex:2;">
                   <input type="text" id="c_balance30JuneYear" placeholder="سنہ / Year" style="flex:1;min-width:60px;">
+                  <input type="number" step="0.01" id="c_balance30June" oninput="recalcLocalFund()" style="flex:2;" placeholder="رقم / Amount">
                 </div>
-                <span class="localfund-note"><span class="ur">بجٹ میں اضافہ کے لیے کوشش۔ الگ صفحہ پر تحریر کریں۔</span><span class="en">Effort to increase the budget — write on a separate page.</span></span>
-              </div>
-              <div class="fitem"><label><span class="ur">وصولی جولائی تا تاریخ معائنہ</span><span class="en">Collection: July to Exam Date</span></label>
+                <label class="subl"><span class="ur">وصولی جولائی تا تاریخ معائنہ</span><span class="en">Collection: July to Exam Date</span></label>
                 <div style="display:flex;gap:6px;">
-                  <input type="number" step="0.01" id="c_collectionJuly" oninput="recalcLocalFund()" style="flex:2;">
                   <input type="date" id="c_collectionJulyDate" style="flex:2;">
+                  <input type="number" step="0.01" id="c_collectionJuly" oninput="recalcLocalFund()" style="flex:2;" placeholder="رقم / Amount">
                 </div>
               </div>
+              <div class="fitem notecard"><span class="localfund-note"><span class="ur">📝 بجٹ میں اضافہ کے لیے کوشش۔ الگ صفحہ پر تحریر کریں۔</span><span class="en">📝 Effort to increase the budget — write on a separate page.</span></span></div>
               <div class="fitem"><label><span class="ur">کل میزان آمد (خودکار)</span><span class="en">Total Income (Auto)</span></label><input type="text" id="c_totalIncome" readonly style="background:#eef6ee;font-weight:700;">
-                <span class="localfund-note"><span class="ur">باقی رقم کس طرح محفوظ ہے؟</span><span class="en">How is the remaining amount kept safe?</span></span>
-                <input type="text" id="c_howSafe" placeholder="جواب / Answer" style="flex:1;min-width:80px;">
+                <label class="subl"><span class="ur">کل میزان خرچ</span><span class="en">Total Expense</span></label><input type="number" step="0.01" id="c_totalExpense">
               </div>
-              <div class="fitem"><label><span class="ur">کل میزان خرچ</span><span class="en">Total Expense</span></label><input type="number" step="0.01" id="c_totalExpense"></div>
+              <div class="fitem"><label><span class="ur">باقی رقم کس طرح محفوظ ہے؟</span><span class="en">How is the remaining amount kept safe?</span></label><input type="text" id="c_howSafe" placeholder="جواب / Answer"></div>
               <div class="fitem"><label><span class="ur">بقایا (خودکار)</span><span class="en">Balance (Auto)</span></label><input type="text" id="c_balance" readonly style="background:#eef6ee;font-weight:700;"></div>
             </div>
             <div class="longline"><label><span class="ur">عام روٹین کے علاوہ کوئی عطیات وصول ہوئے؟ اگر ہیں تو انتظامیہ کی منظوری کی تفصیل، کتنی رقم ادا کی گئی اور کب</span><span class="en">Any donations received outside routine? Approval details, amount and date</span></label><input type="text" id="c_otherDonations"></div>
@@ -4763,8 +4764,8 @@ function buildAuditPrintSheet(){
     '<div class="ap-row ap-tagrow"><span class="ap-tag">مقامی فنڈ / لوکل فنڈ</span><span class="ap-note">(بقیہ تفصیل الگ کاغذ پر لکھیں)</span></div>' +
     '<div class="ap-lf">' +
       '<div class="ap-lcol ap-lr">' +
-        '<div class="ap-row">' + apL('کل بقایا 30 جون') + apF(bal30) + '</div>' +
-        '<div class="ap-row">' + apL('وصولی جولائی') + apF(v('c_collectionJuly')) + apL('تا تاریخ معائنہ') + apF(apDate(v('c_collectionJulyDate'))) + '</div>' +
+        '<div class="ap-row">' + apL('کل بقایا 30 جون سنہ') + apF(v('c_balance30JuneYear'), 'g1') + apF(v('c_balance30June')) + '</div>' +
+        '<div class="ap-row">' + apL('وصولی جولائی تا تاریخ معائنہ') + apF(apDate(v('c_collectionJulyDate'))) + apF(v('c_collectionJuly')) + '</div>' +
         '<div class="ap-row">' + apL('کل میزان آمد :') + apF(v('c_totalIncome')) + '</div>' +
         '<div class="ap-row">' + apL('کل میزان خرچ :') + apF(v('c_totalExpense')) + '</div>' +
         '<div class="ap-row">' + apL('بقایا :') + apF(v('c_balance')) + '</div>' +
