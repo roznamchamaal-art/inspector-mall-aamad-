@@ -686,6 +686,9 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   .ap-l{font-weight:700;font-size:11pt;white-space:nowrap;margin-inline-end:1.2mm;color:#000;}
   .ap-f{flex:1 1 0;min-width:7mm;min-height:5.6mm;border-bottom:0.35mm dotted #000;margin-inline-end:2.6mm;padding:0 1mm;font-size:10.5pt;line-height:1.35;text-align:right;color:#000;}
   .ap-f.g1{flex:1.2 1 0;} .ap-f.g2{flex:2 1 0;} .ap-f.g3{flex:3 1 0;} .ap-f.g4{flex:4 1 0;}
+  .ap-l.lw{flex:0 0 49mm;font-size:10.5pt;}
+  .ap-f.fx{flex:0 0 16mm;min-width:0;text-align:center;}
+  .ap-sp{flex:0 0 16mm;margin-inline-end:2.6mm;}
   .ap-fill{flex:1;}
   .ap-tag{background:#000;color:#fff;font-weight:700;font-size:12pt;padding:0.8mm 3.2mm;margin-inline-end:3mm;white-space:nowrap;align-self:center;line-height:1.5;}
   .ap-split{align-items:flex-end;}
@@ -785,7 +788,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   .bp-tbl .bp-h1 th{height:7mm;} .bp-tbl .bp-h2 th{height:17.5mm;}
   .bp-yr{font-weight:400;font-size:9pt;}
   .bp-tbl tbody tr{height:15.5mm;}
-  .bp-tbl .bp-nm{padding:0;} .bp-n1,.bp-n2{height:7.75mm;display:flex;align-items:center;justify-content:flex-end;padding:0 1.5mm;font-size:10.5pt;text-align:right;overflow:hidden;white-space:nowrap;}
+  .bp-tbl .bp-nm{padding:0;} .bp-n1,.bp-n2{height:7.75mm;display:flex;align-items:center;justify-content:flex-start;direction:rtl;padding:0 1.5mm;font-size:10.5pt;text-align:right;overflow:hidden;white-space:nowrap;}
   .bp-n2{border-top:0.25mm solid #000;}
   .bp-tot td{height:15.5mm;font-weight:700;} .bp-mz{font-size:15pt;font-weight:700;}
   .bp-foot{flex:1 1 auto;border-top:0.3mm solid #000;padding:2mm 3mm 1.5mm;display:flex;flex-direction:column;justify-content:space-around;}
@@ -819,6 +822,83 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   .bp-n1,.bp-n2{height:7.4mm;}
   .bp-foot{padding:2.5mm 3mm 3.5mm;}
   .bp-foot .bp-ph{margin-top:2mm;}
+}
+
+
+/* =====================================================================
+   30 JUNE DEFAULTERS (baqaya30) — screen (compact, laptop friendly)
+   ===================================================================== */
+@media screen{
+  #formtype-baqaya30 .b3page{padding:14px 16px 16px;}
+  #formtype-baqaya30 .b3-title{text-align:center;font-size:24px;font-weight:700;color:var(--accent);margin:0 0 10px;}
+  #formtype-baqaya30 .b3-year{width:90px;text-align:center;font-size:20px;font-weight:700;border:none;border-bottom:2px dotted var(--accent);background:transparent;color:var(--accent);}
+  #formtype-baqaya30 .b3-head{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px 10px;margin-bottom:8px;}
+  #formtype-baqaya30 .b3-head .fitem{background:#fff;border:1px solid #e3dcc2;border-radius:10px;padding:6px 10px 8px;}
+  #formtype-baqaya30 .b3-head label,#formtype-baqaya30 .b3-sigs label{display:block !important;width:100%;text-align:right;}
+  #formtype-baqaya30 .b3-head label{font-size:13px;font-weight:700;color:#4a3a2a;margin-bottom:3px;}
+  #formtype-baqaya30 .b3-head input{min-height:36px;font-size:15px;padding:6px 10px;border:1.5px solid #d9d3bd;border-radius:8px;background:#fbfaf5;}
+  #formtype-baqaya30 .b3-ins{background:#fff8e6;border:1px solid #e6d3a0;border-radius:10px;padding:7px 12px;font-size:13.5px;line-height:1.9;margin-bottom:8px;color:#3a2a1a;}
+  #formtype-baqaya30 .b3-ins b{color:var(--accent);margin-inline-end:6px;}
+  #formtype-baqaya30 .b3-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+  #formtype-baqaya30 .b3-bar button{border:none;border-radius:10px;padding:8px 16px;font-weight:700;font-family:inherit;font-size:14px;color:#fff;background:linear-gradient(135deg,#0f5132,#166534);cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.18);}
+  #formtype-baqaya30 .b3-bar button:hover{filter:brightness(1.12);}
+  #formtype-baqaya30 .b3-wrap{overflow-x:auto;border:1.5px solid #222;border-radius:8px;background:#fff;}
+  #formtype-baqaya30 table.b3-tbl{width:100%;min-width:820px;border-collapse:collapse;}
+  #formtype-baqaya30 .b3-tbl th,#formtype-baqaya30 .b3-tbl td{border:1px solid #333;padding:0;text-align:center;vertical-align:middle;}
+  #formtype-baqaya30 .b3-tbl th{background:#efe8d0;font-size:13px;line-height:1.6;padding:4px;}
+  #formtype-baqaya30 .b3-tbl th.b3-act{width:78px;}
+  #formtype-baqaya30 .b3-tbl td.b3-no{width:46px;font-weight:700;background:#faf7ea;font-size:14px;}
+  #formtype-baqaya30 .b3-tbl td.b3-ac{width:78px;white-space:nowrap;background:#faf7ea;}
+  #formtype-baqaya30 .b3-tbl td.b3-ac button{width:26px !important;height:26px !important;min-width:0 !important;min-height:0 !important;padding:0 !important;border:none;border-radius:50%;cursor:pointer;font-size:13px;color:#fff;margin:1px 2px;line-height:1;display:inline-flex;align-items:center;justify-content:center;}
+  #formtype-baqaya30 .b3-tbl td.b3-ac{width:70px;}
+  #formtype-baqaya30 .b3-tbl td.b3-ac .x{background:#dc2626;} #formtype-baqaya30 .b3-tbl td.b3-ac .d{background:#7a1f1f;}
+  #formtype-baqaya30 .b3-tbl td input{width:100%;border:none;background:transparent;font-family:inherit;font-size:15px;text-align:center;padding:4px 6px;min-height:36px;box-sizing:border-box;}
+  #formtype-baqaya30 .b3-tbl td input.b3-name{text-align:right;}
+  #formtype-baqaya30 .b3-tbl tbody tr:nth-child(even) td:not(.b3-no):not(.b3-ac){background:#fcfbf5;}
+  #formtype-baqaya30 .b3-tbl td input:focus{outline:2px solid var(--accent);outline-offset:-2px;background:#fffdf3;}
+  #formtype-baqaya30 .b3-tbl tfoot td{background:#eef6ee;font-weight:700;font-size:16px;padding:6px;}
+  #formtype-baqaya30 .b3-sigs{margin-top:12px;}
+  #formtype-baqaya30 .b3-sigs .fitem{background:#fff;border:1px solid #e3dcc2;border-radius:10px;padding:6px 10px 8px;}
+  #formtype-baqaya30 .b3-sigs label{font-size:13px;font-weight:700;color:#4a3a2a;}
+  #formtype-baqaya30 .b3-sigs input{min-height:38px;font-size:15px;}
+}
+@media screen and (min-width:821px){ #formtype-baqaya30 .a4page{max-width:100% !important;width:100%;} }
+/* ---- 30 June defaulters: print sheets ---- */
+@media print{
+  body.b3-printing #formtype-baqaya30{display:none !important;}
+  body.b3-printing #view-form,body.b3-printing #appwrap{padding:0 !important;margin:0 !important;}
+  .b3-sheet{width:210mm;height:296.5mm;box-sizing:border-box;padding:6mm;direction:rtl;color:#000;background:#fff;overflow:hidden;
+    page-break-after:always;break-after:page;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .b3-sheet:last-child{page-break-after:auto;break-after:auto;}
+  .b3-sheet *{box-sizing:border-box;}
+  .b3-frame{height:100%;border:0.55mm solid #000;display:flex;flex-direction:column;}
+  .b3-head{flex:0 0 auto;padding:1.5mm 3mm 1mm;}
+  .b3-ttl{text-align:center;font-size:19pt;font-weight:700;line-height:1.6;}
+  .b3-fr{display:flex;align-items:flex-end;direction:rtl;margin-top:1mm;}
+  .b3-fr .l{font-weight:700;font-size:10.5pt;white-space:nowrap;margin-inline-end:1.5mm;}
+  .b3-fr .f{flex:1 1 0;min-width:10mm;border-bottom:0.35mm dotted #000;min-height:6.5mm;padding:0 1mm;font-size:10.5pt;line-height:1.5;margin-inline-end:4mm;text-align:right;overflow:hidden;white-space:nowrap;}
+  .b3-fr .f:last-child{margin-inline-end:0;}
+  .b3-t{width:100%;border-collapse:collapse;table-layout:fixed;flex:0 0 auto;border-top:0.7mm solid #000;}
+  .b3-t th,.b3-t td{border:0.35mm solid #000;text-align:center;vertical-align:middle;padding:0 0.8mm;color:#000;background:#fff;overflow:hidden;}
+  .b3-t th{font-weight:700;font-size:9.6pt;line-height:1.55;height:16mm;}
+  .b3-t td{font-size:10.5pt;height:10mm;line-height:1.3;}
+  .b3-t td.nm{text-align:right;font-size:9.6pt;line-height:1.35;white-space:pre-wrap;padding:0 1.5mm;}
+  .b3-t td.no{font-weight:700;}
+  .b3-t tr.tot td{font-weight:700;font-size:12pt;background:#f1f1f1;}
+  .b3-ins{margin:1mm 0 1.5mm;font-size:9.4pt;line-height:1.75;}
+  .b3-ins b{font-size:10pt;}
+  .b3-t tr.grand td{font-weight:700;font-size:12pt;background:#e4e4e4;border-top:0.8mm double #000;}
+  .b3-foot{flex:1 1 auto;border-top:0.35mm solid #000;display:flex;align-items:flex-end;justify-content:space-around;direction:rtl;padding:2mm 3mm 3mm;gap:4mm;}
+  .b3-sg{flex:1 1 0;display:flex;align-items:flex-end;}
+  .b3-sg .l{font-weight:700;font-size:9.6pt;white-space:nowrap;margin-inline-end:1.5mm;}
+  .b3-sg .f{flex:1 1 0;min-width:6mm;border-bottom:0.35mm dotted #000;min-height:7mm;padding:0 1mm;font-size:10pt;text-align:right;}
+}
+
+/* ---- baqaya print: sheets with fewer rows end right after the signatures; grand total row ---- */
+@media print{
+  .bp-sheet.bp-partial .bp-frame{height:auto;}
+  .bp-sheet.bp-partial .bp-foot{flex:0 0 auto;justify-content:flex-start;gap:6mm;padding:4mm 3mm 6mm;}
+  .bp-grand td{border-top:0.8mm double #000;background:#eee;}
 }
 
 /* ---- درخواست / جنرل درخواست پرنٹ: دستخط کے نیچے نام (علیحدہ قطار)، نام کے نیچے ڈاٹڈ لائن نہیں ---- */
@@ -1187,6 +1267,30 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 }
 @media print{#view-records{display:none !important;}}
 
+/* =====================================================================
+   SAVED FORMS (محفوظ فارم): compact cards, several per row, full width
+   ===================================================================== */
+@media screen{
+  #view-records.container{max-width:100% !important;padding:8px 14px 24px;}
+  #view-records .rec-tools{margin:2px 2px 8px;}
+  .recgrp{border-radius:14px;margin:0 0 9px;box-shadow:0 2px 8px rgba(70,45,20,.07);border-inline-start-width:5px;}
+  .recgrp-h{min-height:42px !important;padding:5px 14px !important;font-size:15px !important;gap:10px !important;}
+  .recgrp-h .gi{width:30px !important;height:30px !important;font-size:15px !important;border-radius:9px !important;}
+  .recgrp-h .gcount{font-size:12.5px !important;padding:0 10px !important;}
+  .recgrp-b{padding:8px 10px 10px !important;}
+  .recgrp.open .recgrp-b{display:grid !important;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:8px;}
+  #reclistWrap .recgrp .reccard{margin:0 !important;padding:8px 12px !important;gap:10px !important;border-radius:11px !important;min-width:0;}
+  #reclistWrap .recgrp .reccard .info{display:flex;flex-wrap:wrap;align-items:center;gap:1px 8px;}
+  #reclistWrap .recgrp .reccard .info b{flex:0 0 100%;font-size:14.5px !important;line-height:1.7;}
+  #reclistWrap .recgrp .reccard .info div{margin:0 !important;font-size:11.5px !important;line-height:1.6;}
+  #reclistWrap .recgrp .reccard .hl{font-size:12.5px !important;padding:0 9px !important;margin:0 3px !important;}
+  #reclistWrap .recgrp .reccard .badge{font-size:11px;padding:1px 8px;margin:0 0 0 4px;}
+  #reclistWrap .recgrp .reccard .rc-no{font-size:11.5px;color:var(--muted);font-weight:400;margin-inline-start:6px;}
+  #reclistWrap .recgrp .reccard .openbtn{min-height:34px !important;padding:5px 16px !important;font-size:13px !important;border-radius:9px !important;}
+}
+@media screen and (max-width:520px){ .recgrp.open .recgrp-b{grid-template-columns:1fr;} }
+
+
 /* Smart suggestions popup */
 #acBox{position:fixed;z-index:2147483000;display:none;flex-wrap:wrap;gap:6px;max-width:min(92vw,420px);padding:7px;
   background:#fff;border:1.5px solid #d9d3bd;border-radius:14px;box-shadow:0 10px 28px rgba(40,25,10,.25);direction:rtl;}
@@ -1236,6 +1340,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
     <div id="ftdrop" class="hidden"><div class="ftd-h">فارم کی قسم منتخب کریں</div>
 <div class="formtypetabs">
         <button data-ftype="baqaya" class="active" onclick="switchFormTypeTab('baqaya')"><span class="ur">فہرست بقایاداران </span><span class="en">List of Defaulters</span></button>
+        <button data-ftype="baqaya30" onclick="switchFormTypeTab('baqaya30')"><span class="ur">30 جون بقایاداران </span><span class="en">30 June Defaulters</span></button>
         <button data-ftype="auditaccount" onclick="switchFormTypeTab('auditaccount')"><span class="ur">آڈٹ/اکاؤنٹ برانچ </span><span class="en">Audit/Account Branch</span></button>
         <button data-ftype="safar" onclick="switchFormTypeTab('safar')"><span class="ur">سفر خرچ </span><span class="en">Travel Expense</span></button>
         <button data-ftype="district" onclick="switchFormTypeTab('district')"><span class="ur">آڈٹ رپورٹ ضلع </span><span class="en">District Audit Report</span></button>
@@ -1506,6 +1611,41 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
       <!-- =========================================================
            FORM TYPE 2: سفر خرچ
            ========================================================= -->
+      <div id="formtype-baqaya30" class="hidden">
+        <div class="a4page b3page">
+          <div class="b3-title"><span class="ur">فہرست بقایا داران 30 جون</span> <input type="text" id="b3_year" class="b3-year" placeholder="۔۔۔۔۔" inputmode="numeric" maxlength="6"> <span class="ur">ء</span></div>
+          <div class="b3-head">
+            <div class="fitem"><label><span class="ur">جماعت احمدیہ</span></label><input type="text" id="b3_jamaat"></div>
+            <div class="fitem"><label><span class="ur">ضلع</span></label><input type="text" id="b3_zila"></div>
+            <div class="fitem"><label><span class="ur">امیر/صدر معہ فون نمبر</span></label><input type="text" id="b3_ameer"></div>
+            <div class="fitem"><label><span class="ur">سیکرٹری مال</span></label><input type="text" id="b3_sec"></div>
+          </div>
+          <div class="b3-ins">
+            <b>ہدایات:</b>
+            <div>1۔ جماعتی ذیلی تنظیموں کے کارکن اگر بقایا دار ہوں تو ان کے عہدہ داران کے ساتھ ان کا عہدہ بھی لکھا جائے۔</div>
+            <div>2۔ 30 جون <span class="b3-yr">۔۔۔۔</span>ء تک کا حساب اگر مکمل نہ ہو تو مکمل کر کے فہرست بنائی جائے۔</div>
+            <div>3۔ فہرست کی ایک نقل مقامی جماعت کو بھی مہیا کی جائے۔</div>
+          </div>
+          <div class="b3-bar">
+            <button type="button" onclick="b3AddRow()"><span class="ur">+ نام شامل کریں</span></button>
+            <button type="button" onclick="b3PasteAddRow()"><span class="ur">⧉ پیسٹ سے شامل کریں</span></button>
+            <button type="button" onclick="b3CopyAll()"><span class="ur">⧉ تمام قطاریں کاپی کریں</span></button>
+            <button type="button" onclick="b3PasteAll()"><span class="ur">⧉ تمام قطاریں پیسٹ کریں</span></button>
+          </div>
+          <div class="b3-wrap"><table class="b3-tbl">
+            <thead><tr><th class="b3-act"></th><th>نمبر<br>شمار</th><th>نام بقایا دار، ولدیت اور وجہ</th><th>موصی / غیر موصی</th><th>عہدہ دار</th>
+              <th>30 جون <span class="b3-yr">۔۔۔۔</span>ء تک<br>چندہ عام/حصہ آمد کا بقایا</th><th>30 جون <span class="b3-yr">۔۔۔۔</span>ء تک<br>چندہ جلسہ سالانہ کا بقایا</th></tr></thead>
+            <tbody id="b3_tbody"></tbody>
+            <tfoot><tr class="b3-tot"><td></td><td></td><td>میزان</td><td></td><td></td><td id="b3_t_amlak">0</td><td id="b3_t_jalsa">0</td></tr></tfoot>
+          </table></div>
+          <div class="footerline b3-sigs">
+            <div class="fitem"><label><span class="ur">دستخط سیکرٹری مال جماعت مع تاریخ</span></label><input type="text" id="b3_secSign"></div>
+            <div class="fitem"><label><span class="ur">دستخط صدر جماعت مع تاریخ</span></label><input type="text" id="b3_sadarSign"></div>
+            <div class="fitem"><label><span class="ur">دستخط انسپکٹر مال مع تاریخ</span></label><input type="text" id="b3_inspSign"></div>
+          </div>
+        </div>
+      </div>
+
       <div id="formtype-safar" class="hidden">
         <div class="a4page wide">
           <div class="formtitle"><h2><span class="ur">سفر خرچ</span><span class="en">Travel Expense Bill</span></h2></div>
@@ -2457,6 +2597,7 @@ function switchFormType(type){
   currentFormType = type;
   document.querySelectorAll('.formtypetabs button').forEach(b=> b.classList.toggle('active', b.dataset.ftype===type));
   document.getElementById('formtype-baqaya').classList.toggle('hidden', type!=='baqaya');
+  document.getElementById('formtype-baqaya30').classList.toggle('hidden', type!=='baqaya30');
   document.getElementById('formtype-safar').classList.toggle('hidden', type!=='safar');
   document.getElementById('formtype-district').classList.toggle('hidden', type!=='district');
   document.getElementById('formtype-auditaccount').classList.toggle('hidden', type!=='auditaccount');
@@ -3156,6 +3297,17 @@ function fillSafarRows(rows){
 }
 
 function collectFormDataCore(){
+  if(currentFormType==='baqaya30'){
+    return {
+      id: currentRecordId || genId(),
+      formType: 'baqaya30',
+      formNumber: '',
+      date: val('b3_year'),
+      lastModified: new Date().toISOString(),
+      b30: { year: val('b3_year'), jamaat: val('b3_jamaat'), zila: val('b3_zila'), ameer: val('b3_ameer'), sec: val('b3_sec'),
+        rows: b3CollectRows(), secSign: val('b3_secSign'), sadarSign: val('b3_sadarSign'), inspSign: val('b3_inspSign') }
+    };
+  }
   if(currentFormType==='gendarkhwast'){
     return {
       id: currentRecordId || genId(),
@@ -3328,6 +3480,18 @@ function fillMembers(pageNum, rows){
 
 function fillFormDataCore(data){
   currentRecordId = data.id;
+  if(data.formType==='baqaya30'){
+    switchFormType('baqaya30');
+    const b = data.b30||{};
+    setVal('b3_year',b.year); setVal('b3_jamaat',b.jamaat); setVal('b3_zila',b.zila); setVal('b3_ameer',b.ameer); setVal('b3_sec',b.sec);
+    b3FillRows(b.rows);
+    setVal('b3_secSign',b.secSign); setVal('b3_sadarSign',b.sadarSign); setVal('b3_inspSign',b.inspSign);
+    b3Recalc(); b3SyncYear();
+    updateStatusLine(data);
+    document.getElementById('btnDeleteRec').classList.remove('hidden');
+    document.getElementById('btnBackRec').classList.remove('hidden');
+    return;
+  }
   if(data.formType==='gendarkhwast'){
     switchFormType('gendarkhwast');
     const g = data.gendarkhwast||{};
@@ -3465,13 +3629,14 @@ function fillFormDataCore(data){
 function updateStatusLine(data){
   const line = document.getElementById('recStatusLine');
   if(data && data.id){
-    const typeLabels = {safar:'سفر خرچ', district:'آڈٹ رپورٹ ضلع', auditaccount:'آڈٹ/اکاؤنٹ برانچ', amaratAudit:'امارت آڈٹ رپورٹ', darkhwast:'درخواست', gendarkhwast:'جنرل درخواست', baqaya:'فہرست بقایاداران'};
+    const typeLabels = {safar:'سفر خرچ', district:'آڈٹ رپورٹ ضلع', auditaccount:'آڈٹ/اکاؤنٹ برانچ', amaratAudit:'امارت آڈٹ رپورٹ', darkhwast:'درخواست', gendarkhwast:'جنرل درخواست', baqaya:'فہرست بقایاداران', baqaya30:'30 جون بقایاداران'};
     const typeLabel = typeLabels[data.formType] || 'فہرست بقایاداران';
     let idBit = '—';
     if(data.formType==='safar') idBit = (data.safar&&data.safar.manjanib)||'—';
     else if(data.formType==='district') idBit = (data.district&&data.district.zilaName)||'—';
     else if(data.formType==='auditaccount') idBit = (data.audit&&data.audit.jamaat)||(data.account&&data.account.jamaat)||'—';
     else if(data.formType==='amaratAudit') idBit = (data.amarat&&data.amarat.amaratName)||'—';
+    else if(data.formType==='baqaya30') idBit = (data.b30&&data.b30.jamaat)||'—';
     else if(data.formType==='gendarkhwast') idBit = (data.gendarkhwast&&data.gendarkhwast.name)||'—';
     else if(data.formType==='darkhwast') idBit = (data.darkhwast&&data.darkhwast.name)||'—';
     else idBit = data.formNumber||'—';
@@ -3486,7 +3651,10 @@ function updateStatusLine(data){
    ====================================================================== */
 function newFormCore(){
   currentRecordId = null;
-  if(currentFormType==='gendarkhwast'){
+  if(currentFormType==='baqaya30'){
+    document.querySelectorAll('#formtype-baqaya30 input').forEach(e=>{ e.value=''; });
+    b3FillRows([]); b3Recalc(); b3SyncYear();
+  } else if(currentFormType==='gendarkhwast'){
     setVal('gd_addressee',''); document.getElementById('gd_body').innerText = ''; setVal('gd_name','');
   } else if(currentFormType==='darkhwast'){
     document.getElementById('dk_body').innerText = '';
@@ -3546,6 +3714,8 @@ async function saveForm(){
   if(!(await resolveDuplicates(data))) return;
   if(data.formType==='gendarkhwast'){
     data.name_search = [data.gendarkhwast.name, data.gendarkhwast.addressee, data.gendarkhwast.body].filter(Boolean).join(' ').toLowerCase();
+  } else if(data.formType==='baqaya30'){
+    data.name_search = [data.b30.jamaat, data.b30.zila, data.b30.year, ...data.b30.rows.map(r=>r.name)].filter(Boolean).join(' ').toLowerCase();
   } else if(data.formType==='darkhwast'){
     data.name_search = [data.darkhwast.name, data.darkhwast.body].filter(Boolean).join(' ').toLowerCase();
   } else if(data.formType==='district'){
@@ -3695,6 +3865,7 @@ function identityKeyOf(r){
     case 'auditaccount': k = (r.audit && r.audit.jamaat) || (r.account && r.account.jamaat) || ''; break;
     case 'amaratAudit': k = (r.amarat && r.amarat.amaratName) || ''; break;
     case 'district': k = (r.district && r.district.zilaName) || ''; break;
+    case 'baqaya30': k = ((r.b30 && r.b30.jamaat) || '') + '|' + ((r.b30 && r.b30.year) || ''); break;
     case 'darkhwast': k = (r.darkhwast && r.darkhwast.name) || ''; break;
     case 'gendarkhwast': k = (r.gendarkhwast && r.gendarkhwast.name) || ''; break;
     default: k = (r.header && r.header.jamaat) || '';
@@ -3706,6 +3877,7 @@ function identityLabelOf(r){
     case 'safar': { const sf = r.safar || {}; const fn = (sf.rows && sf.rows.find(x=>x.name)) ? sf.rows.find(x=>x.name).name : ''; return [sf.manjanib, fn].filter(Boolean).join(' — '); }
     case 'auditaccount': return (r.audit && r.audit.jamaat) || (r.account && r.account.jamaat) || '';
     case 'amaratAudit': return (r.amarat && r.amarat.amaratName) || '';
+    case 'baqaya30': return [(r.b30 && r.b30.jamaat), (r.b30 && r.b30.year)].filter(Boolean).join(' — ');
     case 'district': return (r.district && r.district.zilaName) || '';
     case 'darkhwast': return (r.darkhwast && r.darkhwast.name) || '';
     case 'gendarkhwast': return (r.gendarkhwast && r.gendarkhwast.name) || '';
@@ -4286,6 +4458,19 @@ async function renderRecordsList(filter){
         </div>
       `;
     }
+    if(r.formType==='baqaya30'){
+      const b = r.b30||{};
+      const fn = (b.rows && b.rows.find(x=>x.name))?.name || '';
+      return `
+        <div class="reccard">
+          <div class="info">
+            <b><span class="badge">30 جون</span> جماعت: ${hl(b.jamaat)} <span class="rc-no">سال: ${escapeHtml(b.year||'—')}</span></b>
+            <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
+          </div>
+          <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button>
+        </div>
+      `;
+    }
     if(r.formType==='district'){
       const d = r.district||{};
       return `
@@ -4347,10 +4532,8 @@ async function renderRecordsList(filter){
     return `
       <div class="reccard">
         <div class="info">
-          <b>فارم نمبر: ${escapeHtml(r.formNumber||'—')}<span class="badge">بقایاداران</span></b>
-          <div>جماعت: ${hl(r.header&&r.header.jamaat)} | نام: ${hl(firstName==='—'?'':firstName)}</div>
-          <div>تاریخ: ${escapeHtml(r.date||'—')} | Record ID: ${escapeHtml(r.id)}</div>
-          <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
+          <b><span class="badge">بقایاداران</span> جماعت: ${hl(r.header&&r.header.jamaat)}${r.formNumber ? ' <span class="rc-no">فارم نمبر: ' + escapeHtml(r.formNumber) + '</span>' : ''}</b>
+          <div>${r.date ? 'تاریخ: ' + escapeHtml(r.date) + ' · ' : ''}آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
         </div>
         <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button>
       </div>
@@ -4359,6 +4542,7 @@ async function renderRecordsList(filter){
   /* ---- grouped drop-down lists: one dropdown per form type ---- */
   const GROUPS = [
     {k:'baqaya',       ico:'📋', t:'فہرست بقایاداران', c:'#7a1f1f'},
+    {k:'baqaya30',     ico:'📑', t:'30 جون بقایاداران', c:'#9a3412'},
     {k:'auditaccount', ico:'🧾', t:'آڈٹ/اکاؤنٹ برانچ', c:'#1d4ed8'},
     {k:'safar',        ico:'🚗', t:'سفر خرچ',          c:'#c2410c'},
     {k:'district',     ico:'📊', t:'آڈٹ رپورٹ ضلع',    c:'#0e7490'},
@@ -4694,8 +4878,9 @@ function closeModalCustom(){
    (same boxes, rows, dotted lines, table columns and spacing; values are filled in)
    ====================================================================== */
 function apVal(id){ if(window.PRINT_BLANK) return ''; const e = document.getElementById(id); return e ? String(e.value || '').trim() : ''; }
-function apL(t){ return '<span class="ap-l">' + t + '</span>'; }
+function apL(t, cls){ return '<span class="ap-l' + (cls ? ' ' + cls : '') + '">' + t + '</span>'; }
 function apF(v, cls){ return '<span class="ap-f' + (cls ? ' ' + cls : '') + '">' + escapeHtml(v || '') + '</span>'; }
+function apDateShort(v){ const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ''); return m ? (parseInt(m[3],10) + '-' + parseInt(m[2],10) + '-' + m[1].slice(2)) : (v || ''); }
 function apDate(v){ const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ''); return m ? (m[3] + '-' + m[2] + '-' + m[1]) : (v || ''); }
 function apSig(key){ const d = (!window.PRINT_BLANK && SIGS[key]) ? SIGS[key] : ''; return d ? '<img class="ap-sig" src="' + d + '" alt="">' : ''; }
 function apCell(t){
@@ -4764,11 +4949,11 @@ function buildAuditPrintSheet(){
     '<div class="ap-row ap-tagrow"><span class="ap-tag">مقامی فنڈ / لوکل فنڈ</span><span class="ap-note">(بقیہ تفصیل الگ کاغذ پر لکھیں)</span></div>' +
     '<div class="ap-lf">' +
       '<div class="ap-lcol ap-lr">' +
-        '<div class="ap-row">' + apL('کل بقایا 30 جون سنہ') + apF(v('c_balance30JuneYear'), 'g1') + apF(v('c_balance30June')) + '</div>' +
-        '<div class="ap-row">' + apL('وصولی جولائی تا تاریخ معائنہ') + apF(apDate(v('c_collectionJulyDate'))) + apF(v('c_collectionJuly')) + '</div>' +
-        '<div class="ap-row">' + apL('کل میزان آمد :') + apF(v('c_totalIncome')) + '</div>' +
-        '<div class="ap-row">' + apL('کل میزان خرچ :') + apF(v('c_totalExpense')) + '</div>' +
-        '<div class="ap-row">' + apL('بقایا :') + apF(v('c_balance')) + '</div>' +
+        '<div class="ap-row">' + apL('کل بقایا 30 جون سنہ', 'lw') + apF(v('c_balance30JuneYear'), 'fx') + apF(v('c_balance30June')) + '</div>' +
+        '<div class="ap-row">' + apL('وصولی جولائی تا تاریخ معائنہ', 'lw') + apF(apDateShort(v('c_collectionJulyDate')), 'fx') + apF(v('c_collectionJuly')) + '</div>' +
+        '<div class="ap-row">' + apL('کل میزان آمد :', 'lw') + '<span class="ap-sp"></span>' + apF(v('c_totalIncome')) + '</div>' +
+        '<div class="ap-row">' + apL('کل میزان خرچ :', 'lw') + '<span class="ap-sp"></span>' + apF(v('c_totalExpense')) + '</div>' +
+        '<div class="ap-row">' + apL('بقایا :', 'lw') + '<span class="ap-sp"></span>' + apF(v('c_balance')) + '</div>' +
       '</div>' +
       '<div class="ap-lcol ap-ll">' +
         '<div class="ap-row ap-text">' + apL('بجٹ میں اضافہ کے لیے کوشش۔ الگ صفحہ پر تحریر کریں') + '</div>' +
@@ -4936,8 +5121,9 @@ function bpHead(){
       '<div>حتی المقدور مدد کی جائے۔ <b class="bp-no">۵</b> بجٹ کے خانے میں موجودہ جاری سال کا بجٹ لکھ کر فہرست بقایاداران تیار کی جائے اور سال بھی ساتھ لکھیں کہ کونسا سال ہے۔</div>' +
     '</div>';
 }
-function bpTable(rows, startNo, cap){
-  cap = cap || BP_ROWS;
+function bpTable(rows, startNo, cap, opt){
+  cap = cap || BP_ROWS; opt = opt || {};
+  const count = opt.pad ? cap : rows.length;
   const ya = window.PRINT_BLANK ? '' : String((document.querySelector('.th-year.by-aam') || {}).value || '').trim();
   const yj = window.PRINT_BLANK ? '' : String((document.querySelector('.th-year.by-jalsa') || {}).value || '').trim();
   const grp = (yr) => '<th>بجٹ سال' + (yr ? '<br><span class="bp-yr">' + escapeHtml(yr) + '</span>' : '') + '</th><th>سابقہ<br>بقایاجات</th><th>میزان</th><th>وصولی تا<br>تاریخ معائنہ</th><th>کل بقایا</th>';
@@ -4945,7 +5131,7 @@ function bpTable(rows, startNo, cap){
   let h = '<table class="bp-tbl"><colgroup>' + widths.map(w=>'<col style="width:' + w + 'mm">').join('') + '</colgroup><thead>' +
     '<tr class="bp-h1"><th rowspan="2">نمبر<br>شمار</th><th rowspan="2">نام بقایاداران<br>ولدیت/زوجیت</th><th rowspan="2" class="bp-st">موصی<br>غیر موصی<br>عہدیدار</th><th colspan="5">چندہ عام وحصہ آمد</th><th colspan="5">چندہ جلسہ سالانہ</th></tr>' +
     '<tr class="bp-h2">' + grp(ya) + grp(yj) + '</tr></thead><tbody>';
-  for(let i = 0; i < cap; i++){
+  for(let i = 0; i < count; i++){
     const r = rows[i];
     const cell = x => '<td>' + escapeHtml(x || '') + '</td>';
     if(!r){ h += '<tr><td></td><td class="bp-nm"><div class="bp-n1"></div><div class="bp-n2"></div></td>' + '<td></td>'.repeat(11) + '</tr>'; continue; }
@@ -4955,7 +5141,12 @@ function bpTable(rows, startNo, cap){
   }
   const sums = k => rows.length ? bpSum(rows.map(r=>r[k[0]][k[1]])) : '';
   const cols = [['a',0],['a',1],['a',2],['a',3],['a',4],['j',0],['j',1],['j',2],['j',3],['j',4]];
-  h += '<tr class="bp-tot"><td></td><td class="bp-mz">میزان</td><td></td>' + cols.map(k=>'<td>' + escapeHtml(sums(k)) + '</td>').join('') + '</tr></tbody></table>';
+  h += '<tr class="bp-tot"><td></td><td class="bp-mz">میزان</td><td></td>' + cols.map(k=>'<td>' + escapeHtml(sums(k)) + '</td>').join('') + '</tr>';
+  if(opt.grand && opt.grand.length){
+    const gs = k => bpSum(opt.grand.map(r=>r[k[0]][k[1]]));
+    h += '<tr class="bp-tot bp-grand"><td></td><td class="bp-mz">گرینڈ ٹوٹل</td><td></td>' + cols.map(k=>'<td>' + escapeHtml(gs(k)) + '</td>').join('') + '</tr>';
+  }
+  h += '</tbody></table>';
   return h;
 }
 function bpFoot(set){
@@ -4969,13 +5160,29 @@ function buildBaqayaPrintSheets(){
   if(currentFormType !== 'baqaya') return;
   removeBaqayaPrintSheets();
   const rows = window.PRINT_BLANK ? [] : bpCollectRows();
-  const n = rows.length <= BP_ROWS ? 1 : 1 + Math.ceil((rows.length - BP_ROWS) / BP_ROWS2);
-  let html = '';
-  for(let k = 0; k < n; k++){
-    const from = k === 0 ? 0 : BP_ROWS + (k - 1) * BP_ROWS2, cnt = k === 0 ? BP_ROWS : BP_ROWS2;
-    html += '<section class="bp-sheet' + (k ? ' bp-cont' : '') + '"><div class="bp-frame">' + (k === 0 ? '<div class="bp-head">' + bpHead() + '</div>' : '') +
-      bpTable(rows.slice(from, from + cnt), from + 1, cnt) + bpFoot(k === 0 ? 'ft1' : 'ft2') + '</div></section>';
+  // split rows into sheets: only real entries are printed (no blank padding);
+  // when there are several sheets the last one also carries the grand-total row, so it holds one row less.
+  const chunks = [];
+  if(rows.length <= BP_ROWS){ chunks.push(rows.slice()); }
+  else {
+    chunks.push(rows.slice(0, BP_ROWS));
+    let i = BP_ROWS;
+    while(i < rows.length){
+      const r = rows.length - i;
+      const take = r <= BP_ROWS2 - 1 ? r : (r === BP_ROWS2 ? BP_ROWS2 - 1 : BP_ROWS2);
+      chunks.push(rows.slice(i, i + take)); i += take;
+    }
   }
+  const blank = rows.length === 0;           // empty form: keep ruled blank rows for hand-writing
+  let html = '', no = 1;
+  chunks.forEach((chunk, k)=>{
+    const cap = k === 0 ? BP_ROWS : BP_ROWS2;
+    const last = k === chunks.length - 1;
+    const full = blank || chunk.length >= cap;
+    html += '<section class="bp-sheet' + (k ? ' bp-cont' : '') + (full ? '' : ' bp-partial') + '"><div class="bp-frame">' + (k === 0 ? '<div class="bp-head">' + bpHead() + '</div>' : '') +
+      bpTable(chunk, no, cap, {pad: blank, grand: (last && chunks.length > 1) ? rows : null}) + bpFoot(k === 0 ? 'ft1' : 'ft2') + '</div></section>';
+    no += chunk.length;
+  });
   const wrap = document.createElement('div');
   wrap.id = 'baqPrintSheet'; wrap.innerHTML = html;
   (document.getElementById('view-form') || document.body).appendChild(wrap);
@@ -5070,6 +5277,7 @@ function enterPrintMode(){
   wrapPagesForPrint();
   buildAuditPrintSheet();
   buildBaqayaPrintSheets();
+  buildB3PrintSheets();
   buildSafarPrintSheets();
   buildDistrictPrintSheet();
   if(currentFormType === 'safar') applySafarCertMerge();
@@ -5111,6 +5319,7 @@ function exitPrintMode(){
   unwrapPagesAfterPrint();
   removeAuditPrintSheet();
   removeBaqayaPrintSheets();
+  removeB3PrintSheets();
   removeSafarPrintSheets();
   removeDistrictPrintSheet();
   if(window._dkBodyBackup !== undefined && window._dkBodyBackup !== null){
@@ -5154,7 +5363,7 @@ function applyPrintPageStyle(){
   if(marginSetting === 'normal' && currentFormType === 'auditaccount') margin = '7mm';
   if(marginSetting === 'normal' && currentFormType === 'amaratAudit') margin = '7mm';
   if(marginSetting === 'normal' && currentFormType === 'safar') margin = '5mm';
-  const isLetter = (currentFormType === 'darkhwast' || currentFormType === 'gendarkhwast' || currentFormType === 'auditaccount' || currentFormType === 'baqaya');
+  const isLetter = (currentFormType === 'darkhwast' || currentFormType === 'gendarkhwast' || currentFormType === 'auditaccount' || currentFormType === 'baqaya' || currentFormType === 'baqaya30');
   document.documentElement.style.setProperty('--pm', (parseFloat(margin) || 9) + 'mm');   // the margin the user chose, applied inside the page instead
   margin = '0';                       // margin 0 => Chrome prints no date / title / URL header-footer
   document.documentElement.style.setProperty('--dk-m', marginSetting === 'narrow' ? '8mm' : '14mm');
@@ -5237,6 +5446,13 @@ function buildShareSummaryText(data){
     txt += `کل آمد / Total Income: ${d.totalIncome||'0'}\n`;
     txt += `کل اخراجات / Total Expenses: ${d.totalExpenses||'0'}\n`;
     txt += `بقایا / Balance: ${d.balanceRemaining||'0'}\n`;
+    return txt;
+  }
+  if(data.formType==='baqaya30'){
+    const b = data.b30||{};
+    let txt = `فہرست بقایا داران 30 جون ${b.year||''}ء\n`;
+    txt += `جماعت: ${b.jamaat||'—'} | ضلع: ${b.zila||'—'}\n`;
+    (b.rows||[]).forEach((r,i)=>{ if(r.name || r.amlak || r.jalsa) txt += `${i+1}. ${r.name||''} — املاک: ${r.amlak||0} | جلسہ: ${r.jalsa||0}\n`; });
     return txt;
   }
   if(data.formType==='safar'){
@@ -5858,6 +6074,166 @@ function ctDir(id){
   window.addEventListener('resize', hide);
 })();
 
+</script>
+
+<script>
+/* ======================================================================
+   30 JUNE DEFAULTERS FORM (baqaya30): dynamic rows, copy/paste, A4 sheets with grand total
+   ====================================================================== */
+const B3_C1 = 17;     // data rows on the first sheet (it also carries title, fields and instructions)
+const B3_C2 = 23;     // data rows on later sheets
+const B3_START = 15;  // empty rows shown on a new form
+const B3_COLS = ['b3-name', 'b3-moosi', 'b3-ohda', 'b3-amlak', 'b3-jalsa'];
+function b3RowHtml(r){
+  r = r || {};
+  const e = x => String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  return '<tr data-b3="1"><td class="b3-ac"><button type="button" class="x" title="حذف" onclick="b3DelRow(this)">×</button><button type="button" class="d" title="نقل" onclick="b3DupRow(this)">⧉</button></td>' +
+    '<td class="b3-no"></td>' +
+    '<td><input type="text" class="b3-name" placeholder="نام / ولدیت / وجہ" value="' + e(r.name) + '"></td>' +
+    '<td><input type="text" class="b3-moosi" value="' + e(r.moosi) + '"></td>' +
+    '<td><input type="text" class="b3-ohda" value="' + e(r.ohda) + '"></td>' +
+    '<td><input type="number" step="0.01" min="0" class="b3-amlak" oninput="b3Recalc()" value="' + e(r.amlak) + '"></td>' +
+    '<td><input type="number" step="0.01" min="0" class="b3-jalsa" oninput="b3Recalc()" value="' + e(r.jalsa) + '"></td></tr>';
+}
+function b3Body(){ return document.getElementById('b3_tbody'); }
+function b3Renumber(){ [...b3Body().children].forEach((tr, i)=>{ tr.querySelector('.b3-no').textContent = i + 1; }); }
+function b3AddRow(r, noFocus){
+  b3Body().insertAdjacentHTML('beforeend', b3RowHtml(r)); b3Renumber(); b3Recalc();
+  if(!r && !noFocus){ const n = b3Body().lastElementChild.querySelector('.b3-name'); n.focus(); n.scrollIntoView({block:'center'}); }
+  if(typeof setDirty === 'function') setDirty(true);
+}
+function b3DelRow(btn){ btn.closest('tr').remove(); b3Renumber(); b3Recalc(); if(typeof setDirty === 'function') setDirty(true); }
+function b3DupRow(btn){
+  const tr = btn.closest('tr'); const r = b3RowData(tr);
+  tr.insertAdjacentHTML('afterend', b3RowHtml(r)); b3Renumber(); b3Recalc(); if(typeof setDirty === 'function') setDirty(true);
+}
+function b3RowData(tr){
+  const g = c => (tr.querySelector('.' + c) || {}).value || '';
+  return { name: g('b3-name'), moosi: g('b3-moosi'), ohda: g('b3-ohda'), amlak: g('b3-amlak'), jalsa: g('b3-jalsa') };
+}
+function b3CollectRows(){ const tb = document.getElementById('b3_tbody'); return tb ? [...tb.children].map(b3RowData) : []; }
+function b3FillRows(rows){
+  const tb = b3Body(); rows = rows || [];
+  tb.innerHTML = '';
+  const n = Math.max(rows.length, B3_START);
+  for(let i = 0; i < n; i++) tb.insertAdjacentHTML('beforeend', b3RowHtml(rows[i]));
+  b3Renumber();
+}
+function b3Num(v){ const n = parseFloat(String(v == null ? '' : v).replace(/[,\s]/g, '')); return isFinite(n) ? n : 0; }
+function b3Sums(rows){
+  let a = 0, j = 0, ha = false, hj = false;
+  rows.forEach(r=>{ if(String(r.amlak == null ? '' : r.amlak).trim() !== ''){ a += b3Num(r.amlak); ha = true; } if(String(r.jalsa == null ? '' : r.jalsa).trim() !== ''){ j += b3Num(r.jalsa); hj = true; } });
+  return { a: ha ? String(Math.round(a * 100) / 100) : '', j: hj ? String(Math.round(j * 100) / 100) : '' };
+}
+function b3Recalc(){
+  const s = b3Sums(b3CollectRows());
+  const a = document.getElementById('b3_t_amlak'), j = document.getElementById('b3_t_jalsa');
+  if(a) a.textContent = s.a || '0'; if(j) j.textContent = s.j || '0';
+}
+function b3SyncYear(){
+  const y = ((document.getElementById('b3_year') || {}).value || '').trim() || '۔۔۔۔';
+  document.querySelectorAll('#formtype-baqaya30 .b3-yr').forEach(e=>{ e.textContent = y; });
+}
+/* ---- copy / paste ---- */
+async function b3CopyAll(){
+  const lines = b3CollectRows().filter(r=>r.name || r.moosi || r.ohda || r.amlak || r.jalsa).map(r=>[r.name, r.moosi, r.ohda, r.amlak, r.jalsa].join('\t'));
+  const ok = await copyTextToClipboard(lines.join('\n'));
+  showToast(ok ? 'تمام قطاریں کاپی ہو گئیں۔ اب «تمام قطاریں پیسٹ کریں» پر پیسٹ کریں۔' : 'کاپی نہیں ہو سکی۔');
+}
+function b3ParseLine(line){ const v = line.split('\t'); return { name: (v[0] || '').trim(), moosi: (v[1] || '').trim(), ohda: (v[2] || '').trim(), amlak: (v[3] || '').trim(), jalsa: (v[4] || '').trim() }; }
+function b3PasteAddRow(){
+  openModalCustom(`
+    <h3><span class="ur">پیسٹ سے نام شامل کریں</span></h3>
+    <p><span class="ur">کاپی شدہ نام یا قطار نیچے خانے میں پیسٹ کریں (ہر نام الگ سطر میں)، پھر «درج کریں» دبائیں۔ یہ موجودہ قطاروں کے آخر میں شامل ہوں گی۔</span></p>
+    <textarea id="b3PasteArea" style="width:100%;min-height:120px;padding:8px;direction:rtl;"></textarea>
+    <div class="rowbtns"><button class="modal-cancel" onclick="closeModalCustom()">منسوخ</button><button class="modal-confirm" id="b3PasteOk">درج کریں</button></div>`);
+  document.getElementById('b3PasteOk').onclick = ()=>{
+    const lines = (document.getElementById('b3PasteArea').value || '').split(/\r?\n/).filter(l=>l.trim().length);
+    if(!lines.length){ closeModalCustom(); return; }
+    // fill the first empty rows before adding new ones
+    const empties = [...b3Body().children].filter(tr=>{ const r = b3RowData(tr); return !(r.name || r.moosi || r.ohda || r.amlak || r.jalsa); });
+    lines.forEach((l, i)=>{
+      const r = b3ParseLine(l);
+      if(empties[i]){ const tr = empties[i]; B3_COLS.forEach((c, k)=>{ tr.querySelector('.' + c).value = [r.name, r.moosi, r.ohda, r.amlak, r.jalsa][k]; }); }
+      else b3Body().insertAdjacentHTML('beforeend', b3RowHtml(r));
+    });
+    b3Renumber(); b3Recalc(); setDirty(true); closeModalCustom(); showToast('اندراج شامل ہو گئی۔');
+  };
+}
+function b3PasteAll(){
+  openModalCustom(`
+    <h3><span class="ur">تمام قطاریں پیسٹ کریں</span></h3>
+    <p><span class="ur">کاپی شدہ تمام قطاریں نیچے خانے میں پیسٹ کریں، پھر «درج کریں» دبائیں۔ موجودہ قطاریں اوور رائٹ ہو جائیں گی۔</span></p>
+    <textarea id="b3PasteAllArea" style="width:100%;min-height:160px;padding:8px;direction:rtl;"></textarea>
+    <div class="rowbtns"><button class="modal-cancel" onclick="closeModalCustom()">منسوخ</button><button class="modal-confirm" id="b3PasteAllOk">درج کریں</button></div>`);
+  document.getElementById('b3PasteAllOk').onclick = ()=>{
+    const lines = (document.getElementById('b3PasteAllArea').value || '').split(/\r?\n/).filter(l=>l.trim().length);
+    b3FillRows(lines.map(b3ParseLine)); b3Recalc(); setDirty(true); closeModalCustom(); showToast('تمام قطاریں درج ہو گئیں۔');
+  };
+}
+/* ---- A4 print sheets: only filled rows, as many sheets as needed, grand total on the last one ---- */
+function b3Sheet(first, rows, startNo, opt){
+  const blank = !!opt.blank, v = id => apVal(id);
+  const yr = (blank ? '' : v('b3_year')) || '۔۔۔۔۔';
+  const ey = escapeHtml(yr);
+  const fr = (items) => '<div class="b3-fr">' + items.map(([l, id])=>'<span class="l">' + l + '</span><span class="f">' + escapeHtml(v(id)) + '</span>').join('') + '</div>';
+  const cnt = blank ? opt.cap : rows.length;
+  let t = '<table class="b3-t"><colgroup><col style="width:12mm"><col style="width:62mm"><col style="width:22mm"><col style="width:28mm"><col style="width:37mm"><col style="width:37mm"></colgroup>' +
+    '<thead><tr><th>نمبر شمار</th><th>نام بقایا دار، ولدیت اور وجہ</th><th>موصی /<br>غیر موصی</th><th>عہدہ دار</th><th>30 جون ' + ey + 'ء تک<br>چندہ عام/حصہ آمد کا بقایا</th><th>30 جون ' + ey + 'ء تک<br>چندہ جلسہ سالانہ کا بقایا</th></tr></thead><tbody>';
+  for(let i = 0; i < cnt; i++){
+    const r = blank ? {} : rows[i];
+    t += '<tr><td class="no">' + (startNo + i) + '</td><td class="nm">' + escapeHtml(r.name || '') + '</td><td>' + escapeHtml(r.moosi || '') + '</td><td>' + escapeHtml(r.ohda || '') + '</td><td>' + escapeHtml(r.amlak || '') + '</td><td>' + escapeHtml(r.jalsa || '') + '</td></tr>';
+  }
+  const ps = blank ? {a:'', j:''} : b3Sums(rows);
+  t += '<tr class="tot"><td></td><td>میزان</td><td></td><td></td><td>' + escapeHtml(ps.a) + '</td><td>' + escapeHtml(ps.j) + '</td></tr>';
+  if(opt.grand){ const g = b3Sums(opt.grand); t += '<tr class="grand"><td></td><td>گرینڈ ٹوٹل</td><td></td><td></td><td>' + escapeHtml(g.a) + '</td><td>' + escapeHtml(g.j) + '</td></tr>'; }
+  t += '</tbody></table>';
+  const sg = (l, id) => '<div class="b3-sg"><span class="l">' + l + '</span><span class="f">' + escapeHtml(v(id)) + '</span></div>';
+  const head = first ? '<div class="b3-head"><div class="b3-ttl">فہرست بقایا داران 30 جون ' + ey + 'ء</div>' +
+    fr([['جماعت احمدیہ', 'b3_jamaat'], ['ضلع', 'b3_zila']]) + fr([['امیر/صدر معہ فون نمبر', 'b3_ameer'], ['سیکرٹری مال', 'b3_sec']]) +
+    '<div class="b3-ins"><b>ہدایات:</b><div>1۔ جماعتی ذیلی تنظیموں کے کارکن اگر بقایا دار ہوں تو ان کے عہدہ داران کے ساتھ ان کا عہدہ بھی لکھا جائے۔</div>' +
+    '<div>2۔ 30 جون ' + ey + 'ء تک کا حساب اگر مکمل نہ ہو تو مکمل کر کے فہرست بنائی جائے۔</div><div>3۔ فہرست کی ایک نقل مقامی جماعت کو بھی مہیا کی جائے۔</div></div></div>' : '';
+  return '<section class="b3-sheet"><div class="b3-frame">' + head + t +
+    '<div class="b3-foot">' + sg('دستخط سیکرٹری مال جماعت مع تاریخ', 'b3_secSign') + sg('دستخط صدر جماعت مع تاریخ', 'b3_sadarSign') + sg('دستخط انسپکٹر مال مع تاریخ', 'b3_inspSign') + '</div></div></section>';
+}
+function buildB3PrintSheets(){
+  if(currentFormType !== 'baqaya30') return;
+  removeB3PrintSheets();
+  const used = window.PRINT_BLANK ? [] : b3CollectRows().filter(r=>r.name || r.moosi || r.ohda || r.amlak || r.jalsa);
+  const blank = used.length === 0;
+  let html = '';
+  if(blank){
+    html = b3Sheet(true, [], 1, {blank: true, cap: B3_C1}) + b3Sheet(false, [], B3_C1 + 1, {blank: true, cap: B3_C2});
+  } else {
+    const chunks = [];
+    if(used.length <= B3_C1) chunks.push(used.slice());
+    else {
+      chunks.push(used.slice(0, B3_C1));
+      let i = B3_C1;
+      while(i < used.length){
+        const r = used.length - i;
+        const take = r <= B3_C2 - 1 ? r : (r === B3_C2 ? B3_C2 - 1 : B3_C2);   // the last sheet keeps one row free for the grand total
+        chunks.push(used.slice(i, i + take)); i += take;
+      }
+    }
+    let no = 1;
+    chunks.forEach((chunk, k)=>{
+      html += b3Sheet(k === 0, chunk, no, {grand: (k === chunks.length - 1 && chunks.length > 1) ? used : null});
+      no += chunk.length;
+    });
+  }
+  const wrap = document.createElement('div');
+  wrap.id = 'b3PrintSheet'; wrap.innerHTML = html;
+  (document.getElementById('view-form') || document.body).appendChild(wrap);
+  document.body.classList.add('b3-printing');
+}
+function removeB3PrintSheets(){
+  const old = document.getElementById('b3PrintSheet'); if(old) old.remove();
+  document.body.classList.remove('b3-printing');
+}
+b3FillRows([]);
+document.getElementById('b3_year').addEventListener('input', b3SyncYear);
+b3SyncYear();
 </script>
 </body>
 </html>
