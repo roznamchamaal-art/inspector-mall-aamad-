@@ -825,42 +825,76 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 }
 
 
+
+/* =====================================================================
+   درخواست / جنرل درخواست — laptop screen: full width, compact, nicer
+   ===================================================================== */
+@media screen and (min-width:821px){
+  #formtype-darkhwast .a4page,#formtype-gendarkhwast .a4page{
+    max-width:100% !important;width:100%;aspect-ratio:auto !important;min-height:0;padding:0 !important;line-height:2;font-size:16px;
+    border:1px solid #e0d9c0;border-radius:16px;overflow:hidden;background:#fffefa;box-shadow:0 6px 20px rgba(70,45,20,.12);
+  }
+  #formtype-darkhwast .dk-top,#formtype-gendarkhwast .dk-top{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2px 28px;padding:10px 26px 12px;color:#fff;
+    background:linear-gradient(135deg,#7a1f1f 0%,#4a1212 100%);box-shadow:0 3px 10px rgba(74,18,18,.3);
+  }
+  #formtype-darkhwast .dk-bismillah,#formtype-gendarkhwast .dk-bismillah{flex:0 0 100%;font-size:1.3em;margin:0 0 2px;color:#fde9b8;}
+  #formtype-darkhwast .dk-top > div:not(.dk-bismillah),#formtype-gendarkhwast .dk-top > div:not(.dk-bismillah){font-size:1.02em;}
+  #formtype-gendarkhwast .dk-addr-row{flex:1 1 360px;max-width:560px;}
+  #formtype-gendarkhwast .dk-addr-row .dk-addr{background:rgba(255,255,255,.14);color:#fff;border-bottom:1.5px dotted #f3d9a4;border-radius:8px;padding:4px 12px;min-height:38px;font-size:16px;}
+  #formtype-gendarkhwast .dk-addr::placeholder{color:#e9c9c9;}
+  #formtype-darkhwast .dk-body,#formtype-gendarkhwast .dk-body{
+    margin:16px 22px 12px;padding:10px 20px;min-height:46vh;border:1.5px solid #e3dcc2;border-radius:12px;background-color:#fff;
+    line-height:2.2em;font-size:17px;
+    box-shadow:inset 0 1px 4px rgba(70,45,20,.06);
+  }
+  #formtype-darkhwast .dk-body:focus,#formtype-gendarkhwast .dk-body:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(122,31,31,.10);}
+  #formtype-darkhwast .dk-bottom,#formtype-gendarkhwast .dk-bottom{
+    align-self:flex-end;margin:0 22px 18px;padding:8px 22px 12px;min-width:340px;line-height:1.9;
+    background:linear-gradient(180deg,#fffaf0,#faf3dc);border:1px solid #e6d3a0;border-radius:12px;
+  }
+  #formtype-darkhwast .dk-bottom .dk-name,#formtype-gendarkhwast .dk-bottom .dk-name{font-size:16px;}
+}
+
 /* =====================================================================
    30 JUNE DEFAULTERS (baqaya30) — screen (compact, laptop friendly)
    ===================================================================== */
 @media screen{
-  #formtype-baqaya30 .b3page{padding:14px 16px 16px;}
-  #formtype-baqaya30 .b3-title{text-align:center;font-size:24px;font-weight:700;color:var(--accent);margin:0 0 10px;}
-  #formtype-baqaya30 .b3-year{width:90px;text-align:center;font-size:20px;font-weight:700;border:none;border-bottom:2px dotted var(--accent);background:transparent;color:var(--accent);}
-  #formtype-baqaya30 .b3-head{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px 10px;margin-bottom:8px;}
-  #formtype-baqaya30 .b3-head .fitem{background:#fff;border:1px solid #e3dcc2;border-radius:10px;padding:6px 10px 8px;}
-  #formtype-baqaya30 .b3-head label,#formtype-baqaya30 .b3-sigs label{display:block !important;width:100%;text-align:right;}
-  #formtype-baqaya30 .b3-head label{font-size:13px;font-weight:700;color:#4a3a2a;margin-bottom:3px;}
-  #formtype-baqaya30 .b3-head input{min-height:36px;font-size:15px;padding:6px 10px;border:1.5px solid #d9d3bd;border-radius:8px;background:#fbfaf5;}
-  #formtype-baqaya30 .b3-ins{background:#fff8e6;border:1px solid #e6d3a0;border-radius:10px;padding:7px 12px;font-size:13.5px;line-height:1.9;margin-bottom:8px;color:#3a2a1a;}
+  #formtype-baqaya30 .b3page{padding:0 !important;overflow:hidden;border-radius:16px;background:#fffefa;}
+  #formtype-baqaya30 .b3-title{text-align:center;font-size:25px;font-weight:700;color:#fff;margin:0;padding:12px 16px;
+    background:linear-gradient(135deg,#7a1f1f 0%,#4a1212 100%);box-shadow:0 3px 10px rgba(74,18,18,.35);}
+  #formtype-baqaya30 .b3-year{width:96px;text-align:center;font-size:22px;font-weight:700;border:none;border-bottom:2px dotted #f3d9a4;background:transparent;color:#fff;}
+  #formtype-baqaya30 .b3-year::placeholder{color:#e9c9c9;}
+  #formtype-baqaya30 .b3-body{padding:12px 14px 16px;}
+  #formtype-baqaya30 .b3-head{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px 10px;margin-bottom:10px;}
+  #formtype-baqaya30 .b3-head .fitem{background:#fff;border:1px solid #e3dcc2;border-top:3px solid var(--accent);border-radius:10px;padding:5px 10px 8px;box-shadow:0 1px 4px rgba(70,45,20,.06);}
+  #formtype-baqaya30 .b3-head label,#formtype-baqaya30 .b3-sigs label{display:block !important;width:100%;text-align:right;font-size:12.5px;font-weight:700;color:#6b4a2a;margin-bottom:3px;}
+  #formtype-baqaya30 .b3-head input{min-height:34px;font-size:15px;padding:5px 10px;border:1.5px solid #ddd6bd;border-radius:8px;background:#fbfaf5;}
+  #formtype-baqaya30 .b3-head input:focus,#formtype-baqaya30 .b3-sigs input:focus{border-color:var(--accent);background:#fff;outline:none;box-shadow:0 0 0 3px rgba(122,31,31,.12);}
+  #formtype-baqaya30 .b3-ins{background:linear-gradient(180deg,#fffaf0,#fff4dc);border:1px solid #ecd9a8;border-inline-start:4px solid #d4a64a;border-radius:10px;padding:7px 12px;font-size:13.5px;line-height:2;margin-bottom:10px;color:#3a2a1a;text-align:justify;}
   #formtype-baqaya30 .b3-ins b{color:var(--accent);margin-inline-end:6px;}
-  #formtype-baqaya30 .b3-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
-  #formtype-baqaya30 .b3-bar button{border:none;border-radius:10px;padding:8px 16px;font-weight:700;font-family:inherit;font-size:14px;color:#fff;background:linear-gradient(135deg,#0f5132,#166534);cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.18);}
-  #formtype-baqaya30 .b3-bar button:hover{filter:brightness(1.12);}
-  #formtype-baqaya30 .b3-wrap{overflow-x:auto;border:1.5px solid #222;border-radius:8px;background:#fff;}
+  #formtype-baqaya30 .b3-ins .it{display:inline;margin-inline-end:6px;}
+  #formtype-baqaya30 .b3-bar{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px;justify-content:flex-start;}
+  #formtype-baqaya30 .b3-bar button{border:none;border-radius:22px;padding:8px 18px;font-weight:700;font-family:inherit;font-size:14px;color:#fff;background:linear-gradient(135deg,#0f5132,#198754);cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.2);min-height:0;}
+  #formtype-baqaya30 .b3-bar button:hover{filter:brightness(1.12);transform:translateY(-1px);}
+  #formtype-baqaya30 .b3-wrap{overflow-x:auto;border:1.5px solid #4a1212;border-radius:12px;background:#fff;box-shadow:0 3px 12px rgba(70,45,20,.12);}
   #formtype-baqaya30 table.b3-tbl{width:100%;min-width:820px;border-collapse:collapse;}
-  #formtype-baqaya30 .b3-tbl th,#formtype-baqaya30 .b3-tbl td{border:1px solid #333;padding:0;text-align:center;vertical-align:middle;}
-  #formtype-baqaya30 .b3-tbl th{background:#efe8d0;font-size:13px;line-height:1.6;padding:4px;}
-  #formtype-baqaya30 .b3-tbl th.b3-act{width:78px;}
-  #formtype-baqaya30 .b3-tbl td.b3-no{width:46px;font-weight:700;background:#faf7ea;font-size:14px;}
-  #formtype-baqaya30 .b3-tbl td.b3-ac{width:78px;white-space:nowrap;background:#faf7ea;}
+  #formtype-baqaya30 .b3-tbl th,#formtype-baqaya30 .b3-tbl td{border:1px solid #cfc7a8;padding:0;text-align:center;vertical-align:middle;}
+  #formtype-baqaya30 .b3-tbl th{background:linear-gradient(180deg,#8a2a2a,#661919);color:#fff;border-color:#4a1212;font-size:13px;line-height:1.7;padding:6px 4px;font-weight:700;}
+  #formtype-baqaya30 .b3-tbl th.b3-act{width:70px;}
+  #formtype-baqaya30 .b3-tbl td.b3-no{width:44px;font-weight:700;color:var(--accent);background:#faf5e4;font-size:14px;}
+  #formtype-baqaya30 .b3-tbl td.b3-ac{width:70px;white-space:nowrap;background:#faf5e4;}
   #formtype-baqaya30 .b3-tbl td.b3-ac button{width:26px !important;height:26px !important;min-width:0 !important;min-height:0 !important;padding:0 !important;border:none;border-radius:50%;cursor:pointer;font-size:13px;color:#fff;margin:1px 2px;line-height:1;display:inline-flex;align-items:center;justify-content:center;}
-  #formtype-baqaya30 .b3-tbl td.b3-ac{width:70px;}
   #formtype-baqaya30 .b3-tbl td.b3-ac .x{background:#dc2626;} #formtype-baqaya30 .b3-tbl td.b3-ac .d{background:#7a1f1f;}
   #formtype-baqaya30 .b3-tbl td input{width:100%;border:none;background:transparent;font-family:inherit;font-size:15px;text-align:center;padding:4px 6px;min-height:36px;box-sizing:border-box;}
   #formtype-baqaya30 .b3-tbl td input.b3-name{text-align:right;}
-  #formtype-baqaya30 .b3-tbl tbody tr:nth-child(even) td:not(.b3-no):not(.b3-ac){background:#fcfbf5;}
+  #formtype-baqaya30 .b3-tbl tbody tr:nth-child(even) td:not(.b3-no):not(.b3-ac){background:#fcfaf1;}
+  #formtype-baqaya30 .b3-tbl tbody tr:hover td:not(.b3-no):not(.b3-ac){background:#fff6dc;}
   #formtype-baqaya30 .b3-tbl td input:focus{outline:2px solid var(--accent);outline-offset:-2px;background:#fffdf3;}
-  #formtype-baqaya30 .b3-tbl tfoot td{background:#eef6ee;font-weight:700;font-size:16px;padding:6px;}
-  #formtype-baqaya30 .b3-sigs{margin-top:12px;}
-  #formtype-baqaya30 .b3-sigs .fitem{background:#fff;border:1px solid #e3dcc2;border-radius:10px;padding:6px 10px 8px;}
-  #formtype-baqaya30 .b3-sigs label{font-size:13px;font-weight:700;color:#4a3a2a;}
-  #formtype-baqaya30 .b3-sigs input{min-height:38px;font-size:15px;}
+  #formtype-baqaya30 .b3-tbl tfoot td{background:linear-gradient(180deg,#e9f5ec,#d5ebdb);font-weight:700;font-size:16px;padding:7px;color:#0f5132;border-color:#b7d6c0;}
+  #formtype-baqaya30 .b3-sigs{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;border-top:none;padding-top:0;}
+  #formtype-baqaya30 .b3-sigs .fitem{flex:1 1 240px;background:#fff;border:1px solid #e3dcc2;border-top:3px solid #0f5132;border-radius:10px;padding:6px 10px 10px;box-shadow:0 1px 4px rgba(70,45,20,.06);}
+  #formtype-baqaya30 .b3-sigs input{min-height:38px;font-size:15px;border:1.5px solid #ddd6bd;border-radius:8px;background:#fbfaf5;}
 }
 @media screen and (min-width:821px){ #formtype-baqaya30 .a4page{max-width:100% !important;width:100%;} }
 /* ---- 30 June defaulters: print sheets ---- */
@@ -885,7 +919,10 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   .b3-t td.nm{text-align:right;font-size:9.6pt;line-height:1.35;white-space:pre-wrap;padding:0 1.5mm;}
   .b3-t td.no{font-weight:700;}
   .b3-t tr.tot td{font-weight:700;font-size:12pt;background:#f1f1f1;}
-  .b3-ins{margin:1mm 0 1.5mm;font-size:9.4pt;line-height:1.75;}
+  .b3-ins{margin:1mm 0 1.5mm;font-size:9.4pt;line-height:1.75;text-align:justify;}
+  .b3-ins .it{display:inline;}
+  .b3-sg{position:relative;min-height:13mm;}
+  .b3-sg .ap-sig{left:8%;bottom:1.2mm;height:11mm;max-width:62%;}
   .b3-ins b{font-size:10pt;}
   .b3-t tr.grand td{font-weight:700;font-size:12pt;background:#e4e4e4;border-top:0.8mm double #000;}
   .b3-foot{flex:1 1 auto;border-top:0.35mm solid #000;display:flex;align-items:flex-end;justify-content:space-around;direction:rtl;padding:2mm 3mm 3mm;gap:4mm;}
@@ -1427,8 +1464,8 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
               <tbody id="tbody-page1"></tbody>
             </table>
           </div>
-          <div class="addrow-bar"><button onclick="addMemberRow(1)"><span class="ur">+ نام شامل کریں </span><span class="en">Add Name</span></button><button type="button" onclick="pasteAddMemberRow(1)"><span class="ur">⧉ پیسٹ سے شامل کریں </span><span class="en">Add from Paste</span></button></div>
-          <div class="addrow-bar"><button type="button" onclick="copyAllMemberRows(1)"><span class="ur">⧉ تمام قطاریں کاپی کریں </span><span class="en">Copy All Rows</span></button><button type="button" onclick="pasteAllMemberRows(1)"><span class="ur">⧉ تمام قطاریں پیسٹ کریں </span><span class="en">Paste All Rows</span></button></div>
+          <div class="addrow-bar"><button onclick="addMemberRow(1)" title="نام شامل کریں"><span class="ur">➕ نام</span><span class="en">➕ Add</span></button><button type="button" onclick="pasteAddMemberRow(1)" title="پیسٹ سے شامل کریں"><span class="ur">📋 پیسٹ</span><span class="en">📋 Paste</span></button></div>
+          <div class="addrow-bar"><button type="button" onclick="copyAllMemberRows(1)" title="تمام قطاریں کاپی کریں"><span class="ur">📑 کاپی سب</span><span class="en">📑 Copy all</span></button><button type="button" onclick="pasteAllMemberRows(1)" title="تمام قطاریں پیسٹ کریں"><span class="ur">📥 پیسٹ سب</span><span class="en">📥 Paste all</span></button></div>
 
           <div class="miyzan-box">
             <span><span class="ur">میزان (صفحہ ١)</span><span class="en">Total (Page 1)</span></span>
@@ -1471,8 +1508,8 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
               <tbody id="tbody-page2"></tbody>
             </table>
           </div>
-          <div class="addrow-bar"><button onclick="addMemberRow(2)"><span class="ur">+ نام شامل کریں </span><span class="en">Add Name</span></button><button type="button" onclick="pasteAddMemberRow(2)"><span class="ur">⧉ پیسٹ سے شامل کریں </span><span class="en">Add from Paste</span></button></div>
-          <div class="addrow-bar"><button type="button" onclick="copyAllMemberRows(2)"><span class="ur">⧉ تمام قطاریں کاپی کریں </span><span class="en">Copy All Rows</span></button><button type="button" onclick="pasteAllMemberRows(2)"><span class="ur">⧉ تمام قطاریں پیسٹ کریں </span><span class="en">Paste All Rows</span></button></div>
+          <div class="addrow-bar"><button onclick="addMemberRow(2)" title="نام شامل کریں"><span class="ur">➕ نام</span><span class="en">➕ Add</span></button><button type="button" onclick="pasteAddMemberRow(2)" title="پیسٹ سے شامل کریں"><span class="ur">📋 پیسٹ</span><span class="en">📋 Paste</span></button></div>
+          <div class="addrow-bar"><button type="button" onclick="copyAllMemberRows(2)" title="تمام قطاریں کاپی کریں"><span class="ur">📑 کاپی سب</span><span class="en">📑 Copy all</span></button><button type="button" onclick="pasteAllMemberRows(2)" title="تمام قطاریں پیسٹ کریں"><span class="ur">📥 پیسٹ سب</span><span class="en">📥 Paste all</span></button></div>
 
           <div class="miyzan-box">
             <span><span class="ur">میزان (صفحہ ٢)</span><span class="en">Total (Page 2)</span></span>
@@ -1614,34 +1651,35 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
       <div id="formtype-baqaya30" class="hidden">
         <div class="a4page b3page">
           <div class="b3-title"><span class="ur">فہرست بقایا داران 30 جون</span> <input type="text" id="b3_year" class="b3-year" placeholder="۔۔۔۔۔" inputmode="numeric" maxlength="6"> <span class="ur">ء</span></div>
-          <div class="b3-head">
-            <div class="fitem"><label><span class="ur">جماعت احمدیہ</span></label><input type="text" id="b3_jamaat"></div>
-            <div class="fitem"><label><span class="ur">ضلع</span></label><input type="text" id="b3_zila"></div>
-            <div class="fitem"><label><span class="ur">امیر/صدر معہ فون نمبر</span></label><input type="text" id="b3_ameer"></div>
-            <div class="fitem"><label><span class="ur">سیکرٹری مال</span></label><input type="text" id="b3_sec"></div>
-          </div>
-          <div class="b3-ins">
-            <b>ہدایات:</b>
-            <div>1۔ جماعتی ذیلی تنظیموں کے کارکن اگر بقایا دار ہوں تو ان کے عہدہ داران کے ساتھ ان کا عہدہ بھی لکھا جائے۔</div>
-            <div>2۔ 30 جون <span class="b3-yr">۔۔۔۔</span>ء تک کا حساب اگر مکمل نہ ہو تو مکمل کر کے فہرست بنائی جائے۔</div>
-            <div>3۔ فہرست کی ایک نقل مقامی جماعت کو بھی مہیا کی جائے۔</div>
-          </div>
-          <div class="b3-bar">
-            <button type="button" onclick="b3AddRow()"><span class="ur">+ نام شامل کریں</span></button>
-            <button type="button" onclick="b3PasteAddRow()"><span class="ur">⧉ پیسٹ سے شامل کریں</span></button>
-            <button type="button" onclick="b3CopyAll()"><span class="ur">⧉ تمام قطاریں کاپی کریں</span></button>
-            <button type="button" onclick="b3PasteAll()"><span class="ur">⧉ تمام قطاریں پیسٹ کریں</span></button>
-          </div>
-          <div class="b3-wrap"><table class="b3-tbl">
-            <thead><tr><th class="b3-act"></th><th>نمبر<br>شمار</th><th>نام بقایا دار، ولدیت اور وجہ</th><th>موصی / غیر موصی</th><th>عہدہ دار</th>
-              <th>30 جون <span class="b3-yr">۔۔۔۔</span>ء تک<br>چندہ عام/حصہ آمد کا بقایا</th><th>30 جون <span class="b3-yr">۔۔۔۔</span>ء تک<br>چندہ جلسہ سالانہ کا بقایا</th></tr></thead>
-            <tbody id="b3_tbody"></tbody>
-            <tfoot><tr class="b3-tot"><td></td><td></td><td>میزان</td><td></td><td></td><td id="b3_t_amlak">0</td><td id="b3_t_jalsa">0</td></tr></tfoot>
-          </table></div>
-          <div class="footerline b3-sigs">
-            <div class="fitem"><label><span class="ur">دستخط سیکرٹری مال جماعت مع تاریخ</span></label><input type="text" id="b3_secSign"></div>
-            <div class="fitem"><label><span class="ur">دستخط صدر جماعت مع تاریخ</span></label><input type="text" id="b3_sadarSign"></div>
-            <div class="fitem"><label><span class="ur">دستخط انسپکٹر مال مع تاریخ</span></label><input type="text" id="b3_inspSign"></div>
+          <div class="b3-body">
+            <div class="b3-head">
+              <div class="fitem"><label><span class="ur">جماعت احمدیہ</span></label><input type="text" id="b3_jamaat"></div>
+              <div class="fitem"><label><span class="ur">ضلع</span></label><input type="text" id="b3_zila"></div>
+              <div class="fitem"><label><span class="ur">امیر/صدر معہ فون نمبر</span></label><input type="text" id="b3_ameer"></div>
+              <div class="fitem"><label><span class="ur">سیکرٹری مال معہ فون نمبر</span></label><input type="text" id="b3_sec"></div>
+            </div>
+            <div class="b3-ins"><b>📌 ہدایات:</b>
+              <span class="it">1۔ جماعتی ذیلی تنظیموں کے کارکن اگر بقایا دار ہوں تو ان کے عہدہ داران کے ساتھ ان کا عہدہ بھی لکھا جائے۔</span>
+              <span class="it">2۔ 30 جون <span class="b3-yr">۔۔۔۔</span>ء تک کا حساب اگر مکمل نہ ہو تو مکمل کر کے فہرست بنائی جائے۔</span>
+              <span class="it">3۔ فہرست کی ایک نقل مقامی جماعت کو بھی مہیا کی جائے۔</span>
+            </div>
+            <div class="b3-wrap"><table class="b3-tbl">
+              <thead><tr><th class="b3-act"></th><th>نمبر<br>شمار</th><th>نام بقایا دار/ولدیت/زوجیت</th><th>موصی / غیر موصی</th><th>عہدیدار</th>
+                <th>30 جون <span class="b3-yr">۔۔۔۔</span>ء تک<br>چندہ عام/حصہ آمد کا بقایا</th><th>30 جون <span class="b3-yr">۔۔۔۔</span>ء تک<br>چندہ جلسہ سالانہ کا بقایا</th></tr></thead>
+              <tbody id="b3_tbody"></tbody>
+              <tfoot><tr class="b3-tot"><td></td><td></td><td>میزان</td><td></td><td></td><td id="b3_t_amlak">0</td><td id="b3_t_jalsa">0</td></tr></tfoot>
+            </table></div>
+            <div class="b3-bar">
+              <button type="button" onclick="b3AddRow()" title="نام شامل کریں"><span class="ur">➕ نام</span></button>
+              <button type="button" onclick="b3PasteAddRow()" title="پیسٹ سے شامل کریں"><span class="ur">📋 پیسٹ</span></button>
+              <button type="button" onclick="b3CopyAll()" title="تمام قطاریں کاپی کریں"><span class="ur">📑 کاپی سب</span></button>
+              <button type="button" onclick="b3PasteAll()" title="تمام قطاریں پیسٹ کریں"><span class="ur">📥 پیسٹ سب</span></button>
+            </div>
+            <div class="footerline b3-sigs">
+              <div class="fitem"><label><span class="ur">دستخط سیکرٹری مال جماعت مع تاریخ</span></label><input type="text" id="b3_secSign"></div>
+              <div class="fitem"><label><span class="ur">دستخط صدر جماعت مع تاریخ</span></label><input type="text" id="b3_sadarSign"></div>
+              <div class="fitem"><label><span class="ur">دستخط انسپکٹر مال مع تاریخ</span></label><input type="text" id="b3_inspSign"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -1921,7 +1959,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
     <!-- ============ VIEW: RECORDS ============ -->
     <div id="view-records" class="container hidden">
       <div class="searchbar">
-        <input type="search" id="searchInput" placeholder="نام، فارم نمبر یا Record ID سے تلاش کریں... / Search by name, form no. or ID">
+        <input type="search" id="searchInput" placeholder="🔍 نام / ID سے تلاش">
       </div>
       <div class="reclist" id="reclistWrap"></div>
     </div>
@@ -4140,7 +4178,7 @@ document.addEventListener('focusin', e=>{
 /* ---------- signatures ---------- */
 const SIG_FIELDS = ['ft1_secSign','ft1_ameerSign','ft1_inspSign','ft2_secSign','ft2_ameerSign','ft2_inspSign',
   'c_inspSignDate','c_sadarSignDate','c_secSignDate','s_travelerSign','s_receivedSign','s_advanceSign',
-  'd_ameerSignDate','d_inspSignDate','am_ameerSignDate','am_inspSignDate'];
+  'd_ameerSignDate','d_inspSignDate','am_ameerSignDate','am_inspSignDate','b3_secSign','b3_sadarSign','b3_inspSign'];
 const SIG_EXTRA = [ {key:'dk_sign', anchor:'dk_name'}, {key:'gd_sign', anchor:'gd_name'} ];
 let SIGS = {};
 const sigState = {key:null, cv:null, ctx:null, drawing:false, hasInk:false, last:null, mid:null, dpr:1};
@@ -4558,10 +4596,10 @@ async function renderRecordsList(filter){
   const forceOpen = !!filter || present.length===1;
   const toolbar = present.length>1 ? `
     <div class="rec-tools">
-      <span class="rec-total">کل محفوظ فارم: <b>${list.length}</b></span>
+      <span class="rec-total" title="کل محفوظ فارم">📁 کل: <b>${list.length}</b></span>
       <span class="rec-tbtns">
-        <button type="button" onclick="recToggleAll(true)">▾ سب کھولیں</button>
-        <button type="button" onclick="recToggleAll(false)">▴ سب بند کریں</button>
+        <button type="button" title="سب کھولیں" onclick="recToggleAll(true)">▾ کھولیں</button>
+        <button type="button" title="سب بند کریں" onclick="recToggleAll(false)">▴ بند</button>
       </span>
     </div>` : '';
   wrap.innerHTML = toolbar + present.map(g=>{
@@ -6089,7 +6127,7 @@ function b3RowHtml(r){
   const e = x => String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
   return '<tr data-b3="1"><td class="b3-ac"><button type="button" class="x" title="حذف" onclick="b3DelRow(this)">×</button><button type="button" class="d" title="نقل" onclick="b3DupRow(this)">⧉</button></td>' +
     '<td class="b3-no"></td>' +
-    '<td><input type="text" class="b3-name" placeholder="نام / ولدیت / وجہ" value="' + e(r.name) + '"></td>' +
+    '<td><input type="text" class="b3-name" placeholder="نام / ولدیت / زوجیت" value="' + e(r.name) + '"></td>' +
     '<td><input type="text" class="b3-moosi" value="' + e(r.moosi) + '"></td>' +
     '<td><input type="text" class="b3-ohda" value="' + e(r.ohda) + '"></td>' +
     '<td><input type="number" step="0.01" min="0" class="b3-amlak" oninput="b3Recalc()" value="' + e(r.amlak) + '"></td>' +
@@ -6179,7 +6217,7 @@ function b3Sheet(first, rows, startNo, opt){
   const fr = (items) => '<div class="b3-fr">' + items.map(([l, id])=>'<span class="l">' + l + '</span><span class="f">' + escapeHtml(v(id)) + '</span>').join('') + '</div>';
   const cnt = blank ? opt.cap : rows.length;
   let t = '<table class="b3-t"><colgroup><col style="width:12mm"><col style="width:62mm"><col style="width:22mm"><col style="width:28mm"><col style="width:37mm"><col style="width:37mm"></colgroup>' +
-    '<thead><tr><th>نمبر شمار</th><th>نام بقایا دار، ولدیت اور وجہ</th><th>موصی /<br>غیر موصی</th><th>عہدہ دار</th><th>30 جون ' + ey + 'ء تک<br>چندہ عام/حصہ آمد کا بقایا</th><th>30 جون ' + ey + 'ء تک<br>چندہ جلسہ سالانہ کا بقایا</th></tr></thead><tbody>';
+    '<thead><tr><th>نمبر شمار</th><th>نام بقایا دار/ولدیت/زوجیت</th><th>موصی /<br>غیر موصی</th><th>عہدیدار</th><th>30 جون ' + ey + 'ء تک<br>چندہ عام/حصہ آمد کا بقایا</th><th>30 جون ' + ey + 'ء تک<br>چندہ جلسہ سالانہ کا بقایا</th></tr></thead><tbody>';
   for(let i = 0; i < cnt; i++){
     const r = blank ? {} : rows[i];
     t += '<tr><td class="no">' + (startNo + i) + '</td><td class="nm">' + escapeHtml(r.name || '') + '</td><td>' + escapeHtml(r.moosi || '') + '</td><td>' + escapeHtml(r.ohda || '') + '</td><td>' + escapeHtml(r.amlak || '') + '</td><td>' + escapeHtml(r.jalsa || '') + '</td></tr>';
@@ -6188,11 +6226,11 @@ function b3Sheet(first, rows, startNo, opt){
   t += '<tr class="tot"><td></td><td>میزان</td><td></td><td></td><td>' + escapeHtml(ps.a) + '</td><td>' + escapeHtml(ps.j) + '</td></tr>';
   if(opt.grand){ const g = b3Sums(opt.grand); t += '<tr class="grand"><td></td><td>گرینڈ ٹوٹل</td><td></td><td></td><td>' + escapeHtml(g.a) + '</td><td>' + escapeHtml(g.j) + '</td></tr>'; }
   t += '</tbody></table>';
-  const sg = (l, id) => '<div class="b3-sg"><span class="l">' + l + '</span><span class="f">' + escapeHtml(v(id)) + '</span></div>';
+  const sg = (l, id) => '<div class="b3-sg">' + apSig(id) + '<span class="l">' + l + '</span><span class="f">' + escapeHtml(v(id)) + '</span></div>';
   const head = first ? '<div class="b3-head"><div class="b3-ttl">فہرست بقایا داران 30 جون ' + ey + 'ء</div>' +
-    fr([['جماعت احمدیہ', 'b3_jamaat'], ['ضلع', 'b3_zila']]) + fr([['امیر/صدر معہ فون نمبر', 'b3_ameer'], ['سیکرٹری مال', 'b3_sec']]) +
-    '<div class="b3-ins"><b>ہدایات:</b><div>1۔ جماعتی ذیلی تنظیموں کے کارکن اگر بقایا دار ہوں تو ان کے عہدہ داران کے ساتھ ان کا عہدہ بھی لکھا جائے۔</div>' +
-    '<div>2۔ 30 جون ' + ey + 'ء تک کا حساب اگر مکمل نہ ہو تو مکمل کر کے فہرست بنائی جائے۔</div><div>3۔ فہرست کی ایک نقل مقامی جماعت کو بھی مہیا کی جائے۔</div></div></div>' : '';
+    fr([['جماعت احمدیہ', 'b3_jamaat'], ['ضلع', 'b3_zila']]) + fr([['امیر/صدر معہ فون نمبر', 'b3_ameer'], ['سیکرٹری مال معہ فون نمبر', 'b3_sec']]) +
+    '<div class="b3-ins"><b>ہدایات:</b> <span class="it">1۔ جماعتی ذیلی تنظیموں کے کارکن اگر بقایا دار ہوں تو ان کے عہدہ داران کے ساتھ ان کا عہدہ بھی لکھا جائے۔</span> ' +
+    '<span class="it">2۔ 30 جون ' + ey + 'ء تک کا حساب اگر مکمل نہ ہو تو مکمل کر کے فہرست بنائی جائے۔</span> <span class="it">3۔ فہرست کی ایک نقل مقامی جماعت کو بھی مہیا کی جائے۔</span></div></div>' : '';
   return '<section class="b3-sheet"><div class="b3-frame">' + head + t +
     '<div class="b3-foot">' + sg('دستخط سیکرٹری مال جماعت مع تاریخ', 'b3_secSign') + sg('دستخط صدر جماعت مع تاریخ', 'b3_sadarSign') + sg('دستخط انسپکٹر مال مع تاریخ', 'b3_inspSign') + '</div></div></section>';
 }
@@ -6203,7 +6241,7 @@ function buildB3PrintSheets(){
   const blank = used.length === 0;
   let html = '';
   if(blank){
-    html = b3Sheet(true, [], 1, {blank: true, cap: B3_C1}) + b3Sheet(false, [], B3_C1 + 1, {blank: true, cap: B3_C2});
+    html = b3Sheet(true, [], 1, {blank: true, cap: B3_C1});   // empty form: just one sheet
   } else {
     const chunks = [];
     if(used.length <= B3_C1) chunks.push(used.slice());
