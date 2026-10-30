@@ -1338,6 +1338,57 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 </style>
 <style id="dynamicPrintStyle">
 @media print{ @page{ size: A4 portrait; margin: 9mm; } }
+
+/* =====================================================================
+   فارم کی قسم ڈراپ ڈاؤن: ہر فارم کے ساتھ رنگین آئیکن  (screen only)
+   ===================================================================== */
+@media screen{
+  #ftdrop .formtypetabs button{--ic:#f1ead6;--icc:#7a1f1f;}
+  #ftdrop .formtypetabs button::before{width:36px;height:36px;flex:none;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;font-size:19px;background:var(--ic);box-shadow:inset 0 0 0 1px rgba(0,0,0,.07),0 2px 5px rgba(0,0,0,.10);}
+  #ftdrop .formtypetabs button.active::before{background:rgba(255,255,255,.26);box-shadow:inset 0 0 0 1px rgba(255,255,255,.45);}
+  .formtypetabs button[data-ftype=baqaya30]::before{content:'📅'}
+  #ftdrop .formtypetabs button[data-ftype=baqaya]{--ic:#fde2e2}
+  #ftdrop .formtypetabs button[data-ftype=baqaya30]{--ic:#ffe7d1}
+  #ftdrop .formtypetabs button[data-ftype=auditaccount]{--ic:#dbe7ff}
+  #ftdrop .formtypetabs button[data-ftype=safar]{--ic:#ffe4d2}
+  #ftdrop .formtypetabs button[data-ftype=district]{--ic:#d4f1f7}
+  #ftdrop .formtypetabs button[data-ftype=amaratAudit]{--ic:#e6dcff}
+  #ftdrop .formtypetabs button[data-ftype=darkhwast]{--ic:#d6f0e0}
+  #ftdrop .formtypetabs button[data-ftype=gendarkhwast]{--ic:#fbeccb}
+}
+/* =====================================================================
+   آڈٹ/اکاؤنٹ برانچ: نام انسپکٹر مال، جماعت، ضلع — خوبصورت اور آسان اندراج + آٹو درج (screen only)
+   ===================================================================== */
+@media screen{
+  #formtype-auditaccount .keyf{position:relative;border-top:4px solid var(--kc,#7a1f1f) !important;}
+  #formtype-auditaccount .keyf.kf-insp{--kc:#1d4ed8;--kb:#e8efff;}
+  #formtype-auditaccount .keyf.kf-jam{--kc:#0f766e;--kb:#dcf5f1;}
+  #formtype-auditaccount .keyf.kf-zila{--kc:#b45309;--kb:#fdeccb;}
+  #formtype-auditaccount .keyf > label{display:flex !important;align-items:center;gap:8px;font-weight:800;color:var(--kc);font-size:14px;}
+  #formtype-auditaccount .keyf > label::before{width:30px;height:30px;flex:none;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:var(--kb);font-size:16px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);}
+  #formtype-auditaccount .keyf.kf-insp > label::before{content:'👤'}
+  #formtype-auditaccount .keyf.kf-jam > label::before{content:'🕌'}
+  #formtype-auditaccount .keyf.kf-zila > label::before{content:'📍'}
+  #formtype-auditaccount .keyf input{width:100%;min-height:44px;font-size:16px;font-weight:700;padding:8px 12px;border:1.5px solid color-mix(in srgb,var(--kc) 35%,#fff);border-radius:11px;background:var(--kb);}
+  #formtype-auditaccount .keyf input:focus{outline:none;border-color:var(--kc);background:#fff;box-shadow:0 0 0 3px color-mix(in srgb,var(--kc) 18%,transparent);}
+  /* اکاؤنٹ برانچ: آٹو نشان */
+  #formtype-auditaccount .keygrid:not(.keygrid-a) .keyf > label::after{content:'⚡ آٹو';margin-inline-start:auto;font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:10px;background:#e3f6e8;color:#157347;border:1px solid #b6e2c3;}
+  #formtype-auditaccount .keygrid:not(.keygrid-a) .keyf input.autofilled{background:#f1fbf4;border-color:#7cc795;}
+  #formtype-auditaccount .autobar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:0 0 4px;}
+  #formtype-auditaccount .autochip{font-size:12.5px;color:#157347;background:#eaf7ee;border:1px solid #bfe3ca;border-radius:20px;padding:4px 14px;font-weight:700;}
+  #formtype-auditaccount .autocopy{font-size:12.5px;padding:5px 14px;border-radius:20px;border:1.5px solid #1d4ed8;background:#fff;color:#1d4ed8;font-weight:700;cursor:pointer;}
+  #formtype-auditaccount .autocopy:hover{background:#1d4ed8;color:#fff;}
+}
+@media screen and (min-width:821px){
+  #formtype-auditaccount .grid2.keygrid{grid-template-columns:repeat(6,1fr);gap:14px;}
+  #formtype-auditaccount .grid2.keygrid:not(.keygrid-a) .keyf{grid-column:span 2;}
+  #formtype-auditaccount .grid2.keygrid-a .keyf{grid-column:span 2;order:-1;}
+  #formtype-auditaccount .grid2.keygrid-a .fitem:not(.keyf){grid-column:span 2;}
+  #formtype-auditaccount .grid2.keygrid-a .fitem:nth-last-child(-n+4){grid-column:span 3;}
+}
+@media screen and (max-width:820px){
+  #formtype-auditaccount .grid2.keygrid .keyf{margin-bottom:8px;}
+}
 </style>
 </head>
 <body class="lang-ur">
@@ -1545,11 +1596,11 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 
           <div class="sectionbox">
             <span class="tag"><span class="ur">آڈٹ برانچ</span><span class="en">Audit Branch</span></span>
-            <div class="grid2">
-              <div class="fitem"><label><span class="ur">نام انسپکٹر مال آمد</span><span class="en">Inspector's Name</span></label><input type="text" id="a_inspName"></div>
-              <div class="fitem"><label><span class="ur">جماعت</span><span class="en">Jamaat</span></label><input type="text" id="a_jamaat"></div>
+            <div class="grid2 keygrid keygrid-a">
+              <div class="fitem keyf kf-insp"><label><span class="ur">نام انسپکٹر مال آمد</span><span class="en">Inspector's Name</span></label><input type="text" id="a_inspName"></div>
+              <div class="fitem keyf kf-jam"><label><span class="ur">جماعت</span><span class="en">Jamaat</span></label><input type="text" id="a_jamaat"></div>
               <div class="fitem"><label><span class="ur">تعداد چندہ دہندگان</span><span class="en">No. of Contributors</span></label><input type="text" id="a_chandaCount"></div>
-              <div class="fitem"><label><span class="ur">ضلع</span><span class="en">District</span></label><input type="text" id="a_zila"></div>
+              <div class="fitem keyf kf-zila"><label><span class="ur">ضلع</span><span class="en">District</span></label><input type="text" id="a_zila"></div>
               <div class="fitem"><label><span class="ur">تاریخ و وقت آمد</span><span class="en">Arrival Date/Time</span></label><input type="text" id="a_arrival"></div>
               <div class="fitem"><label><span class="ur">تاریخ و وقت روانگی</span><span class="en">Departure Date/Time</span></label><input type="text" id="a_departure"></div>
               <div class="fitem"><label><span class="ur">نام صدر جماعت</span><span class="en">President's Name</span></label><input type="text" id="a_sadarName"></div>
@@ -1570,10 +1621,11 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 
           <div class="sectionbox">
             <span class="tag"><span class="ur">اکاؤنٹ برانچ</span><span class="en">Account Branch</span></span>
-            <div class="grid2">
-              <div class="fitem"><label><span class="ur">نام انسپکٹر مال آمد</span><span class="en">Inspector's Name</span></label><input type="text" id="b_inspName"></div>
-              <div class="fitem"><label><span class="ur">نام جماعت</span><span class="en">Jamaat</span></label><input type="text" id="b_jamaat"></div>
-              <div class="fitem"><label><span class="ur">ضلع</span><span class="en">District</span></label><input type="text" id="b_zila"></div>
+            <div class="autobar"><span class="autochip">⚡ <span class="ur">آڈٹ برانچ میں لکھتے ہی یہ تین خانے خود بھر جاتے ہیں</span><span class="en">These 3 fields auto-fill from Audit Branch</span></span><button type="button" class="autocopy" onclick="copyAuditToAccount(true)" title="آڈٹ برانچ سے دوبارہ لیں">⇄ <span class="ur">دوبارہ کاپی</span><span class="en">Re-copy</span></button></div>
+            <div class="grid2 keygrid">
+              <div class="fitem keyf kf-insp"><label><span class="ur">نام انسپکٹر مال آمد</span><span class="en">Inspector's Name</span></label><input type="text" id="b_inspName"></div>
+              <div class="fitem keyf kf-jam"><label><span class="ur">نام جماعت</span><span class="en">Jamaat</span></label><input type="text" id="b_jamaat"></div>
+              <div class="fitem keyf kf-zila"><label><span class="ur">ضلع</span><span class="en">District</span></label><input type="text" id="b_zila"></div>
             </div>
             <div class="longline">
               <label><span class="ur">سال گزشتہ جون</span><span class="en">Last June's Year</span></label>
@@ -4580,7 +4632,7 @@ async function renderRecordsList(filter){
   /* ---- grouped drop-down lists: one dropdown per form type ---- */
   const GROUPS = [
     {k:'baqaya',       ico:'📋', t:'فہرست بقایاداران', c:'#7a1f1f'},
-    {k:'baqaya30',     ico:'📑', t:'30 جون بقایاداران', c:'#9a3412'},
+    {k:'baqaya30',     ico:'📅', t:'30 جون بقایاداران', c:'#9a3412'},
     {k:'auditaccount', ico:'🧾', t:'آڈٹ/اکاؤنٹ برانچ', c:'#1d4ed8'},
     {k:'safar',        ico:'🚗', t:'سفر خرچ',          c:'#c2410c'},
     {k:'district',     ico:'📊', t:'آڈٹ رپورٹ ضلع',    c:'#0e7490'},
@@ -6272,6 +6324,36 @@ function removeB3PrintSheets(){
 b3FillRows([]);
 document.getElementById('b3_year').addEventListener('input', b3SyncYear);
 b3SyncYear();
+
+/* ===== آڈٹ برانچ → اکاؤنٹ برانچ آٹو درج (نام انسپکٹر مال آمد، جماعت، ضلع) ===== */
+(function(){
+  const PAIRS=[['a_inspName','b_inspName'],['a_jamaat','b_jamaat'],['a_zila','b_zila']];
+  const last={};
+  function syncOne(aId,bId,force){
+    const a=document.getElementById(aId), b=document.getElementById(bId);
+    if(!a||!b) return;
+    const prev = (last[aId]===undefined) ? '' : last[aId];
+    if(force || b.value==='' || b.value===prev){
+      if(b.value!==a.value){
+        b.value=a.value;
+        try{ b.dispatchEvent(new Event('input',{bubbles:true})); }catch(e){}
+      }
+      b.classList.toggle('autofilled', !!a.value);
+    }
+    last[aId]=a.value;
+  }
+  window.copyAuditToAccount=function(force){
+    PAIRS.forEach(p=>syncOne(p[0],p[1],!!force));
+    if(force && typeof showToast==='function'){ try{ showToast('آڈٹ برانچ سے اکاؤنٹ برانچ میں کاپی ہو گیا ✓'); }catch(e){} }
+  };
+  PAIRS.forEach(p=>{
+    const a=document.getElementById(p[0]), b=document.getElementById(p[1]);
+    if(!a||!b) return;
+    a.addEventListener('focus',()=>{ last[p[0]]=a.value; });
+    ['input','change','blur'].forEach(ev=>a.addEventListener(ev,()=>syncOne(p[0],p[1],false)));
+    b.addEventListener('input',(e)=>{ if(e.isTrusted && b.value!==a.value) b.classList.remove('autofilled'); });
+  });
+})();
 </script>
 </body>
 </html>
