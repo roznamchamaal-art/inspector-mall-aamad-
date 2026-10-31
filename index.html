@@ -757,6 +757,8 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 @media print{
   /* short year field: "جون 26ء" — only as wide as the year entered */
   .ap-f.fit{flex:0 0 auto;min-width:16mm;padding:0 2.5mm;text-align:center;white-space:nowrap;}
+  .ap-f.fx.yr{flex:0 0 11mm;margin-inline-end:0.6mm;padding:0;}
+  .ap-l.yrs{flex:0 0 auto;margin-inline-end:2.6mm;font-size:10.5pt;}
   /* fill the real printable page even when the print dialog / printer scales it (no empty strip under the border) */
   .ap-sheet{width:100vw !important;height:calc(100vh - 0.4mm) !important;}
 }
@@ -2084,6 +2086,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
         <button id="acToggleBtn" type="button" onclick="acToggle()">چالو ✓ (بند کریں)</button>
         <p style="margin-top:8px;"><span class="ur">جو الفاظ آپ بار بار لکھتے ہیں وہ خود یاد ہو جاتے ہیں اور شروع کے حروف لکھنے پر تجویز ہوتے ہیں۔</span></p>
         <button type="button" onclick="acClearLearned()">🧹 سیکھے ہوئے الفاظ صاف کریں</button>
+        <p style="margin-top:10px;font-size:12px;opacity:.7;">ورژن: 31-10-2026 (د)</p>
       </div>
       <div class="settingcard">
         <h3><span class="ur">🔐 پن / سیکیورٹی</span><span class="en">PIN / Security</span></h3>
@@ -2982,11 +2985,15 @@ function recalcCurrentYear(){
   document.getElementById('cy_total_balance').textContent = any ? fmt(tb) : '';
 }
 function recalcLocalFund(){
-  const balance30June = num(document.getElementById('c_balance30June').value);
-  const collectionJuly = num(document.getElementById('c_collectionJuly').value);
-  const income = balance30June + collectionJuly;
+  const g = id => document.getElementById(id).value.trim();
+  if(g('c_balance30June')==='' && g('c_collectionJuly')==='' && g('c_totalExpense')===''){
+    document.getElementById('c_totalIncome').value = '';
+    document.getElementById('c_balance').value = '';
+    return;
+  }
+  const income = num(g('c_balance30June')) + num(g('c_collectionJuly'));
   document.getElementById('c_totalIncome').value = fmt(income);
-  const expense = num(document.getElementById('c_totalExpense').value);
+  const expense = num(g('c_totalExpense'));
   document.getElementById('c_balance').value = fmt(income - expense);
 }
 document.getElementById('c_totalExpense').addEventListener('input', recalcLocalFund);
@@ -5020,6 +5027,8 @@ function apVal(id){ if(window.PRINT_BLANK) return ''; const e = document.getElem
 function apL(t, cls){ return '<span class="ap-l' + (cls ? ' ' + cls : '') + '">' + t + '</span>'; }
 function apF(v, cls){ return '<span class="ap-f' + (cls ? ' ' + cls : '') + '">' + escapeHtml(v || '') + '</span>'; }
 function apDateShort(v){ const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ''); return m ? (parseInt(m[3],10) + '-' + parseInt(m[2],10) + '-' + m[1].slice(2)) : (v || ''); }
+function apNZ(t){ t = String(t||'').trim(); return (t !== '' && Number(t.replace(/[,\s]/g,'')) === 0) ? '' : t; }   /* zero -> blank in print */
+function apYearRaw(y){ return String(y||'').trim().replace(/\s*ء\s*$/,''); }
 function apYear(y){ y = String(y||'').trim(); return /^\d{2,4}$/.test(y) ? y + 'ء' : y; }
 function apDate(v){ const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ''); return m ? (m[3] + '-' + m[2] + '-' + m[1]) : (v || ''); }
 function apSig(key){ const d = (!window.PRINT_BLANK && SIGS[key]) ? SIGS[key] : ''; return d ? '<img class="ap-sig" src="' + d + '" alt="">' : ''; }
@@ -5045,7 +5054,7 @@ function apTable(sel, pre, withHead, withTotal){
   const body = rows.map(tr=>{
     const g = c => window.PRINT_BLANK ? '' : String((tr.querySelector(c) || {}).value || '').trim();
     const vals = [g('.' + pre + '-collect'), g('.' + pre + '-forward'), g('.' + pre + '-balance'), g('.' + pre + '-' + (pre === 'ly' ? 'lastamt' : 'lastcoupon'))];
-    if(vals[0] || vals[1]) any = true; else vals[2] = '';   /* nothing entered in this row: no auto "0" in print */
+    if(vals[0] || vals[1]) any = true; vals[2] = apNZ(vals[2]);   /* nothing entered in this row: no auto "0" in print */
     const lbl = ((tr.querySelector('.lbl') || {}).textContent || '').trim();
     const last = vals[3] ? (vals[3].indexOf('/') > -1 ? formatReceiptFractionHTML(vals[3]) : escapeHtml(vals[3])) : '';
     return '<tr><td class="ap-lbl">' + escapeHtml(lbl) + '</td><td>' + escapeHtml(vals[0]) + '</td><td>' + escapeHtml(vals[1]) + '</td><td>' + escapeHtml(vals[2]) + '</td><td>' + last + '</td></tr>';
@@ -5089,11 +5098,11 @@ function buildAuditPrintSheet(){
     '<div class="ap-row ap-tagrow"><span class="ap-tag">مقامی فنڈ / لوکل فنڈ</span><span class="ap-note">(بقیہ تفصیل الگ کاغذ پر لکھیں)</span></div>' +
     '<div class="ap-lf">' +
       '<div class="ap-lcol ap-lr">' +
-        '<div class="ap-row">' + apL('کل بقایا 30 جون سنہ', 'lw') + apF(v('c_balance30JuneYear'), 'fx') + apF(v('c_balance30June')) + '</div>' +
+        '<div class="ap-row">' + apL('کل بقایا 30 جون سنہ', 'lw') + apF(apYearRaw(v('c_balance30JuneYear')), 'fx yr') + apL('ء', 'yrs') + apF(v('c_balance30June')) + '</div>' +
         '<div class="ap-row">' + apL('وصولی جولائی تا تاریخ معائنہ', 'lw') + apF(apDateShort(v('c_collectionJulyDate')), 'fx') + apF(v('c_collectionJuly')) + '</div>' +
-        '<div class="ap-row">' + apL('کل میزان آمد :', 'lw') + '<span class="ap-sp"></span>' + apF(v('c_totalIncome')) + '</div>' +
-        '<div class="ap-row">' + apL('کل میزان خرچ :', 'lw') + '<span class="ap-sp"></span>' + apF(v('c_totalExpense')) + '</div>' +
-        '<div class="ap-row">' + apL('بقایا :', 'lw') + '<span class="ap-sp"></span>' + apF(v('c_balance')) + '</div>' +
+        '<div class="ap-row">' + apL('کل میزان آمد :', 'lw') + '<span class="ap-sp"></span>' + apF(apNZ(v('c_totalIncome'))) + '</div>' +
+        '<div class="ap-row">' + apL('کل میزان خرچ :', 'lw') + '<span class="ap-sp"></span>' + apF(apNZ(v('c_totalExpense'))) + '</div>' +
+        '<div class="ap-row">' + apL('بقایا :', 'lw') + '<span class="ap-sp"></span>' + apF(apNZ(v('c_balance'))) + '</div>' +
       '</div>' +
       '<div class="ap-lcol ap-ll">' +
         '<div class="ap-row ap-text">' + apL('بجٹ میں اضافہ کے لیے کوشش۔ الگ صفحہ پر تحریر کریں') + '</div>' +
