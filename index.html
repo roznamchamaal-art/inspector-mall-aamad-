@@ -1424,6 +1424,58 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   #formtype-auditaccount .fitem label.subl{margin-top:6px;}
   #formtype-auditaccount .longline > div{gap:6px !important;}
 }
+
+/* ===== مقامی فنڈ: چھوٹے خوبصورت خانے ===== */
+@media screen{
+  #sec-localfund .lfgrid{display:grid;grid-template-columns:repeat(12,1fr);gap:7px 9px;margin-top:2px;}
+  #sec-localfund .lfgrid .fitem{padding:5px 10px 7px;margin:0;border-radius:11px;}
+  #sec-localfund .lfgrid label{font-size:13px;margin-bottom:3px;display:block;}
+  #sec-localfund .lfgrid input{min-height:36px;font-size:15px;padding:5px 10px;border-radius:9px;width:100%;}
+  #sec-localfund .lf-pair{display:flex;gap:6px;}
+  #sec-localfund .lf-pair input.lf-yr{flex:0 0 74px;width:74px;text-align:center;}
+  #sec-localfund .lf-pair input.lf-dt{flex:0 0 150px;width:150px;}
+  #sec-localfund .lf-pair input:not(.lf-yr):not(.lf-dt){flex:1;min-width:0;}
+  #sec-localfund #c_totalIncome,#sec-localfund #c_balance{background:#eef6ee;font-weight:700;color:#0f5132;}
+  #sec-localfund .lf-a,#sec-localfund .lf-b{grid-column:span 6;}
+  #sec-localfund .lf-c,#sec-localfund .lf-d,#sec-localfund .lf-e{grid-column:span 2;}
+  #sec-localfund .lf-f{grid-column:span 4;}
+  #sec-localfund .lf-n{grid-column:span 12;background:transparent !important;border:none !important;box-shadow:none !important;padding:0 6px !important;}
+}
+@media screen and (max-width:820px){ #sec-localfund .lfgrid{grid-template-columns:1fr 1fr;} #sec-localfund .lfgrid .fitem{grid-column:span 2 !important;} #sec-localfund .lf-c,#sec-localfund .lf-d,#sec-localfund .lf-e{grid-column:span 1 !important;} }
+/* ===== امارت آڈٹ رپورٹ: چھوٹے، خوبصورت، کم جگہ والے خانے ===== */
+@media screen{
+  #formtype-amaratAudit .a4page{max-width:100%;padding:8px 6px 10px;margin:0 auto;border-radius:0;}
+  #formtype-amaratAudit .sectionbox{padding:22px 8px 8px;margin:24px 0 6px;border-radius:12px;}
+  #formtype-amaratAudit .sectionbox .tag{top:-15px;padding:4px 18px;font-size:14.5px;}
+  #formtype-amaratAudit .headerline{gap:6px 8px;margin:2px 0 4px;}
+  #formtype-amaratAudit .headerline label{font-size:13px;font-weight:700;color:#5b21b6;}
+  #formtype-amaratAudit .headerline input{min-height:32px;height:32px;padding:2px 8px;border-radius:8px;font-size:14px;}
+  #formtype-amaratAudit .headerline input[type=date]{flex:0 0 148px;width:148px;max-width:148px;background:#f4f0ff;border:1.5px solid #cfc3f3;}
+  #formtype-amaratAudit .headerline input[style*="max-width:70px"]{flex:0 0 64px;text-align:center;background:#f4f0ff;border:1.5px solid #cfc3f3;}
+  #formtype-amaratAudit table.mini{font-size:13.5px;}
+  #formtype-amaratAudit table.mini th{padding:3px 4px;font-size:13px;}
+  #formtype-amaratAudit table.mini td{padding:1px 3px;height:30px;}
+  #formtype-amaratAudit table.mini td input{min-height:28px;height:28px;font-size:14px;padding:1px 6px;border-radius:6px;}
+  #formtype-amaratAudit table.mini td.srno,#formtype-amaratAudit table.mini td.lbl{font-size:13px;}
+  #formtype-amaratAudit table.mini td.delcol{width:0;min-width:0;padding:0;border:none;position:relative;background:transparent;}
+  #formtype-amaratAudit table.mini td.delcol .rowdel{position:absolute;left:3px;top:50%;transform:translateY(-50%);width:20px;height:20px;min-height:20px;font-size:12px;box-shadow:none;}
+  #formtype-amaratAudit #tbl_amDetail td:nth-child(5) input{padding-left:28px;}
+  #formtype-amaratAudit .grid2{gap:6px 8px;}
+  #formtype-amaratAudit .fitem{padding:4px 8px 6px;margin:0;border-radius:10px;}
+  #formtype-amaratAudit .fitem label{font-size:13px;margin-bottom:2px;}
+  #formtype-amaratAudit .fitem input,#formtype-amaratAudit .longline input{min-height:32px;font-size:14px;padding:3px 8px;}
+  #formtype-amaratAudit .miyzan-box{display:inline-flex;width:32.4%;margin:4px 0.4% 0;padding:5px 12px;box-sizing:border-box;vertical-align:top;}
+  #formtype-amaratAudit .am-action-row input{min-height:30px;height:30px;}
+  #formtype-amaratAudit .addrow-bar{margin:4px 0;}
+}
+/* ===== فہرست بقایاداران: کالم نمبر اور کاپی/پیسٹ ===== */
+@media screen{
+  table.datatable thead tr.coltools th{background:#f3ead0;padding:2px 2px;white-space:nowrap;text-align:center;font-weight:400;border-top:1px dashed #c9b98a;}
+  tr.coltools .cn{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;border-radius:10px;background:#7a1f1f;color:#fff;font-size:11.5px;font-weight:700;padding:0 5px;margin-inline-end:3px;}
+  tr.coltools .cbtn{border:1px solid #c9b98a;background:#fff;border-radius:7px;font-size:13px;line-height:1;padding:3px 4px;margin:0 1px;min-height:0;height:24px;cursor:pointer;}
+  tr.coltools .cbtn:hover{background:#7a1f1f;color:#fff;}
+}
+@media print{ tr.coltools{display:none !important;} }
 </style>
 <style id="dynamicPrintStyle">
 @media print{ @page{ size: A4 portrait; margin: 9mm; } }
@@ -1695,26 +1747,16 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 
           <div class="sectionbox" id="sec-localfund">
             <span class="tag"><span class="ur">مقامی فنڈ / لوکل فنڈ</span><span class="en">Local Fund</span></span>
-            <div class="grid2">
-              <div class="fitem"><label><span class="ur">کل بقایا 30 جون، سنہ</span><span class="en">Total Balance 30 June, Year</span></label>
-                <div style="display:flex;gap:6px;">
-                  <input type="text" id="c_balance30JuneYear" placeholder="سنہ / Year" style="flex:1;min-width:60px;">
-                  <input type="number" step="0.01" id="c_balance30June" oninput="recalcLocalFund()" style="flex:2;" placeholder="رقم / Amount">
-                </div>
-                <label class="subl"><span class="ur">وصولی جولائی تا تاریخ معائنہ</span><span class="en">Collection: July to Exam Date</span></label>
-                <div style="display:flex;gap:6px;">
-                  <input type="date" id="c_collectionJulyDate" style="flex:2;">
-                  <input type="number" step="0.01" id="c_collectionJuly" oninput="recalcLocalFund()" style="flex:2;" placeholder="رقم / Amount">
-                </div>
-              </div>
-              <div class="fitem notecard"><span class="localfund-note"><span class="ur">📝 بجٹ میں اضافہ کے لیے کوشش۔ الگ صفحہ پر تحریر کریں۔</span><span class="en">📝 Effort to increase the budget — write on a separate page.</span></span></div>
-              <div class="fitem"><label><span class="ur">کل میزان آمد (خودکار)</span><span class="en">Total Income (Auto)</span></label><input type="text" id="c_totalIncome" readonly style="background:#eef6ee;font-weight:700;">
-                <label class="subl"><span class="ur">کل میزان خرچ</span><span class="en">Total Expense</span></label><input type="number" step="0.01" id="c_totalExpense">
-              </div>
-              <div class="fitem"><label><span class="ur">باقی رقم کس طرح محفوظ ہے؟</span><span class="en">How is the remaining amount kept safe?</span></label><input type="text" id="c_howSafe" placeholder="جواب / Answer"></div>
-              <div class="fitem"><label><span class="ur">بقایا (خودکار)</span><span class="en">Balance (Auto)</span></label><input type="text" id="c_balance" readonly style="background:#eef6ee;font-weight:700;"></div>
-            </div>
-            <div class="longline"><label><span class="ur">عام روٹین کے علاوہ کوئی عطیات وصول ہوئے؟ اگر ہیں تو انتظامیہ کی منظوری کی تفصیل، کتنی رقم ادا کی گئی اور کب</span><span class="en">Any donations received outside routine? Approval details, amount and date</span></label><input type="text" id="c_otherDonations"></div>
+            <div class="lfgrid">
+<div class="fitem lf-a"><label><span class="ur">کل بقایا 30 جون، سنہ</span></label><div class="lf-pair"><input type="text" id="c_balance30JuneYear" placeholder="سنہ" class="lf-yr"><input type="number" step="0.01" id="c_balance30June" oninput="recalcLocalFund()" placeholder="رقم"></div></div>
+<div class="fitem lf-b"><label><span class="ur">وصولی جولائی تا تاریخ معائنہ</span></label><div class="lf-pair"><input type="date" id="c_collectionJulyDate" class="lf-dt"><input type="number" step="0.01" id="c_collectionJuly" oninput="recalcLocalFund()" placeholder="رقم"></div></div>
+<div class="fitem lf-c"><label><span class="ur">کل میزان آمد (خودکار)</span></label><input type="text" id="c_totalIncome" readonly></div>
+<div class="fitem lf-d"><label><span class="ur">کل میزان خرچ</span></label><input type="number" step="0.01" id="c_totalExpense"></div>
+<div class="fitem lf-e"><label><span class="ur">بقایا (خودکار)</span></label><input type="text" id="c_balance" readonly></div>
+<div class="fitem lf-f"><label><span class="ur">باقی رقم کس طرح محفوظ ہے؟</span></label><input type="text" id="c_howSafe" placeholder="جواب"></div>
+<div class="fitem notecard lf-n"><span class="localfund-note"><span class="ur">📝 بجٹ میں اضافہ کے لیے کوشش۔ الگ صفحہ پر تحریر کریں۔</span></span></div>
+</div>
+<div class="longline"><label><span class="ur">عام روٹین کے علاوہ کوئی عطیات وصول ہوئے؟ اگر ہیں تو انتظامیہ کی منظوری کی تفصیل، کتنی رقم ادا کی گئی اور کب</span><span class="en">Any donations received outside routine? Approval details, amount and date</span></label><input type="text" id="c_otherDonations"></div>
             <div class="longline"><label><span class="ur">کیا چندہ جات کی رقم/لوکل فنڈ میں سے کوئی رقم ذاتی مصرف میں تو نہیں؟ (اگر ہو تو تفصیل، نیز کوئی قرض دیا گیا ہو تو اس کی تفصیل درج کی جائے)</span><span class="en">Was any Chanda/Local Fund money used personally? (Details, incl. any loan given)</span></label><input type="text" id="c_personalUse"></div>
             <p class="smallnote"><span class="ur">(بقیہ تفصیل الگ کاغذ پر لکھیں)</span><span class="en">(Write remaining details on a separate page)</span></p>
 
@@ -1926,7 +1968,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
               <table class="mini" id="tbl_amSummary">
                 <thead><tr><th><span class="ur">نمبر شمار</span><span class="en">No.</span></th><th><span class="ur">مدات</span><span class="en">Head</span></th><th><span class="ur">وصولی</span><span class="en">Collection</span></th><th><span class="ur">ترسیل</span><span class="en">Remittance</span></th><th><span class="ur">قابل ترسیل</span><span class="en">Remittable</span></th></tr></thead>
                 <tbody></tbody>
-                <tfoot><tr><td class="lbl" colspan="2"><span class="ur">میزان</span><span class="en">Total</span></td><td id="am1_sum_wasooli">0</td><td id="am1_sum_tarseel">0</td><td id="am1_sum_qabil">0</td></tr></tfoot>
+                <tfoot><tr><td class="lbl" colspan="2"><span class="ur">میزان</span><span class="en">Total</span></td><td id="am1_sum_wasooli">></td><td id="am1_sum_tarseel">></td><td id="am1_sum_qabil">></td></tr></tfoot>
               </table>
             </div>
           </div>
@@ -1939,10 +1981,10 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
             </div>
             <div class="tblwrap">
               <table class="mini" id="tbl_amDetail">
-                <colgroup><col style="width:9%"><col style="width:36%"><col style="width:18%"><col style="width:18%"><col style="width:19%"></colgroup>
+                <colgroup><col style="width:6%"><col style="width:32%"><col style="width:17%"><col style="width:17%"><col style="width:28%"></colgroup>
                 <thead><tr><th><span class="ur">نمبر شمار</span><span class="en">No.</span></th><th><span class="ur">مدات</span><span class="en">Head</span></th><th><span class="ur">وصولی</span><span class="en">Collection</span></th><th><span class="ur">ترسیل</span><span class="en">Remittance</span></th><th><span class="ur">کیفیت</span><span class="en">Remarks</span></th></tr></thead>
                 <tbody></tbody>
-                <tfoot><tr><td class="lbl" colspan="2"><span class="ur">میزان</span><span class="en">Total</span></td><td id="am2_sum_wasooli">0</td><td id="am2_sum_tarseel">0</td><td></td></tr></tfoot>
+                <tfoot><tr><td class="lbl" colspan="2"><span class="ur">میزان</span><span class="en">Total</span></td><td id="am2_sum_wasooli">></td><td id="am2_sum_tarseel">></td><td></td></tr></tfoot>
               </table>
             </div>
             <div class="addrow-bar"><button type="button" onclick="addAmaratDetailRow()"><span class="ur">+ مد شامل کریں </span><span class="en">Add Head</span></button></div>
@@ -1956,15 +1998,15 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
             </div>
             <div class="miyzan-box" style="background:#eef6ee;">
               <span><span class="ur">میزان آمد</span><span class="en">Total Income</span></span>
-              <span class="val" id="am_lf_totalIncome">0.00</span>
+              <span class="val" id="am_lf_totalIncome"></span>
             </div>
             <div class="miyzan-box" style="background:#eef6ee;">
               <span><span class="ur">اخراجات</span><span class="en">Expenses</span></span>
-              <span class="val" id="am_lf_expenses">0.00</span>
+              <span class="val" id="am_lf_expenses"></span>
             </div>
             <div class="miyzan-box" style="background:#eef6ee;">
               <span><span class="ur">بقایا</span><span class="en">Balance</span></span>
-              <span class="val" id="am_lf_balance">0.00</span>
+              <span class="val" id="am_lf_balance"></span>
             </div>
             <div class="longline"><label><span class="ur">تفصیل</span><span class="en">Detail</span></label><input type="text" id="am_lf_detail"></div>
           </div>
@@ -1975,7 +2017,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
               <table class="mini" id="tbl_amMonthly">
                 <thead><tr><th><span class="ur">نمبر شمار</span><span class="en">No.</span></th><th><span class="ur">ماہ</span><span class="en">Month</span></th><th><span class="ur">آمد</span><span class="en">Income</span></th><th><span class="ur">خرچ</span><span class="en">Expense</span></th></tr></thead>
                 <tbody></tbody>
-                <tfoot><tr><td class="lbl" colspan="2"><span class="ur">میزان</span><span class="en">Total</span></td><td id="am3_sum_aamad">0</td><td id="am3_sum_kharch">0</td></tr></tfoot>
+                <tfoot><tr><td class="lbl" colspan="2"><span class="ur">میزان</span><span class="en">Total</span></td><td id="am3_sum_aamad">></td><td id="am3_sum_kharch">></td></tr></tfoot>
               </table>
             </div>
           </div>
@@ -1986,7 +2028,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
               <table class="mini" id="tbl_amLocalHeads">
                 <thead><tr><th><span class="ur">نمبر شمار</span><span class="en">No.</span></th><th><span class="ur">لوکل مدات</span><span class="en">Local Head</span></th><th><span class="ur">رقم</span><span class="en">Amount</span></th></tr></thead>
                 <tbody></tbody>
-                <tfoot><tr><td class="lbl" colspan="2"><span class="ur">میزان</span><span class="en">Total</span></td><td id="am4_sum_raqam">0</td></tr></tfoot>
+                <tfoot><tr><td class="lbl" colspan="2"><span class="ur">میزان</span><span class="en">Total</span></td><td id="am4_sum_raqam">></td></tr></tfoot>
               </table>
             </div>
             <div class="addrow-bar"><button type="button" onclick="addAmaratLocalHeadRow()"><span class="ur">+ مد شامل کریں </span><span class="en">Add Head</span></button></div>
@@ -2086,7 +2128,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
         <button id="acToggleBtn" type="button" onclick="acToggle()">چالو ✓ (بند کریں)</button>
         <p style="margin-top:8px;"><span class="ur">جو الفاظ آپ بار بار لکھتے ہیں وہ خود یاد ہو جاتے ہیں اور شروع کے حروف لکھنے پر تجویز ہوتے ہیں۔</span></p>
         <button type="button" onclick="acClearLearned()">🧹 سیکھے ہوئے الفاظ صاف کریں</button>
-        <p style="margin-top:10px;font-size:12px;opacity:.7;">ورژن: 31-10-2026 (د)</p>
+        <p style="margin-top:10px;font-size:12px;opacity:.7;">ورژن: 31-10-2026 (ہ)</p>
       </div>
       <div class="settingcard">
         <h3><span class="ur">🔐 پن / سیکیورٹی</span><span class="en">PIN / Security</span></h3>
@@ -3028,6 +3070,7 @@ function buildAmaratTables(){
   buildAmaratMonthlyTable();
   buildAmaratLocalHeadsTable();
   buildAmaratActionRows();
+  recalcAmaratSummary(); recalcAmaratDetail(); recalcAmaratMonthly(); recalcAmaratLocalHeads();
 }
 function amaratDetailRowTemplate(){
   return `
@@ -3067,26 +3110,25 @@ function fillAmaratDetailRows(rows){
   renumberAmaratDetail();
 }
 function recalcAmaratSummary(){
-  let tw=0, tt=0, tq=0;
+  let tw=0, tt=0, any=false;
   document.querySelectorAll('#tbl_amSummary tbody tr').forEach(tr=>{
-    const w = num(tr.querySelector('.am1-wasooli').value);
-    const t = num(tr.querySelector('.am1-tarseel').value);
-    const q = w - t;
-    tr.querySelector('.am1-qabil').value = fmt(q);
-    tw+=w; tt+=t; tq+=q;
+    const ws=tr.querySelector('.am1-wasooli').value.trim(), ts=tr.querySelector('.am1-tarseel').value.trim();
+    const has = ws!=='' || ts!=='';
+    tr.querySelector('.am1-qabil').value = has ? fmt(num(ws)-num(ts)) : '';
+    if(has) any=true; tw+=num(ws); tt+=num(ts);
   });
-  document.getElementById('am1_sum_wasooli').textContent = fmt(tw);
-  document.getElementById('am1_sum_tarseel').textContent = fmt(tt);
-  document.getElementById('am1_sum_qabil').textContent = fmt(tq);
+  document.getElementById('am1_sum_wasooli').textContent = any ? fmt(tw) : '';
+  document.getElementById('am1_sum_tarseel').textContent = any ? fmt(tt) : '';
+  document.getElementById('am1_sum_qabil').textContent = any ? fmt(tw-tt) : '';
 }
 function recalcAmaratDetail(){
-  let tw=0, tt=0;
+  let tw=0, tt=0, any=false;
   document.querySelectorAll('#tbl_amDetail tbody tr').forEach(tr=>{
-    tw += num(tr.querySelector('.am2-wasooli').value);
-    tt += num(tr.querySelector('.am2-tarseel').value);
+    const ws=tr.querySelector('.am2-wasooli').value.trim(), ts=tr.querySelector('.am2-tarseel').value.trim();
+    if(ws!==''||ts!=='') any=true; tw+=num(ws); tt+=num(ts);
   });
-  document.getElementById('am2_sum_wasooli').textContent = fmt(tw);
-  document.getElementById('am2_sum_tarseel').textContent = fmt(tt);
+  document.getElementById('am2_sum_wasooli').textContent = any ? fmt(tw) : '';
+  document.getElementById('am2_sum_tarseel').textContent = any ? fmt(tt) : '';
 }
 
 /* ---- Local Fund Accounts summary + monthly statement + local heads + roznamcha actions ---- */
@@ -3108,23 +3150,23 @@ function buildAmaratMonthlyTable(){
   });
 }
 function recalcAmaratMonthly(){
-  let ta=0, tk=0;
+  let ta=0, tk=0, any=false;
   document.querySelectorAll('#tbl_amMonthly tbody tr').forEach(tr=>{
-    ta += num(tr.querySelector('.am3-aamad').value);
-    tk += num(tr.querySelector('.am3-kharch').value);
+    const as=tr.querySelector('.am3-aamad').value.trim(), ks=tr.querySelector('.am3-kharch').value.trim();
+    if(as!==''||ks!=='') any=true; ta+=num(as); tk+=num(ks);
   });
-  document.getElementById('am3_sum_aamad').textContent = fmt(ta);
-  document.getElementById('am3_sum_kharch').textContent = fmt(tk);
+  document.getElementById('am3_sum_aamad').textContent = any ? fmt(ta) : '';
+  document.getElementById('am3_sum_kharch').textContent = any ? fmt(tk) : '';
   recalcAmaratLocalFund();
 }
 function recalcAmaratLocalFund(){
-  const prevSavings = num(document.getElementById('am_lf_prevSavings').value);
-  const monthlyIncome = num(document.getElementById('am3_sum_aamad').textContent);
-  const monthlyExpense = num(document.getElementById('am3_sum_kharch').textContent);
-  const totalIncome = prevSavings + monthlyIncome;
-  document.getElementById('am_lf_totalIncome').textContent = fmt(totalIncome);
-  document.getElementById('am_lf_expenses').textContent = fmt(monthlyExpense);
-  document.getElementById('am_lf_balance').textContent = fmt(totalIncome - monthlyExpense);
+  const ps = document.getElementById('am_lf_prevSavings').value.trim();
+  const mi = document.getElementById('am3_sum_aamad').textContent.trim();
+  const mk = document.getElementById('am3_sum_kharch').textContent.trim();
+  const out = (id,v)=>{ document.getElementById(id).textContent = v; };
+  if(ps==='' && mi==='' && mk===''){ out('am_lf_totalIncome',''); out('am_lf_expenses',''); out('am_lf_balance',''); return; }
+  const totalIncome = num(ps) + num(mi);
+  out('am_lf_totalIncome', fmt(totalIncome)); out('am_lf_expenses', fmt(num(mk))); out('am_lf_balance', fmt(totalIncome - num(mk)));
 }
 
 function amaratLocalHeadRowTemplate(){
@@ -3167,11 +3209,11 @@ function fillAmaratLocalHeadsRows(rows){
   renumberAmaratLocalHeads();
 }
 function recalcAmaratLocalHeads(){
-  let tr_=0;
+  let t=0, any=false;
   document.querySelectorAll('#tbl_amLocalHeads tbody tr').forEach(tr=>{
-    tr_ += num(tr.querySelector('.am4-raqam').value);
+    const v=tr.querySelector('.am4-raqam').value.trim(); if(v!=='') any=true; t+=num(v);
   });
-  document.getElementById('am4_sum_raqam').textContent = fmt(tr_);
+  document.getElementById('am4_sum_raqam').textContent = any ? fmt(t) : '';
 }
 
 function amaratActionRowTemplate(){
@@ -6446,6 +6488,47 @@ b3SyncYear();
     ['input','change','blur'].forEach(ev=>a.addEventListener(ev,()=>syncOne(p[0],p[1],false)));
     b.addEventListener('input',(e)=>{ if(e.isTrusted && b.value!==a.value) b.classList.remove('autofilled'); });
   });
+})();
+
+/* ===== فہرست بقایاداران: ہر کالم کو نمبر + پورا کالم کاپی / پیسٹ ===== */
+(function(){
+  const CLIP_KEY='col_clip_v1';
+  function tbodyOf(tid){ return document.querySelector('#'+tid+' tbody'); }
+  function buildTools(tid){
+    const th=document.querySelector('#'+tid+' thead'); if(!th || th.querySelector('tr.coltools')) return;
+    let h='<tr class="coltools no-print">';
+    for(let n=1;n<=13;n++){
+      h+='<th><span class="cn">'+n+'</span>'+(n>1?'<button type="button" class="cbtn" title="پورا کالم کاپی" onclick="colCopy(\''+tid+'\','+(n-1)+')">📑</button><button type="button" class="cbtn" title="کالم میں پیسٹ" onclick="colPaste(\''+tid+'\','+(n-1)+')">📥</button>':'')+'</th>';
+    }
+    th.insertAdjacentHTML('beforeend', h+'</tr>');
+  }
+  function cellInput(tr,i){ const td=tr.children[i]; return td ? td.querySelector('input') : null; }
+  window.colCopy=async function(tid,i){
+    const vals=[...tbodyOf(tid).children].map(tr=>{ const e=cellInput(tr,i); return e ? e.value : ''; });
+    while(vals.length && vals[vals.length-1]==='') vals.pop();
+    if(!vals.length){ showToast('اس کالم میں کوئی رقم نہیں'); return; }
+    const text=vals.join('\n');
+    try{ localStorage.setItem(CLIP_KEY, text); }catch(e){}
+    try{ await copyTextToClipboard(text); }catch(e){}
+    showToast('کالم '+(i+1)+' کی '+vals.filter(v=>v!=='').length+' قطاریں کاپی ہو گئیں ✓ — اب دوسرے فارم کے کالم میں 📥 دبائیں');
+  };
+  window.colPaste=async function(tid,i){
+    let text='';
+    try{ if(navigator.clipboard && navigator.clipboard.readText){ const t=await navigator.clipboard.readText(); if(t && /\n/.test(t.trim())) text=t; } }catch(e){}
+    if(!text){ try{ text=localStorage.getItem(CLIP_KEY)||''; }catch(e){} }
+    if(!text){ showToast('پہلے کسی کالم میں 📑 دبا کر کاپی کریں'); return; }
+    const vals=text.replace(/\r/g,'').split('\n'); while(vals.length && vals[vals.length-1].trim()==='') vals.pop();
+    const page=tid==='table-page2'?2:1, tb=tbodyOf(tid);
+    while(tb.children.length<vals.length && tb.children.length<120) addMemberRow(page);
+    let n=0;
+    vals.forEach((v,r)=>{
+      const tr=tb.children[r]; const e=tr&&cellInput(tr,i); if(!e||e.readOnly) return;
+      let x=v.trim(); if(e.type==='number'){ x=x.replace(/[,\s]/g,''); if(x!=='' && isNaN(parseFloat(x))) return; }
+      e.value=x; e.dispatchEvent(new Event('input',{bubbles:true})); if(x!=='') n++;
+    });
+    showToast(n+' قطاروں میں کالم '+(i+1)+' پیسٹ ہو گیا ✓');
+  };
+  ['table-page1','table-page2'].forEach(buildTools);
 })();
 </script>
 </body>
