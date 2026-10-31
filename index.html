@@ -754,6 +754,13 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 #slashFab{display:none;position:fixed;z-index:2500;width:36px;height:30px;align-items:center;justify-content:center;border:none;border-radius:8px;
   background:var(--accent);color:#fff;font-size:20px;font-weight:700;line-height:1;box-shadow:0 2px 8px rgba(0,0,0,.35);cursor:pointer;direction:ltr;}
 @media print{#slashFab{display:none !important;}}
+@media print{
+  /* short year field: "جون 26ء" — only as wide as the year entered */
+  .ap-f.fit{flex:0 0 auto;min-width:16mm;padding:0 2.5mm;text-align:center;white-space:nowrap;}
+  /* fill the real printable page even when the print dialog / printer scales it (no empty strip under the border) */
+  .ap-sheet{width:100vw !important;height:calc(100vh - 0.4mm) !important;}
+}
+
 
 @media print{
   .ap-sheet{padding:9mm 6mm 9mm !important;}
@@ -1335,10 +1342,6 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   background:#faf5e4;border:1px solid #e3d9b3;border-radius:20px;cursor:pointer;box-shadow:none;}
 #acBox button:hover,#acBox button:focus-visible{background:var(--accent,#7a1f1f);color:#fff;border-color:var(--accent,#7a1f1f);}
 @media print{#acBox{display:none !important;}}
-</style>
-<style id="dynamicPrintStyle">
-@media print{ @page{ size: A4 portrait; margin: 9mm; } }
-
 /* =====================================================================
    فارم کی قسم ڈراپ ڈاؤن: ہر فارم کے ساتھ رنگین آئیکن  (screen only)
    ===================================================================== */
@@ -1389,6 +1392,40 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 @media screen and (max-width:820px){
   #formtype-auditaccount .grid2.keygrid .keyf{margin-bottom:8px;}
 }
+
+/* ===== آڈٹ/اکاؤنٹ برانچ: خانوں کے درمیان فاصلہ کم (laptop screen only) ===== */
+@media screen and (min-width:821px){
+  #formtype-auditaccount .a4page{padding:12px 14px 14px;margin:8px auto;}
+  #formtype-auditaccount .sectionbox{padding:24px 12px 10px;margin:26px 0 8px;border-radius:14px;}
+  #formtype-auditaccount .sectionbox .tag{top:-16px;padding:5px 20px;font-size:15px;}
+  #formtype-auditaccount .grid2{gap:7px 9px;margin-top:2px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
+  #formtype-auditaccount .grid2.keygrid{grid-template-columns:repeat(6,1fr);gap:7px 9px;}
+  #formtype-auditaccount .grid2 .fitem,#formtype-auditaccount .longline{padding:5px 10px 7px;border-radius:11px;margin:0;}
+  #formtype-auditaccount .longline{margin:6px 0;}
+  #formtype-auditaccount .grid2 .fitem label,#formtype-auditaccount .longline label{font-size:13px;margin-bottom:3px;line-height:1.35;}
+  #formtype-auditaccount .grid2 .fitem input,#formtype-auditaccount .longline input{min-height:36px;font-size:15px;padding:5px 10px;border-radius:9px;}
+  #formtype-auditaccount .keyf{border-top-width:3px !important;}
+  #formtype-auditaccount .keyf > label::before{width:24px;height:24px;font-size:13px;}
+  #formtype-auditaccount .keyf input{min-height:38px;font-size:15.5px;padding:5px 10px;}
+  #formtype-auditaccount .autobar{margin:0 0 3px;}
+  #formtype-auditaccount .tblwrap{margin:6px 0 !important;}
+  #formtype-auditaccount table.mini{font-size:14px;}
+  #formtype-auditaccount table.mini th,#formtype-auditaccount table.mini td{padding:3px 4px;}
+  #formtype-auditaccount table.mini thead th{font-size:13.5px;}
+  #formtype-auditaccount table.mini td input{min-height:34px;font-size:15px;padding:3px 8px;}
+  #formtype-auditaccount table.mini tfoot td{font-size:15px;}
+  #formtype-auditaccount table.mini td input.autocalc,#formtype-auditaccount table.mini td input[readonly]{background:#eef6ee;color:#0f5132;font-weight:700;}
+  #formtype-auditaccount .miyzan-box{padding:8px 14px;}
+  #formtype-auditaccount .footerline{gap:8px;padding-top:2px;}
+  #formtype-auditaccount .footerline .sigcol{padding:8px 10px 8px;gap:6px;}
+  #formtype-auditaccount .footerline input{min-height:36px;}
+  #formtype-auditaccount .fitem label.subl{margin-top:6px;}
+  #formtype-auditaccount .longline > div{gap:6px !important;}
+}
+</style>
+<style id="dynamicPrintStyle">
+@media print{ @page{ size: A4 portrait; margin: 9mm; } }
+
 </style>
 </head>
 <body class="lang-ur">
@@ -1649,7 +1686,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
               <table class="mini" id="tbl_currentYear">
                 <thead><tr><th><span class="ur">نام مد</span><span class="en">Item</span></th><th><span class="ur">کل وصولی</span><span class="en">Total Collected</span></th><th><span class="ur">ترسیل</span><span class="en">Remitted</span></th><th><span class="ur">بقایا/قابل ترسیل</span><span class="en">Balance/Remittable</span></th><th><span class="ur">آخری کوپن معہ تاریخ</span><span class="en">Last Coupon w/ Date</span></th></tr></thead>
                 <tbody></tbody>
-                <tfoot><tr><td class="lbl"><span class="ur">میزان</span><span class="en">Total</span></td><td id="cy_total_collect">0</td><td id="cy_total_forward">0</td><td id="cy_total_balance">0</td><td></td></tr></tfoot>
+                <tfoot><tr><td class="lbl"><span class="ur">میزان</span><span class="en">Total</span></td><td id="cy_total_collect"></td><td id="cy_total_forward"></td><td id="cy_total_balance"></td><td></td></tr></tfoot>
               </table>
             </div>
           </div>
@@ -2045,6 +2082,8 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
         <h3><span class="ur">✍️ سمارٹ سجیشنز (آٹو کمپلیٹ)</span><span class="en">Smart suggestions</span></h3>
         <p><span class="ur">لفظ کے شروع میں م، ص، و، ز، ب، د، ق، س، مھ وغیرہ لکھیں تو نیچے مکمل لفظ تجویز ہوتا ہے۔ لفظ صرف کلک کرنے پر لکھا جاتا ہے، ورنہ آپ لکھتے رہیں۔</span><span class="en">Type a short form (م → مکرم, ص → صاحب …) and tap the suggested word to insert it.</span></p>
         <button id="acToggleBtn" type="button" onclick="acToggle()">چالو ✓ (بند کریں)</button>
+        <p style="margin-top:8px;"><span class="ur">جو الفاظ آپ بار بار لکھتے ہیں وہ خود یاد ہو جاتے ہیں اور شروع کے حروف لکھنے پر تجویز ہوتے ہیں۔</span></p>
+        <button type="button" onclick="acClearLearned()">🧹 سیکھے ہوئے الفاظ صاف کریں</button>
       </div>
       <div class="settingcard">
         <h3><span class="ur">🔐 پن / سیکیورٹی</span><span class="en">PIN / Security</span></h3>
@@ -2905,9 +2944,9 @@ function buildMiniTables(){
     lastBody.insertAdjacentHTML('beforeend', `
       <tr data-i="${i}">
         <td class="lbl">${label}</td>
-        <td><input type="number" step="0.01" class="ly-collect"></td>
-        <td><input type="number" step="0.01" class="ly-forward"></td>
-        <td><input type="text" class="ly-balance"></td>
+        <td><input type="number" step="0.01" class="ly-collect" oninput="recalcLastYear()"></td>
+        <td><input type="number" step="0.01" class="ly-forward" oninput="recalcLastYear()"></td>
+        <td><input type="text" class="ly-balance autocalc" readonly tabindex="-1" placeholder="آٹو"></td>
         <td><input type="text" class="ly-lastamt"></td>
       </tr>`);
     curBody.insertAdjacentHTML('beforeend', `
@@ -2915,23 +2954,32 @@ function buildMiniTables(){
         <td class="lbl">${label}</td>
         <td><input type="number" step="0.01" class="cy-collect" oninput="recalcCurrentYear()"></td>
         <td><input type="number" step="0.01" class="cy-forward" oninput="recalcCurrentYear()"></td>
-        <td><input type="text" class="cy-balance" readonly style="background:#eef6ee;"></td>
+        <td><input type="text" class="cy-balance autocalc" readonly tabindex="-1" placeholder="آٹو"></td>
         <td><input type="text" class="cy-lastcoupon" placeholder="کوپن نمبر / تاریخ"></td>
       </tr>`);
   });
+  recalcLastYear(); recalcCurrentYear();
+}
+function recalcLastYear(){
+  document.querySelectorAll('#tbl_lastYear tbody tr').forEach(tr=>{
+    const cs = tr.querySelector('.ly-collect').value.trim(), fs = tr.querySelector('.ly-forward').value.trim();
+    tr.querySelector('.ly-balance').value = (cs==='' && fs==='') ? '' : fmt(num(cs) - num(fs));
+  });
 }
 function recalcCurrentYear(){
-  let tc=0, tf=0, tb=0;
+  let tc=0, tf=0, tb=0, any=false;
   document.querySelectorAll('#tbl_currentYear tbody tr').forEach(tr=>{
-    const c = num(tr.querySelector('.cy-collect').value);
-    const f = num(tr.querySelector('.cy-forward').value);
-    const b = c - f;
-    tr.querySelector('.cy-balance').value = fmt(b);
-    tc+=c; tf+=f; tb+=b;
+    const cs = tr.querySelector('.cy-collect').value.trim(), fs = tr.querySelector('.cy-forward').value.trim();
+    const c = num(cs), f = num(fs);
+    if(cs!=='' || fs!==''){
+      any = true;
+      tr.querySelector('.cy-balance').value = fmt(c - f);
+    } else tr.querySelector('.cy-balance').value = '';
+    tc+=c; tf+=f; tb+=(c-f);
   });
-  document.getElementById('cy_total_collect').textContent = fmt(tc);
-  document.getElementById('cy_total_forward').textContent = fmt(tf);
-  document.getElementById('cy_total_balance').textContent = fmt(tb);
+  document.getElementById('cy_total_collect').textContent = any ? fmt(tc) : '';
+  document.getElementById('cy_total_forward').textContent = any ? fmt(tf) : '';
+  document.getElementById('cy_total_balance').textContent = any ? fmt(tb) : '';
 }
 function recalcLocalFund(){
   const balance30June = num(document.getElementById('c_balance30June').value);
@@ -3652,6 +3700,7 @@ function fillFormDataCore(data){
     buildMiniTables();
     fillAccountTable('#tbl_lastYear', b.lastYearRows);
     fillAccountTable('#tbl_currentYear', b.currentYearRows);
+    recalcLastYear(); recalcCurrentYear();
     recalcCurrentYear();
 
     const lf = data.localFund||{};
@@ -4971,6 +5020,7 @@ function apVal(id){ if(window.PRINT_BLANK) return ''; const e = document.getElem
 function apL(t, cls){ return '<span class="ap-l' + (cls ? ' ' + cls : '') + '">' + t + '</span>'; }
 function apF(v, cls){ return '<span class="ap-f' + (cls ? ' ' + cls : '') + '">' + escapeHtml(v || '') + '</span>'; }
 function apDateShort(v){ const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ''); return m ? (parseInt(m[3],10) + '-' + parseInt(m[2],10) + '-' + m[1].slice(2)) : (v || ''); }
+function apYear(y){ y = String(y||'').trim(); return /^\d{2,4}$/.test(y) ? y + 'ء' : y; }
 function apDate(v){ const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ''); return m ? (m[3] + '-' + m[2] + '-' + m[1]) : (v || ''); }
 function apSig(key){ const d = (!window.PRINT_BLANK && SIGS[key]) ? SIGS[key] : ''; return d ? '<img class="ap-sig" src="' + d + '" alt="">' : ''; }
 function apCell(t){
@@ -4995,7 +5045,7 @@ function apTable(sel, pre, withHead, withTotal){
   const body = rows.map(tr=>{
     const g = c => window.PRINT_BLANK ? '' : String((tr.querySelector(c) || {}).value || '').trim();
     const vals = [g('.' + pre + '-collect'), g('.' + pre + '-forward'), g('.' + pre + '-balance'), g('.' + pre + '-' + (pre === 'ly' ? 'lastamt' : 'lastcoupon'))];
-    if(vals[0] || vals[1]) any = true;
+    if(vals[0] || vals[1]) any = true; else vals[2] = '';   /* nothing entered in this row: no auto "0" in print */
     const lbl = ((tr.querySelector('.lbl') || {}).textContent || '').trim();
     const last = vals[3] ? (vals[3].indexOf('/') > -1 ? formatReceiptFractionHTML(vals[3]) : escapeHtml(vals[3])) : '';
     return '<tr><td class="ap-lbl">' + escapeHtml(lbl) + '</td><td>' + escapeHtml(vals[0]) + '</td><td>' + escapeHtml(vals[1]) + '</td><td>' + escapeHtml(vals[2]) + '</td><td>' + last + '</td></tr>';
@@ -5032,9 +5082,9 @@ function buildAuditPrintSheet(){
 
   '<div class="ap-box ap-box2"><div class="ap-inner">' +
     '<div class="ap-row ap-r1"><span class="ap-tag">اکاؤنٹ برانچ</span>' + apL('نام انسپکٹر مال آمد :') + apF(v('b_inspName'), 'g3') + apL('نام جماعت :') + apF(v('b_jamaat'), 'g3') + apL('ضلع :') + apF(v('b_zila'), 'g2') + '</div>' +
-    '<div class="ap-row">' + apL('سال گزشتہ جون') + apF(v('b_lastJuneYear'), 'g1') + apL('تک کل وصولی کی مدوار پوزیشن') + '<span class="ap-fill"></span></div>' +
+    '<div class="ap-row">' + apL('سال گزشتہ جون') + apF(apYear(v('b_lastJuneYear')), 'fit') + apL('تک کل وصولی کی مدوار پوزیشن') + '<span class="ap-fill"></span></div>' +
     apTable('#tbl_lastYear', 'ly', true, false) +
-    '<div class="ap-row">' + apL('سال رواں کی جولائی') + apF(v('b_currentYearFrom'), 'g1') + apL('تا تاریخ معائنہ') + apF(v('b_currentYearTo'), 'g1') + apL('وصولی کی پوزیشن') + '<span class="ap-fill"></span></div>' +
+    '<div class="ap-row">' + apL('سال رواں کی جولائی') + apF(apYear(v('b_currentYearFrom')), 'fit') + apL('تا تاریخ معائنہ') + apF(v('b_currentYearTo'), 'g1') + apL('وصولی کی پوزیشن') + '<span class="ap-fill"></span></div>' +
     apTable('#tbl_currentYear', 'cy', false, true) +
     '<div class="ap-row ap-tagrow"><span class="ap-tag">مقامی فنڈ / لوکل فنڈ</span><span class="ap-note">(بقیہ تفصیل الگ کاغذ پر لکھیں)</span></div>' +
     '<div class="ap-lf">' +
@@ -5962,6 +6012,22 @@ function ctDir(id){
     'ن':['ناظم'], 'ر':['رکن'], 'مح':['محمد','محترم','محلہ'], 'ع':['عبداللہ','عبدالرحمن'],
     'ک':['کارکن','کل'], 'ہ':['ہمدرد'], 'ڈ':['ڈاکخانہ'], 'ش':['شہر']
   };
+  /* words/phrases the user writes again and again are learned and offered (count >= 2) */
+  var LKEY = 'ac_learned_v1', LMAX = 400, learned = {};
+  var SEED = {'جی ہاں':2,'جی نہیں':2};
+  try{ learned = JSON.parse(localStorage.getItem(LKEY) || '{}') || {}; }catch(e){ learned = {}; }
+  function saveLearned(){
+    var ks = Object.keys(learned);
+    if(ks.length > LMAX){
+      ks.sort(function(a,b){ return learned[b]-learned[a]; });
+      var keep = {}; ks.slice(0, LMAX).forEach(function(k){ keep[k] = learned[k]; }); learned = keep;
+    }
+    try{ localStorage.setItem(LKEY, JSON.stringify(learned)); }catch(e){}
+  }
+  window.acClearLearned = function(){
+    learned = {}; try{ localStorage.removeItem(LKEY); }catch(e){}
+    if(typeof showToast === 'function'){ try{ showToast('سیکھے ہوئے الفاظ صاف ہو گئے ✓'); }catch(e){} }
+  };
   /* general words, suggested when 2 or more letters are typed */
   var WORDS = ('مکرم محترم جناب صاحب صاحبہ ولد زوجہ بنت دختر قوم ساکن محلہ گاؤں موضع تحصیل ضلع شہر ڈاکخانہ صوبہ ' +
     'امیر امارت جماعت اسلامی حلقہ ناظم نائب قیم رکن کارکن امیدوار ہمدرد متفق ذمہ دار ذمہ داران ' +
@@ -6010,16 +6076,34 @@ function ctDir(id){
     if(/[0-9\u06F0-\u06F9\u0660-\u0669A-Za-z@]/.test(tok)) return null;   /* digits / latin: not for us */
     return {start:i, end:caret, token:tok};
   }
-  function suggest(tok){
+  function learnFrom(el){
+    if(!eligible(el) || el.getAttribute('autocomplete') === 'off') return;
+    var v = (el.value || '').replace(/\s+/g,' ').trim();
+    if(!v || v.length > 60 || /[0-9\u06F0-\u06F9\u0660-\u0669A-Za-z@]/.test(v)) return;
+    var words = v.split(BOUND).filter(function(w){ return w.length >= 2 && w.length <= 14; });
+    var uniq = {}; words.forEach(function(w){ uniq[w] = 1; });
+    Object.keys(uniq).forEach(function(w){ learned[w] = (learned[w]||0) + 1; });
+    if(v.indexOf(' ') > 0 && v.length <= 30) learned[v] = (learned[v]||0) + 1;
+    saveLearned();
+  }
+  function suggest(tok, atStart){
     var t = norm(tok), out = [], seen = {};
     function add(w){ if(!seen[w] && norm(w) !== t){ seen[w]=1; out.push(w); } }
     if(Object.prototype.hasOwnProperty.call(ABBR, t)) ABBR[t].forEach(add);
+    var lk = {}; Object.keys(SEED).forEach(function(k){ lk[k] = SEED[k]; });
+    Object.keys(learned).forEach(function(k){ lk[k] = Math.max(lk[k]||0, learned[k]); });
+    Object.keys(lk).filter(function(k){
+      if(lk[k] < 2) return false;
+      if(k.indexOf(' ') > 0 && !atStart) return false;       /* phrases only at the start of a field */
+      return norm(k).indexOf(t) === 0 && norm(k) !== t && (t.length >= 2 || k.indexOf(' ') < 0);
+    }).sort(function(a,b){ return lk[b]-lk[a]; }).slice(0,3).forEach(add);
     if(t.length >= 2){
       WORDS.forEach(function(w){ if(norm(w).indexOf(t) === 0) add(w); });
     }
     return out.slice(0, MAX);
   }
   window._acTest = {findToken:findToken, suggest:suggest};
+  document.addEventListener('change', function(e){ try{ learnFrom(e.target); }catch(err){} }, true);
 
   function eligible(el){
     if(!el || el.nodeType !== 1) return false;
@@ -6143,7 +6227,7 @@ function ctDir(id){
     if(!eligible(el)){ hide(); return; }
     var info = readInfo(el);
     if(!info){ hide(); return; }
-    var words = suggest(info.token);
+    var words = suggest(info.token, info.kind === 'field' && info.start === 0);
     if(!words.length){ hide(); return; }
     show(info, words);
   }
