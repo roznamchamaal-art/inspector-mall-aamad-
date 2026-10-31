@@ -1476,6 +1476,42 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   tr.coltools .cbtn:hover{background:#7a1f1f;color:#fff;}
 }
 @media print{ tr.coltools{display:none !important;} }
+
+/* ===== فہرست بقایاداران (لیپ ٹاپ): دائیں بائیں سکرول ختم، پورا ٹیبل ایک اسکرین میں ===== */
+@media screen and (min-width:821px){
+  #table-page1,#table-page2{min-width:0 !important;width:100%;font-size:12.5px;}
+  #table-page1 td.name-cell,#table-page2 td.name-cell{min-width:0;width:15%;}
+  #table-page1 td:nth-child(n+4),#table-page2 td:nth-child(n+4){min-width:0;}
+  #table-page1 td.delcol,#table-page2 td.delcol{width:58px;min-width:0;padding:2px;}
+  #table-page1 .rowdel,#table-page1 .rowcopy,#table-page2 .rowdel,#table-page2 .rowcopy{width:24px;height:24px;min-height:24px;font-size:12px;}
+  #table-page1 th,#table-page2 th{padding:4px 2px;font-size:11.5px;}
+  #table-page1 td input,#table-page2 td input{width:100%;min-width:0;min-height:34px;font-size:13px;padding:2px 4px;}
+  #table-page1 th input,#table-page2 th input{width:100%;min-width:0;max-width:64px;}
+  #table-page1 td.srno,#table-page2 td.srno{width:30px;}
+  #formtype-baqaya .tblwrap{overflow-x:visible;}
+  .b3-tbl thead tr.coltools th{background:#f3ead0;padding:2px;white-space:nowrap;text-align:center;font-weight:400;border-top:1px dashed #c9b98a;}
+}
+/* ===== امارت آڈٹ: اضافی خانے ===== */
+@media screen{
+  #formtype-amaratAudit .am-lf-xrow{display:flex;align-items:center;gap:8px;width:100%;margin:4px 0 0;padding:4px 10px;box-sizing:border-box;}
+  #formtype-amaratAudit .am-lf-xrow input{height:32px;min-height:32px;font-size:14px;padding:2px 8px;border-radius:8px;}
+  #formtype-amaratAudit .am-lf-xrow .am-lfx-label{flex:1;}
+  #formtype-amaratAudit .am-lf-xrow .am-lfx-amt{flex:0 0 170px;}
+  #formtype-amaratAudit .am-lf-xrow .rowdel{width:24px;height:24px;min-height:24px;flex:none;font-size:12px;}
+  #formtype-amaratAudit #am_lf_extraTotalBox{width:100%;margin:4px 0 0;box-sizing:border-box;}
+}
+@media print{
+  .am-lf-xrow{display:flex !important;align-items:baseline;gap:10px;width:100%;}
+  .am-lf-xrow input{border:none !important;border-bottom:0.3mm dotted #000 !important;background:transparent !important;}
+  .am-lf-xrow .am-lfx-label{flex:1;}
+  .am-lf-xrow .am-lfx-amt{flex:0 0 35mm;}
+  .am-lf-xrow .rowdel{display:none !important;}
+  /* auditaccount print: local-fund labels and amounts sit close together */
+  .ap-lr .ap-l.lw{flex:0 0 30mm;margin-inline-end:1mm;}
+  .ap-lr .ap-f{flex:0 0 30mm;min-width:0;}
+  .ap-lr .ap-f.fx{flex:0 0 16mm;} .ap-lr .ap-f.fx.yr{flex:0 0 11mm;}
+  .ap-lr .ap-sp{flex:0 0 15mm;margin-inline-end:0;}
+}
 </style>
 <style id="dynamicPrintStyle">
 @media print{ @page{ size: A4 portrait; margin: 9mm; } }
@@ -1968,7 +2004,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
               <table class="mini" id="tbl_amSummary">
                 <thead><tr><th><span class="ur">نمبر شمار</span><span class="en">No.</span></th><th><span class="ur">مدات</span><span class="en">Head</span></th><th><span class="ur">وصولی</span><span class="en">Collection</span></th><th><span class="ur">ترسیل</span><span class="en">Remittance</span></th><th><span class="ur">قابل ترسیل</span><span class="en">Remittable</span></th></tr></thead>
                 <tbody></tbody>
-                <tfoot><tr><td class="lbl" colspan="2"><span class="ur">میزان</span><span class="en">Total</span></td><td id="am1_sum_wasooli">></td><td id="am1_sum_tarseel">></td><td id="am1_sum_qabil">></td></tr></tfoot>
+                <tfoot><tr><td class="lbl" colspan="2"><span class="ur">میزان</span><span class="en">Total</span></td><td id="am1_sum_wasooli"></td><td id="am1_sum_tarseel"></td><td id="am1_sum_qabil"></td></tr></tfoot>
               </table>
             </div>
           </div>
@@ -1984,7 +2020,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
                 <colgroup><col style="width:6%"><col style="width:32%"><col style="width:17%"><col style="width:17%"><col style="width:28%"></colgroup>
                 <thead><tr><th><span class="ur">نمبر شمار</span><span class="en">No.</span></th><th><span class="ur">مدات</span><span class="en">Head</span></th><th><span class="ur">وصولی</span><span class="en">Collection</span></th><th><span class="ur">ترسیل</span><span class="en">Remittance</span></th><th><span class="ur">کیفیت</span><span class="en">Remarks</span></th></tr></thead>
                 <tbody></tbody>
-                <tfoot><tr><td class="lbl" colspan="2"><span class="ur">میزان</span><span class="en">Total</span></td><td id="am2_sum_wasooli">></td><td id="am2_sum_tarseel">></td><td></td></tr></tfoot>
+                <tfoot><tr><td class="lbl" colspan="2"><span class="ur">میزان</span><span class="en">Total</span></td><td id="am2_sum_wasooli"></td><td id="am2_sum_tarseel"></td><td></td></tr></tfoot>
               </table>
             </div>
             <div class="addrow-bar"><button type="button" onclick="addAmaratDetailRow()"><span class="ur">+ مد شامل کریں </span><span class="en">Add Head</span></button></div>
@@ -2008,6 +2044,12 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
               <span><span class="ur">بقایا</span><span class="en">Balance</span></span>
               <span class="val" id="am_lf_balance"></span>
             </div>
+            <div id="am_lf_extra"></div>
+            <div class="addrow-bar"><button type="button" onclick="addAmaratLfExtra()"><span class="ur">+ خانہ شامل کریں</span><span class="en">Add Row</span></button></div>
+            <div class="miyzan-box" id="am_lf_extraTotalBox" style="display:none;background:#e8f1ff;">
+              <span><span class="ur">میزان (بقایا + اضافہ شدہ رقم)</span><span class="en">Total (Balance + added)</span></span>
+              <span class="val" id="am_lf_extraTotal"></span>
+            </div>
             <div class="longline"><label><span class="ur">تفصیل</span><span class="en">Detail</span></label><input type="text" id="am_lf_detail"></div>
           </div>
 
@@ -2017,7 +2059,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
               <table class="mini" id="tbl_amMonthly">
                 <thead><tr><th><span class="ur">نمبر شمار</span><span class="en">No.</span></th><th><span class="ur">ماہ</span><span class="en">Month</span></th><th><span class="ur">آمد</span><span class="en">Income</span></th><th><span class="ur">خرچ</span><span class="en">Expense</span></th></tr></thead>
                 <tbody></tbody>
-                <tfoot><tr><td class="lbl" colspan="2"><span class="ur">میزان</span><span class="en">Total</span></td><td id="am3_sum_aamad">></td><td id="am3_sum_kharch">></td></tr></tfoot>
+                <tfoot><tr><td class="lbl" colspan="2"><span class="ur">میزان</span><span class="en">Total</span></td><td id="am3_sum_aamad"></td><td id="am3_sum_kharch"></td></tr></tfoot>
               </table>
             </div>
           </div>
@@ -2028,7 +2070,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
               <table class="mini" id="tbl_amLocalHeads">
                 <thead><tr><th><span class="ur">نمبر شمار</span><span class="en">No.</span></th><th><span class="ur">لوکل مدات</span><span class="en">Local Head</span></th><th><span class="ur">رقم</span><span class="en">Amount</span></th></tr></thead>
                 <tbody></tbody>
-                <tfoot><tr><td class="lbl" colspan="2"><span class="ur">میزان</span><span class="en">Total</span></td><td id="am4_sum_raqam">></td></tr></tfoot>
+                <tfoot><tr><td class="lbl" colspan="2"><span class="ur">میزان</span><span class="en">Total</span></td><td id="am4_sum_raqam"></td></tr></tfoot>
               </table>
             </div>
             <div class="addrow-bar"><button type="button" onclick="addAmaratLocalHeadRow()"><span class="ur">+ مد شامل کریں </span><span class="en">Add Head</span></button></div>
@@ -2128,7 +2170,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
         <button id="acToggleBtn" type="button" onclick="acToggle()">چالو ✓ (بند کریں)</button>
         <p style="margin-top:8px;"><span class="ur">جو الفاظ آپ بار بار لکھتے ہیں وہ خود یاد ہو جاتے ہیں اور شروع کے حروف لکھنے پر تجویز ہوتے ہیں۔</span></p>
         <button type="button" onclick="acClearLearned()">🧹 سیکھے ہوئے الفاظ صاف کریں</button>
-        <p style="margin-top:10px;font-size:12px;opacity:.7;">ورژن: 31-10-2026 (ہ)</p>
+        <p style="margin-top:10px;font-size:12px;opacity:.7;">ورژن: 31-10-2026 (و)</p>
       </div>
       <div class="settingcard">
         <h3><span class="ur">🔐 پن / سیکیورٹی</span><span class="en">PIN / Security</span></h3>
@@ -3618,6 +3660,7 @@ function collectFormDataCore(){
           expenses: document.getElementById('am_lf_expenses').textContent,
           balance: document.getElementById('am_lf_balance').textContent,
           detail: val('am_lf_detail'),
+          extraRows: collectAmaratLfExtra(),
           monthlyRows: collectAccountTable('#tbl_amMonthly')
         },
         localHeadsRows: collectAccountTable('#tbl_amLocalHeads'),
@@ -3778,7 +3821,7 @@ function fillFormDataCore(data){
     fillAmaratDetailRows(am.detailRows);
     recalcAmaratDetail();
     const lf = am.localFund||{};
-    setVal('am_lf_prevSavings', lf.prevSavings); setVal('am_lf_julyDate', lf.julyDate); setVal('am_lf_detail', lf.detail);
+    setVal('am_lf_prevSavings', lf.prevSavings); setVal('am_lf_julyDate', lf.julyDate); setVal('am_lf_detail', lf.detail); fillAmaratLfExtra(lf.extraRows);
     buildAmaratMonthlyTable();
     fillAccountTable('#tbl_amMonthly', lf.monthlyRows);
     recalcAmaratMonthly();
@@ -3872,7 +3915,7 @@ function newFormCore(){
   } else if(currentFormType==='amaratAudit'){
     ['am_amaratName','am_julyYear','am_toDate','am_receiptBox','am_detJulyYear','am_detToDate',
      'am_lf_prevSavings','am_lf_julyDate','am_lf_detail','am_ameerSignDate','am_inspSignDate'
-    ].forEach(id=>setVal(id,''));
+    ].forEach(id=>setVal(id,'')); fillAmaratLfExtra([]);
     buildAmaratTables();
     recalcAmaratSummary();
     recalcAmaratDetail();
@@ -5335,7 +5378,7 @@ function bpTable(rows, startNo, cap, opt){
   h += '<tr class="bp-tot"><td></td><td class="bp-mz">میزان</td><td></td>' + cols.map(k=>'<td>' + escapeHtml(sums(k)) + '</td>').join('') + '</tr>';
   if(opt.grand && opt.grand.length){
     const gs = k => bpSum(opt.grand.map(r=>r[k[0]][k[1]]));
-    h += '<tr class="bp-tot bp-grand"><td></td><td class="bp-mz">گرینڈ ٹوٹل</td><td></td>' + cols.map(k=>'<td>' + escapeHtml(gs(k)) + '</td>').join('') + '</tr>';
+    h += '<tr class="bp-tot bp-grand"><td></td><td class="bp-mz">تمام صفحات کا میزان</td><td></td>' + cols.map(k=>'<td>' + escapeHtml(gs(k)) + '</td>').join('') + '</tr>';
   }
   h += '</tbody></table>';
   return h;
@@ -6411,7 +6454,7 @@ function b3Sheet(first, rows, startNo, opt){
   }
   const ps = blank ? {a:'', j:''} : b3Sums(rows);
   t += '<tr class="tot"><td></td><td>میزان</td><td></td><td></td><td>' + escapeHtml(ps.a) + '</td><td>' + escapeHtml(ps.j) + '</td></tr>';
-  if(opt.grand){ const g = b3Sums(opt.grand); t += '<tr class="grand"><td></td><td>گرینڈ ٹوٹل</td><td></td><td></td><td>' + escapeHtml(g.a) + '</td><td>' + escapeHtml(g.j) + '</td></tr>'; }
+  if(opt.grand){ const g = b3Sums(opt.grand); t += '<tr class="grand"><td></td><td>تمام صفحات کا میزان</td><td></td><td></td><td>' + escapeHtml(g.a) + '</td><td>' + escapeHtml(g.j) + '</td></tr>'; }
   t += '</tbody></table>';
   const sg = (l, id) => '<div class="b3-sg">' + apSig(id) + '<span class="l">' + l + '</span><span class="f">' + escapeHtml(v(id)) + '</span></div>';
   const head = first ? '<div class="b3-head"><div class="b3-ttl">فہرست بقایا داران 30 جون ' + ey + 'ء</div>' +
@@ -6490,46 +6533,87 @@ b3SyncYear();
   });
 })();
 
-/* ===== فہرست بقایاداران: ہر کالم کو نمبر + پورا کالم کاپی / پیسٹ ===== */
+/* ===== بقایاداران: ہر کالم کو نمبر + پورا کالم کاپی / پیسٹ (فہرست بقایاداران اور 30 جون بقایاداران) ===== */
 (function(){
   const CLIP_KEY='col_clip_v1';
-  function tbodyOf(tid){ return document.querySelector('#'+tid+' tbody'); }
-  function buildTools(tid){
-    const th=document.querySelector('#'+tid+' thead'); if(!th || th.querySelector('tr.coltools')) return;
-    let h='<tr class="coltools no-print">';
-    for(let n=1;n<=13;n++){
-      h+='<th><span class="cn">'+n+'</span>'+(n>1?'<button type="button" class="cbtn" title="پورا کالم کاپی" onclick="colCopy(\''+tid+'\','+(n-1)+')">📑</button><button type="button" class="cbtn" title="کالم میں پیسٹ" onclick="colPaste(\''+tid+'\','+(n-1)+')">📥</button>':'')+'</th>';
+  const T={
+    'table-page1':{thead:'#table-page1 thead', body:'#tbody-page1', first:0, count:13, add:()=>addMemberRow(1)},
+    'table-page2':{thead:'#table-page2 thead', body:'#tbody-page2', first:0, count:13, add:()=>addMemberRow(2)},
+    'b3':{thead:'#formtype-baqaya30 .b3-tbl thead', body:'#b3_tbody', first:1, count:6, textFrom:1, add:()=>b3AddRow({}, true)}
+  };
+  function buildTools(key){
+    const c=T[key], th=document.querySelector(c.thead); if(!th || th.querySelector('tr.coltools')) return;
+    let h='<tr class="coltools no-print">'+(c.first?'<th></th>':'');
+    for(let n=1;n<=c.count;n++){
+      const idx=n-1+c.first;
+      h+='<th><span class="cn">'+n+'</span>'+(n>1?'<button type="button" class="cbtn" title="پورا کالم کاپی" onclick="colCopy(\''+key+'\','+idx+')">📑</button><button type="button" class="cbtn" title="کالم میں پیسٹ" onclick="colPaste(\''+key+'\','+idx+')">📥</button>':'')+'</th>';
     }
     th.insertAdjacentHTML('beforeend', h+'</tr>');
   }
-  function cellInput(tr,i){ const td=tr.children[i]; return td ? td.querySelector('input') : null; }
-  window.colCopy=async function(tid,i){
-    const vals=[...tbodyOf(tid).children].map(tr=>{ const e=cellInput(tr,i); return e ? e.value : ''; });
+  const body=k=>document.querySelector(T[k].body);
+  const cellInput=(tr,i)=>{ const td=tr.children[i]; return td ? td.querySelector('input') : null; };
+  window.colCopy=async function(key,i){
+    const vals=[...body(key).children].map(tr=>{ const e=cellInput(tr,i); return e ? e.value : ''; });
     while(vals.length && vals[vals.length-1]==='') vals.pop();
     if(!vals.length){ showToast('اس کالم میں کوئی رقم نہیں'); return; }
     const text=vals.join('\n');
     try{ localStorage.setItem(CLIP_KEY, text); }catch(e){}
     try{ await copyTextToClipboard(text); }catch(e){}
-    showToast('کالم '+(i+1)+' کی '+vals.filter(v=>v!=='').length+' قطاریں کاپی ہو گئیں ✓ — اب دوسرے فارم کے کالم میں 📥 دبائیں');
+    showToast('کالم '+(i+1-T[key].first)+' کی '+vals.filter(v=>v!=='').length+' قطاریں کاپی ہو گئیں ✓ — اب دوسرے فارم کے کالم میں 📥 دبائیں');
   };
-  window.colPaste=async function(tid,i){
+  window.colPaste=async function(key,i){
     let text='';
     try{ if(navigator.clipboard && navigator.clipboard.readText){ const t=await navigator.clipboard.readText(); if(t && /\n/.test(t.trim())) text=t; } }catch(e){}
     if(!text){ try{ text=localStorage.getItem(CLIP_KEY)||''; }catch(e){} }
     if(!text){ showToast('پہلے کسی کالم میں 📑 دبا کر کاپی کریں'); return; }
     const vals=text.replace(/\r/g,'').split('\n'); while(vals.length && vals[vals.length-1].trim()==='') vals.pop();
-    const page=tid==='table-page2'?2:1, tb=tbodyOf(tid);
-    while(tb.children.length<vals.length && tb.children.length<120) addMemberRow(page);
+    const tb=body(key);
+    while(tb.children.length<vals.length && tb.children.length<200) T[key].add();
     let n=0;
     vals.forEach((v,r)=>{
       const tr=tb.children[r]; const e=tr&&cellInput(tr,i); if(!e||e.readOnly) return;
       let x=v.trim(); if(e.type==='number'){ x=x.replace(/[,\s]/g,''); if(x!=='' && isNaN(parseFloat(x))) return; }
       e.value=x; e.dispatchEvent(new Event('input',{bubbles:true})); if(x!=='') n++;
     });
-    showToast(n+' قطاروں میں کالم '+(i+1)+' پیسٹ ہو گیا ✓');
+    showToast(n+' قطاروں میں کالم '+(i+1-T[key].first)+' پیسٹ ہو گیا ✓');
   };
-  ['table-page1','table-page2'].forEach(buildTools);
+  Object.keys(T).forEach(buildTools);
 })();
+
+/* ===== امارت آڈٹ: خلاصہ حسابات مقامی فنڈز — بقایا کے نیچے اضافی خانے + میزان ===== */
+function lfxRowHtml(label, amt){
+  const e = x => String(x == null ? '' : x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+  return '<div class="miyzan-box am-lf-xrow" style="background:#eef6ee;">' +
+    '<input type="text" class="am-lfx-label" placeholder="خانے کا نام (مثلاً امین کے پاس رقم)" value="' + e(label) + '">' +
+    '<input type="number" step="0.01" class="am-lfx-amt" placeholder="رقم" oninput="recalcAmaratLfExtra()" value="' + e(amt) + '">' +
+    '<button type="button" class="rowdel" title="حذف کریں" onclick="this.parentNode.remove();recalcAmaratLfExtra();">×</button></div>';
+}
+function addAmaratLfExtra(label, amt){
+  const box = document.getElementById('am_lf_extra');
+  box.insertAdjacentHTML('beforeend', lfxRowHtml(label, amt));
+  recalcAmaratLfExtra();
+  if(label === undefined){ const r = box.lastElementChild.querySelector('.am-lfx-label'); r.focus(); }
+  if(typeof setDirty === 'function') setDirty(true);
+}
+function recalcAmaratLfExtra(){
+  const rows = [...document.querySelectorAll('#am_lf_extra .am-lf-xrow')];
+  const tb = document.getElementById('am_lf_extraTotalBox');
+  if(!rows.length){ tb.style.display = 'none'; document.getElementById('am_lf_extraTotal').textContent = ''; return; }
+  tb.style.display = '';
+  const bal = document.getElementById('am_lf_balance').textContent.trim();
+  let sum = 0, any = bal !== '';
+  rows.forEach(r => { const v = r.querySelector('.am-lfx-amt').value.trim(); if(v !== '') any = true; sum += num(v); });
+  document.getElementById('am_lf_extraTotal').textContent = any ? fmt(num(bal) + sum) : '';
+}
+function collectAmaratLfExtra(){
+  return [...document.querySelectorAll('#am_lf_extra .am-lf-xrow')].map(r => ({label: r.querySelector('.am-lfx-label').value, amt: r.querySelector('.am-lfx-amt').value}));
+}
+function fillAmaratLfExtra(rows){
+  document.getElementById('am_lf_extra').innerHTML = '';
+  (rows || []).forEach(r => addAmaratLfExtra(r.label || '', r.amt || ''));
+  recalcAmaratLfExtra();
+}
+(function(){ const _rl = recalcAmaratLocalFund; recalcAmaratLocalFund = function(){ _rl(); recalcAmaratLfExtra(); }; })();
 </script>
 </body>
 </html>
