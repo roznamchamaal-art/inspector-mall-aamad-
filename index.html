@@ -1512,6 +1512,54 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   .ap-lr .ap-f.fx{flex:0 0 16mm;} .ap-lr .ap-f.fx.yr{flex:0 0 11mm;}
   .ap-lr .ap-sp{flex:0 0 15mm;margin-inline-end:0;}
 }
+
+/* =====================================================================
+   لیپ ٹاپ ڈسپلے: صاف ستھرا، یکساں "ڈیجیٹل پیپر" — کم لائنیں، ہموار پس منظر (screen only)
+   ===================================================================== */
+@media screen and (min-width:821px){
+  #view-form .a4page{background:linear-gradient(#fffefb,#fffcf3);border:1px solid #e3d8bd;border-radius:14px;box-shadow:0 8px 26px rgba(90,60,20,.10);}
+  #view-form .sectionbox{background:transparent;border:none;border-top:1px solid #eadfc6;border-radius:0;box-shadow:none;padding:10px 6px 6px;margin:14px 0 2px;}
+  #view-form .sectionbox:first-of-type{border-top:none;margin-top:4px;}
+  #view-form .sectionbox > .tag{position:static;display:inline-block;transform:none;margin:0 0 6px;padding:0 4px 3px;background:none;color:#7a1f1f;border:none;border-bottom:2px solid #c9a24a;border-radius:0;box-shadow:none;font-size:15.5px;}
+  #view-form .grid2{gap:2px 24px;}
+  #view-form .fitem,#view-form .longline,#view-form .notecard,#view-form .sigcol,#view-form .footerline .sigcol{background:transparent !important;border:none !important;box-shadow:none !important;border-radius:0;padding:3px 4px 5px;}
+  #view-form .keyf{border-top:none !important;}
+  #view-form .fitem label,#view-form .longline label,#view-form .headerline label{font-size:12.5px;color:#7a6842;font-weight:600;}
+  #view-form .a4page input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit]),
+  #view-form .a4page textarea,#view-form .a4page select{background:transparent;border:none;border-bottom:1px solid #d9ceb2;border-radius:0;box-shadow:none;padding:4px 4px;}
+  #view-form .a4page input:not([type=checkbox]):not([type=radio]):not([type=button]):focus,
+  #view-form .a4page textarea:focus,#view-form .a4page select:focus{outline:none;border-bottom:2px solid #7a1f1f;background:#fff7e3;}
+  #view-form .a4page input[readonly]{background:transparent !important;color:#0f5132;font-weight:700;border-bottom:1px dashed #c9b98a;}
+  #view-form .a4page input::placeholder,#view-form .a4page textarea::placeholder{color:#c4b894;}
+  #view-form .miyzan-box{background:#fbf6e8 !important;border:none !important;border-radius:8px;box-shadow:none;}
+  /* جدولیں: صرف افقی ہلکی لکیریں، عمودی لائنیں ختم */
+  #view-form table.mini,#view-form table.datatable,#view-form table.b3-tbl{border:none;border-collapse:collapse;background:transparent;}
+  #view-form table.mini th,#view-form table.datatable th,#view-form table.b3-tbl th{background:#f7f0dc;border:none;border-bottom:2px solid #dccb9a;}
+  #view-form table.mini td,#view-form table.datatable td,#view-form table.b3-tbl td{border:none;border-bottom:1px solid #efe5cb;background:transparent;}
+  #view-form table.mini td input,#view-form table.datatable td input,#view-form table.b3-tbl td input{border:none !important;background:transparent;}
+  #view-form table.mini tbody tr:hover td,#view-form table.datatable tbody tr:hover td,#view-form table.b3-tbl tbody tr:hover td{background:#fffaf0;}
+  #view-form table.mini td input:focus,#view-form table.datatable td input:focus,#view-form table.b3-tbl td input:focus{background:#fff3d6;box-shadow:inset 0 -2px 0 #7a1f1f;}
+  #view-form table.mini tfoot td,#view-form table.datatable tfoot td{background:#f7f0dc;font-weight:700;border-top:2px solid #dccb9a;}
+  #view-form .tblwrap{border:none;background:transparent;box-shadow:none;}
+  #view-form .headerline input[type=date],#view-form .headerline input[style*="max-width:70px"]{background:transparent;border:none;border-bottom:1px solid #d9ceb2;}
+  #sec-localfund .lfgrid .fitem{padding:3px 4px 5px;}
+  #sec-localfund .lfgrid{gap:2px 22px;}
+  #sec-localfund .lf-pair input.lf-yr{text-align:center;}
+}
+@media screen{
+  body.secondary-window::after{content:'🪟 دوسری ونڈو — محفوظ شدہ فارم';position:fixed;left:12px;bottom:10px;z-index:99;background:#7a1f1f;color:#fff;font-size:12px;padding:4px 12px;border-radius:14px;opacity:.9;pointer-events:none;}
+  .openbtn.winbtn{margin-inline-start:6px;background:#fff;color:#7a1f1f;border:1px solid #7a1f1f;}
+}
+
+@media screen and (min-width:821px){
+  #view-form .a4page input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit]),
+  #view-form .a4page select{min-height:30px;height:30px;font-size:15px;}
+  #view-form .a4page textarea{min-height:56px;font-size:15px;}
+  #view-form .fitem,#view-form .longline{margin:0 !important;}
+  #view-form .grid2{gap:0 28px;}
+  #view-form .fitem label,#view-form .longline label{margin-bottom:0;line-height:1.3;}
+  #view-form .sectionbox{padding:8px 6px 4px;margin:10px 0 0;}
+}
 </style>
 <style id="dynamicPrintStyle">
 @media print{ @page{ size: A4 portrait; margin: 9mm; } }
@@ -2170,7 +2218,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
         <button id="acToggleBtn" type="button" onclick="acToggle()">چالو ✓ (بند کریں)</button>
         <p style="margin-top:8px;"><span class="ur">جو الفاظ آپ بار بار لکھتے ہیں وہ خود یاد ہو جاتے ہیں اور شروع کے حروف لکھنے پر تجویز ہوتے ہیں۔</span></p>
         <button type="button" onclick="acClearLearned()">🧹 سیکھے ہوئے الفاظ صاف کریں</button>
-        <p style="margin-top:10px;font-size:12px;opacity:.7;">ورژن: 31-10-2026 (و)</p>
+        <p style="margin-top:10px;font-size:12px;opacity:.7;">ورژن: 1-11-2026 (ز)</p>
       </div>
       <div class="settingcard">
         <h3><span class="ur">🔐 پن / سیکیورٹی</span><span class="en">PIN / Security</span></h3>
@@ -2750,6 +2798,7 @@ async function unlockApp(){
   newForm();
   renderRecordsList();
   lastActivity = Date.now();
+  await openHashRecord();
 }
 function lockApp(){
   isUnlocked = false;
@@ -4669,7 +4718,7 @@ async function renderRecordsList(filter){
             <div>Record ID: ${escapeHtml(r.id)}</div>
             <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
           </div>
-          <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button>
+          <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button><button class="openbtn winbtn" onclick="openRecordInWindow('${r.id}')" title="نئی ونڈو میں کھولیں — موجودہ فارم جوں کا توں رہے گا">🪟 نئی ونڈو</button>
         </div>
       `;
     }
@@ -4685,7 +4734,7 @@ async function renderRecordsList(filter){
             <div>Record ID: ${escapeHtml(r.id)}</div>
             <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
           </div>
-          <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button>
+          <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button><button class="openbtn winbtn" onclick="openRecordInWindow('${r.id}')" title="نئی ونڈو میں کھولیں — موجودہ فارم جوں کا توں رہے گا">🪟 نئی ونڈو</button>
         </div>
       `;
     }
@@ -4698,7 +4747,7 @@ async function renderRecordsList(filter){
             <b><span class="badge">30 جون</span> جماعت: ${hl(b.jamaat)} <span class="rc-no">سال: ${escapeHtml(b.year||'—')}</span></b>
             <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
           </div>
-          <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button>
+          <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button><button class="openbtn winbtn" onclick="openRecordInWindow('${r.id}')" title="نئی ونڈو میں کھولیں — موجودہ فارم جوں کا توں رہے گا">🪟 نئی ونڈو</button>
         </div>
       `;
     }
@@ -4712,7 +4761,7 @@ async function renderRecordsList(filter){
             <div>تاریخ: ${escapeHtml(d.inspectionDate||'—')} | Record ID: ${escapeHtml(r.id)}</div>
             <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
           </div>
-          <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button>
+          <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button><button class="openbtn winbtn" onclick="openRecordInWindow('${r.id}')" title="نئی ونڈو میں کھولیں — موجودہ فارم جوں کا توں رہے گا">🪟 نئی ونڈو</button>
         </div>
       `;
     }
@@ -4726,7 +4775,7 @@ async function renderRecordsList(filter){
             <div>Record ID: ${escapeHtml(r.id)}</div>
             <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
           </div>
-          <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button>
+          <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button><button class="openbtn winbtn" onclick="openRecordInWindow('${r.id}')" title="نئی ونڈو میں کھولیں — موجودہ فارم جوں کا توں رہے گا">🪟 نئی ونڈو</button>
         </div>
       `;
     }
@@ -4740,7 +4789,7 @@ async function renderRecordsList(filter){
             <div>Record ID: ${escapeHtml(r.id)}</div>
             <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
           </div>
-          <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button>
+          <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button><button class="openbtn winbtn" onclick="openRecordInWindow('${r.id}')" title="نئی ونڈو میں کھولیں — موجودہ فارم جوں کا توں رہے گا">🪟 نئی ونڈو</button>
         </div>
       `;
     }
@@ -4755,7 +4804,7 @@ async function renderRecordsList(filter){
             <div>تاریخ: ${escapeHtml(s.billDate||'—')} | Record ID: ${escapeHtml(r.id)}</div>
             <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
           </div>
-          <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button>
+          <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button><button class="openbtn winbtn" onclick="openRecordInWindow('${r.id}')" title="نئی ونڈو میں کھولیں — موجودہ فارم جوں کا توں رہے گا">🪟 نئی ونڈو</button>
         </div>
       `;
     }
@@ -4766,7 +4815,7 @@ async function renderRecordsList(filter){
           <b><span class="badge">بقایاداران</span> جماعت: ${hl(r.header&&r.header.jamaat)}${r.formNumber ? ' <span class="rc-no">فارم نمبر: ' + escapeHtml(r.formNumber) + '</span>' : ''}</b>
           <div>${r.date ? 'تاریخ: ' + escapeHtml(r.date) + ' · ' : ''}آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
         </div>
-        <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button>
+        <button class="openbtn" onclick="loadRecord('${r.id}')">کھولیں</button><button class="openbtn winbtn" onclick="openRecordInWindow('${r.id}')" title="نئی ونڈو میں کھولیں — موجودہ فارم جوں کا توں رہے گا">🪟 نئی ونڈو</button>
       </div>
     `;
   };
@@ -5141,7 +5190,7 @@ function apTable(sel, pre, withHead, withTotal){
     const vals = [g('.' + pre + '-collect'), g('.' + pre + '-forward'), g('.' + pre + '-balance'), g('.' + pre + '-' + (pre === 'ly' ? 'lastamt' : 'lastcoupon'))];
     if(vals[0] || vals[1]) any = true; vals[2] = apNZ(vals[2]);   /* nothing entered in this row: no auto "0" in print */
     const lbl = ((tr.querySelector('.lbl') || {}).textContent || '').trim();
-    const last = vals[3] ? (vals[3].indexOf('/') > -1 ? formatReceiptFractionHTML(vals[3]) : escapeHtml(vals[3])) : '';
+    const last = vals[3] ? (vals[3].indexOf('/') > -1 ? formatReceiptFractionHTML(vals[3], ' ') : escapeHtml(vals[3])) : '';
     return '<tr><td class="ap-lbl">' + escapeHtml(lbl) + '</td><td>' + escapeHtml(vals[0]) + '</td><td>' + escapeHtml(vals[1]) + '</td><td>' + escapeHtml(vals[2]) + '</td><td>' + last + '</td></tr>';
   }).join('');
   let foot = '';
@@ -5439,14 +5488,14 @@ const FRACTION_FIELD_CLASSES = ['ly-lastamt','cy-lastcoupon'];
 function isFractionField(inp){
   return FRACTION_FIELD_IDS.has(inp.id) || FRACTION_FIELD_CLASSES.some(c=>inp.classList.contains(c));
 }
-function formatReceiptFractionHTML(raw){
+function formatReceiptFractionHTML(raw, sep){
   return raw.split(/[,\s]+/).map(p=>p.trim()).filter(p=>p.length).map(p=>{
     const slashIdx = p.indexOf('/');
     if(slashIdx === -1) return escapeHtml(p);
     const top = p.slice(0, slashIdx).trim();
     const bottom = p.slice(slashIdx+1).trim();
     return `<span class="print-fraction"><span class="pf-top">${escapeHtml(top)}</span><span class="pf-bottom">${escapeHtml(bottom)}</span></span>`;
-  }).join('<span class="pf-sep">،</span>');
+  }).join(sep === undefined ? '<span class="pf-sep">،</span>' : sep);
 }
 
 function toggleLetterName(prefix, force){
@@ -6614,6 +6663,33 @@ function fillAmaratLfExtra(rows){
   recalcAmaratLfExtra();
 }
 (function(){ const _rl = recalcAmaratLocalFund; recalcAmaratLocalFund = function(){ _rl(); recalcAmaratLfExtra(); }; })();
+
+/* ===== پیرالل سکرین: محفوظ شدہ فارم الگ ونڈو میں، نیا فارم جوں کا توں ===== */
+function openRecordInWindow(id){
+  const url = location.href.split('#')[0] + '#open=' + encodeURIComponent(id);
+  const w = window.open(url, '_blank');
+  if(!w) showToast('نئی ونڈو بلاک ہو گئی — براؤزر میں پاپ اپ کی اجازت دیں');
+}
+async function openHashRecord(){
+  const m = /[#&]open=([^&]+)/.exec(location.hash || ''); if(!m) return;
+  try{
+    await loadRecordCore(decodeURIComponent(m[1]));
+    document.body.classList.add('secondary-window');
+    document.title = '🪟 ' + document.title;
+    setDirty(false);
+    showToast('محفوظ شدہ فارم اس نئی ونڈو میں کھلا ہے — آپ کا نیا فارم پہلی ونڈو میں جوں کا توں ہے', 5000);
+    try{ history.replaceState(null, '', location.pathname + location.search); }catch(e){}
+  }catch(e){ console.error('openHashRecord', e); }
+}
+/* Alt + کلک: کسی بھی خانے کی ویلیو کاپی (دوسری ونڈو میں Ctrl+V سے پیسٹ) */
+document.addEventListener('click', e=>{
+  if(!e.altKey) return;
+  const t = e.target;
+  if(t && t.closest && t.closest('#view-form') && t.matches('input,textarea,td,.val')){
+    const v = String(t.value !== undefined ? t.value : (t.textContent || '')).trim();
+    if(v){ e.preventDefault(); copyTextToClipboard(v).then(()=>showToast('کاپی ہو گیا: ' + v.slice(0,30))).catch(()=>{}); }
+  }
+}, true);
 </script>
 </body>
 </html>
