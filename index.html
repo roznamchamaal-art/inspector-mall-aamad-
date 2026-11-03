@@ -1742,17 +1742,17 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   #view-settings .sc-collapsible > h3:hover{background:#f6ecd2;}
   #view-settings .sc-collapsible:not(.open) > .sc-body{display:none;}
   #view-settings .sc-collapsible > .sc-body{padding:12px 18px 16px;}
-  #pdfJamaatCard #pj_name{width:100%;box-sizing:border-box;padding:9px 12px;font-size:16px;border:1.5px solid #d9ceb2;border-radius:10px;background:#fff;}
-  #pdfJamaatCard .pj-bar{display:flex;justify-content:space-between;align-items:center;margin:10px 2px 4px;font-size:13px;color:#7a6842;}
-  #pdfJamaatCard .pj-list{max-height:320px;overflow:auto;border:1px solid #eadfc6;border-radius:10px;background:#fff;}
-  #pdfJamaatCard .pj-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid #f1e8d2;cursor:pointer;font-size:14px;}
-  #pdfJamaatCard .pj-item:hover{background:#fffaf0;}
-  #pdfJamaatCard .pj-item .pj-t{font-weight:700;color:#5b3a10;min-width:150px;}
-  #pdfJamaatCard .pj-item .pj-j{flex:1;color:#7a6842;}
-  #pdfJamaatCard .pj-item .pj-d{color:#9a8a66;font-size:12.5px;direction:ltr;}
-  #pdfJamaatCard .pj-empty{padding:16px;text-align:center;color:#9a8a66;font-size:13.5px;}
-  #pdfJamaatCard #pj_btn{margin-top:10px;width:100%;}
-  #pdfJamaatCard #pj_btn:disabled{opacity:.5;cursor:not-allowed;}
+  #pjPanel #pj_name{width:100%;box-sizing:border-box;padding:9px 12px;font-size:16px;border:1.5px solid #d9ceb2;border-radius:10px;background:#fff;}
+  #pjPanel .pj-bar{display:flex;justify-content:space-between;align-items:center;margin:10px 2px 4px;font-size:13px;color:#7a6842;}
+  #pjPanel .pj-list{max-height:320px;overflow:auto;border:1px solid #eadfc6;border-radius:10px;background:#fff;}
+  #pjPanel .pj-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid #f1e8d2;cursor:pointer;font-size:14px;}
+  #pjPanel .pj-item:hover{background:#fffaf0;}
+  #pjPanel .pj-item .pj-t{font-weight:700;color:#5b3a10;min-width:150px;}
+  #pjPanel .pj-item .pj-j{flex:1;color:#7a6842;}
+  #pjPanel .pj-item .pj-d{color:#9a8a66;font-size:12.5px;direction:ltr;}
+  #pjPanel .pj-empty{padding:16px;text-align:center;color:#9a8a66;font-size:13.5px;}
+  #pjPanel #pj_btn{margin-top:10px;width:100%;}
+  #pjPanel #pj_btn:disabled{opacity:.5;cursor:not-allowed;}
 }
 
 /* ===== سفر خرچ: ہر کالم کا ہلکا الگ رنگ (لیپ ٹاپ) ===== */
@@ -1825,6 +1825,50 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   #table-safar .rowdel,#table-safar .rowcopy{width:22px;height:22px;min-height:22px;font-size:11px;}
   #formtype-safar .tblwrap{overflow-x:visible;}
 }
+
+/* ===== محفوظ فارم: چھوٹی تلاش + «نقل مقامی جماعت» ===== */
+@media screen{
+  #view-records .rec-topbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:4px 0 10px;}
+  #view-records .rec-topbar .searchbar{margin:0;flex:0 1 330px;min-width:200px;}
+  #view-records .rec-topbar .searchbar input{padding:7px 14px;font-size:14px;border-radius:20px;box-shadow:none;}
+  .pj-toggle{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:5px 16px;font-size:13.5px;font-weight:700;color:#7a1f1f;background:#fbf3df;border:1.5px solid #e3d3a2;border-radius:20px;cursor:pointer;}
+  .pj-toggle:hover,.pj-toggle.open{background:#7a1f1f;color:#fff;border-color:#7a1f1f;}
+  .pj-toggle b{font-size:12px;transition:transform .2s;}
+  .pj-toggle.open b{transform:rotate(180deg);}
+  .pj-panel{display:none;margin:0 0 12px;padding:12px 16px 14px;background:#fffdf8;border:1px solid #e3d8bd;border-radius:14px;box-shadow:0 2px 8px rgba(90,60,20,.06);}
+  .pj-panel.open{display:block;}
+  .pj-panel > p{margin:0 0 8px;font-size:13px;color:#7a6842;line-height:1.8;}
+}
+/* گروپ رنگ: پہلے سے ذرا نمایاں، مگر گہرے نہیں */
+@media screen{
+  .recgrp{border-inline-start-color:var(--gc) !important;}
+  .recgrp-h{background:linear-gradient(135deg,#fff,color-mix(in srgb,var(--gc) 24%,#fff)) !important;}
+  .recgrp-h .gi{background:color-mix(in srgb,var(--gc) 48%,#fff) !important;}
+  .recgrp-h .gt{color:color-mix(in srgb,var(--gc) 88%,#3a2a1a) !important;}
+  .recgrp-h .gcount{background:color-mix(in srgb,var(--gc) 92%,#fff) !important;}
+  .recgrp-h .gchev{color:var(--gc) !important;}
+  #reclistWrap .recgrp .reccard{background:color-mix(in srgb,var(--gc) 10%,#fff) !important;border-color:color-mix(in srgb,var(--gc) 40%,#fff) !important;}
+  #reclistWrap .recgrp .reccard .info b{color:color-mix(in srgb,var(--gc) 88%,#3a2a1a) !important;}
+  #reclistWrap .recgrp .reccard .badge{background:color-mix(in srgb,var(--gc) 90%,#fff) !important;}
+  #reclistWrap .recgrp .reccard .hl{background:color-mix(in srgb,var(--gc) 24%,#fff) !important;color:color-mix(in srgb,var(--gc) 85%,#2a1a0a) !important;border-color:color-mix(in srgb,var(--gc) 55%,#fff) !important;}
+  #reclistWrap .recgrp .reccard .openbtn.rc-ic{background:color-mix(in srgb,var(--gc) 34%,#fff) !important;color:color-mix(in srgb,var(--gc) 88%,#2a1a0a) !important;border-color:color-mix(in srgb,var(--gc) 65%,#fff) !important;}
+  #reclistWrap .recgrp .reccard .openbtn.rc-ic:hover{background:color-mix(in srgb,var(--gc) 55%,#fff) !important;}
+}
+
+@media screen{
+  #pjPanel #pj_btn{margin-top:10px;width:100%;padding:10px 14px;font-size:14px;font-weight:700;color:#fff;background:#7a1f1f;border:none;border-radius:10px;cursor:pointer;}
+  #pjPanel #pj_btn:hover:not(:disabled){background:#8f2a2a;}
+  #pjPanel #pj_btn:disabled{opacity:.45;cursor:not-allowed;}
+  #pjPanel #pj_name:focus{outline:none;border-color:#7a1f1f;box-shadow:0 0 0 3px rgba(122,31,31,.12);}
+}
+
+/* ===== انسپکٹر رپورٹ: کل وصولی / ترسیل کالم میں کاپی پیسٹ ===== */
+@media screen{
+  table.mini thead tr.coltools th{background:#f6f0dc !important;padding:2px 2px !important;white-space:nowrap;text-align:center;font-weight:400;border-top:1px dashed #c9b98a;border-bottom:1px solid #e3d8bd !important;}
+  table.mini tr.coltools .cbtn{border:1px solid #c9b98a;background:#fff;border-radius:7px;font-size:13px;line-height:1;padding:3px 7px;margin:0 2px;min-height:0;height:26px;cursor:pointer;color:#5a4420;}
+  table.mini tr.coltools .cbtn:hover{background:#7a1f1f;color:#fff;border-color:#7a1f1f;}
+}
+@media print{ table.mini tr.coltools{display:none !important;} }
 </style>
 <style id="dynamicPrintStyle">
 @media print{ @page{ size: A4 portrait; margin: 9mm; } }
@@ -1869,7 +1913,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 <div class="formtypetabs">
         <button data-ftype="baqaya" class="active" onclick="switchFormTypeTab('baqaya')"><span class="ur">فہرست بقایاداران </span><span class="en">List of Defaulters</span></button>
         <button data-ftype="baqaya30" onclick="switchFormTypeTab('baqaya30')"><span class="ur">30 جون بقایاداران </span><span class="en">30 June Defaulters</span></button>
-        <button data-ftype="auditaccount" onclick="switchFormTypeTab('auditaccount')"><span class="ur">آڈٹ/اکاؤنٹ برانچ </span><span class="en">Audit/Account Branch</span></button>
+        <button data-ftype="auditaccount" onclick="switchFormTypeTab('auditaccount')"><span class="ur">انسپکٹر رپورٹ </span><span class="en">Inspector Report</span></button>
         <button data-ftype="safar" onclick="switchFormTypeTab('safar')"><span class="ur">سفر خرچ </span><span class="en">Travel Expense</span></button>
         <button data-ftype="district" onclick="switchFormTypeTab('district')"><span class="ur">آڈٹ رپورٹ ضلع </span><span class="en">District Audit Report</span></button>
         <button data-ftype="amaratAudit" onclick="switchFormTypeTab('amaratAudit')"><span class="ur">امارت آڈٹ رپورٹ </span><span class="en">Amarat Audit Report</span></button>
@@ -2446,8 +2490,20 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 
     <!-- ============ VIEW: RECORDS ============ -->
     <div id="view-records" class="container hidden">
-      <div class="searchbar">
-        <input type="search" id="searchInput" placeholder="🔍 نام / ID سے تلاش">
+      <div class="rec-topbar">
+        <div class="searchbar">
+          <input type="search" id="searchInput" placeholder="🔍 نام / ID سے تلاش">
+        </div>
+        <button type="button" id="pjToggle" class="pj-toggle" onclick="pjTogglePanel()" title="جماعت کے سب فارم کی اکٹھی PDF">📄 <span class="ur">نقل مقامی جماعت</span> <b>▾</b></button>
+      </div>
+      <div id="pjPanel" class="pj-panel">
+        <p><span class="ur">جماعت کا نام لکھیں (مثلاً کوٹ لکھپت)۔ اس جماعت کے تمام محفوظ فارم نیچے آ جائیں گے۔ جو فارم منتخب کریں ان کی ایک اکٹھی PDF فائل بن کر ڈاؤن لوڈ ہو جائے گی۔</span></p>
+        <input type="text" id="pj_name" list="pj_names" placeholder="جماعت کا نام، مثلاً کوٹ لکھپت" oninput="pjRefresh()" autocomplete="off">
+        <datalist id="pj_names"></datalist>
+        <div class="pj-bar"><label><input type="checkbox" id="pj_all" onchange="pjToggleAll(this.checked)"> <span class="ur">سب منتخب</span></label><span id="pj_count"></span></div>
+        <div id="pj_list" class="pj-list"><div class="pj-empty">جماعت کا نام لکھیں، یا فہرست سے چنیں</div></div>
+        <button type="button" id="pj_btn" onclick="pjMakePdf()" disabled><span class="ur">📥 منتخب فارموں کی اکٹھی PDF ڈاؤن لوڈ کریں</span></button>
+        <div id="pj_status" class="smallnote"></div>
       </div>
       <div class="reclist" id="reclistWrap"></div>
     </div>
@@ -2469,16 +2525,6 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 
 <div id="view-contacts" class="container hidden"><div id="ctBox"></div></div>
 <div id="view-settings" class="container hidden">
-      <div class="settingcard" id="pdfJamaatCard">
-        <h3><span class="ur">📄 جماعت وار اکٹھی PDF</span></h3>
-        <p><span class="ur">جماعت کا نام لکھیں (مثلاً کوٹ لکھپت)۔ اس جماعت کے تمام محفوظ فارم نیچے آ جائیں گے۔ جو فارم منتخب کریں ان کی ایک اکٹھی PDF فائل بن کر ڈاؤن لوڈ ہو جائے گی۔</span></p>
-        <input type="text" id="pj_name" list="pj_names" placeholder="جماعت کا نام، مثلاً کوٹ لکھپت" oninput="pjRefresh()" autocomplete="off">
-        <datalist id="pj_names"></datalist>
-        <div class="pj-bar"><label><input type="checkbox" id="pj_all" onchange="pjToggleAll(this.checked)"> <span class="ur">سب منتخب</span></label><span id="pj_count"></span></div>
-        <div id="pj_list" class="pj-list"><div class="pj-empty">جماعت کا نام لکھیں، یا فہرست سے چنیں</div></div>
-        <button type="button" id="pj_btn" onclick="pjMakePdf()" disabled><span class="ur">📥 منتخب فارموں کی اکٹھی PDF ڈاؤن لوڈ کریں</span></button>
-        <div id="pj_status" class="smallnote"></div>
-      </div>
       <div class="settingcard">
         <h3><span class="ur">🌐 زبان</span><span class="en">Language</span></h3>
         <p><span class="ur">ایپ کی زبان منتخب کریں۔</span><span class="en">Choose the app's display language.</span></p>
@@ -2493,7 +2539,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
         <button id="acToggleBtn" type="button" onclick="acToggle()">چالو ✓ (بند کریں)</button>
         <p style="margin-top:8px;"><span class="ur">جو الفاظ آپ بار بار لکھتے ہیں وہ خود یاد ہو جاتے ہیں اور شروع کے حروف لکھنے پر تجویز ہوتے ہیں۔</span></p>
         <button type="button" onclick="acClearLearned()">🧹 سیکھے ہوئے الفاظ صاف کریں</button>
-        <p style="margin-top:10px;font-size:12px;opacity:.7;">ورژن: 3-11-2026 (گ)</p>
+        <p style="margin-top:10px;font-size:12px;opacity:.7;">ورژن: 4-11-2026 (ل)</p>
       </div>
       <div class="settingcard">
         <h3><span class="ur">🔐 پن / سیکیورٹی</span><span class="en">PIN / Security</span></h3>
@@ -2554,7 +2600,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
       </div>
       <div class="settingcard">
         <h3><span class="ur">ℹ️ معلومات</span><span class="en">About</span></h3>
-        <p><span class="ur">یہ ایپ مکمل طور پر آفلائن کام کرتی ہے۔ تمام ڈیٹا آپ کے موبائل/کمپیوٹر میں IndexedDB میں محفوظ ہوتا ہے اور کہیں انٹرنیٹ پر نہیں بھیجا جاتا۔ اس میں پانچ فارمز شامل ہیں: فہرست بقایاداران، سفر خرچ، آڈٹ رپورٹ ضلع، آڈٹ/اکاؤنٹ برانچ، اور امارت آڈٹ رپورٹ۔</span><span class="en">This app works fully offline. All data is stored in IndexedDB on your own device and never sent to the internet. It includes five forms: List of Defaulters, Travel Expense, District Audit Report, Audit/Account Branch, and Amarat Audit Report.</span></p>
+        <p><span class="ur">یہ ایپ مکمل طور پر آفلائن کام کرتی ہے۔ تمام ڈیٹا آپ کے موبائل/کمپیوٹر میں IndexedDB میں محفوظ ہوتا ہے اور کہیں انٹرنیٹ پر نہیں بھیجا جاتا۔ اس میں پانچ فارمز شامل ہیں: فہرست بقایاداران، سفر خرچ، آڈٹ رپورٹ ضلع، انسپکٹر رپورٹ، اور امارت آڈٹ رپورٹ۔</span><span class="en">This app works fully offline. All data is stored in IndexedDB on your own device and never sent to the internet. It includes five forms: List of Defaulters, Travel Expense, District Audit Report, Inspector Report, and Amarat Audit Report.</span></p>
       </div>
     </div>
 
@@ -4184,7 +4230,7 @@ function fillFormDataCore(data){
 function updateStatusLine(data){
   const line = document.getElementById('recStatusLine');
   if(data && data.id){
-    const typeLabels = {safar:'سفر خرچ', district:'آڈٹ رپورٹ ضلع', auditaccount:'آڈٹ/اکاؤنٹ برانچ', amaratAudit:'امارت آڈٹ رپورٹ', darkhwast:'درخواست', gendarkhwast:'جنرل درخواست', baqaya:'فہرست بقایاداران', baqaya30:'30 جون بقایاداران'};
+    const typeLabels = {safar:'سفر خرچ', district:'آڈٹ رپورٹ ضلع', auditaccount:'انسپکٹر رپورٹ', amaratAudit:'امارت آڈٹ رپورٹ', darkhwast:'درخواست', gendarkhwast:'جنرل درخواست', baqaya:'فہرست بقایاداران', baqaya30:'30 جون بقایاداران'};
     const typeLabel = typeLabels[data.formType] || 'فہرست بقایاداران';
     let idBit = '—';
     if(data.formType==='safar') idBit = (data.safar&&data.safar.manjanib)||'—';
@@ -4480,7 +4526,7 @@ async function resolveDuplicates(data){
 /* ======================================================================
    GLOBAL SEARCH (all saved forms)
    ====================================================================== */
-const GS_TYPE_LABELS = {baqaya:'فہرست بقایاداران', safar:'سفر خرچ', district:'آڈٹ رپورٹ ضلع', auditaccount:'آڈٹ/اکاؤنٹ برانچ',
+const GS_TYPE_LABELS = {baqaya:'فہرست بقایاداران', safar:'سفر خرچ', district:'آڈٹ رپورٹ ضلع', auditaccount:'انسپکٹر رپورٹ',
   amaratAudit:'امارت آڈٹ رپورٹ', darkhwast:'درخواست', gendarkhwast:'جنرل درخواست'};
 const GS_KEY_LABELS = {jamaat:'جماعت', name:'نام', formNumber:'فارم نمبر', manjanib:'منجانب', tourArea:'علاقہ', zilaName:'ضلع',
   ameerZilaName:'امیر ضلع', inspName:'انسپکٹر', amaratName:'امارت', body:'متن', addressee:'مکرم و محترم', tehsil:'تحصیل',
@@ -5045,7 +5091,7 @@ async function renderRecordsList(filter){
       return `
         <div class="reccard">
           <div class="info">
-            <b>آڈٹ/اکاؤنٹ برانچ<span class="badge">Audit/Acc.</span></b>
+            <b>انسپکٹر رپورٹ<span class="badge">Inspector</span></b>
             <div>جماعت: ${hl(a.jamaat||b.jamaat)} | انسپکٹر: ${hl(a.inspName)}</div>
             <div>Record ID: ${escapeHtml(r.id)}</div>
             <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
@@ -5096,14 +5142,14 @@ async function renderRecordsList(filter){
   };
   /* ---- grouped drop-down lists: one dropdown per form type ---- */
   const GROUPS = [
-    {k:'baqaya',       ico:'📋', t:'فہرست بقایاداران', c:'#b07a7a'},
-    {k:'baqaya30',     ico:'📅', t:'30 جون بقایاداران', c:'#c29a68'},
-    {k:'auditaccount', ico:'🧾', t:'آڈٹ/اکاؤنٹ برانچ', c:'#6fa7a0'},
-    {k:'safar',        ico:'🚗', t:'سفر خرچ',          c:'#cf9078'},
-    {k:'district',     ico:'📊', t:'آڈٹ رپورٹ ضلع',    c:'#7da3b3'},
-    {k:'amaratAudit',  ico:'🏛️', t:'امارت آڈٹ رپورٹ',  c:'#9b88b8'},
-    {k:'darkhwast',    ico:'✉️', t:'درخواست',          c:'#a9a46c'},
-    {k:'gendarkhwast', ico:'📝', t:'جنرل درخواست',     c:'#c58fa8'}
+    {k:'baqaya',       ico:'📋', t:'فہرست بقایاداران', c:'#b86b6b'},
+    {k:'baqaya30',     ico:'📅', t:'30 جون بقایاداران', c:'#c99555'},
+    {k:'auditaccount', ico:'🧾', t:'انسپکٹر رپورٹ', c:'#4fa39a'},
+    {k:'safar',        ico:'🚗', t:'سفر خرچ',          c:'#d8825f'},
+    {k:'district',     ico:'📊', t:'آڈٹ رپورٹ ضلع',    c:'#5f9db3'},
+    {k:'amaratAudit',  ico:'🏛️', t:'امارت آڈٹ رپورٹ',  c:'#8b72b8'},
+    {k:'darkhwast',    ico:'✉️', t:'درخواست',          c:'#9fa04f'},
+    {k:'gendarkhwast', ico:'📝', t:'جنرل درخواست',     c:'#c9769f'}
   ];
   if(!window._recOpen) window._recOpen = new Set();
   const buckets = {};
@@ -6968,7 +7014,7 @@ document.addEventListener('click', e=>{
    ====================================================================== */
 let formTabs = [], activeTabId = null, _tabBusy = false, _tabSeq = 1;
 const TAB_TITLES = {baqaya:'فہرست بقایاداران', baqaya30:'30 جون بقایاداران', safar:'سفر خرچ', district:'آڈٹ رپورٹ ضلع',
-  amaratAudit:'امارت آڈٹ رپورٹ', auditaccount:'آڈٹ/اکاؤنٹ برانچ', darkhwast:'درخواست', gendarkhwast:'عمومی درخواست'};
+  amaratAudit:'امارت آڈٹ رپورٹ', auditaccount:'انسپکٹر رپورٹ', darkhwast:'درخواست', gendarkhwast:'عمومی درخواست'};
 function tabFindStr(o, rx, d){
   if(!o || typeof o !== 'object' || d < 0) return '';
   for(const k of Object.keys(o)){ const v = o[k]; if(typeof v === 'string' && v.trim() && rx.test(k)) return v.trim(); }
@@ -7310,6 +7356,53 @@ async function pjMakePdf(){
     _tabBusy = false; goToView(viewWas); btn.disabled = false; pjCount();
   }
 }
+
+function pjTogglePanel(){
+  const p = document.getElementById('pjPanel'), b = document.getElementById('pjToggle');
+  const on = !p.classList.contains('open');
+  p.classList.toggle('open', on); b.classList.toggle('open', on);
+  if(on){ pjRefresh(true); setTimeout(() => document.getElementById('pj_name').focus(), 50); }
+}
+
+/* ===== انسپکٹر رپورٹ: دونوں جدولوں (سال گزشتہ / سال رواں) کے «کل وصولی» اور «ترسیل» کالم کاپی / پیسٹ ===== */
+(function(){
+  const CLIP_KEY='col_clip_v1';
+  const TB={ly:{tbl:'#tbl_lastYear',cls:['ly-collect','ly-forward']}, cy:{tbl:'#tbl_currentYear',cls:['cy-collect','cy-forward']}};
+  const NAMES=['کل وصولی','ترسیل'];
+  function build(k){
+    const th=document.querySelector(TB[k].tbl+' thead'); if(!th || th.querySelector('tr.coltools')) return;
+    let h='<tr class="coltools no-print"><th></th>';
+    for(let c=0;c<2;c++) h+='<th><button type="button" class="cbtn" title="'+NAMES[c]+' کالم کاپی" onclick="miniColCopy(\''+k+'\','+c+')">📑 کاپی</button><button type="button" class="cbtn" title="'+NAMES[c]+' کالم میں پیسٹ" onclick="miniColPaste(\''+k+'\','+c+')">📥 پیسٹ</button></th>';
+    h+='<th></th><th></th></tr>';
+    th.insertAdjacentHTML('beforeend',h);
+  }
+  const inputs=(k,c)=>[...document.querySelectorAll(TB[k].tbl+' tbody tr')].map(tr=>tr.querySelector('input.'+TB[k].cls[c]));
+  window.miniColCopy=async function(k,c){
+    const vals=inputs(k,c).map(e=>e?e.value:'');
+    while(vals.length && vals[vals.length-1]==='') vals.pop();
+    if(!vals.length){ showToast('اس کالم میں کوئی رقم نہیں'); return; }
+    const text=vals.join('\n');
+    try{ localStorage.setItem(CLIP_KEY,text); }catch(e){}
+    try{ await copyTextToClipboard(text); }catch(e){}
+    showToast('«'+NAMES[c]+'» کالم کی '+vals.filter(v=>v!=='').length+' رقمیں کاپی ہو گئیں ✓ — اب دوسرے فارم میں 📥 پیسٹ دبائیں');
+  };
+  window.miniColPaste=async function(k,c){
+    let text='';
+    try{ text=localStorage.getItem(CLIP_KEY)||''; }catch(e){}
+    if(!text){ try{ if(navigator.clipboard && navigator.clipboard.readText) text=await navigator.clipboard.readText(); }catch(e){} }
+    if(!text || !text.trim()){ showToast('پہلے کسی کالم میں 📑 کاپی دبائیں'); return; }
+    const vals=text.replace(/\r/g,'').split('\n'); while(vals.length && vals[vals.length-1].trim()==='') vals.pop();
+    const els=inputs(k,c); let n=0;
+    vals.forEach((v,r)=>{
+      const e=els[r]; if(!e||e.readOnly) return;
+      let x=v.trim().replace(/[,\s]/g,''); if(x!=='' && isNaN(parseFloat(x))) return;
+      e.value=x; e.dispatchEvent(new Event('input',{bubbles:true})); if(x!=='') n++;
+    });
+    if(typeof setDirty==='function') setDirty(true);
+    showToast(n+' رقمیں «'+NAMES[c]+'» کالم میں پیسٹ ہو گئیں ✓');
+  };
+  Object.keys(TB).forEach(build);
+})();
 </script>
 </body>
 </html>
