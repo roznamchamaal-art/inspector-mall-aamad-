@@ -1842,17 +1842,17 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 /* گروپ رنگ: پہلے سے ذرا نمایاں، مگر گہرے نہیں */
 @media screen{
   .recgrp{border-inline-start-color:var(--gc) !important;}
-  .recgrp-h{background:linear-gradient(135deg,#fff,color-mix(in srgb,var(--gc) 24%,#fff)) !important;}
-  .recgrp-h .gi{background:color-mix(in srgb,var(--gc) 48%,#fff) !important;}
+  .recgrp-h{background:linear-gradient(135deg,#fff,color-mix(in srgb,var(--gc) 38%,#fff)) !important;}
+  .recgrp-h .gi{background:color-mix(in srgb,var(--gc) 64%,#fff) !important;}
   .recgrp-h .gt{color:color-mix(in srgb,var(--gc) 88%,#3a2a1a) !important;}
-  .recgrp-h .gcount{background:color-mix(in srgb,var(--gc) 92%,#fff) !important;}
+  .recgrp-h .gcount{background:color-mix(in srgb,var(--gc) 96%,#fff) !important;}
   .recgrp-h .gchev{color:var(--gc) !important;}
-  #reclistWrap .recgrp .reccard{background:color-mix(in srgb,var(--gc) 10%,#fff) !important;border-color:color-mix(in srgb,var(--gc) 40%,#fff) !important;}
+  #reclistWrap .recgrp .reccard{background:color-mix(in srgb,var(--gc) 17%,#fff) !important;border-color:color-mix(in srgb,var(--gc) 55%,#fff) !important;}
   #reclistWrap .recgrp .reccard .info b{color:color-mix(in srgb,var(--gc) 88%,#3a2a1a) !important;}
   #reclistWrap .recgrp .reccard .badge{background:color-mix(in srgb,var(--gc) 90%,#fff) !important;}
-  #reclistWrap .recgrp .reccard .hl{background:color-mix(in srgb,var(--gc) 24%,#fff) !important;color:color-mix(in srgb,var(--gc) 85%,#2a1a0a) !important;border-color:color-mix(in srgb,var(--gc) 55%,#fff) !important;}
-  #reclistWrap .recgrp .reccard .openbtn.rc-ic{background:color-mix(in srgb,var(--gc) 34%,#fff) !important;color:color-mix(in srgb,var(--gc) 88%,#2a1a0a) !important;border-color:color-mix(in srgb,var(--gc) 65%,#fff) !important;}
-  #reclistWrap .recgrp .reccard .openbtn.rc-ic:hover{background:color-mix(in srgb,var(--gc) 55%,#fff) !important;}
+  #reclistWrap .recgrp .reccard .hl{background:color-mix(in srgb,var(--gc) 38%,#fff) !important;color:color-mix(in srgb,var(--gc) 90%,#2a1a0a) !important;border-color:color-mix(in srgb,var(--gc) 70%,#fff) !important;}
+  #reclistWrap .recgrp .reccard .openbtn.rc-ic{background:color-mix(in srgb,var(--gc) 50%,#fff) !important;color:color-mix(in srgb,var(--gc) 92%,#2a1a0a) !important;border-color:color-mix(in srgb,var(--gc) 80%,#fff) !important;}
+  #reclistWrap .recgrp .reccard .openbtn.rc-ic:hover{background:color-mix(in srgb,var(--gc) 72%,#fff) !important;}
 }
 
 @media screen{
@@ -1869,6 +1869,29 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
   table.mini tr.coltools .cbtn:hover{background:#7a1f1f;color:#fff;border-color:#7a1f1f;}
 }
 @media print{ table.mini tr.coltools{display:none !important;} }
+
+/* ===== 30 جون بقایاداران: اندراج خانے کا رنگ مدہم، کلک پر صاف سفید ===== */
+@media screen{
+  #formtype-baqaya30 .b3-tbl tbody td:nth-child(2){background:#f9fbfe !important;}
+  #formtype-baqaya30 .b3-tbl tbody td:nth-child(3){background:#fbf9fd !important;}
+  #formtype-baqaya30 .b3-tbl tbody td:nth-child(4){background:#f8fcfa !important;}
+  #formtype-baqaya30 .b3-tbl tbody td:nth-child(5){background:#fefbf6 !important;}
+  #formtype-baqaya30 .b3-tbl tbody td:nth-child(6){background:#f6fcfd !important;}
+  #formtype-baqaya30 .b3-tbl tbody td:nth-child(7){background:#fef8fa !important;}
+  #view-form #formtype-baqaya30 table.b3-tbl td input:focus{background:#fffefb !important;outline:1.5px solid #c9b98a !important;outline-offset:-2px;box-shadow:none !important;border-radius:4px;color:#1d1408;}
+  #formtype-baqaya30 .b3-tbl tbody td:focus-within{background:#fffefb !important;}
+  /* کاپی پیسٹ پٹی: رنگین ہیڈر کے اوپر بھی ہلکی */
+  #view-form table.mini thead tr.coltools th{background:#f6f0dc !important;color:#5a4420 !important;}
+  table.mini tr.coltools .cbtn{font-size:12px;padding:3px 5px;margin:1px;}
+  table.mini thead tr.coltools th{white-space:normal !important;}
+  /* محفوظ فارم: آخری ترمیم ہلکا سا واضح، نئے/پرانے کا فرق */
+  #reclistWrap .recgrp .reccard .info div.lmrow{color:#7d704f !important;font-size:12px !important;}
+  .lm{display:inline-flex;align-items:center;gap:6px;padding:1px 9px;border-radius:10px;background:#f4eedc;border:1px solid #e6dcc0;font-weight:600;}
+  .lm small{font-size:11px;font-weight:700;padding:0 6px;border-radius:8px;}
+  .lm.lm-new{background:#e6f4e6;border-color:#b9dcb9;color:#2f6a37;} .lm.lm-new small{background:#2f8a43;color:#fff;}
+  .lm.lm-mid{background:#fbf1d8;border-color:#ecd9a0;color:#7a5f1a;} .lm.lm-mid small{background:#b88a1f;color:#fff;}
+  .lm.lm-old{background:#efece6;border-color:#dcd6c8;color:#7d7566;} .lm.lm-old small{background:#a39c8c;color:#fff;}
+}
 </style>
 <style id="dynamicPrintStyle">
 @media print{ @page{ size: A4 portrait; margin: 9mm; } }
@@ -5037,7 +5060,7 @@ async function renderRecordsList(filter){
             <div>مکرم: ${hl(g.addressee)} | خاکسار: ${hl(g.name)}</div>
             ${snip ? `<div>${escapeHtml(snip)}${(g.body||'').length>60?'…':''}</div>` : ''}
             <div>Record ID: ${escapeHtml(r.id)}</div>
-            <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
+            <div class="lmrow">${lmHtml(r)}</div>
           </div>
           <button class="openbtn rc-ic" title="کھولیں" onclick="loadRecord('${r.id}')">📂</button><button class="openbtn winbtn rc-ic" onclick="openRecordInWindow('${r.id}')" title="نئی ٹیب میں کھولیں — موجودہ فارم جوں کا توں رہے گا">🪟</button>
         </div>
@@ -5053,7 +5076,7 @@ async function renderRecordsList(filter){
             <div>خاکسار: ${hl(k.name)}</div>
             ${snippet ? `<div>${escapeHtml(snippet)}${(k.body||'').length>60?'…':''}</div>` : ''}
             <div>Record ID: ${escapeHtml(r.id)}</div>
-            <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
+            <div class="lmrow">${lmHtml(r)}</div>
           </div>
           <button class="openbtn rc-ic" title="کھولیں" onclick="loadRecord('${r.id}')">📂</button><button class="openbtn winbtn rc-ic" onclick="openRecordInWindow('${r.id}')" title="نئی ٹیب میں کھولیں — موجودہ فارم جوں کا توں رہے گا">🪟</button>
         </div>
@@ -5066,7 +5089,7 @@ async function renderRecordsList(filter){
         <div class="reccard">
           <div class="info">
             <b><span class="badge">30 جون</span> جماعت: ${hl(b.jamaat)} <span class="rc-no">سال: ${escapeHtml(b.year||'—')}</span></b>
-            <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
+            <div class="lmrow">${lmHtml(r)}</div>
           </div>
           <button class="openbtn rc-ic" title="کھولیں" onclick="loadRecord('${r.id}')">📂</button><button class="openbtn winbtn rc-ic" onclick="openRecordInWindow('${r.id}')" title="نئی ٹیب میں کھولیں — موجودہ فارم جوں کا توں رہے گا">🪟</button>
         </div>
@@ -5080,7 +5103,7 @@ async function renderRecordsList(filter){
             <b>آڈٹ رپورٹ ضلع<span class="badge">District</span></b>
             <div>ضلع: ${hl(d.zilaName)} | امیر ضلع: ${hl(d.ameerZilaName)}</div>
             <div>تاریخ: ${escapeHtml(d.inspectionDate||'—')} | Record ID: ${escapeHtml(r.id)}</div>
-            <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
+            <div class="lmrow">${lmHtml(r)}</div>
           </div>
           <button class="openbtn rc-ic" title="کھولیں" onclick="loadRecord('${r.id}')">📂</button><button class="openbtn winbtn rc-ic" onclick="openRecordInWindow('${r.id}')" title="نئی ٹیب میں کھولیں — موجودہ فارم جوں کا توں رہے گا">🪟</button>
         </div>
@@ -5094,7 +5117,7 @@ async function renderRecordsList(filter){
             <b>انسپکٹر رپورٹ<span class="badge">Inspector</span></b>
             <div>جماعت: ${hl(a.jamaat||b.jamaat)} | انسپکٹر: ${hl(a.inspName)}</div>
             <div>Record ID: ${escapeHtml(r.id)}</div>
-            <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
+            <div class="lmrow">${lmHtml(r)}</div>
           </div>
           <button class="openbtn rc-ic" title="کھولیں" onclick="loadRecord('${r.id}')">📂</button><button class="openbtn winbtn rc-ic" onclick="openRecordInWindow('${r.id}')" title="نئی ٹیب میں کھولیں — موجودہ فارم جوں کا توں رہے گا">🪟</button>
         </div>
@@ -5108,7 +5131,7 @@ async function renderRecordsList(filter){
             <b>امارت آڈٹ رپورٹ<span class="badge">Amarat</span></b>
             <div>امارت: ${hl(am.amaratName)} | رسید بکس: ${escapeHtml(am.receiptBox||'—')}</div>
             <div>Record ID: ${escapeHtml(r.id)}</div>
-            <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
+            <div class="lmrow">${lmHtml(r)}</div>
           </div>
           <button class="openbtn rc-ic" title="کھولیں" onclick="loadRecord('${r.id}')">📂</button><button class="openbtn winbtn rc-ic" onclick="openRecordInWindow('${r.id}')" title="نئی ٹیب میں کھولیں — موجودہ فارم جوں کا توں رہے گا">🪟</button>
         </div>
@@ -5123,7 +5146,7 @@ async function renderRecordsList(filter){
             <b>سفر خرچ<span class="badge">Travel</span></b>
             <div>منجانب: ${hl(s.manjanib)} | نام: ${hl(firstName==='—'?'':firstName)}</div>
             <div>تاریخ: ${escapeHtml(s.billDate||'—')} | Record ID: ${escapeHtml(r.id)}</div>
-            <div>آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
+            <div class="lmrow">${lmHtml(r)}</div>
           </div>
           <button class="openbtn rc-ic" title="کھولیں" onclick="loadRecord('${r.id}')">📂</button><button class="openbtn winbtn rc-ic" onclick="openRecordInWindow('${r.id}')" title="نئی ٹیب میں کھولیں — موجودہ فارم جوں کا توں رہے گا">🪟</button>
         </div>
@@ -5134,7 +5157,7 @@ async function renderRecordsList(filter){
       <div class="reccard">
         <div class="info">
           <b><span class="badge">بقایاداران</span> جماعت: ${hl(r.header&&r.header.jamaat)}${r.formNumber ? ' <span class="rc-no">فارم نمبر: ' + escapeHtml(r.formNumber) + '</span>' : ''}</b>
-          <div>${r.date ? 'تاریخ: ' + escapeHtml(r.date) + ' · ' : ''}آخری ترمیم: ${r.lastModified ? new Date(r.lastModified).toLocaleString('ur-PK') : '—'}</div>
+          <div>${r.date ? 'تاریخ: ' + escapeHtml(r.date) + ' · ' : ''}${lmHtml(r)}</div>
         </div>
         <button class="openbtn rc-ic" title="کھولیں" onclick="loadRecord('${r.id}')">📂</button><button class="openbtn winbtn rc-ic" onclick="openRecordInWindow('${r.id}')" title="نئی ٹیب میں کھولیں — موجودہ فارم جوں کا توں رہے گا">🪟</button>
       </div>
@@ -7402,6 +7425,66 @@ function pjTogglePanel(){
     showToast(n+' رقمیں «'+NAMES[c]+'» کالم میں پیسٹ ہو گئیں ✓');
   };
   Object.keys(TB).forEach(build);
+})();
+
+function lmHtml(r){
+  if(!r.lastModified) return '<span class="lm lm-old">آخری ترمیم: —</span>';
+  const d=new Date(r.lastModified), ms=Date.now()-d.getTime(), m=Math.floor(ms/60000);
+  let rel, cls;
+  if(m<60){ rel = m<2 ? 'ابھی' : m+' منٹ پہلے'; cls='lm-new'; }
+  else if(m<1440){ rel=Math.floor(m/60)+' گھنٹے پہلے'; cls='lm-new'; }
+  else if(m<1440*7){ rel=Math.floor(m/1440)+' دن پہلے'; cls='lm-mid'; }
+  else if(m<1440*30){ rel=Math.floor(m/1440)+' دن پہلے'; cls='lm-old'; }
+  else { rel=Math.floor(m/43200)+' ماہ پہلے'; cls='lm-old'; }
+  return '<span class="lm '+cls+'">آخری ترمیم: '+d.toLocaleString('ur-PK')+' <small>'+rel+'</small></span>';
+}
+
+/* ===== امارت آڈٹ رپورٹ: چار جدولوں کے کالموں پر کاپی / پیسٹ ===== */
+(function(){
+  const CLIP_KEY='col_clip_v1';
+  const CFG={
+    tbl_amSummary:{cols:{2:'am1-wasooli',3:'am1-tarseel'}},
+    tbl_amDetail:{cols:{2:'am2-wasooli',3:'am2-tarseel'},add:()=>addAmaratDetailRow()},
+    tbl_amMonthly:{cols:{2:'am3-aamad',3:'am3-kharch'}},
+    tbl_amLocalHeads:{cols:{1:'am4-madat',2:'am4-raqam'},add:()=>addAmaratLocalHeadRow()}
+  };
+  const NAME={'am1-wasooli':'وصولی','am1-tarseel':'ترسیل','am2-wasooli':'وصولی','am2-tarseel':'ترسیل','am3-aamad':'آمد','am3-kharch':'خرچ','am4-madat':'لوکل مدات','am4-raqam':'رقم'};
+  const rows=id=>[...document.querySelectorAll('#'+id+' tbody tr')];
+  window.amColCopy=async function(id,cls){
+    const vals=rows(id).map(tr=>{const e=tr.querySelector('.'+cls);return e?e.value:'';});
+    while(vals.length && vals[vals.length-1]==='') vals.pop();
+    if(!vals.length){ showToast('اس کالم میں کچھ درج نہیں'); return; }
+    const text=vals.join('\n');
+    try{ localStorage.setItem(CLIP_KEY,text); }catch(e){}
+    try{ await copyTextToClipboard(text); }catch(e){}
+    showToast('«'+NAME[cls]+'» کالم کی '+vals.filter(v=>v!=='').length+' قطاریں کاپی ہو گئیں ✓ — دوسرے فارم میں 📥 پیسٹ دبائیں');
+  };
+  window.amColPaste=async function(id,cls){
+    let text=''; try{ text=localStorage.getItem(CLIP_KEY)||''; }catch(e){}
+    if(!text){ try{ if(navigator.clipboard&&navigator.clipboard.readText) text=await navigator.clipboard.readText(); }catch(e){} }
+    if(!text||!text.trim()){ showToast('پہلے کسی کالم میں 📑 کاپی دبائیں'); return; }
+    const vals=text.replace(/\r/g,'').split('\n'); while(vals.length&&vals[vals.length-1].trim()==='') vals.pop();
+    const c=CFG[id]; let tr=rows(id);
+    while(c.add && tr.length<vals.length && tr.length<200){ c.add(); tr=rows(id); }
+    let n=0;
+    vals.forEach((v,r)=>{
+      const e=tr[r]&&tr[r].querySelector('.'+cls); if(!e||e.readOnly) return;
+      let x=v.trim();
+      if(e.type==='number'){ x=x.replace(/[,\s]/g,''); if(x!==''&&isNaN(parseFloat(x))) return; }
+      e.value=x; e.dispatchEvent(new Event('input',{bubbles:true})); if(x!=='') n++;
+    });
+    if(typeof setDirty==='function') setDirty(true);
+    showToast(n+' قطاریں «'+NAME[cls]+'» کالم میں پیسٹ ہو گئیں ✓');
+  };
+  Object.keys(CFG).forEach(id=>{
+    const tr0=document.querySelector('#'+id+' thead tr'); if(!tr0||document.querySelector('#'+id+' thead tr.coltools')) return;
+    const n=tr0.children.length; let h='<tr class="coltools no-print">';
+    for(let i=0;i<n;i++){
+      const cls=CFG[id].cols[i];
+      h+='<th>'+(cls?'<button type="button" class="cbtn" title="'+NAME[cls]+' کالم کاپی" onclick="amColCopy(\''+id+'\',\''+cls+'\')">📑 کاپی</button><button type="button" class="cbtn" title="'+NAME[cls]+' کالم میں پیسٹ" onclick="amColPaste(\''+id+'\',\''+cls+'\')">📥 پیسٹ</button>':'')+'</th>';
+    }
+    tr0.parentNode.insertAdjacentHTML('beforeend',h+'</tr>');
+  });
 })();
 </script>
 </body>
