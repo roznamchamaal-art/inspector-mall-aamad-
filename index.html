@@ -1918,10 +1918,12 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 @media print{
 .b3-frame{height:100% !important}.b3-frame.b3-part{height:auto !important}
 .b3-frame:not(.b3-part) .b3-t{flex:1 1 auto}
-.ap-box1{flex:0 0 auto !important;min-height:80mm}
+.ap-box1{flex:0 0 auto !important}
+.ap-sheet{padding-top:6mm !important;padding-bottom:6mm !important;gap:3mm !important}
+.ap-tbl th,.ap-tbl td{height:6.1mm !important}
 .ap-books .print-fraction{font-size:10.5pt !important;line-height:1.15 !important}
-.ap-sigs{margin-top:7mm !important;min-height:15mm !important}
-.ap-sig{bottom:0.4mm !important;height:11mm !important;left:10% !important}
+.ap-sigs{margin-top:2mm !important;min-height:13mm !important}
+.ap-sig{bottom:0.4mm !important;height:9mm !important;left:10% !important}
 .ap-f.fit{min-width:20mm}
 }
 @media screen{#b_currentYearTo,#b_currentYearFrom{max-width:190px}}
@@ -5882,7 +5884,7 @@ function buildBaqayaPrintSheets(){
     const last = k === chunks.length - 1;
     const multi = chunks.length > 1, full = blank || multi || chunk.length >= cap;
     html += '<section class="bp-sheet' + (k ? ' bp-cont' : '') + (full ? '' : ' bp-partial') + '"><div class="bp-frame">' + (k === 0 ? '<div class="bp-head">' + bpHead() + '</div>' : '') +
-      bpTable(chunk, no, (last && multi) ? cap - 1 : cap, {pad: blank || multi, grand: (last && multi) ? rows : null}) + bpFoot(k === 0 ? 'ft1' : 'ft2') + '</div></section>';
+      bpTable(chunk, no, cap, {pad: blank, grand: (last && multi) ? rows : null}) + bpFoot(k === 0 ? 'ft1' : 'ft2') + '</div></section>';
     no += chunk.length;
   });
   const wrap = document.createElement('div');
@@ -6955,7 +6957,7 @@ function buildB3PrintSheets(){
     let no = 1;
     chunks.forEach((chunk, k)=>{
       const lastK = k === chunks.length - 1, multi = chunks.length > 1;
-      html += b3Sheet(k === 0, chunk, no, {grand: (lastK && multi) ? used : null, padTo: multi ? (k === 0 ? B3_C1 : (lastK ? B3_C2 - 1 : B3_C2)) : 0, part: !multi && used.length < B3_C1});
+      html += b3Sheet(k === 0, chunk, no, {grand: (lastK && multi) ? used : null, part: !multi && used.length < B3_C1});
       no += chunk.length;
     });
   }
