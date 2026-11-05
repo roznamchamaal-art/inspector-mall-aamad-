@@ -1917,8 +1917,13 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 <style>
 @media print{
 .b3-frame{height:100% !important}.b3-frame.b3-part{height:auto !important}
-.b3-frame:not(.b3-part) .b3-t{flex:1 1 auto}
+.b3-tw{flex:1 1 auto;min-height:0;display:block}
+.b3-part .b3-tw{flex:0 0 auto}
+.b3-frame:not(.b3-part) .b3-t{height:100%}
 .ap-box1{flex:0 0 auto !important}
+.b3-first .b3-t td{height:8.2mm !important}
+.bp-sheet:not(.bp-cont) .bp-tbl tbody tr{height:11.4mm !important}
+.bp-sheet:not(.bp-cont) .bp-n1,.bp-sheet:not(.bp-cont) .bp-n2{height:5.7mm !important}
 .ap-sheet{padding:4mm 5mm !important;gap:2.5mm !important}
 .ap-box{width:100% !important}
 .ap-box2 .ap-row{min-height:5.2mm !important}
@@ -5788,7 +5793,7 @@ function unwrapPagesAfterPrint(){
 /* ======================================================================
    BAQAYA LIST — print sheets that reproduce the paper form (11 tall rows per sheet)
    ====================================================================== */
-const BP_ROWS = 11;      // قطاریں پہلے صفحے پر (سرخی کے ساتھ)
+const BP_ROWS = 15;      // قطاریں پہلے صفحے پر (سرخی کے ساتھ)
 const BP_ROWS2 = 13;     // اگلے صفحات پر (سرخی کے بغیر)
 function bpNum(v){ const n = parseFloat(String(v == null ? '' : v).replace(/[,\s]/g, '')); return isFinite(n) ? n : null; }
 function bpSum(arr){ let t = 0, any = false; arr.forEach(v=>{ const n = bpNum(v); if(n != null){ t += n; any = true; } }); return any ? String(Math.round(t * 100) / 100) : ''; }
@@ -6821,7 +6826,7 @@ function ctDir(id){
 /* ======================================================================
    30 JUNE DEFAULTERS FORM (baqaya30): dynamic rows, copy/paste, A4 sheets with grand total
    ====================================================================== */
-const B3_C1 = 17;     // data rows on the first sheet (it also carries title, fields and instructions)
+const B3_C1 = 20;     // data rows on the first sheet (it also carries title, fields and instructions)
 const B3_C2 = 23;     // data rows on later sheets
 const B3_START = 15;  // empty rows shown on a new form
 const B3_COLS = ['b3-name', 'b3-moosi', 'b3-ohda', 'b3-amlak', 'b3-jalsa'];
@@ -6934,7 +6939,7 @@ function b3Sheet(first, rows, startNo, opt){
     fr([['جماعت احمدیہ', 'b3_jamaat'], ['ضلع', 'b3_zila']]) + fr([['امیر/صدر معہ فون نمبر', 'b3_ameer'], ['سیکرٹری مال معہ فون نمبر', 'b3_sec']]) +
     '<div class="b3-ins"><b>ہدایات:</b> <span class="it">1۔ جماعتی ذیلی تنظیموں کے کارکن اگر بقایا دار ہوں تو ان کے عہدہ داران کے ساتھ ان کا عہدہ بھی لکھا جائے۔</span> ' +
     '<span class="it">2۔ 30 جون ' + ey + 'ء تک کا حساب اگر مکمل نہ ہو تو مکمل کر کے فہرست بنائی جائے۔</span> <span class="it">3۔ فہرست کی ایک نقل مقامی جماعت کو بھی مہیا کی جائے۔</span></div></div>' : '';
-  return '<section class="b3-sheet"><div class="b3-frame' + (opt.part ? ' b3-part' : '') + '">' + head + t +
+  return '<section class="b3-sheet"><div class="b3-frame' + (first ? ' b3-first' : '') + (opt.part ? ' b3-part' : '') + '">' + head + '<div class="b3-tw">' + t + '</div>' +
     '<div class="b3-foot">' + sg('دستخط سیکرٹری مال جماعت مع تاریخ', 'b3_secSign') + sg('دستخط صدر جماعت مع تاریخ', 'b3_sadarSign') + sg('دستخط انسپکٹر مال مع تاریخ', 'b3_inspSign') + '</div></div></section>';
 }
 function buildB3PrintSheets(){
