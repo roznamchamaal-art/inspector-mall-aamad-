@@ -1923,7 +1923,14 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 .b3-part .b3-tw{flex:0 0 auto}
 .b3-frame:not(.b3-part) .b3-foot{flex:1 1 auto}
 .ap-box1{flex:0 0 auto !important}
-.b3-first .b3-t td{height:8.2mm !important}
+.b3-first .b3-t td{height:9mm !important}
+.b3-first .b3-foot{padding-top:5mm !important}
+.b3-fr{margin-top:1.8mm !important}
+.b3-fr .l,.b3-fr .f{font-size:12pt !important}
+.b3-fr .f{min-height:7.5mm !important}
+.b3-head{padding-bottom:2.5mm !important}
+.b3-ins{margin:3.5mm 0 1.5mm !important;font-size:10pt !important}
+.b3-ins b{font-size:11.5pt !important}
 .bp-sheet:not(.bp-cont) .bp-tbl tbody tr{height:10.8mm !important}
 .bp-sheet:not(.bp-cont) .bp-n1,.bp-sheet:not(.bp-cont) .bp-n2{height:5.4mm !important}
 .ap-sheet{padding:4mm 5mm !important;gap:2.5mm !important}
@@ -1946,6 +1953,8 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 #formtype-amaratAudit .am-lf-pt th,#formtype-amaratAudit .am-lf-pt td{border:0.3mm solid #000;padding:1mm 2mm;font-size:10.5pt;text-align:center}
 #formtype-amaratAudit .am-lf-pt td:first-child{text-align:right;width:62%}
 }
+.dh-rep .dh-b{box-shadow:0 3px 9px rgba(0,0,0,.2);transition:transform .15s,box-shadow .15s;border:0;cursor:pointer;font-size:15px}
+.dh-rep .dh-b:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.28)}
 .dh-ic{width:38px;height:34px;padding:0;border-radius:10px;background:#fbf3df;border:1.5px solid #e3d3a2;font-size:18px;cursor:pointer;color:#7a1f1f;min-height:0}
 .dh-ic:hover{background:#7a1f1f;color:#fff}
 .dh-modal{position:fixed;inset:0;background:rgba(40,20,10,.45);z-index:9999;display:flex;align-items:flex-start;justify-content:center;padding:4vh 10px;overflow:auto}
@@ -4439,6 +4448,7 @@ async function saveForm(){
   const data = collectFormData();
   const _v = validateBeforeSave(data);
   if(!_v.ok){ showToast(_v.msg, 5000); return; }
+  if(data.formType==='auditaccount'){ try{ if(await ctSync()) showToast('جماعت کی تفصیل رابطہ نمبر میں محفوظ ہو گئی', 2500); }catch(e){} }
   if(!(await resolveDuplicates(data))) return;
   if(data.formType==='gendarkhwast'){
     data.name_search = [data.gendarkhwast.name, data.gendarkhwast.addressee, data.gendarkhwast.body].filter(Boolean).join(' ').toLowerCase();
@@ -7631,7 +7641,7 @@ function dhRender(){
   const fy=DHX.fy,S=dhCalc(fy),pc=S.total?Math.round(S.complete/S.total*100):0,nx=S.up.find(p=>p.d>=S.td&&!S.seen.has(dhNorm(p.jamaat)));
   const ys=[];for(let y=dhFy(new Date())-3;y<=dhFy(new Date())+1;y++)ys.push(y);
   let h='<div class="dh-hero"><div><h2>🏠 مرکزی صفحہ</h2><small>سالانہ مدت: یکم جولائی '+fy+'ء تا 30 جون '+(fy+1)+'ء • آج: '+dhFmt(new Date())+'</small></div><div><select onchange="DHX.fy=+this.value;dhRender()">'+ys.map(y=>'<option value="'+y+'"'+(y==fy?' selected':'')+'>مالی سال '+y+'-'+String(y+1).slice(2)+'</option>').join('')+'</select></div></div>';
-  h+='<div class="dh-rep"><b>📤 رپورٹ:</b><select id="dhRs"><option value="y">سالانہ</option>'+[...Array(12)].map((_,i)=>'<option value="'+i+'">ماہانہ — '+DHM[(i+6)%12]+'</option>').join('')+'</select><button class="dh-b" style="background:#b3261e" onclick="dhPdf()">📄 PDF</button><button class="dh-b" style="background:#1d7a46" onclick="dhXls()">📊 Excel</button><button class="dh-b" style="background:#2b3a55" onclick="dhPrint()">🖨️ پرنٹ</button><button class="dh-ic" title="نقل مقامی جماعت" onclick="pjTogglePanel()">📄</button><button class="dh-ic" title="اندراج" onclick="DHX.modal=1;dhRender()">✍️</button></div><div class="dh-grid">';
+  h+='<div class="dh-rep"><b>📤 رپورٹ:</b><select id="dhRs"><option value="y">سالانہ</option>'+[...Array(12)].map((_,i)=>'<option value="'+i+'">ماہانہ — '+DHM[(i+6)%12]+'</option>').join('')+'</select><button class="dh-b" style="background:#b3261e" onclick="dhPdf()">📄 PDF</button><button class="dh-b" style="background:#1d7a46" onclick="dhXls()">📊 Excel</button><button class="dh-b" style="background:#2b3a55" onclick="dhPrint()">🖨️ پرنٹ</button><button class="dh-b" style="background:linear-gradient(135deg,#13808b,#0b5560)" onclick="pjTogglePanel()">📄 نقل مقامی جماعت</button><button class="dh-b" style="background:linear-gradient(135deg,#e08a2e,#b4541a)" onclick="DHX.modal=1;dhRender()">✍️ اندراج</button></div><div class="dh-grid">';
   h+=dhCard('#7a1f1f','🏛️','کل جماعتیں',dhN(S.total),'خودکار شمار')+dhCard('#1d7a46','✅','مکمل آڈٹ',dhN(S.complete),pc+'% مکمل<div class="dh-bar"><i style="width:'+pc+'%"></i></div>')+dhCard('#d9822b','⏳','باقی آڈٹ',dhN(S.total-S.complete),'ابھی آڈٹ ہونا باقی')+dhCard('#7b3fa0','🔁','دوبارہ آڈٹ',dhN(S.re),'ایک جماعت کا دوبارہ آڈٹ')
    +dhCard('#13808b','🕌','امارت کے آڈٹ',S.amDone+' / '+(S.amTotal-S.amDone),'مکمل / باقی (دوبارہ: '+S.amRe+')')+dhCard('#c0562b','🏖️','استعمال شدہ چھٹیاں',dhN(S.used),'منظور شدہ دن (سالانہ '+DH.leaveTotal+')')+dhCard('#3b7dd8','📅','باقی چھٹیاں',dhN(S.left),'سالانہ منظوری کے حساب سے')+dhCard('#8a5a14','✉️','بھیجی گئی ڈاک',dhN(S.sent),'باقی ڈاک: '+S.pendDak)
    +dhCard('#0f5132','🚗','سالانہ سفری اخراجات','Rs '+dhN(S.trYear),'اس ماہ: Rs '+dhN(S.trMon))+dhCard('#a1294a','🗓️','آئندہ آڈٹ پروگرام',nx?dhFmt(nx.d)+' — '+dhE(nx.jamaat):'کوئی پروگرام نہیں',nx?dhE(nx.note||''):'نیچے سے پروگرام درج کریں',1)+'</div>';
@@ -7688,7 +7698,8 @@ async function ctSync(){const jn=gv('a_jamaat');if(!jn)return;await ctReady();le
   const z=gv('a_zila');if(z&&j.district!==z){j.district=z;ch=1;}
   CJ.forEach(([n,p,c,re,role])=>{const nm=gv(n),ph=gv(p)||gv(c);if(!nm&&!ph)return;const x=j.people.find(q=>re(q.role||''));
     if(!x){j.people.push({id:ctUid(),name:nm,role,phone:ph,loc:''});ch=1;}else{if(nm&&x.name!==nm){x.name=nm;ch=1;}if(ph&&x.phone!==ph){x.phone=ph;ch=1;}}});
-  if(ch)ctSave();}
+  if(ch)ctSave();return ch;}
+document.addEventListener('input',e=>{if(['a_jamaat','a_zila','a_sadarName','a_sadarPhone','a_secName','a_secPhone'].includes(e.target.id)){clearTimeout(window._ctT);window._ctT=setTimeout(ctSync,700);}});
 document.addEventListener('change',async e=>{const id=e.target.id;
   if(id==='a_jamaat'){await ctFill();await ctSync();}
   else if(['a_zila','a_sadarName','a_sadarPhone','a_secName','a_secPhone','c_phone2','c_phone3'].includes(id))ctSync();
