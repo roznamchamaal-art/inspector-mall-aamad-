@@ -2000,6 +2000,118 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 .dhrp h2{font-size:16px;margin:12px 0 4px;color:#7a1f1f}.dhrp table{width:100%;border-collapse:collapse;font-size:13px}
 .dhrp th{background:#7a1f1f;color:#fff;padding:3px 6px;border:1px solid #7a1f1f}.dhrp td{border:1px solid #bbb;padding:3px 6px;text-align:center}
 </style>
+<style id="hdrCss">
+/* =====================================================================
+   ایک ہی خوبصورت اوپری پٹی (عنوان + مینو + تلاش/ترتیبات + کارروائی بٹن)   — screen only
+   ===================================================================== */
+@media screen{
+  #navwrap{position:sticky;top:0;z-index:60;background:linear-gradient(135deg,#7f2222 0%,#5c1414 55%,#3f0d0d 100%) !important;border:0 !important;border-radius:0 0 22px 22px;box-shadow:0 8px 24px rgba(63,13,13,.32) !important;color:#fff;margin:0 0 8px;}
+  #navwrap::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(120% 140% at 100% 0%,rgba(255,255,255,.14),transparent 55%);}
+  #topbar{position:relative !important;background:transparent !important;box-shadow:none !important;padding:10px 16px 8px !important;display:flex;align-items:center;justify-content:space-between;gap:10px 14px;flex-wrap:wrap;}
+  .tb-brand{display:flex;align-items:center;gap:11px;min-width:0;}
+  .tb-logo{width:44px;height:44px;flex:none;border-radius:14px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.26),0 3px 8px rgba(0,0,0,.18);}
+  #topbar h1{font-size:20px;line-height:1.55;margin:0;}
+  #topbar .sub{font-size:12px;opacity:.88;max-width:52vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  #mainnav{display:flex !important;align-items:center;gap:7px;flex-wrap:wrap;padding:0 !important;margin:0;background:transparent !important;overflow:visible !important;position:relative !important;top:auto !important;border:0 !important;}
+  #mainnav > button,#mainnav > .hd-menu > button{background:rgba(255,255,255,.13);color:#fff;border:1px solid rgba(255,255,255,.26);border-radius:13px;font-size:14px;font-weight:700;padding:8px 14px;min-height:40px;white-space:nowrap;box-shadow:none;transition:background .15s,transform .15s;}
+  #mainnav > button:hover,#mainnav > .hd-menu > button:hover{background:rgba(255,255,255,.24);transform:translateY(-1px);}
+  #mainnav > button.active,#mainnav > .hd-menu > button.active{background:#fff;color:#7a1f1f;border-color:#fff;box-shadow:0 3px 10px rgba(0,0,0,.22);}
+  #mainnav > .hd-menu > button{min-width:190px;}
+  .hd-menu{position:relative;}
+  .hd-fy{background:rgba(255,255,255,.13);color:#fff;border:1px solid rgba(255,255,255,.26);border-radius:13px;padding:8px 12px;min-height:40px;font-weight:700;font-size:14px;cursor:pointer;}
+  .hd-fy option{color:#222;}
+  body:not(.v-home) .hd-fy{display:none;}
+  body.is-dirty:not(.v-form) #recStatusLine::after{content:none !important;}
+  #ftdrop{position:absolute !important;top:calc(100% + 8px) !important;right:0 !important;left:auto !important;width:330px !important;max-width:92vw;background:#fff;border:1px solid #e3d8bd;border-radius:18px;box-shadow:0 18px 44px rgba(40,10,10,.38);padding:10px;z-index:80;color:#3b2f2f;}
+  #ftdrop .ftd-h{font-size:12px;color:#7a6f55;padding:2px 8px 6px;text-align:right;font-weight:700;}
+  #ftdrop .ftd-sep{border-top:1px dashed #e3d8bd;margin-top:8px;padding-top:8px;}
+  #ftdrop .ftd-nav{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+  #ftdrop .ftd-nav button{--ic:#f1ead6;display:flex;align-items:center;justify-content:flex-start;gap:9px;width:100%;text-align:right;border:none;border-radius:12px;background:#faf8f1;color:#3b2f2f;font-size:14px;font-weight:700;padding:9px 10px;min-height:0;box-shadow:none;}
+  #ftdrop .ftd-nav button::before{width:34px;height:34px;flex:none;display:inline-flex;align-items:center;justify-content:center;border-radius:11px;font-size:18px;background:var(--ic);box-shadow:inset 0 0 0 1px rgba(0,0,0,.07),0 2px 5px rgba(0,0,0,.10);}
+  #ftdrop .ftd-nav button[data-view=home]{--ic:#fde2e2;}#ftdrop .ftd-nav button[data-view=home]::before{content:'🏠';}
+  #ftdrop .ftd-nav button[data-view=contacts]{--ic:#d6f0e0;}#ftdrop .ftd-nav button[data-view=contacts]::before{content:'📇';}
+  #ftdrop .ftd-nav button:hover{background:#f1ead6;}
+  #ftdrop .ftd-nav button.active{background:linear-gradient(135deg,#7a1f1f,#4b1010);color:#fff;}
+  #ftdrop .ftd-nav button.active::before{background:rgba(255,255,255,.26);}
+  #actionbar{position:relative !important;background:rgba(0,0,0,.16) !important;border-top:1px solid rgba(255,255,255,.14) !important;border-radius:0 0 22px 22px;padding:9px 16px 11px !important;}
+  #actionbar button{box-shadow:0 2px 6px rgba(0,0,0,.28);}
+  #appwrap{padding-top:6px;}
+
+  /* مرکزی صفحہ: کارڈ کلک → تفصیل */
+  .dh-card.k{cursor:pointer;transition:transform .15s,box-shadow .15s;}
+  .dh-card.k:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(60,40,20,.2);}
+  .dh-card.k::after{content:'تفصیل ◂';position:absolute;left:12px;bottom:8px;font-size:11.5px;font-weight:700;color:var(--c);opacity:0;transition:opacity .15s;}
+  .dh-card.k:hover::after{opacity:.95;}
+  .dd-hero{background:linear-gradient(135deg,var(--c),#2a0a0a);color:#fff;border-radius:18px;padding:14px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:4px 0 12px;box-shadow:0 8px 20px rgba(60,20,20,.24);}
+  .dd-hero h2{margin:0;font-size:25px;}.dd-hero small{opacity:.88;font-size:13px;}
+  .dd-back{background:#fff;color:#7a1f1f;border:none;border-radius:12px;padding:8px 16px;min-height:40px;font-weight:800;font-size:14px;box-shadow:0 3px 10px rgba(0,0,0,.25);cursor:pointer;}
+  .dd-cnt{margin-right:auto;font-size:34px;font-weight:800;background:rgba(255,255,255,.17);border-radius:14px;padding:0 20px;min-width:70px;text-align:center;}
+  .dd-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px;}
+  .dd-q{flex:1;min-width:200px;border:1.5px solid #e3d8bd;border-radius:22px;padding:8px 16px;font-size:14px;background:#fffdf8;}
+  .dd-add{background:linear-gradient(135deg,#e08a2e,#b4541a);color:#fff;border:none;border-radius:12px;padding:8px 16px;min-height:38px;font-weight:700;cursor:pointer;}
+  .dd-tb{width:100%;border-collapse:collapse;font-size:15px;}
+  .dd-tb th{background:#f4eedc;padding:9px 10px;color:#5a4420;text-align:right;white-space:nowrap;}
+  .dd-tb td{padding:9px 10px;border-bottom:1px dashed #e6dcc0;text-align:right;}
+  .dd-tb td:first-child,.dd-tb th:first-child{width:42px;text-align:center;color:#9a8a66;}
+  .dd-tb tbody tr:hover td{background:#fffaf0;}
+  .dd-badge{display:inline-block;border-radius:12px;padding:1px 11px;font-size:13px;font-weight:700;}
+  .b-ok{background:#e0f4e7;color:#1d7a46;}.b-wait{background:#fff0d9;color:#c0562b;}.b-re{background:#efe3f8;color:#7b3fa0;}
+  .dd-foot{margin-top:10px;padding:10px 14px;background:#fbf3df;border-radius:12px;font-weight:800;color:#5a4420;}
+  .dd-empty{padding:26px;text-align:center;color:#9a8c70;}
+
+  /* نقل مقامی جماعت: مرکزی صفحے پر کھلے تو ڈیش بورڈ چھپ جائے + واپس بٹن */
+  #view-home.pj-on #dhBox{display:none;}
+  #pjPanel .pj-head{display:flex;align-items:center;gap:10px;margin:-2px 0 10px;padding-bottom:10px;border-bottom:1px dashed #e3d8bd;}
+  #pjPanel .pj-ttl{font-size:19px;font-weight:800;color:#7a1f1f;margin-right:auto;}
+  #pjPanel .pj-back{background:linear-gradient(135deg,#7a1f1f,#4b1010);color:#fff;border:none;border-radius:12px;padding:8px 16px;min-height:38px;font-weight:700;cursor:pointer;}
+  #pjPanel .pj-x{background:#fbe4e4;color:#b3261e;border:none;border-radius:10px;min-height:0;padding:4px 12px;font-weight:800;cursor:pointer;}
+}
+@media screen and (max-width:700px){
+  #navwrap{position:relative !important;border-radius:0 0 18px 18px;}
+  #topbar{padding:8px 10px 6px !important;}
+  #topbar h1{font-size:16px;}
+  #topbar .sub{max-width:62vw;font-size:11px;}
+  .tb-logo{width:38px;height:38px;font-size:20px;}
+  #mainnav{width:100%;gap:6px;}
+  .hd-menu{position:static;flex:1 1 100%;}
+  #mainnav > .hd-menu > button{width:100%;min-width:0;}
+  #mainnav > button{flex:1 1 auto;padding:7px 8px;font-size:13px;min-height:38px;}
+  #ftdrop{left:8px !important;right:8px !important;width:auto !important;max-width:none;top:calc(100% + 4px) !important;}
+  #actionbar{border-radius:0 0 18px 18px;padding:8px 8px 10px !important;}
+  .dd-hero h2{font-size:19px;}.dd-cnt{font-size:26px;}
+  .dd-tb{font-size:13.5px;}
+}
+
+/* ===== نقل / ریفرنس (درخواست، جنرل درخواست) + Excel بٹن ===== */
+#actionbar .btn-excel{background:linear-gradient(135deg,#2e9d5f,#17603a);}#actionbar .btn-excel::before{content:'📊'}
+.dk-foot{display:flex;align-items:flex-start;gap:14px;align-self:stretch;}
+#formtype-darkhwast .a4page .dk-foot .dk-bottom,#formtype-gendarkhwast .a4page .dk-foot .dk-bottom{align-self:flex-start !important;margin:0 auto 0 0 !important;}
+.dkr-print{display:none;}
+@media screen{
+  .dk-foot{margin:0 22px 18px;}
+  #formtype-darkhwast .a4page .dk-foot .dk-bottom,#formtype-gendarkhwast .a4page .dk-foot .dk-bottom{min-width:300px !important;}
+  .dk-ref{flex:1;max-width:54%;padding:8px 14px 12px;background:linear-gradient(180deg,#f6fbff,#eaf3fb);border:1px solid #c7dcee;border-radius:12px;}
+  .dkr-h{font-weight:800;color:#1f4e79;margin-bottom:6px;font-size:15px;}.dkr-h small{font-weight:400;color:#6b8aa8;font-size:11.5px;}
+  .dkr-row{display:flex;align-items:center;gap:8px;padding:3px 0;}
+  .dkr-tk{min-height:0;width:34px;height:34px;padding:0;font-size:22px;line-height:1;border-radius:10px;background:#fff;color:#1f4e79;border:1.5px solid #b9d0e6;cursor:pointer;}
+  .dkr-row.on .dkr-tk{background:#1f4e79;color:#fff;border-color:#1f4e79;}
+  .dkr-t{flex:1;min-height:30px;padding:3px 10px;border-bottom:1.5px dotted #8fb0cf;font-size:16px;outline:none;background:#fff;border-radius:8px;}
+  .dkr-t:empty::before{content:attr(data-ph);color:#9db4c9;}
+  .dkr-x{min-height:0;padding:2px 9px;border-radius:8px;background:#fbe4e4;color:#b3261e;border:none;cursor:pointer;}
+  .dkr-add{margin-top:6px;min-height:0;padding:6px 14px;border-radius:20px;background:#fff;color:#1f4e79;border:1.5px solid #b9d0e6;font-weight:700;cursor:pointer;}
+}
+@media print{
+  .dk-foot{margin:0;}
+  .dk-ref{display:none !important;}
+  .dkr-print{display:block;flex:1;padding-top:2mm;font-size:15px;line-height:2.1;text-align:right;}
+  .dkr-print:empty{display:none;}
+  .dkr-pl{white-space:nowrap;}
+  .dkr-bx{display:inline-block;width:4.4mm;height:4.4mm;border:.4mm solid #000;text-align:center;line-height:4.4mm;font-size:3.4mm;margin-left:2mm;vertical-align:middle;}
+  #formtype-darkhwast .a4page.dk-has-text .dk-foot,#formtype-gendarkhwast .a4page.dk-has-text .dk-foot{margin-top:14mm;}
+  #formtype-darkhwast .a4page.dk-has-text .dk-foot .dk-bottom,#formtype-gendarkhwast .a4page.dk-has-text .dk-foot .dk-bottom{margin-top:0 !important;}
+  #formtype-darkhwast .a4page .dk-foot .dk-bottom,#formtype-gendarkhwast .a4page .dk-foot .dk-bottom{min-width:0 !important;width:44%;}
+}
+</style>
 </head>
 <body class="lang-ur">
 
@@ -2018,26 +2130,26 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
 
 <!-- ================= APP ================= -->
 <div id="appshell" class="hidden">
-  <div id="topbar">
-    <div>
-      <h1><span class="ur">انسپیکٹر مال آمد </span><span class="en">Inspector Maal Aamad</span></h1>
-      <div class="sub" id="recStatusLine">نیا فارم</div>
-    </div>
-    <div class="top-actions">
-      <button data-view="search"><span class="ur">🔍 تلاش </span><span class="en">Search</span></button>
-      <button data-view="settings"><span class="ur">⚙️ ترتیبات </span><span class="en">Settings</span></button>
-    </div>
-  </div>
-
   <div id="navwrap">
-    <div id="mainnav">
-      <button data-view="home" id="homeBtn"><span class="ur">🏠 مرکزی صفحہ</span><span class="en">Home</span></button>
-      <button data-view="form" class="active" id="fillBtn"><span class="ur">فارم پُر کریں ▾</span><span class="en">Fill Form ▾</span></button>
-      <button data-view="records"><span class="ur">📁 محفوظ فارم </span><span class="en">Saved</span></button>
-      <button data-view="contacts"><span class="ur">📇 رابطہ نمبر </span><span class="en">Contacts</span></button>
-    </div>
-    <div id="ftdrop" class="hidden"><div class="ftd-h">فارم کی قسم منتخب کریں</div>
-<div class="formtypetabs">
+    <div id="topbar">
+      <div class="tb-brand">
+        <div class="tb-logo">📒</div>
+        <div class="tb-txt">
+          <h1><span class="ur">انسپیکٹر مال آمد </span><span class="en">Inspector Maal Aamad</span></h1>
+          <div class="sub" id="recStatusLine">نیا فارم</div>
+        </div>
+      </div>
+      <div id="mainnav">
+        <div class="hd-menu">
+          <button type="button" id="fillBtn" class="active"><span class="ur">📝 فارم پُر کریں ▾</span><span class="en">Menu ▾</span></button>
+          <div id="ftdrop" class="hidden">
+            <div class="ftd-h">🧭 جانے کی جگہ منتخب کریں</div>
+            <div class="ftd-nav">
+              <button type="button" data-view="home" id="homeBtn"><span class="ur">مرکزی صفحہ</span><span class="en">Home</span></button>
+              <button type="button" data-view="contacts"><span class="ur">رابطہ نمبر</span><span class="en">Contacts</span></button>
+            </div>
+            <div class="ftd-h ftd-sep">📝 فارم پُر کریں</div>
+            <div class="formtypetabs">
         <button data-ftype="baqaya" class="active" onclick="switchFormTypeTab('baqaya')"><span class="ur">فہرست بقایاداران </span><span class="en">List of Defaulters</span></button>
         <button data-ftype="baqaya30" onclick="switchFormTypeTab('baqaya30')"><span class="ur">30 جون بقایاداران </span><span class="en">30 June Defaulters</span></button>
         <button data-ftype="auditaccount" onclick="switchFormTypeTab('auditaccount')"><span class="ur">انسپکٹر رپورٹ </span><span class="en">Inspector Report</span></button>
@@ -2047,13 +2159,19 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
         <button data-ftype="darkhwast" onclick="switchFormTypeTab('darkhwast')"><span class="ur">درخواست </span><span class="en">Application</span></button>
         <button data-ftype="gendarkhwast" onclick="switchFormTypeTab('gendarkhwast')"><span class="ur">جنرل درخواست </span><span class="en">General Application</span></button>
       </div>
+          </div>
+        </div>
+        <select id="hdrFy" class="hd-fy" onchange="DHX.fy=+this.value;dhRender()" title="مالی سال"></select>
+        <button type="button" data-view="records"><span class="ur">📁 محفوظ فارم </span><span class="en">Saved</span></button>
+        <button type="button" data-view="search"><span class="ur">🔍 تلاش </span><span class="en">Search</span></button>
+        <button type="button" data-view="settings"><span class="ur">⚙️ ترتیبات </span><span class="en">Settings</span></button>
+      </div>
     </div>
-  <!-- ============ ACTION BAR (form view) ============ -->
   <div id="actionbar">
     <button class="btn-new" onclick="guardDirty(newForm)"><span class="ur">نیا فارم </span><span class="en">New</span></button>
     <button class="btn-save" onclick="saveForm()"><span class="ur">محفوظ کریں </span><span class="en">Save</span></button>
     <button class="btn-print" onclick="doPrint(false)"><span class="ur">پرنٹ/PDF </span><span class="en">Print</span></button>
-    <button class="btn-settings" onclick="showPrintSettings()">⚙️ <span class="ur">پرنٹ ترتیبات</span><span class="en">Print Settings</span></button>
+    <button class="btn-excel" onclick="exportFormExcel()" title="فارم کی Excel شیٹ ڈاؤن لوڈ کریں"><span class="ur">Excel </span><span class="en">Excel</span></button>
     <button class="btn-blank" onclick="doPrint(true)"><span class="ur">خالی فارم </span><span class="en">Blank</span></button>
     <button class="btn-share" onclick="shareForm()"><span class="ur">شیئر </span><span class="en">Share</span></button>
     <button class="btn-clear" onclick="confirmClearForm()"><span class="ur">صاف کریں </span><span class="en">Clear</span></button>
@@ -2588,11 +2706,12 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
             <div>السلام علیکم ورحمتہ اللہ وبرکاتہ</div>
           </div>
           <div id="dk_body" class="dk-body" contenteditable="true" data-ph="یہاں درخواست کا متن لکھیں (خالی بھی چھوڑ سکتے ہیں)…"></div>
-          <div class="dk-bottom">
+          <div class="dk-foot"><div class="dk-ref" data-p="dk"><div class="dkr-h">📎 نقل / ریفرنس <small>(ٹک والی سطریں ہی پرنٹ ہوں گی)</small></div><div class="dkr-list" id="dk_ref_list"></div><button type="button" class="dkr-add" onclick="dkrAdd('dk')">➕ نقل شامل کریں</button></div><div class="dkr-print" id="dk_ref_print"></div><div class="dk-bottom">
             <div>والسلام</div>
             <div>خاکسار</div>
             <textarea id="dk_name" class="dk-name" rows="2" placeholder="نام … (انٹر دبا کر اگلی سطر میں عہدہ/تاریخ لکھیں)"></textarea>
             <button type="button" class="dk-pn" id="dk_pn" aria-pressed="false" onclick="toggleLetterName('dk')"><span class="pnbox" aria-hidden="true">☐</span> نام پرنٹ میں شامل کریں</button>
+          </div>
           </div>
         </div>
       </div>
@@ -2607,11 +2726,12 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
             <div>السلام علیکم ورحمتہ اللہ وبرکاتہ</div>
           </div>
           <div id="gd_body" class="dk-body" contenteditable="true" data-ph="یہاں درخواست کا متن لکھیں (خالی بھی چھوڑ سکتے ہیں)…"></div>
-          <div class="dk-bottom">
+          <div class="dk-foot"><div class="dk-ref" data-p="gd"><div class="dkr-h">📎 نقل / ریفرنس <small>(ٹک والی سطریں ہی پرنٹ ہوں گی)</small></div><div class="dkr-list" id="gd_ref_list"></div><button type="button" class="dkr-add" onclick="dkrAdd('gd')">➕ نقل شامل کریں</button></div><div class="dkr-print" id="gd_ref_print"></div><div class="dk-bottom">
             <div>والسلام</div>
             <div>خاکسار</div>
             <textarea id="gd_name" class="dk-name" rows="2" placeholder="نام … (انٹر دبا کر اگلی سطر میں عہدہ/تاریخ لکھیں)"></textarea>
             <button type="button" class="dk-pn" id="gd_pn" aria-pressed="false" onclick="toggleLetterName('gd')"><span class="pnbox" aria-hidden="true">☐</span> نام پرنٹ میں شامل کریں</button>
+          </div>
           </div>
         </div>
       </div>
@@ -2627,6 +2747,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
         <button type="button" id="pjToggle" class="pj-toggle" style="display:none" onclick="pjTogglePanel()" title="جماعت کے سب فارم کی اکٹھی PDF">📄 <span class="ur">نقل مقامی جماعت</span> <b>▾</b></button>
       </div>
       <div id="pjPanel" class="pj-panel">
+        <div class="pj-head"><button type="button" class="pj-back" onclick="pjTogglePanel()">⬅ مرکزی صفحہ پر واپس</button><div class="pj-ttl">📄 نقل مقامی جماعت</div><button type="button" class="pj-x" onclick="pjTogglePanel()" title="بند کریں">✕</button></div>
         <p><span class="ur">جماعت کا نام لکھیں (مثلاً کوٹ لکھپت)۔ اس جماعت کے تمام محفوظ فارم نیچے آ جائیں گے۔ جو فارم منتخب کریں ان کی ایک اکٹھی PDF فائل بن کر ڈاؤن لوڈ ہو جائے گی۔</span></p>
         <input type="text" id="pj_name" list="pj_names" placeholder="جماعت کا نام، مثلاً کوٹ لکھپت" oninput="pjRefresh()" autocomplete="off">
         <datalist id="pj_names"></datalist>
@@ -3285,6 +3406,7 @@ document.querySelectorAll('#mainnav button[data-view], #topbar button[data-view]
   btn.addEventListener('click', ()=> goToView(btn.dataset.view));
 });
 function goToView(view){
+  window._curView=view;
   document.querySelectorAll('#mainnav button[data-view], #topbar button[data-view]').forEach(b=>b.classList.toggle('active', b.dataset.view===view));
   ['home','form','records','search','settings','contacts'].forEach(v=>{
     document.getElementById('view-'+v).classList.toggle('hidden', v!==view);
@@ -3296,6 +3418,7 @@ function goToView(view){
   if(view==='settings'){ renderLocations(); refreshEncCard(); }
   const actionbar = document.getElementById('actionbar');
   actionbar.style.display = (view==='form') ? 'flex' : 'none';
+  hdrSync(view);
 }
 document.querySelectorAll('.pagetabs button').forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -3322,8 +3445,7 @@ function switchFormType(type){
   document.getElementById('formtype-amaratAudit').classList.toggle('hidden', type!=='amaratAudit');
   document.getElementById('formtype-darkhwast').classList.toggle('hidden', type!=='darkhwast');
   document.getElementById('formtype-gendarkhwast').classList.toggle('hidden', type!=='gendarkhwast');
-  const _b=document.querySelector('.formtypetabs button[data-ftype="'+type+'"] .ur'), _f=document.querySelector('#fillBtn .ur');
-  if(_b && _f) _f.textContent='فارم پُر کریں: '+_b.textContent.trim()+' ▾';
+  if(typeof hdrLabel==='function') hdrLabel();
 }
 function switchFormTypeTabCore(type){
   // Called only from the visible tab buttons: switching tabs by hand always starts a
@@ -4054,6 +4176,7 @@ function collectFormDataCore(){
         addressee: val('gd_addressee'),
         body: document.getElementById('gd_body').innerText.replace(/\n$/,''),
         name: val('gd_name'),
+        refs: dkrGet('gd'),
         printName: document.getElementById('gd_pn').getAttribute('aria-pressed') === 'true'
       }
     };
@@ -4068,6 +4191,7 @@ function collectFormDataCore(){
       darkhwast: {
         body: document.getElementById('dk_body').innerText.replace(/\n$/,''),
         name: val('dk_name'),
+        refs: dkrGet('dk'),
         printName: document.getElementById('dk_pn').getAttribute('aria-pressed') === 'true'
       }
     };
@@ -4234,6 +4358,7 @@ function fillFormDataCore(data){
     setVal('gd_addressee', g.addressee);
     document.getElementById('gd_body').innerText = g.body||'';
     setVal('gd_name', g.name);
+    dkrSet('gd', g.refs);
     toggleLetterName('gd', !!g.printName);
     updateStatusLine(data);
     document.getElementById('btnDeleteRec').classList.remove('hidden');
@@ -4245,6 +4370,7 @@ function fillFormDataCore(data){
     const k = data.darkhwast||{};
     document.getElementById('dk_body').innerText = k.body||'';
     setVal('dk_name', k.name);
+    dkrSet('dk', k.refs);
     toggleLetterName('dk', !!k.printName);
     updateStatusLine(data);
     document.getElementById('btnDeleteRec').classList.remove('hidden');
@@ -4364,7 +4490,7 @@ function fillFormDataCore(data){
 }
 
 function updateStatusLine(data){
-  const line = document.getElementById('recStatusLine');
+  const line = {set textContent(v){ window._fsText=v; if(!window._curView||window._curView==='form') document.getElementById('recStatusLine').textContent=v; }};
   if(data && data.id){
     const typeLabels = {safar:'سفر خرچ', district:'آڈٹ رپورٹ ضلع', auditaccount:'انسپکٹر رپورٹ', amaratAudit:'امارت آڈٹ رپورٹ', darkhwast:'درخواست', gendarkhwast:'جنرل درخواست', baqaya:'فہرست بقایاداران', baqaya30:'30 جون بقایاداران'};
     const typeLabel = typeLabels[data.formType] || 'فہرست بقایاداران';
@@ -4392,10 +4518,10 @@ function newFormCore(){
     document.querySelectorAll('#formtype-baqaya30 input').forEach(e=>{ e.value=''; });
     b3FillRows([]); b3Recalc(); b3SyncYear();
   } else if(currentFormType==='gendarkhwast'){
-    setVal('gd_addressee',''); document.getElementById('gd_body').innerText = ''; setVal('gd_name','');
+    setVal('gd_addressee',''); document.getElementById('gd_body').innerText = ''; setVal('gd_name',''); dkrSet('gd');
   } else if(currentFormType==='darkhwast'){
     document.getElementById('dk_body').innerText = '';
-    setVal('dk_name','');
+    setVal('dk_name',''); dkrSet('dk');
   } else if(currentFormType==='district'){
     ['d_zilaName','d_ameerZilaName','d_inspectionDate','d_prevInspectionDate',
      'd_prevSavings','d_currentIncome','d_grantMarkaz','d_donations','d_loanReturn','d_advanceReturn','d_misc',
@@ -4448,7 +4574,6 @@ async function saveForm(){
   const data = collectFormData();
   const _v = validateBeforeSave(data);
   if(!_v.ok){ showToast(_v.msg, 5000); return; }
-  if(data.formType==='auditaccount'){ try{ if(await ctSync()) showToast('جماعت کی تفصیل رابطہ نمبر میں محفوظ ہو گئی', 2500); }catch(e){} }
   if(!(await resolveDuplicates(data))) return;
   if(data.formType==='gendarkhwast'){
     data.name_search = [data.gendarkhwast.name, data.gendarkhwast.addressee, data.gendarkhwast.body].filter(Boolean).join(' ').toLowerCase();
@@ -4471,6 +4596,8 @@ async function saveForm(){
     ].filter(Boolean).join(' ').toLowerCase();
   }
   await dbPut(data);
+  let _ctMsg='';
+  if(data.formType==='auditaccount'){ try{ if(await ctSync()) _ctMsg=' — جماعت کی تفصیل رابطہ نمبر میں بھی محفوظ ہو گئی'; }catch(e){} }
   currentRecordId = data.id;
   setDirty(false);
   updateStatusLine(data);
@@ -4481,7 +4608,7 @@ async function saveForm(){
     try{ folderMsg = (await writeRecordToFolder(data, true)) ? ' (فولڈر میں بھی)' : ' — مگر فولڈر میں نہیں لکھا جا سکا'; }
     catch(e){ folderMsg = ' — مگر فولڈر میں نہیں لکھا جا سکا'; }
   }
-  showToast('فارم محفوظ ہو گیا۔' + folderMsg);
+  showToast('فارم محفوظ ہو گیا۔' + folderMsg + _ctMsg);
   renderRecordsList();
 }
 
@@ -5990,6 +6117,7 @@ function unwrapLetterAfterPrint(){
 function enterPrintMode(){
   if(document.body.classList.contains('printing-mode')) return; // already applied — avoid duplicate spans
   applyPrintPageStyle();
+  try{ dkrSync('dk'); dkrSync('gd'); }catch(e){}
   document.querySelectorAll('#appwrap input, #appwrap textarea.dk-name').forEach(inp=>{
     const span = document.createElement('span');
     span.className = 'print-text';
@@ -6174,11 +6302,11 @@ function doPrint(blank){
 function buildShareSummaryText(data){
   if(data.formType==='gendarkhwast'){
     const g = data.gendarkhwast||{};
-    return `بسم اللہ الرحمٰن الرحیم\nمکرم و محترم ${g.addressee||''}\nالسلام علیکم ورحمتہ اللہ وبرکاتہ\n\n${g.body||''}\n\nوالسلام\nخاکسار\n${g.name||''}`;
+    return `بسم اللہ الرحمٰن الرحیم\nمکرم و محترم ${g.addressee||''}\nالسلام علیکم ورحمتہ اللہ وبرکاتہ\n\n${g.body||''}\n\nوالسلام\nخاکسار\n${g.name||''}${dkrShare(g.refs)}`;
   }
   if(data.formType==='darkhwast'){
     const k = data.darkhwast||{};
-    return `بسم اللہ الرحمٰن الرحیم\nمکرم و محترم ایڈیشنل ناظر صاحب مال آمد ربوہ\nالسلام علیکم ورحمتہ اللہ وبرکاتہ\n\n${k.body||''}\n\nوالسلام\nخاکسار\n${k.name||''}`;
+    return `بسم اللہ الرحمٰن الرحیم\nمکرم و محترم ایڈیشنل ناظر صاحب مال آمد ربوہ\nالسلام علیکم ورحمتہ اللہ وبرکاتہ\n\n${k.body||''}\n\nوالسلام\nخاکسار\n${k.name||''}${dkrShare(k.refs)}`;
   }
   if(data.formType==='district'){
     const d = data.district||{};
@@ -6396,9 +6524,9 @@ setInterval(resizeAllNameBoxes, 800);
   if(!fill||!dd) return;
   fill.addEventListener('click',()=>{ dd.classList.toggle('hidden'); });
   document.addEventListener('click',e=>{ if(!e.target.closest('#ftdrop') && !e.target.closest('#fillBtn')) dd.classList.add('hidden'); });
-  dd.querySelectorAll('.formtypetabs button').forEach(b=>b.addEventListener('click',()=>dd.classList.add('hidden')));
-  const f=document.querySelector('#fillBtn .ur'), a=dd.querySelector('.formtypetabs button.active .ur');
-  if(f&&a) f.textContent='فارم پُر کریں: '+a.textContent.trim()+' ▾';
+  dd.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>dd.classList.add('hidden')));
+  dd.querySelectorAll('.formtypetabs button').forEach(b=>b.addEventListener('click',()=>{ if(window._curView!=='form') goToView('form'); }));
+  if(typeof hdrLabel==='function') hdrLabel();
 })();
 
 /* ======================================================================
@@ -6535,7 +6663,7 @@ function ctSave(){ clearTimeout(_ctT); _ctT=setTimeout(async()=>{
   }catch(e){ console.error('contacts save', e); }
 }, 400); }
 async function ctEnter(){ await ctLoad(); ctView=null; ctRender(); }
-function closeContacts(){ goToView('form'); }
+function closeContacts(){ goToView('home'); }
 function ctDDItems(q){
   q=(q||'').trim().toLowerCase();
   const l=CT.jamaats.filter(j=>!q||((j.name||'')+' '+(j.district||'')).toLowerCase().includes(q));
@@ -6553,11 +6681,11 @@ function ctRender(){
     ctView=null;
     let rows=CT.jamaats.map((j,i)=>`<tr data-id="${j.id}" data-q="${E(((j.name||'')+' '+(j.district||'')).toLowerCase())}"><td style="width:34px;text-align:center">${i+1}</td><td><input value="${E(j.name)}" placeholder="نام جماعت" oninput="ctSet('${j.id}','name',this.value)"></td><td><input value="${E(j.district)}" placeholder="ضلع" oninput="ctSet('${j.id}','district',this.value)"></td><td class="ct-act"><button class="ct-open" title="افراد دیکھیں" onclick="ctOpen('${j.id}')">👥 ${j.people.length}</button><button class="ct-del" title="حذف" onclick="ctDelJ('${j.id}')">×</button></td></tr>`).join('');
     if(!rows) rows='<tr><td colspan="4" class="ct-empty">ابھی کوئی جماعت شامل نہیں۔</td></tr>';
-    box.innerHTML=`<div class="ct-hero"><h3>📇 رابطہ نمبر — جماعتیں</h3><button onclick="closeContacts()">✕ بند</button></div><div class="ct-body">${dd}<table class="ct-tbl"><thead><tr><th>#</th><th>نام جماعت</th><th>ضلع</th><th></th></tr></thead><tbody>${rows}</tbody></table><button class="ct-add" onclick="ctAddJ()">➕ جماعت شامل کریں</button></div>`;
+    box.innerHTML=`<div class="ct-hero"><h3>📇 رابطہ نمبر — جماعتیں</h3><button onclick="closeContacts()">⬅ مرکزی صفحہ</button></div><div class="ct-body">${dd}<table class="ct-tbl"><thead><tr><th>#</th><th>نام جماعت</th><th>ضلع</th><th></th></tr></thead><tbody>${rows}</tbody></table><button class="ct-add" onclick="ctAddJ()">➕ جماعت شامل کریں</button></div>`;
   } else {
     let rows=cur.people.map((p,i)=>`<tr><td style="width:34px;text-align:center">${i+1}</td><td><input value="${E(p.name)}" placeholder="نام" oninput="ctSetP('${p.id}','name',this.value)"></td><td><input value="${E(p.role)}" placeholder="عہدہ" oninput="ctSetP('${p.id}','role',this.value)"></td><td><input type="tel" dir="ltr" value="${E(p.phone)}" placeholder="03xx-xxxxxxx" oninput="ctSetP('${p.id}','phone',this.value)"></td><td><input id="loc_${p.id}" dir="ltr" value="${E(p.loc)}" placeholder="لوکیشن / لنک" oninput="ctSetP('${p.id}','loc',this.value)"></td><td class="ct-act"><button class="ct-wa" title="واٹس ایپ پر میسج" onclick="ctWA('${p.id}')">💬</button><button class="ct-gps" title="موجودہ لوکیشن" onclick="ctGPS('${p.id}')">📍</button><button class="ct-dir" title="راستہ دکھائیں" onclick="ctDir('${p.id}')">🧭</button><button class="ct-del" title="حذف" onclick="ctDelP('${p.id}')">×</button></td></tr>`).join('');
     if(!rows) rows='<tr><td colspan="6" class="ct-empty">کوئی فرد شامل نہیں۔</td></tr>';
-    box.innerHTML=`<div class="ct-hero"><button onclick="ctView=null;ctRender()">⬅ جماعتیں</button><h3>${E(cur.name)||'نام جماعت'}${cur.district?' — '+E(cur.district):''}</h3><button onclick="closeContacts()">✕ بند</button></div><div class="ct-body">${dd}<table class="ct-tbl"><thead><tr><th>#</th><th>نام</th><th>عہدہ</th><th>فون نمبر</th><th>لوکیشن</th><th></th></tr></thead><tbody>${rows}</tbody></table><button class="ct-add" onclick="ctAddP()">➕ فرد شامل کریں</button></div>`;
+    box.innerHTML=`<div class="ct-hero"><button onclick="ctView=null;ctRender()">⬅ جماعتیں</button><h3>${E(cur.name)||'نام جماعت'}${cur.district?' — '+E(cur.district):''}</h3><button onclick="closeContacts()">⬅ مرکزی صفحہ</button></div><div class="ct-body">${dd}<table class="ct-tbl"><thead><tr><th>#</th><th>نام</th><th>عہدہ</th><th>فون نمبر</th><th>لوکیشن</th><th></th></tr></thead><tbody>${rows}</tbody></table><button class="ct-add" onclick="ctAddP()">➕ فرد شامل کریں</button></div>`;
   }
 }
 function ctSet(id,k,v){ const j=CT.jamaats.find(x=>x.id===id); if(j){ j[k]=v; ctSave(); } }
@@ -7499,6 +7627,8 @@ function pjTogglePanel(){
   const p = document.getElementById('pjPanel'), b = document.getElementById('pjToggle');
   const on = !p.classList.contains('open');
   p.classList.toggle('open', on); b.classList.toggle('open', on);
+  const _hv=document.getElementById('view-home'); if(_hv) _hv.classList.toggle('pj-on', on && _hv.contains(p));
+  if(on) window.scrollTo({top:0,behavior:'smooth'});
   if(on){ pjRefresh(true); setTimeout(() => document.getElementById('pj_name').focus(), 50); }
 }
 
@@ -7603,7 +7733,7 @@ function lmHtml(r){
 })();
 /* ===== مرکزی صفحہ (ڈیش بورڈ) ===== */
 const DH_KEY='fbd_dash_enc',DHM=['جنوری','فروری','مارچ','اپریل','مئی','جون','جولائی','اگست','ستمبر','اکتوبر','نومبر','دسمبر'];
-let DH={jamaats:[],amarats:[],leaveTotal:20,leaves:[],dak:[],program:[]},DHX={fy:null,tab:'prog',R:{A:[],M:[],T:[],R:[]},rp:'y'};
+let DH={jamaats:[],amarats:[],leaveTotal:20,leaves:[],dak:[],program:[],wasooli:[]},DHX={detail:null,fy:null,tab:'prog',R:{A:[],M:[],T:[],R:[]},rp:'y'};
 const dhE=escapeHtml,dhN=n=>(Math.round(n)||0).toLocaleString('en-US'),dhId=()=>'d'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
 const dhDig=s=>String(s||'').replace(/[٠-٩]/g,c=>c.charCodeAt(0)-1632).replace(/[۰-۹]/g,c=>c.charCodeAt(0)-1776);
 function dhParse(s){s=dhDig(s);let m,y,mo,d;if(m=s.match(/(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})/)){y=+m[1];mo=+m[2];d=+m[3];}else if(m=s.match(/(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4}|\d{2})(?!\d)/)){d=+m[1];mo=+m[2];y=+m[3];if(y<100)y+=2000;}else return null;return(mo<1||mo>12||d<1||d>31)?null:new Date(y,mo-1,d);}
@@ -7628,37 +7758,39 @@ function dhCalc(fy){
   const AM=new Set([...DH.amarats,...M.map(x=>x.n)].map(dhNorm).filter(Boolean));
   const lv=DH.leaves.map(l=>({...l,f:dhParse(l.from),t:dhParse(l.to)})).filter(l=>l.f&&inF(l.f)).map(l=>({...l,days:l.t?Math.max(1,Math.round((l.t-l.f)/864e5)+1):1}));
   const dk=DH.dak.map(x=>({...x,d:dhParse(x.date)})).filter(x=>x.d&&inF(x.d)),tr=T.filter(x=>inF(x.d)),used=lv.filter(l=>l.st==='منظور').reduce((s,l)=>s+l.days,0);
-  const td=new Date();td.setHours(0,0,0,0);const up=DH.program.map(p=>({...p,d:dhParse(p.date)})).filter(p=>p.d).sort((a,b)=>a.d-b.d);
+  const wup=(DH.wasooli||[]).map(p=>({...p,d:dhParse(p.date)})).filter(p=>p.d).sort((a,b)=>a.d-b.d);const td=new Date();td.setHours(0,0,0,0);const up=DH.program.map(p=>({...p,d:dhParse(p.date)})).filter(p=>p.d).sort((a,b)=>a.d-b.d);
   const mm=Array(12).fill(0),tm=Array(12).fill(0);aud.forEach(x=>mm[dhMi(x.d)]++);tr.forEach(x=>tm[dhMi(x.d)]+=x.a);
   const now=new Date(),curM=inF(now)?dhMi(now):-1;
-  return{fs,fe,aud,am,lv,dk,tr,used,up,td,mm,tm,J:[...J],pend:[...J].filter(n=>!seen.has(n)),total:J.size,complete:seen.size,re:aud.filter(x=>x.re).length,amTotal:AM.size,amDone:mseen.size,amRe:am.filter(x=>x.re).length,left:DH.leaveTotal-used,sent:dk.filter(x=>x.st==='sent').length,pendDak:dk.filter(x=>x.st!=='sent').length,trYear:tr.reduce((s,x)=>s+x.a,0),trMon:curM<0?0:tm[curM],seen};
+  return{wup,amPend:[...AM].filter(n=>!mseen.has(n)),fs,fe,aud,am,lv,dk,tr,used,up,td,mm,tm,J:[...J],pend:[...J].filter(n=>!seen.has(n)),total:J.size,complete:seen.size,re:aud.filter(x=>x.re).length,amTotal:AM.size,amDone:mseen.size,amRe:am.filter(x=>x.re).length,left:DH.leaveTotal-used,sent:dk.filter(x=>x.st==='sent').length,pendDak:dk.filter(x=>x.st!=='sent').length,trYear:tr.reduce((s,x)=>s+x.a,0),trMon:curM<0?0:tm[curM],seen};
 }
 function dhBars(v,col){const mx=Math.max(1,...v),W=600,H=170;let s='<svg viewBox="0 0 '+W+' '+(H+22)+'" direction="ltr">';
   v.forEach((x,i)=>{const h=Math.round(x/mx*(H-24)),X=i*50+8;s+='<rect x="'+X+'" y="'+(H-h)+'" width="34" height="'+h+'" rx="5" fill="'+col+'" opacity=".85"/>'+(x?'<text x="'+(X+17)+'" y="'+(H-h-4)+'" font-size="12" text-anchor="middle" fill="#444">'+dhN(x)+'</text>':'')+'<text x="'+(X+17)+'" y="'+(H+15)+'" font-size="10.5" text-anchor="middle" fill="#6b4a2a">'+DHM[(i+6)%12]+'</text>';});return s+'</svg>';}
-const dhCard=(c,ic,t,v,s,w)=>'<div class="dh-card'+(w?' w':'')+'" style="--c:'+c+'"><span class="ic">'+ic+'</span><div class="t">'+t+'</div><div class="v">'+v+'</div><div class="s">'+s+'</div></div>';
-async function dhEnter(){await dhLoad();await dhCollect();if(DHX.fy==null)DHX.fy=dhFy(new Date());dhRender();}
+const dhCard=(c,ic,t,v,s,w,k)=>'<div class="dh-card'+(w?' w':'')+(k?' k':'')+'" style="--c:'+c+'"'+(k?' onclick="dhOpen(\''+k+'\')" title="تفصیل دیکھیں"':'')+'><span class="ic">'+ic+'</span><div class="t">'+t+'</div><div class="v">'+v+'</div><div class="s">'+s+'</div></div>';
+async function dhEnter(){DHX.detail=null;await dhLoad();await dhCollect();if(DHX.fy==null)DHX.fy=dhFy(new Date());dhRender();}
 function dhRender(){
-  const fy=DHX.fy,S=dhCalc(fy),pc=S.total?Math.round(S.complete/S.total*100):0,nx=S.up.find(p=>p.d>=S.td&&!S.seen.has(dhNorm(p.jamaat)));
+  const fy=DHX.fy,S=dhCalc(fy),pc=S.total?Math.round(S.complete/S.total*100):0,nx=S.up.find(p=>p.d>=S.td&&!S.seen.has(dhNorm(p.jamaat))),nw=S.wup.find(p=>p.d>=S.td);
   const ys=[];for(let y=dhFy(new Date())-3;y<=dhFy(new Date())+1;y++)ys.push(y);
-  let h='<div class="dh-hero"><div><h2>🏠 مرکزی صفحہ</h2><small>سالانہ مدت: یکم جولائی '+fy+'ء تا 30 جون '+(fy+1)+'ء • آج: '+dhFmt(new Date())+'</small></div><div><select onchange="DHX.fy=+this.value;dhRender()">'+ys.map(y=>'<option value="'+y+'"'+(y==fy?' selected':'')+'>مالی سال '+y+'-'+String(y+1).slice(2)+'</option>').join('')+'</select></div></div>';
+  let h='';dhHdr(fy,ys);if(DHX.detail){document.getElementById('dhBox').innerHTML=dhDetail(S,DHX.detail);return;}
   h+='<div class="dh-rep"><b>📤 رپورٹ:</b><select id="dhRs"><option value="y">سالانہ</option>'+[...Array(12)].map((_,i)=>'<option value="'+i+'">ماہانہ — '+DHM[(i+6)%12]+'</option>').join('')+'</select><button class="dh-b" style="background:#b3261e" onclick="dhPdf()">📄 PDF</button><button class="dh-b" style="background:#1d7a46" onclick="dhXls()">📊 Excel</button><button class="dh-b" style="background:#2b3a55" onclick="dhPrint()">🖨️ پرنٹ</button><button class="dh-b" style="background:linear-gradient(135deg,#13808b,#0b5560)" onclick="pjTogglePanel()">📄 نقل مقامی جماعت</button><button class="dh-b" style="background:linear-gradient(135deg,#e08a2e,#b4541a)" onclick="DHX.modal=1;dhRender()">✍️ اندراج</button></div><div class="dh-grid">';
-  h+=dhCard('#7a1f1f','🏛️','کل جماعتیں',dhN(S.total),'خودکار شمار')+dhCard('#1d7a46','✅','مکمل آڈٹ',dhN(S.complete),pc+'% مکمل<div class="dh-bar"><i style="width:'+pc+'%"></i></div>')+dhCard('#d9822b','⏳','باقی آڈٹ',dhN(S.total-S.complete),'ابھی آڈٹ ہونا باقی')+dhCard('#7b3fa0','🔁','دوبارہ آڈٹ',dhN(S.re),'ایک جماعت کا دوبارہ آڈٹ')
-   +dhCard('#13808b','🕌','امارت کے آڈٹ',S.amDone+' / '+(S.amTotal-S.amDone),'مکمل / باقی (دوبارہ: '+S.amRe+')')+dhCard('#c0562b','🏖️','استعمال شدہ چھٹیاں',dhN(S.used),'منظور شدہ دن (سالانہ '+DH.leaveTotal+')')+dhCard('#3b7dd8','📅','باقی چھٹیاں',dhN(S.left),'سالانہ منظوری کے حساب سے')+dhCard('#8a5a14','✉️','بھیجی گئی ڈاک',dhN(S.sent),'باقی ڈاک: '+S.pendDak)
-   +dhCard('#0f5132','🚗','سالانہ سفری اخراجات','Rs '+dhN(S.trYear),'اس ماہ: Rs '+dhN(S.trMon))+dhCard('#a1294a','🗓️','آئندہ آڈٹ پروگرام',nx?dhFmt(nx.d)+' — '+dhE(nx.jamaat):'کوئی پروگرام نہیں',nx?dhE(nx.note||''):'نیچے سے پروگرام درج کریں',1)+'</div>';
-  const pro=S.up.filter(p=>p.d>=S.td).slice(0,6),acts=[...DHX.R.R,...DH.leaves.map(l=>({t:new Date(l.ts||0),x:'🏖️ چھٹی — '+l.from+' ('+l.st+')'})),...DH.dak.map(x=>({t:new Date(x.ts||0),x:'✉️ ڈاک — '+dhE(x.detail)}))].sort((a,b)=>b.t-a.t).slice(0,8);
+  h+=dhCard('#7a1f1f','🏛️','کل جماعتیں',dhN(S.total),'خودکار شمار',0,'total')+dhCard('#1d7a46','✅','مکمل آڈٹ',dhN(S.complete),pc+'% مکمل<div class="dh-bar"><i style="width:'+pc+'%"></i></div>',0,'done')+dhCard('#d9822b','⏳','باقی آڈٹ',dhN(S.total-S.complete),'ابھی آڈٹ ہونا باقی',0,'pend')+dhCard('#7b3fa0','🔁','دوبارہ آڈٹ',dhN(S.re),'دوبارہ آڈٹ ہونے والی جماعتیں',0,'re')
+   +dhCard('#13808b','🕌','امارت کے آڈٹ',S.amDone+' / '+(S.amTotal-S.amDone),'مکمل / باقی (دوبارہ: '+S.amRe+')',0,'am')+dhCard('#c0562b','🏖️','استعمال شدہ چھٹیاں',dhN(S.used),'منظور شدہ دن (سالانہ '+DH.leaveTotal+')',0,'leave')+dhCard('#3b7dd8','📅','باقی چھٹیاں',dhN(S.left),'سالانہ منظوری کے حساب سے',0,'leave')+dhCard('#8a5a14','✉️','بھیجی گئی ڈاک',dhN(S.sent),'باقی ڈاک: '+S.pendDak,0,'dak')
+   +dhCard('#0f5132','🚗','سالانہ سفری اخراجات','Rs '+dhN(S.trYear),'اس ماہ: Rs '+dhN(S.trMon),0,'trav')+dhCard('#a1294a','🗓️','آئندہ آڈٹ پروگرام',nx?dhFmt(nx.d)+' — '+dhE(nx.jamaat):'کوئی پروگرام نہیں',nx?dhE(nx.note||''):'✍️ اندراج سے پروگرام درج کریں',1,'prog')+dhCard('#0b7285','💰','آئندہ وصولی پروگرام',nw?dhFmt(nw.d)+' — '+dhE(nw.jamaat):'کوئی پروگرام نہیں',nw?dhE(nw.note||''):'✍️ اندراج ← وصولی پروگرام سے درج کریں',1,'wasooli')+'</div>';
+  const wpro=S.wup.filter(p=>p.d>=S.td).slice(0,6),pro=S.up.filter(p=>p.d>=S.td).slice(0,6),acts=[...DHX.R.R,...DH.leaves.map(l=>({t:new Date(l.ts||0),x:'🏖️ چھٹی — '+l.from+' ('+l.st+')'})),...DH.dak.map(x=>({t:new Date(x.ts||0),x:'✉️ ڈاک — '+dhE(x.detail)}))].sort((a,b)=>b.t-a.t).slice(0,8);
   h+='<div class="dh-2"><div class="dh-box"><h3>📈 ماہانہ آڈٹ</h3>'+dhBars(S.mm,'#7a1f1f')+'</div><div class="dh-box"><h3>🚗 ماہانہ سفری اخراجات</h3>'+dhBars(S.tm,'#0f5132')+'</div>'
    +'<div class="dh-box"><h3>🗓️ آئندہ پروگرام</h3>'+(pro.length?pro.map(p=>'<div class="dh-li">📍 <b>'+dhE(p.jamaat)+'</b><small>'+dhFmt(p.d)+'</small></div>').join(''):'<div class="dh-empty">کوئی آئندہ پروگرام نہیں</div>')+'<h3 style="margin-top:10px">⏳ باقی جماعتیں ('+S.pend.length+')</h3>'+(S.pend.slice(0,24).map(n=>'<span class="dh-chip">'+dhE(n)+'</span>').join('')||'<div class="dh-empty">کوئی باقی نہیں</div>')+'</div>'
-   +'<div class="dh-box"><h3>🕘 حالیہ سرگرمیاں</h3>'+(acts.map(a=>'<div class="dh-li">'+dhE(a.x)+'<small>'+dhFmt(a.t)+'</small></div>').join('')||'<div class="dh-empty">ابھی کوئی سرگرمی نہیں</div>')+'</div></div>';
-  if(DHX.modal)h+='<div class="dh-modal" onclick="if(event.target===this){DHX.modal=0;dhRender()}"><div class="dh-md"><h3>✍️ اندراج <button class="dh-x" onclick="DHX.modal=0;dhRender()">✕</button></h3><div class="dh-tabs">'+[['prog','🗓️ پروگرام'],['leave','🏖️ چھٹی'],['dak','✉️ ڈاک'],['jam','🏛️ جماعتیں / امارتیں']].map(t=>'<button class="'+(DHX.tab===t[0]?'on':'')+'" onclick="DHX.tab=\''+t[0]+'\';dhRender()">'+t[1]+'</button>').join('')+'</div>'+dhTab(S)+'</div></div>';
+   +'<div class="dh-box"><h3>💰 آئندہ وصولی پروگرام</h3>'+(wpro.length?wpro.map(p=>'<div class="dh-li">💰 <b>'+dhE(p.jamaat)+'</b><small>'+dhFmt(p.d)+'</small></div>').join(''):'<div class="dh-empty">کوئی آئندہ وصولی پروگرام نہیں</div>')+'</div><div class="dh-box"><h3>🕘 حالیہ سرگرمیاں</h3>'+(acts.map(a=>'<div class="dh-li">'+dhE(a.x)+'<small>'+dhFmt(a.t)+'</small></div>').join('')||'<div class="dh-empty">ابھی کوئی سرگرمی نہیں</div>')+'</div></div>';
+  if(DHX.modal)h+=dhModal(S);
   document.getElementById('dhBox').innerHTML=h;
 }
 function dhTab(S){const t=DHX.tab,del=(k,i)=>'<button class="dh-x" onclick="dhDel(\''+k+'\',\''+i+'\')">✕</button>';
   if(t==='prog')return'<div class="dh-f"><input type="date" id="p_d"><input id="p_j" list="dhJl" placeholder="جماعت"><input id="p_n" placeholder="نوٹ"><button class="dh-b" style="background:#7a1f1f" onclick="dhAdd(\'program\')">➕ درج</button></div><datalist id="dhJl">'+S.J.map(n=>'<option value="'+dhE(n)+'">').join('')+'</datalist><table class="dh-tb">'+DH.program.slice().sort((a,b)=>(a.date>b.date)-(a.date<b.date)).map(p=>'<tr><td>'+dhE(p.date)+'</td><td>'+dhE(p.jamaat)+'</td><td>'+dhE(p.note)+'</td><td>'+(S.seen.has(dhNorm(p.jamaat))?'✅ مکمل':'')+'</td><td>'+del('program',p.id)+'</td></tr>').join('')+'</table>';
+  if(t==='wus')return'<div class="dh-f"><input type="date" id="w_d"><input id="w_j" list="dhJl" placeholder="جماعت"><input id="w_n" placeholder="نوٹ"><button class="dh-b" style="background:#0b7285" onclick="dhAdd(\'wasooli\')">➕ درج</button></div><datalist id="dhJl">'+S.J.map(n=>'<option value="'+dhE(n)+'">').join('')+'</datalist><table class="dh-tb">'+(DH.wasooli||[]).slice().sort((a,b)=>(a.date>b.date)-(a.date<b.date)).map(p=>'<tr><td>'+dhE(p.date)+'</td><td>'+dhE(p.jamaat)+'</td><td>'+dhE(p.note)+'</td><td>'+del('wasooli',p.id)+'</td></tr>').join('')+'</table>';
   if(t==='leave')return'<div class="dh-f"><input type="date" id="l_f"><input type="date" id="l_t"><select id="l_k"><option>اتفاقیہ</option><option>سالانہ</option><option>بیماری</option><option>دیگر</option></select><input id="l_r" placeholder="وجہ"><select id="l_s"><option>زیر غور</option><option>منظور</option><option>نامنظور</option></select><button class="dh-b" style="background:#7a1f1f" onclick="dhAdd(\'leaves\')">➕ درج</button><label>سالانہ چھٹیاں: <input type="number" style="min-width:60px;width:70px" value="'+DH.leaveTotal+'" onchange="DH.leaveTotal=+this.value||0;dhSave();dhRender()"></label></div><table class="dh-tb">'+S.lv.map(l=>'<tr><td>'+dhE(l.from)+' ← '+dhE(l.to)+'</td><td>'+l.days+' دن</td><td>'+dhE(l.kind)+'</td><td><select onchange="dhLeaveSt(\''+l.id+'\',this.value)">'+['زیر غور','منظور','نامنظور'].map(s=>'<option'+(s===l.st?' selected':'')+'>'+s+'</option>').join('')+'</select></td><td>'+del('leaves',l.id)+'</td></tr>').join('')+'</table>';
   if(t==='dak')return'<div class="dh-f"><input type="date" id="k_d"><input id="k_x" placeholder="ڈاک کی تفصیل"><select id="k_s"><option value="sent">بھیجی گئی</option><option value="pend">باقی</option></select><button class="dh-b" style="background:#7a1f1f" onclick="dhAdd(\'dak\')">➕ درج</button></div><table class="dh-tb">'+S.dk.map(x=>'<tr><td>'+dhE(x.date)+'</td><td>'+dhE(x.detail)+'</td><td><button class="dh-x" style="background:'+(x.st==='sent'?'#e0f4e7;color:#1d7a46':'#fff0d9;color:#c0562b')+'" onclick="dhDakSt(\''+x.id+'\')">'+(x.st==='sent'?'بھیجی گئی':'باقی')+'</button></td><td>'+del('dak',x.id)+'</td></tr>').join('')+'</table>';
   return'<div class="dh-f"><textarea id="j_t" rows="3" placeholder="ہر سطر میں ایک نام"></textarea><button class="dh-b" style="background:#7a1f1f" onclick="dhAddNames(\'jamaats\')">➕ جماعتیں</button><button class="dh-b" style="background:#13808b" onclick="dhAddNames(\'amarats\')">➕ امارتیں</button></div><div class="dh-empty">رابطہ نمبر والی جماعتیں خود شامل ہوتی ہیں۔</div>'+DH.jamaats.map((n,i)=>'<span class="dh-chip">'+dhE(n)+' <a onclick="dhDel(\'jamaats\','+i+')">✕</a></span>').join('')+'<hr>'+DH.amarats.map((n,i)=>'<span class="dh-chip">🕌 '+dhE(n)+' <a onclick="dhDel(\'amarats\','+i+')">✕</a></span>').join('');}
 function dhAdd(k){const g=i=>document.getElementById(i).value.trim(),ts=Date.now();let o;
   if(k==='program'){if(!g('p_d')||!g('p_j'))return showToast('تاریخ اور جماعت درج کریں');o={id:dhId(),date:g('p_d'),jamaat:g('p_j'),note:g('p_n')};}
+  if(k==='wasooli'){if(!g('w_d')||!g('w_j'))return showToast('تاریخ اور جماعت درج کریں');o={id:dhId(),date:g('w_d'),jamaat:g('w_j'),note:g('w_n')};DH.wasooli=DH.wasooli||[];}
   if(k==='leaves'){if(!g('l_f'))return showToast('چھٹی کی تاریخ درج کریں');o={id:dhId(),from:g('l_f'),to:g('l_t')||g('l_f'),kind:g('l_k'),reason:g('l_r'),st:g('l_s'),ts};}
   if(k==='dak'){if(!g('k_d')||!g('k_x'))return showToast('تاریخ اور تفصیل درج کریں');o={id:dhId(),date:g('k_d'),detail:g('k_x'),st:g('k_s'),ts};}
   DH[k].push(o);dhSave();dhRender();}
@@ -7670,7 +7802,7 @@ function dhDakSt(id){const x=DH.dak.find(l=>l.id===id);x.st=x.st==='sent'?'pend'
 function dhRep(){const fy=DHX.fy,v=document.getElementById('dhRs').value,m=v==='y',mi=+v,S=dhCalc(fy),f=d=>m||dhMi(d)===mi,yr=m?fy:(((mi+6)%12)>=6?fy:fy+1);
   const title=m?'سالانہ رپورٹ — یکم جولائی '+fy+'ء تا 30 جون '+(fy+1)+'ء':'ماہانہ رپورٹ — '+DHM[(mi+6)%12]+' '+yr+'ء',per=(a,g)=>a.filter(x=>f(x.d)).reduce((s,x)=>s+g(x),0);
   const sum=[['کل جماعتیں',S.total,'—'],['مکمل آڈٹ',S.complete,per(S.aud,x=>x.re?0:1)],['باقی آڈٹ',S.total-S.complete,'—'],['دوبارہ آڈٹ',S.re,per(S.aud,x=>x.re?1:0)],['امارت کے آڈٹ (مکمل)',S.amDone,per(S.am,x=>x.re?0:1)],['امارت کے آڈٹ (باقی)',S.amTotal-S.amDone,'—'],['استعمال شدہ چھٹیاں',S.used,per(S.lv.filter(l=>l.st==='منظور'),l=>l.days)],['باقی چھٹیاں',S.left,'—'],['بھیجی گئی ڈاک',S.sent,per(S.dk.filter(x=>x.st==='sent'),()=>1)],['باقی ڈاک',S.pendDak,'—'],['سفری اخراجات (Rs)',S.trYear,per(S.tr,x=>x.a)]];
-  const T=[{h:'خلاصہ',c:['تفصیل','سال بھر','اس مدت میں'],r:sum},{h:'آڈٹ رپورٹیں',c:['تاریخ','جماعت','حیثیت'],r:S.aud.filter(x=>f(x.d)).map(x=>[dhFmt(x.d),x.n,x.re?'دوبارہ':'مکمل'])},{h:'امارت کے آڈٹ',c:['تاریخ','امارت','حیثیت'],r:S.am.filter(x=>f(x.d)).map(x=>[dhFmt(x.d),x.n,x.re?'دوبارہ':'مکمل'])},{h:'چھٹیاں',c:['از','تا','دن','قسم','حالت'],r:S.lv.filter(l=>f(l.f)).map(l=>[l.from,l.to,l.days,l.kind,l.st])},{h:'ڈاک',c:['تاریخ','تفصیل','حالت'],r:S.dk.filter(x=>f(x.d)).map(x=>[x.date,x.detail,x.st==='sent'?'بھیجی گئی':'باقی'])},{h:'سفری اخراجات',c:['تاریخ','علاقہ/منجانب','رقم'],r:[...S.tr.filter(x=>f(x.d)).map(x=>[dhFmt(x.d),x.n,dhN(x.a)]),['','کل',dhN(per(S.tr,x=>x.a))]]},{h:'آئندہ آڈٹ پروگرام',c:['تاریخ','جماعت','نوٹ'],r:S.up.filter(p=>p.d>=S.td).map(p=>[dhFmt(p.d),p.jamaat,p.note||''])},{h:'باقی جماعتیں',c:['جماعت'],r:S.pend.map(n=>[n])}];
+  const T=[{h:'خلاصہ',c:['تفصیل','سال بھر','اس مدت میں'],r:sum},{h:'آڈٹ رپورٹیں',c:['تاریخ','جماعت','حیثیت'],r:S.aud.filter(x=>f(x.d)).map(x=>[dhFmt(x.d),x.n,x.re?'دوبارہ':'مکمل'])},{h:'امارت کے آڈٹ',c:['تاریخ','امارت','حیثیت'],r:S.am.filter(x=>f(x.d)).map(x=>[dhFmt(x.d),x.n,x.re?'دوبارہ':'مکمل'])},{h:'چھٹیاں',c:['از','تا','دن','قسم','حالت'],r:S.lv.filter(l=>f(l.f)).map(l=>[l.from,l.to,l.days,l.kind,l.st])},{h:'ڈاک',c:['تاریخ','تفصیل','حالت'],r:S.dk.filter(x=>f(x.d)).map(x=>[x.date,x.detail,x.st==='sent'?'بھیجی گئی':'باقی'])},{h:'سفری اخراجات',c:['تاریخ','علاقہ/منجانب','رقم'],r:[...S.tr.filter(x=>f(x.d)).map(x=>[dhFmt(x.d),x.n,dhN(x.a)]),['','کل',dhN(per(S.tr,x=>x.a))]]},{h:'آئندہ آڈٹ پروگرام',c:['تاریخ','جماعت','نوٹ'],r:S.up.filter(p=>p.d>=S.td).map(p=>[dhFmt(p.d),p.jamaat,p.note||''])},{h:'آئندہ وصولی پروگرام',c:['تاریخ','جماعت','نوٹ'],r:S.wup.filter(p=>p.d>=S.td).map(p=>[dhFmt(p.d),p.jamaat,p.note||''])},{h:'باقی جماعتیں',c:['جماعت'],r:S.pend.map(n=>[n])}];
   if(m)T.push({h:'ماہ وار جدول',c:['ماہ','آڈٹ','سفری اخراجات'],r:S.mm.map((x,i)=>[DHM[(i+6)%12],x,dhN(S.tm[i])])});return{title,T};}
 function dhHtml(){const{title,T}=dhRep();return{title,html:'<div class="dhrp"><h1>'+dhE(title)+'</h1><small>انسپیکٹر مال آمد • '+dhFmt(new Date())+'</small>'+T.filter(t=>t.r.length).map(t=>'<h2>'+t.h+'</h2><table><tr>'+t.c.map(c=>'<th>'+c+'</th>').join('')+'</tr>'+t.r.map(r=>'<tr>'+r.map(c=>'<td>'+dhE(c)+'</td>').join('')+'</tr>').join('')+'</table>').join('')+'</div>'};}
 function dhSaveBlob(b,n){const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1500);}
@@ -7699,10 +7831,8 @@ async function ctSync(){const jn=gv('a_jamaat');if(!jn)return;await ctReady();le
   CJ.forEach(([n,p,c,re,role])=>{const nm=gv(n),ph=gv(p)||gv(c);if(!nm&&!ph)return;const x=j.people.find(q=>re(q.role||''));
     if(!x){j.people.push({id:ctUid(),name:nm,role,phone:ph,loc:''});ch=1;}else{if(nm&&x.name!==nm){x.name=nm;ch=1;}if(ph&&x.phone!==ph){x.phone=ph;ch=1;}}});
   if(ch)ctSave();return ch;}
-document.addEventListener('input',e=>{if(['a_jamaat','a_zila','a_sadarName','a_sadarPhone','a_secName','a_secPhone'].includes(e.target.id)){clearTimeout(window._ctT);window._ctT=setTimeout(ctSync,700);}});
 document.addEventListener('change',async e=>{const id=e.target.id;
-  if(id==='a_jamaat'){await ctFill();await ctSync();}
-  else if(['a_zila','a_sadarName','a_sadarPhone','a_secName','a_secPhone','c_phone2','c_phone3'].includes(id))ctSync();
+  if(id==='a_jamaat'){await ctFill();}
   else if(id==='b3_jamaat'){const jn=gv('b3_jamaat');await ctReady();const j=ctFindJ(jn);if(!j)return;const f=(i,v)=>{const el=document.getElementById(i);if(el&&v&&!el.value.trim())el.value=v;},fp=re=>{const x=j.people.find(q=>re(q.role||''));return x?(x.name+(x.phone?' '+x.phone:'')):'';};
     f('b3_zila',j.district);f('b3_ameer',fp(CJ[0][3]));f('b3_sec',fp(CJ[1][3]));}});
 document.addEventListener('focusin',async e=>{if(e.target.id!=='a_jamaat')return;await ctReady();let d=document.getElementById('dnJL');if(!d){d=document.createElement('datalist');d.id='dnJL';document.body.appendChild(d);e.target.setAttribute('list','dnJL');}d.innerHTML=CT.jamaats.map(j=>'<option value="'+escapeHtml(j.name)+'">').join('');});
@@ -7725,6 +7855,125 @@ function amLfFill(){const t=document.getElementById('am_lf_printTbl');if(!t)retu
   const d=v('am_lf_detail');if(d)rows.push(['تفصیل',d]);
   t.innerHTML='<thead><tr><th>تفصیل</th><th>رقم</th></tr></thead><tbody>'+rows.map(r=>'<tr><td>'+escapeHtml(r[0])+'</td><td>'+escapeHtml(r[1])+'</td></tr>').join('')+'</tbody>';}
 window.addEventListener('beforeprint',amLfFill);matchMedia('print').addEventListener('change',e=>{if(e.matches)amLfFill();});
+
+
+/* ===== ایک ہی اوپری پٹی: مینو کا عنوان، حالت، مالی سال ===== */
+function hdrLabel(){
+  const v=window._curView||'form', f=document.querySelector('#fillBtn .ur'); if(!f) return;
+  let t;
+  if(v==='home') t='🏠 مرکزی صفحہ';
+  else if(v==='contacts') t='📇 رابطہ نمبر';
+  else if(v==='form'){ const a=document.querySelector('#ftdrop .formtypetabs button.active .ur'); t='📝 '+(a?a.textContent.trim():'فارم پُر کریں'); }
+  else t='☰ مینو';
+  f.textContent=t+' ▾';
+}
+function hdrSync(v){
+  [...document.body.classList].filter(c=>/^v-/.test(c)).forEach(c=>document.body.classList.remove(c));
+  document.body.classList.add('v-'+v);
+  hdrLabel();
+  const fb=document.getElementById('fillBtn'); if(fb) fb.classList.toggle('active',['home','form','contacts'].includes(v));
+  const line=document.getElementById('recStatusLine');
+  const T={records:'📁 محفوظ فارم',search:'🔍 تمام فارموں میں تلاش',settings:'⚙️ ترتیبات',contacts:'📇 رابطہ نمبر'};
+  if(line){
+    if(v==='form') line.textContent=window._fsText||'نیا فارم — ابھی تک محفوظ نہیں کیا گیا';
+    else if(v==='home') line.textContent=window._dhSub||'مرکزی صفحہ';
+    else line.textContent=T[v]||'';
+  }
+  const p=document.getElementById('pjPanel'); if(p && p.classList.contains('open')) pjTogglePanel();
+}
+function dhHdr(fy,ys){
+  const s=document.getElementById('hdrFy');
+  if(s) s.innerHTML=ys.map(y=>'<option value="'+y+'"'+(y==fy?' selected':'')+'>مالی سال '+y+'-'+String(y+1).slice(2)+'</option>').join('');
+  window._dhSub='سالانہ مدت: یکم جولائی '+fy+'ء تا 30 جون '+(fy+1)+'ء • آج: '+dhFmt(new Date());
+  if(window._curView==='home'){ const l=document.getElementById('recStatusLine'); if(l) l.textContent=window._dhSub; }
+}
+/* ===== مرکزی صفحہ: کارڈ پر کلک → تفصیل (نام جماعتیں وغیرہ) ===== */
+function dhOpen(k){ DHX.detail=k; dhRender(); window.scrollTo({top:0,behavior:'smooth'}); }
+function dhBack(){ DHX.detail=null; DHX.modal=0; dhRender(); window.scrollTo({top:0,behavior:'smooth'}); }
+function dhQ(v){ v=(v||'').trim().toLowerCase(); document.querySelectorAll('#dhBox .dd-tb tbody tr').forEach(tr=>{ tr.style.display=(!v||tr.textContent.toLowerCase().includes(v))?'':'none'; }); }
+function dhModal(S){
+  return '<div class="dh-modal" onclick="if(event.target===this){DHX.modal=0;dhRender()}"><div class="dh-md"><h3>✍️ اندراج <button class="dh-x" onclick="DHX.modal=0;dhRender()">✕</button></h3><div class="dh-tabs">'
+   +[['prog','🗓️ آڈٹ پروگرام'],['wus','💰 وصولی پروگرام'],['leave','🏖️ چھٹی'],['dak','✉️ ڈاک'],['jam','🏛️ جماعتیں / امارتیں']].map(t=>'<button class="'+(DHX.tab===t[0]?'on':'')+'" onclick="DHX.tab=\''+t[0]+'\';dhRender()">'+t[1]+'</button>').join('')
+   +'</div>'+dhTab(S)+'</div></div>';
+}
+function dhDetail(S,k){
+  const E=dhE, bd=(c,t)=>'<span class="dd-badge b-'+c+'">'+t+'</span>', fy=DHX.fy;
+  const dts={}; S.aud.forEach(x=>{ (dts[x.n]=dts[x.n]||[]).push(dhFmt(x.d)); });
+  const pm={}; S.up.forEach(p=>{ const n=dhNorm(p.jamaat); if(p.d>=S.td && !pm[n]) pm[n]=dhFmt(p.d); });
+  let T='',ic='',c='#7a1f1f',cols=[],rows=[],foot='',tab='';
+  switch(k){
+    case 'total': T='کل جماعتیں';ic='🏛️';c='#7a1f1f';tab='jam';cols=['نام جماعت','حیثیت','آڈٹ کی تاریخ'];
+      rows=S.J.slice().sort((a,b)=>a.localeCompare(b,'ur')).map(n=>[E(n),dts[n]?bd('ok','مکمل ✅')+(dts[n].length>1?' '+bd('re','دوبارہ ×'+(dts[n].length-1)):''):bd('wait','باقی ⏳'),dts[n]?dts[n].map(E).join(' ، '):'—']);break;
+    case 'done': T='مکمل آڈٹ';ic='✅';c='#1d7a46';cols=['نام جماعت','آڈٹ کی تاریخ'];
+      rows=S.aud.filter(x=>!x.re).map(x=>[E(x.n),dhFmt(x.d)]);break;
+    case 'pend': T='باقی آڈٹ';ic='⏳';c='#d9822b';tab='prog';cols=['نام جماعت','حیثیت','مقررہ پروگرام'];
+      rows=S.pend.map(n=>[E(n),bd('wait','آڈٹ باقی'),pm[n]||'—']);break;
+    case 're': T='دوبارہ آڈٹ';ic='🔁';c='#7b3fa0';cols=['نام جماعت','دوبارہ آڈٹ کی تاریخ','حیثیت'];
+      rows=S.aud.filter(x=>x.re).map(x=>[E(x.n),dhFmt(x.d),bd('re','دوبارہ')]);break;
+    case 'am': T='امارت کے آڈٹ';ic='🕌';c='#13808b';tab='jam';cols=['امارت','حیثیت','تاریخ'];
+      rows=S.am.map(x=>[E(x.n),x.re?bd('re','دوبارہ'):bd('ok','مکمل ✅'),dhFmt(x.d)]).concat(S.amPend.map(n=>[E(n),bd('wait','باقی ⏳'),'—']));break;
+    case 'trav': T='سالانہ سفری اخراجات';ic='🚗';c='#0f5132';cols=['تاریخ','علاقہ / منجانب','رقم'];
+      rows=S.tr.slice().sort((a,b)=>a.d-b.d).map(x=>[dhFmt(x.d),E(x.n||'—'),'Rs '+dhN(x.a)]);foot='کل سفری اخراجات: Rs '+dhN(S.trYear);break;
+    case 'dak': T='ڈاک';ic='✉️';c='#8a5a14';tab='dak';cols=['تاریخ','ڈاک کی تفصیل','حالت'];
+      rows=S.dk.slice().sort((a,b)=>a.d-b.d).map(x=>[dhFmt(x.d),E(x.detail),x.st==='sent'?bd('ok','بھیجی گئی'):bd('wait','باقی')]);foot='بھیجی گئی: '+S.sent+' • باقی: '+S.pendDak;break;
+    case 'leave': T='چھٹیاں';ic='🏖️';c='#c0562b';tab='leave';cols=['مدت','دن','قسم','حالت'];
+      rows=S.lv.map(l=>[E(l.from)+' ← '+E(l.to),l.days+' دن',E(l.kind||''),E(l.st)]);foot='استعمال شدہ: '+S.used+' دن • باقی: '+S.left+' دن (سالانہ '+DH.leaveTotal+')';break;
+    case 'prog': T='آئندہ آڈٹ پروگرام';ic='🗓️';c='#a1294a';tab='prog';cols=['تاریخ','جماعت','نوٹ','حیثیت'];
+      rows=S.up.map(p=>[dhFmt(p.d),E(p.jamaat),E(p.note||''),S.seen.has(dhNorm(p.jamaat))?bd('ok','مکمل ✅'):(p.d>=S.td?bd('wait','آئندہ'):bd('re','گزر چکا'))]);break;
+    case 'wasooli': T='آئندہ وصولی پروگرام';ic='💰';c='#0b7285';tab='wus';cols=['تاریخ','جماعت','نوٹ','حیثیت'];
+      rows=S.wup.map(p=>[dhFmt(p.d),E(p.jamaat),E(p.note||''),p.d>=S.td?bd('wait','آئندہ'):bd('ok','گزر چکا')]);break;
+  }
+  let h='<div class="dd-hero" style="--c:'+c+'"><button class="dd-back" onclick="dhBack()">⬅ مرکزی صفحہ</button><div><h2>'+ic+' '+T+'</h2><small>مالی سال '+fy+'-'+String(fy+1).slice(2)+' • یکم جولائی '+fy+'ء تا 30 جون '+(fy+1)+'ء</small></div><div class="dd-cnt">'+rows.length+'</div></div>';
+  h+='<div class="dh-box"><div class="dd-tools"><input class="dd-q" placeholder="🔍 فہرست میں تلاش…" oninput="dhQ(this.value)">'+(tab?'<button class="dd-add" onclick="DHX.tab=\''+tab+'\';DHX.modal=1;dhRender()">✍️ اندراج</button>':'')+'</div>';
+  h+=rows.length?'<table class="dd-tb"><thead><tr><th>#</th>'+cols.map(x=>'<th>'+x+'</th>').join('')+'</tr></thead><tbody>'+rows.map((r,i)=>'<tr><td>'+(i+1)+'</td>'+r.map(x=>'<td>'+x+'</td>').join('')+'</tr>').join('')+'</tbody></table>':'<div class="dd-empty">اس مالی سال میں ابھی کوئی اندراج نہیں</div>';
+  if(foot) h+='<div class="dd-foot">'+foot+'</div>';
+  h+='</div>';
+  if(DHX.modal) h+=dhModal(S);
+  return h;
+}
+
+
+/* ===== نقل / ریفرنس ===== */
+const DKR_PRESETS=['نقل امیر صاحب ضلع','نقل امیر مقامی'];
+const dkrBox=p=>document.getElementById(p+'_ref_list');
+function dkrRow(t,on){ return '<div class="dkr-row'+(on?' on':'')+'"><button type="button" class="dkr-tk" onclick="dkrTick(this)" title="ٹک کریں تو پرنٹ میں آئے گا">'+(on?'☑':'☐')+'</button><span class="dkr-t" contenteditable="true" data-ph="نقل … لکھیں" oninput="dkrChanged(this)">'+escapeHtml(t||'')+'</span><button type="button" class="dkr-x" onclick="dkrDel(this)" title="حذف">✕</button></div>'; }
+function dkrP(el){ const r=el.closest('.dk-ref'); return r?r.dataset.p:null; }
+function dkrSet(p,arr){ const a=Array.isArray(arr)?arr:DKR_PRESETS.map(t=>({t,on:false})); dkrBox(p).innerHTML=a.map(x=>dkrRow(x.t,x.on)).join(''); dkrSync(p); }
+function dkrGet(p){ return [...dkrBox(p).querySelectorAll('.dkr-row')].map(r=>({t:r.querySelector('.dkr-t').innerText.trim(),on:r.classList.contains('on')})); }
+function dkrSync(p){
+  const o=document.getElementById(p+'_ref_print'); if(!o) return;
+  o.innerHTML = window.PRINT_BLANK ? '' : dkrGet(p).filter(x=>x.on&&x.t).map(x=>'<div class="dkr-pl"><span class="dkr-bx">✓</span> '+escapeHtml(x.t)+'</div>').join('');
+}
+function dkrTick(b){ const r=b.closest('.dkr-row'); const on=!r.classList.contains('on'); r.classList.toggle('on',on); b.textContent=on?'☑':'☐'; if(typeof setDirty==='function') setDirty(true); dkrSync(dkrP(b)); }
+function dkrChanged(el){ dkrSync(dkrP(el)); }
+function dkrDel(b){ const p=dkrP(b); b.closest('.dkr-row').remove(); if(typeof setDirty==='function') setDirty(true); dkrSync(p); }
+function dkrAdd(p){ dkrBox(p).insertAdjacentHTML('beforeend',dkrRow('',true)); const t=dkrBox(p).lastElementChild.querySelector('.dkr-t'); t.focus(); if(typeof setDirty==='function') setDirty(true); dkrSync(p); }
+function dkrShare(refs){ const l=(refs||[]).filter(x=>x&&x.on&&x.t).map(x=>'☑ '+x.t); return l.length?'\n\n'+l.join('\n'):''; }
+dkrSet('dk'); dkrSet('gd');
+
+/* ===== Excel: موجودہ فارم کی شیٹ ڈاؤن لوڈ ===== */
+function exportFormExcel(){
+  try{
+    const root=document.getElementById('formtype-'+currentFormType);
+    if(!root){ showToast('Excel نہیں بن سکی۔'); return; }
+    const clone=root.cloneNode(true);
+    const oa=[...root.querySelectorAll('*')], ca=[...clone.querySelectorAll('*')];
+    const rm=[];
+    oa.forEach((o,i)=>{ const c=ca[i]; if(!c) return; if(getComputedStyle(o).display==='none' || o.matches('button,canvas,script,style,.no-print,.coltools,.addrow-bar,.rowdel,.rowcopy,.print-text,.dkr-print,.sigwrap')) rm.push(c); });
+    const oi=[...root.querySelectorAll('input,textarea,select')], ci=[...clone.querySelectorAll('input,textarea,select')];
+    oi.forEach((o,i)=>{ const c=ci[i]; if(!c) return;
+      let v=''; if(o.tagName==='SELECT') v=o.options[o.selectedIndex]?o.options[o.selectedIndex].text:''; else if(o.type==='checkbox'||o.type==='radio') v=o.checked?'☑':'☐'; else v=o.value;
+      const sp=document.createElement('span'); sp.textContent=v; c.replaceWith(sp); });
+    rm.forEach(e=>e.remove());
+    clone.querySelectorAll('.dkr-row').forEach(r=>{ const on=r.classList.contains('on'); const t=r.querySelector('.dkr-t'); r.textContent=(on?'☑ ':'☐ ')+(t?t.textContent:''); });
+    const lab={baqaya:'فہرست بقایاداران',baqaya30:'30 جون بقایاداران',auditaccount:'انسپکٹر رپورٹ',safar:'سفر خرچ',district:'آڈٹ رپورٹ ضلع',amaratAudit:'امارت آڈٹ رپورٹ',darkhwast:'درخواست',gendarkhwast:'جنرل درخواست'};
+    const title=(lab[currentFormType]||'فارم');
+    const html='<html dir="rtl"><head><meta charset="utf-8"><style>body{font-family:Tahoma,Arial;font-size:13px}table{border-collapse:collapse}td,th{border:1px solid #888;padding:3px 6px;text-align:center}div{margin:2px 0}</style></head><body><h2>'+title+'</h2>'+clone.innerHTML+'</body></html>';
+    const d=new Date(), ds=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    dhSaveBlob(new Blob(['\ufeff'+html],{type:'application/vnd.ms-excel'}), title+' '+ds+'.xls');
+    showToast('Excel شیٹ ڈاؤن لوڈ ہو گئی ✓');
+  }catch(e){ console.error(e); showToast('Excel نہیں بن سکی۔'); }
+}
 
 </script>
 </body>
