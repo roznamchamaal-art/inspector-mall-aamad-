@@ -6,10 +6,10 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="انسپیکٹر مال آمد">
+<meta name="apple-mobile-web-app-title" content="انسپکٹر مال آمد">
 <meta name="theme-color" content="#7a1f1f">
 
-<title>انسپیکٹر مال آمد</title>
+<title>‎</title>
 <style>
 :root{
   --ink:#1a1a1a;
@@ -2191,7 +2191,7 @@ body.is-dirty #recStatusLine::after{content:"  ● غیر محفوظ تبدیل�
       <div class="tb-brand">
         <div class="tb-logo">📒</div>
         <div class="tb-txt">
-          <h1><span class="ur">انسپیکٹر مال آمد </span><span class="en">Inspector Maal Aamad</span></h1>
+          <h1><span class="ur">انسپکٹر مال آمد </span><span class="en">Inspector Maal Aamad</span></h1>
           <div class="sub" id="recStatusLine">نیا فارم</div>
         </div>
       </div>
@@ -6481,7 +6481,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     try{
       const here = location.href.split('#')[0].split('?')[0];
       const dir = here.replace(/[^\/]*$/, '');
-      const man = {id: here, name:'انسپیکٹر مال آمد', short_name:'انسپیکٹر مال آمد', description:'انسپیکٹر مال آمد کے فارم، پرنٹ، بیک اپ اور دستخط — آف لائن ایپ',
+      const man = {id: here, name:'انسپکٹر مال آمد', short_name:'انسپکٹر مال آمد', description:'انسپکٹر مال آمد کے فارم، پرنٹ، بیک اپ اور دستخط — آف لائن ایپ',
         lang:'ur', dir:'rtl', start_url: here, scope: dir, display:'standalone', background_color:'#f6f3e9', theme_color:'#7a1f1f',
         icons:[{src:ICON.i192, sizes:'192x192', type:'image/png', purpose:'any'},{src:ICON.i512, sizes:'512x512', type:'image/png', purpose:'any'},{src:ICON.msk, sizes:'512x512', type:'image/png', purpose:'maskable'}]};
       setLink('manifest', URL.createObjectURL(new Blob([JSON.stringify(man)], {type:'application/manifest+json'})));
@@ -6540,7 +6540,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     b.id = 'installBanner'; b.className = 'install-banner'; b.setAttribute('role', 'region'); b.setAttribute('aria-label', 'ایپ انسٹال کریں');
     const manual = isIOS && !deferred;
     b.innerHTML = '<img src="' + ICON.i192 + '" alt="">' +
-      '<div class="ib-text"><b>📲 انسپیکٹر مال آمد انسٹال کریں</b>' + (manual ? 'ہوم اسکرین پر شامل کریں — ایپ کی طرح کھلے گی۔' : 'موبائل / لیپ ٹاپ / کمپیوٹر پر ایپ کی طرح کھلے گی، آف لائن بھی چلے گی۔') + '</div>' +
+      '<div class="ib-text"><b>📲 انسپکٹر مال آمد انسٹال کریں</b>' + (manual ? 'ہوم اسکرین پر شامل کریں — ایپ کی طرح کھلے گی۔' : 'موبائل / لیپ ٹاپ / کمپیوٹر پر ایپ کی طرح کھلے گی، آف لائن بھی چلے گی۔') + '</div>' +
       '<div class="ib-btns"><button type="button" class="ib-go">' + (manual ? 'طریقہ دیکھیں' : 'انسٹال کریں') + '</button><button type="button" class="ib-later">بعد میں</button></div>';
     b.querySelector('.ib-go').addEventListener('click', ()=>window.appInstall());
     b.querySelector('.ib-later').addEventListener('click', ()=>{ localStorage.setItem(LS_DISMISS, String(Date.now())); hideBanner(); });
@@ -7587,7 +7587,7 @@ function pdfDownload(){
     try{ document.title = pdfFileBase(); }catch(e){}
     try{ _dp(blank); } finally { setTimeout(() => { document.title = old; }, 800); }
   };
-  window.addEventListener('afterprint', () => { if(/20\d\d-\d\d-\d\d$/.test(document.title)) setTimeout(() => { document.title = 'انسپیکٹر مال آمد'; }, 300); });
+  window.addEventListener('afterprint', () => { if(/20\d\d-\d\d-\d\d$/.test(document.title)) setTimeout(() => { document.title = '\u200e'; }, 300); });
 })();
 
 /* ======================================================================
@@ -7860,7 +7860,7 @@ function dhRep(){const fy=DHX.fy,v=document.getElementById('dhRs').value,m=v==='
   const sum=[['کل جماعتیں',S.total,'—'],['مکمل آڈٹ',S.complete,per(S.aud,x=>x.re?0:1)],['باقی آڈٹ',S.total-S.complete,'—'],['دوبارہ آڈٹ',S.re,per(S.aud,x=>x.re?1:0)],['امارت کے آڈٹ (مکمل)',S.amDone,per(S.am,x=>x.re?0:1)],['امارت کے آڈٹ (باقی)',S.amTotal-S.amDone,'—'],['استعمال شدہ چھٹیاں',S.used,per(S.lv.filter(l=>l.st==='منظور'),l=>l.days)],['باقی چھٹیاں',S.left,'—'],['بھیجی گئی ڈاک',S.sent,per(S.dk.filter(x=>x.st==='sent'),()=>1)],['باقی ڈاک',S.pendDak,'—'],['سفری اخراجات (Rs)',S.trYear,per(S.tr,x=>x.a)]];
   const T=[{h:'خلاصہ',c:['تفصیل','سال بھر','اس مدت میں'],r:sum},{h:'آڈٹ رپورٹیں',c:['تاریخ','جماعت','حیثیت'],r:S.aud.filter(x=>f(x.d)).map(x=>[dhFmt(x.d),x.n,x.re?'دوبارہ':'مکمل'])},{h:'امارت کے آڈٹ',c:['تاریخ','امارت','حیثیت'],r:S.am.filter(x=>f(x.d)).map(x=>[dhFmt(x.d),x.n,x.re?'دوبارہ':'مکمل'])},{h:'چھٹیاں',c:['از','تا','دن','قسم','حالت'],r:S.lv.filter(l=>f(l.f)).map(l=>[l.from,l.to,l.days,l.kind,l.st])},{h:'ڈاک',c:['تاریخ','تفصیل','حالت'],r:S.dk.filter(x=>f(x.d)).map(x=>[x.date,x.detail,x.st==='sent'?'بھیجی گئی':'باقی'])},{h:'سفری اخراجات',c:['تاریخ','علاقہ/منجانب','رقم'],r:[...S.tr.filter(x=>f(x.d)).map(x=>[dhFmt(x.d),x.n,dhN(x.a)]),['','کل',dhN(per(S.tr,x=>x.a))]]},{h:'آئندہ آڈٹ پروگرام',c:['تاریخ','جماعت','نوٹ'],r:S.up.filter(p=>p.d>=S.td).map(p=>[dhFmt(p.d),p.jamaat,p.note||''])},{h:'آئندہ وصولی پروگرام',c:['تاریخ','جماعت','نوٹ'],r:S.wup.filter(p=>p.d>=S.td).map(p=>[dhFmt(p.d),p.jamaat,p.note||''])},{h:'باقی جماعتیں',c:['جماعت'],r:S.pend.map(n=>[n])}];
   if(m)T.push({h:'ماہ وار جدول',c:['ماہ','آڈٹ','سفری اخراجات'],r:S.mm.map((x,i)=>[DHM[(i+6)%12],x,dhN(S.tm[i])])});return{title,T};}
-function dhHtml(){const{title,T}=dhRep();return{title,html:'<div class="dhrp"><h1>'+dhE(title)+'</h1><small>انسپیکٹر مال آمد • '+dhFmt(new Date())+'</small>'+T.filter(t=>t.r.length).map(t=>'<h2>'+t.h+'</h2><table><tr>'+t.c.map(c=>'<th>'+c+'</th>').join('')+'</tr>'+t.r.map(r=>'<tr>'+r.map(c=>'<td>'+dhE(c)+'</td>').join('')+'</tr>').join('')+'</table>').join('')+'</div>'};}
+function dhHtml(){const{title,T}=dhRep();return{title,html:'<div class="dhrp"><h1>'+dhE(title)+'</h1><small>انسپکٹر مال آمد • '+dhFmt(new Date())+'</small>'+T.filter(t=>t.r.length).map(t=>'<h2>'+t.h+'</h2><table><tr>'+t.c.map(c=>'<th>'+c+'</th>').join('')+'</tr>'+t.r.map(r=>'<tr>'+r.map(c=>'<td>'+dhE(c)+'</td>').join('')+'</tr>').join('')+'</table>').join('')+'</div>'};}
 function dhSaveBlob(b,n){const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1500);}
 async function dhPdf(){showToast('PDF تیار ہو رہی ہے…',9000);try{const{title,html}=dhHtml(),css=pdfCssText()+document.getElementById('dhCss').textContent,host=document.createElement('div');host.style.cssText='position:fixed;left:-9999px;top:0;width:794px;background:#fff';host.innerHTML='<div style="padding:10mm 8mm;box-sizing:border-box;width:794px">'+html+'</div>';document.body.appendChild(host);const H=host.scrollHeight+40,inner=new XMLSerializer().serializeToString(host.firstChild);host.remove();
   const s=1.6,tall=await pdfRenderSvg(inner,794,H,css,document.body.className,s);dhSaveBlob(pdfFromPages(pdfSliceTall(tall,794,s)),title+'.pdf');showToast('PDF محفوظ ہو گئی');}catch(e){console.error(e);showToast('PDF نہیں بن سکی — پرنٹ بٹن استعمال کریں');}}
